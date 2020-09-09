@@ -47,7 +47,7 @@
 %% Theme
 %% -----------------------------------------------------------------------------
 \def\ThemePath{beamer-themes/colorful-dream/}
-\usepackage[theorems]{\ThemePath/beamerthemecolorful-dream}
+\usepackage[emblem,theorems]{\ThemePath/beamerthemecolorful-dream}
 
 \lstcolorlet{keywordA}{btcd@color@primary}
 \lstcolorlet{keywordB}{btcd@color@secondary}
@@ -114,6 +114,9 @@
 \institute{Verteilte Systeme \(\circ\) Universität Ulm}
 \outro{Ulm, den \today}
 
+\SetEmblem[university Ulm]{Praktische Informatik}{\faCode}
+
+
 \setcounter{tocdepth}{4}
 
 \newcounter{ctrtasks}
@@ -156,10 +159,10 @@
 }
 
 \titleimage{%
-    \begin{tikzpicture}[scale=0.9,every node/.style={transform shape},t/.style={}]
+    \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
     \node at(0,0) [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
     \foreach \l [count=\xi] in {Wert\-zu\-wei\-sun\-gen,An\-weis\-ungs\-block,Operatoren,Leer,Be\-ding\-te An\-weis\-ung,Mehr\-fach\-ver\-zwei\-gung,Wdh. \-an\-weis\-ung\-en} {
-        \node at(2.2*\xi-8*1.1,-2) [rounded corners = 6pt,rectangle, draw, text width=1.8cm,align=center] (\xi) {\scriptsize\l};
+        \node at(2.2*\xi-8*1.1,-2) [rounded corners = 6pt,rectangle, draw, text width=1.8cm,align=center,font=\scriptsize\sffamily] (\xi) {\l};
         \draw[-Kite] (0) to[out=270- 3*7 +\xi*5,in=90] (\xi);
     }
 
@@ -4322,7 +4325,7 @@ public class A {
     \vfill
     \begin{center}
         \footnotesize\begin{minipage}{0.95\linewidth}
-Wie bereits gesagt erhebt dieses Dokument keinen Anspruch auf Vollständigkeit und sieht sich vermutlich auch weiteren Aktualisierungen unterworfen. Eine aktuelle Variante sollte es hier geben: \url{https://cloudstore.uni-ulm.de/s/aSXWdAqmcmS3Cf7}.
+Wie bereits gesagt erhebt dieses Dokument keinen Anspruch auf Vollständigkeit und sieht sich vermutlich auch weiteren Aktualisierungen unterworfen. Eine aktuelle Variante sollte es hier geben: \url{https://github.com/EagleoutIce/eidi-pseudo-rep}.
 \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
