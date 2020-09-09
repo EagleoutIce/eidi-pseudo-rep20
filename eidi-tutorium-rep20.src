@@ -7,6 +7,12 @@
 %% Basic Packages
 %% -----------------------------------------------------------------------------
 
+% TODO: fix inkonsistencies with old variant
+% TODO: remove it shape (boxes etc) and TODO: maybe make all graphics with the solid design?
+% TODO: remove alot of it
+% TODO: fix errors with border slide 202 and probably others
+% center stuff and maybe add bibliography? :D
+
 % encoding:
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -15,7 +21,7 @@
 \RequirePackage{sfmath}
 
 \RequirePackage{tikz} % we need it anyways - will load xcolor
-\usetikzlibrary{calc}
+\usetikzlibrary{calc, arrows.meta, decorations, decorations.pathreplacing}
 
 \RequirePackage[english,main=ngerman]{babel}
 
@@ -35,25 +41,25 @@
 \newcommand*\heapeElement[2] {\hsmElement{(5.5,#1)}{#2}{limegreen}}
 \newcommand*\heapclassElement[2] {\hsfElement{(5.5,#1)}{\textcolor{white}{\T{\textbf{\large{#2}}}}}{tealblue}}
 \newcommand*\heapclassChild[2] {\hsmElement{(5.5,#1)}{\textcolor{black}{\scriptsize{#2}}}{tealblue}}
-\renewcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{gd@color@primary}}
+\renewcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{btcd@color@primary}}
 
 %% -----------------------------------------------------------------------------
 %% Theme
 %% -----------------------------------------------------------------------------
+\def\ThemePath{beamer-themes/colorful-dream/}
+\usepackage[theorems]{\ThemePath/beamerthemecolorful-dream}
 
-\usetheme{greendream}
+\lstcolorlet{keywordA}{btcd@color@primary}
+\lstcolorlet{keywordB}{btcd@color@secondary}
+\lstcolorlet{keywordC}{btcd@color@secondary}
+\lstcolorlet{comments}{btcd@color@primary!20!btcd@color@white!50!btcd@color@black}
 
-\colorlet{sol@colors@lst@keywordA}{gd@color@primary}
-\colorlet{sol@colors@lst@keywordB}{gd@color@secondary}
-\colorlet{sol@colors@lst@keywordC}{gd@color@secondary}
-\colorlet{sol@colors@lst@comments}{gd@color@primary!20!gd@color@white!50!gd@color@black}
-
-\colorlet{sol@colors@lst@literals}{gd@color@secondary!75!gd@color@white}
+\lstcolorlet{literals}{btcd@color@secondary!75!btcd@color@white}
 \makeatletter
 
 \sol@list@define@styles{%
     {keywordA:      \color{sol@colors@lst@keywordA}\bfseries},%
-    {keywordB:      \color{sol@colors@lst@keywordB}\itshape},%
+    {keywordB:      \color{sol@colors@lst@keywordB}},%
     {keywordC:      \color{sol@colors@lst@keywordC}},%
 }
 \makeatother
@@ -84,10 +90,10 @@
   }%
 }
 
-\providecommand{\lstHLZWS}{\@lillyLstHL[fill=gd@color@primary!24,draw=gd@color@primary!24]}
-\providecommand{\lstHLVGL}{\@lillyLstHL[fill=gd@color@alerted!36!gd@color@primary!36,draw=gd@color@alerted!36!gd@color@primary!36]}
-\providecommand{\lstHLINK}{\@lillyLstHL[fill=gd@color@alerted!24,draw=gd@color@alerted!24]}
-\providecommand{\lstHLDEK}{\@lillyLstHL[fill=gd@color@black!9,draw=gd@color@black!9]}
+\providecommand{\lstHLZWS}{\@lillyLstHL[fill=btcd@color@primary!24,draw=btcd@color@primary!24]}
+\providecommand{\lstHLVGL}{\@lillyLstHL[fill=btcd@color@alerted!36!btcd@color@primary!36,draw=btcd@color@alerted!36!btcd@color@primary!36]}
+\providecommand{\lstHLINK}{\@lillyLstHL[fill=btcd@color@alerted!24,draw=btcd@color@alerted!24]}
+\providecommand{\lstHLDEK}{\@lillyLstHL[fill=btcd@color@black!9,draw=btcd@color@black!9]}
 
 \lstdefinelanguage{xJava}{
     language=lJava,
@@ -114,8 +120,42 @@
 \def\Task#1{\only<1>{\stepcounter{ctrtasks}\pdfbookmark[4]{Aufgabe \thectrtasks: #1}{id@bkmrk@eidi@\thectrtasks}}}
 \def\Time#1{\ifx\\#1\\\else\hbox{}\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
 
+\colorlet{solidF}{btcd@color@primary!25!btcd@color@black}
 
-\def\TitleImage{%
+\colorlet{fillA}{btcd@color@primary!15!white}
+\colorlet{fillB}{btcd@color@secondary!15!white}
+\colorlet{fillC}{btcd@color@alerted!15!white}
+
+\long\def\hl#1{\textcolor{btcd@color@secondary}{#1}}
+\long\def\imp#1{\textcolor{btcd@color@alerted}{#1}}
+\long\def\say#1{\glqq{#1}\grqq{}}
+
+\def\widei{\setlength\itemsep{1em}}
+
+\newcommand\twosplit[3][t]{%
+\begin{columns}[#1]
+\begin{column}{0.475\linewidth}
+    #2
+\end{column}\hfill
+\begin{column}{0.475\linewidth}
+    #3
+\end{column}
+\end{columns}
+}
+
+% TODO: uotsource in sub package?s
+\tikzset{
+    block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=0pt,minimum height=\baselineskip,execute at begin node={\strut}},
+    block/.default=solidF,
+    iblock/.style={block=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
+    ball/.style={circle,draw,#1,font=\color{btcd@color@black}},
+    iball/.style={ball=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
+    oball/.style={ball=btcd@color@alerted,fill=btcd@color@alerted!21!btcd@color@white},
+    ball/.default=solidF,
+    link/.style={-Kite}
+}
+
+\titleimage{%
     \begin{tikzpicture}[scale=0.9,every node/.style={transform shape},t/.style={}]
     \node at(0,0) [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
     \foreach \l [count=\xi] in {Wert\-zu\-wei\-sun\-gen,An\-weis\-ungs\-block,Operatoren,Leer,Be\-ding\-te An\-weis\-ung,Mehr\-fach\-ver\-zwei\-gung,Wdh. \-an\-weis\-ung\-en} {
@@ -127,7 +167,7 @@
         \node at(2.2*\xi-8*1.1,-3.5) [below,rounded corners = 6pt,rectangle, draw, minimum width=1.8cm, minimum height=0.75cm,\t,align=center] (a\xi) {\scriptsize\T{\l}};
         \draw [-Kite] (\xi) -- (a\xi);
     }
-    \end{tikzpicture}
+    \end{tikzpicture}%
 }
 
 \def\O{\ensuremath{\mathcal{O}}}
@@ -136,32 +176,18 @@
 %% Freitag: Folie 99, Call by Value
 
 \begin{document}
-\tikzumlset{fill class=gd@color@white}
-\attachfilesetup{color=gd@color@secondary,author={Florian Sihler}}
+\tikzumlset{fill class=btcd@color@white}
+\attachfilesetup{color=btcd@color@secondary,author={Florian Sihler}}
 \pdfbookmark[2]{Themenübersicht}{eidi@toc@mainview}
 \begin{frame}{Themenübersicht, I}
     \begin{center}
-        \begin{columns}
-            \begin{column}{.45\textwidth}
-                \tableofcontents[sections={1-2}]
-            \end{column}
-            \begin{column}{.45\textwidth}
-                \tableofcontents[sections={3-4}]
-            \end{column}
-        \end{columns}
+        \twosplit[c]{\tableofcontents[sections={1-2}]}{\tableofcontents[sections={3-4}]}
     \end{center}
 \end{frame}
 
 \begin{frame}{Themenübersicht, II}
     \begin{center}
-        \begin{columns}
-            \begin{column}{.45\textwidth}
-                \tableofcontents[sections={5-6}]
-            \end{column}
-            \begin{column}{.45\textwidth}
-                \tableofcontents[sections={7-8}]
-            \end{column}
-        \end{columns}
+        \twosplit[c]{\tableofcontents[sections={5-6}]}{\tableofcontents[sections={7-8}]}
     \end{center}
 \end{frame}
 
@@ -227,14 +253,14 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX{} und Ti\texti
     \twosplit{%
     \begin{block}<2->{Korrektheit}
         \onslide<3->{Ein Algorithmus ist korrekt, wenn er für jede (definierte) Eingabe, die korrekte Ausgabe erzeugt.}
-    \end{block}
+    \end{block}\bigskip
     \begin{block}<6->{Partielle Korrektheit}
         \onslide<7->{Wenn der Algorithmus terminiert, ist er korrekt.}
     \end{block}
     }{%
     \begin{block}<4->{Robust}
         \onslide<5->{Ein Algorithmus ist (maximal) robust, wenn er falsche Eingabe erkennen und abfangen kann.}
-    \end{block}
+    \end{block}\bigskip
     \begin{block}<8->{Totale Korrektheit}
         \onslide<9->{Der Algorithmus ist partiell korrekt und terminiert.}
     \end{block}
@@ -462,8 +488,8 @@ public static int simpleMod(int a, int b){
                 \draw (prog)++(0,-0.75) node[below] {\tiny Das wollen wir} -- (prog);
                 \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
                 \draw (comp)++(0,0.75) node[above] {\tiny Syntax-Analyse} -- (comp);
-                \draw[gd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
-                \draw[gd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
+                \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
+                \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
                 \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches/dynmaisches Linken}\\\hphantom{statisch/dy}(Java)}} -- (link);
     
             \end{scope}
@@ -1998,7 +2024,7 @@ static int methode(int n) {
 \setlength{\extrarowheight}{.45ex}%
 \begin{tabular}{c*{8}{c}}
     \toprule
-    & \onslide<9->{\cellcolor{gd@color@primary!100!gd@color@alerted!21} \(\O(1)\)} & \onslide<10->{\cellcolor{gd@color@primary!85!gd@color@alerted!21}\(\O(\log n)\)} & \onslide<11->{\cellcolor{gd@color@primary!69!gd@color@alerted!21} \(\O(n)\)} & \onslide<12->{\cellcolor{gd@color@primary!53!gd@color@alerted!21} \(\O(n\log n)\)} & \onslide<13->{\cellcolor{gd@color@primary!36!gd@color@alerted!21} \(\O(n^2)\)} & \onslide<14->{\cellcolor{gd@color@primary!19!gd@color@alerted!21} \(\O(n^3)\)} & \onslide<15->{\cellcolor{gd@color@primary!14!gd@color@alerted!21} \(\O(2^n)\)} & \onslide<16->{\cellcolor{gd@color@primary!0!gd@color@alerted!21} \(\O(n!)\)} \\[0.45ex]\midrule
+    & \onslide<9->{\cellcolor{btcd@color@primary!100!btcd@color@alerted!21} \(\O(1)\)} & \onslide<10->{\cellcolor{btcd@color@primary!85!btcd@color@alerted!21}\(\O(\log n)\)} & \onslide<11->{\cellcolor{btcd@color@primary!69!btcd@color@alerted!21} \(\O(n)\)} & \onslide<12->{\cellcolor{btcd@color@primary!53!btcd@color@alerted!21} \(\O(n\log n)\)} & \onslide<13->{\cellcolor{btcd@color@primary!36!btcd@color@alerted!21} \(\O(n^2)\)} & \onslide<14->{\cellcolor{btcd@color@primary!19!btcd@color@alerted!21} \(\O(n^3)\)} & \onslide<15->{\cellcolor{btcd@color@primary!14!btcd@color@alerted!21} \(\O(2^n)\)} & \onslide<16->{\cellcolor{btcd@color@primary!0!btcd@color@alerted!21} \(\O(n!)\)} \\[0.45ex]\midrule
     Bsp: & \onslide<9->{\(42\)} & \onslide<10->{\(4 \log (3n)\)} & \onslide<11->{\(4n-3\)} & \onslide<12->{\(4n\log(2n)\)} & \onslide<13->{\(n^2 + 2n - 1\)} & \onslide<14->{\(n^3 - 42n^2\)} & \onslide<15->{\(14\cdot2^n\)}& \onslide<16->{\(n! \cdot 10^{-42}\)}\\
     Bez: &\onslide<9->{\footnotesize konst.} & \onslide<10->{\footnotesize logarithm.} & \onslide<11->{\footnotesize linear} &\onslide<12->{\footnotesize linear log.} & \onslide<13->{\footnotesize quadratisch} & \onslide<14->{\footnotesize kubisch} & \onslide<15->{\footnotesize exponentiell} & \onslide<16->{\footnotesize faktoriell} \\
 \bottomrule
@@ -2142,8 +2168,8 @@ static int methode(int n) {
             \begin{umlseqdiag}
               \umlactor[class=Player]{playerA}
               \umlcontrol[class=Server,x=6]{mainServer}
-              \begin{umlcall}[op={\bjava{createLobby("test")}}]{playerA}{mainServer}
-                \begin{umlcallself}[op={erstelle Lobby\ldots}]{mainServer}
+              \begin{umlcall}[op={\bjava{createLobby("test")}},op-style={right=-0.2ex}]{playerA}{mainServer}
+                \begin{umlcallself}[op={erstelle Lobby\ldots},]{mainServer}
                 \end{umlcallself}
                 \begin{umlfragment}[type=alt, inner xsep=5]
                   \begin{umlcall}[op={\bjava{true /*:ws:success */}},type=return]{mainServer}{playerA}
@@ -2342,7 +2368,7 @@ int getDistance(String a, String b){
     \begin{exercise}<2->[Komplexitätsklassen ordnen\Time{4}]
         \pause{}Ordne die folgenden Komplexitätsklassen ohne Beweis, von der am geringsten skalierenden zur am stärksten skalierenden.\pause{}
         \begin{multicols}{3}
-            \begin{enumerate}[<+(1)->]
+            \begin{enumerate}[<+(1)->]\widei
                 \item \(\O(n \cdot \log(n^2))\)
                 \item \(\O(\frac{n}{12}) + \O(n^3)\)
                 \item \(\O(4^n)-\O(2^n)\)
@@ -2713,7 +2739,7 @@ public static void bubbleSort(int[] arr) {
     \end{itemize}
     \vfill
     \begin{center}\pause
-        \scalebox{0.6}{\begin{forest}
+        \scalebox{0.58}{\begin{forest}
             for tree={}
             [\usebox{\dotA},[{\usebox{\dotB}}[{\usebox{\dotD}}][{\usebox{\dotE}}]][{\usebox{\dotC}}[{\usebox{\dotF}}][{\usebox{\dotG}}]]]
             \node at(0,1) {Split};
@@ -2725,7 +2751,7 @@ public static void bubbleSort(int[] arr) {
         \TikzList{2}{5}{\dotE}%
         \TikzList{1}{5}{\dotF}%
         \TikzList{3}{5}{\dotG}%
-        \scalebox{0.6}{\begin{forest}
+        \scalebox{0.48}{\begin{forest}
             for tree={grow=north}
             [\usebox{\dotA},[{\usebox{\dotC}}[{\usebox{\dotG}}][{\usebox{\dotF}}]][{\usebox{\dotB}}[{\usebox{\dotE}}][{\usebox{\dotD}}]]]
             \node at(0,3.75) {Merge};
@@ -2752,7 +2778,7 @@ public static void bubbleSort(int[] arr) {
     \end{itemize}
     \vfill
     \begin{center}\pause
-        \scalebox{0.6}{\begin{forest}
+        \scalebox{0.58}{\begin{forest}
             for tree={}
             [{\usebox{\dotA}},[{\usebox{\dotB}}[{\usebox{\dotF}}][,phantom]][{{\usebox{\dotD}}}[,phantom][,phantom]]]
             \node at(0,1) {Split};
@@ -2764,7 +2790,7 @@ public static void bubbleSort(int[] arr) {
         \TikzList{2}{5}{\dotE}
         \TikzList{1}{5}{\dotF}
         \TikzList{3}{5}{\dotG}
-        \scalebox{0.6}{\begin{forest}
+        \scalebox{0.58}{\begin{forest}
             for tree={grow=north}
             [{\usebox{\dotA}},[{{\usebox{\dotD}}}[,phantom][,phantom]][{\usebox{\dotB}}[,phantom][{\usebox{\dotF}}]]]
             %[{\(1,2,\mathbf{3},4\)},iblock[{\(4\)}[,phantom][,phantom]][{\(1,\mathbf{2}\)}[,phantom][\(1\)]]]
@@ -2783,16 +2809,16 @@ public static void bubbleSort(int[] arr) {
     \end{itemize}
     \vfill
     \begin{center}\pause
-        \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1,iball[3[4][,phantom]][2]]
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [2,iball[3][4]]
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [3,iball[4][,phantom]]
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,iball]
         \end{forest}}}
@@ -2811,21 +2837,21 @@ public static void bubbleSort(int[] arr) {
     \end{itemize}
     \vfill
     \begin{center}\pause
-        \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4[,fill=white][,phantom]]
-        \end{forest}}} \(\overset{1}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\overset{1}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,name=4[1,name=1][,fill=white]]
             \draw[Kite-Kite] (4) to[bend right] (1);
-        \end{forest}}} \(\overset{2}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\overset{2}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[4[,fill=white][,phantom]][2]]
-        \end{forest}}} \(\overset{3}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\overset{3}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[4,name=4[3,name=3][,phantom]][2]]
             \draw[Kite-Kite] (4) to[bend right] (3);
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.65}{\begin{forest}
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[3[4][,phantom]][2]]
         \end{forest}}}
@@ -3332,7 +3358,7 @@ class Node {
 
 \begin{frame}[c]{Traversierungsverfahren}
     \begin{center}\pause{}
-    \begin{tikzpicture}[fakeblock/.style={rectangle,draw=gd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
+    \begin{tikzpicture}[fakeblock/.style={rectangle,draw=btcd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
         \draw[fakeblock] (0,0) rectangle ++ (3.5,0.65) node[fakesource] {Breitendurchlauf};
     \draw[fakeblock] (4,0) rectangle ++ (3.5,0.65) node[fakesource] {Tiefendurchlauf};
     \draw[fakeblock] (1.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Pre-Order};
@@ -3664,7 +3690,7 @@ class Node {
     \begin{multicols}{5}
         \scriptsize%
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
     \node[ikreis] (a) at (0,0) {1};
     \node[kreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
@@ -3672,7 +3698,7 @@ class Node {
 
     \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -3680,7 +3706,7 @@ class Node {
         
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -3688,7 +3714,7 @@ class Node {
         
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -3696,7 +3722,7 @@ class Node {
         
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
@@ -3718,7 +3744,7 @@ class Node {
     \begin{multicols}{5}
         \scriptsize%
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
     \node[ikreis] (a) at (0,0) {1};
     \node[okreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
@@ -3726,7 +3752,7 @@ class Node {
 
     \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[okreis] (c) at (2,-2) {3};
@@ -3734,7 +3760,7 @@ class Node {
         
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[okreis] (c) at (2,-2) {3};
@@ -3742,7 +3768,7 @@ class Node {
         
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
@@ -3750,7 +3776,7 @@ class Node {
         
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,gd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
