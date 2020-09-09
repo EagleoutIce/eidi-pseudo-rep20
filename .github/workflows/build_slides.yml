@@ -26,7 +26,7 @@ jobs:
         with:
           root_file: noanim-eidi-tutorium-rep20.tex
           latexmk_shell_escape: true
-          pre_compile: "find \"sopra-collection/\" \\( -name '*.sty' -o -name '*.cls'\\) -type f -print0 | xargs -0 -I '{}' cp '{}' \"./\" && cp -r sopra-collection/sopra-listings/Languages ./Languages"
+          pre_compile: "find \"sopra-collection/\" \\( -name '*.sty' -o -name '*.cls' \\) -type f -print0 | xargs -0 -I '{}' cp '{}' \"./\" && cp -r sopra-collection/sopra-listings/Languages ./Languages"
 
       - name: Commit PDF
         run: |

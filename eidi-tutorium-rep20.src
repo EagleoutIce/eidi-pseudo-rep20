@@ -146,7 +146,7 @@
 \end{columns}
 }
 
-% TODO: uotsource in sub package?s
+% TODO: outsource in sub packages?
 \tikzset{
     block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=0pt,minimum height=\baselineskip,execute at begin node={\strut}},
     block/.default=solidF,
