@@ -4331,7 +4331,7 @@ Wie bereits gesagt erhebt dieses Dokument keinen Anspruch auf Vollständigkeit u
 \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
-Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{wc -l < eidi-tutorium-rep20.src > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}(für die Ausgabe relevanter) Zeilen und Summa Summarum \immediate\write18{wc -m < eidi-tutorium-rep20.src > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\newline\hbox{}\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
+Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{wc -l < eidi-tutorium-rep.src > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}(für die Ausgabe relevanter) Zeilen und Summa Summarum \immediate\write18{wc -m < eidi-tutorium-rep.src > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\newline\hbox{}\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
 \begin{center}
     \say{Viel Spaß beim Lernen und natürlich viel Erfolg!}
 \end{center}
