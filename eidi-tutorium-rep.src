@@ -3989,7 +3989,8 @@ class Mensch extends Lebewesen {
 class Student extends Mensch {
     long matrikelnummer;
 
-    Student(int a, float g, String n, long m) {
+    Student(int a, float g, String n, 
+            long m) {
         super(a,g,n);
         matrikelnummer = m:
     }
@@ -4001,7 +4002,8 @@ class Student extends Mensch {
 class Dozent extends Mensch {
     String vorlesung;
 
-    Dozent(int a, float g, String n, String v) {
+    Dozent(int a, float g, String n, 
+           String v) {
         super(a,g,n);
         vorlesung = v:
     }

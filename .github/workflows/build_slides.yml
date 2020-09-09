@@ -24,7 +24,7 @@ jobs:
       - name: Compile the main document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: noanim-eidi-tutorium-rep20.tex
+          root_file: noanim-eidi-tutorium-rep.tex
           latexmk_shell_escape: true
           pre_compile: "find \"sopra-collection/\" \\( -name '*.sty' -o -name '*.cls' \\) -type f -print0 | xargs -0 -I '{}' cp '{}' \"./\" && cp -r sopra-collection/sopra-listings/Languages ./Languages"
 
@@ -32,7 +32,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -f noanim-eidi-tutorium-rep20.pdf
+          cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
+          git add -f slides-eidi-rep.pdf
           git commit -m "Update PDF by workflow"
           
       - name: Push changes
