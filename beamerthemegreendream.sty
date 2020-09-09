@@ -1,0 +1,327 @@
+% GreenDream-BeamerTheme by Florian Sihler
+% Currently a single-File solution as I am really sloppy :D
+
+% Font & packages:
+\RequirePackage[defaultfam,light,tabular,lining]{montserrat}
+\RequirePackage{sfmath,tikz,fontawesome,multicol}
+
+\usetikzlibrary{arrows,automata,calc,intersections,%
+through,decorations.pathreplacing,%
+decorations.pathmorphing,decorations.text,backgrounds,%
+positioning,fit,shapes,shadings,arrows.meta,%
+shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
+
+% colors:
+% \iffalse %% Theme 1
+  \definecolor{gd@color@primary}{RGB}{049,068,095}       % RGB(049,068,095)
+  \definecolor{gd@color@secondary}{RGB}{82,115,143}      % RGB(82,115,143)
+  \definecolor{gd@color@alerted}{RGB}{137,64,75}         % RGB(137,64,75)
+% \fi
+
+\iffalse %% Theme 2
+  \definecolor{gd@color@primary}{RGB}{018,040,024}       % RGB(018,040,024)
+  \definecolor{gd@color@secondary}{RGB}{046,139,087}     % RGB(046,139,087)
+  %\definecolor{gd@color@alerted}{RGB}{220,33,89}        % RGB(220,33,89)
+  \definecolor{gd@color@alerted}{RGB}{137,64,75}         % RGB(137,64,75)
+\fi
+
+\iffalse %% Theme 3
+  \definecolor{gd@color@primary}{RGB}{018,040,042}       % RGB(018,040,042)
+  \definecolor{gd@color@secondary}{RGB}{023,96,103}      % RGB(23,96,103)
+  \definecolor{gd@color@alerted}{RGB}{81,72,79}          % RGB(81,72,79)
+\fi
+%% 
+%% 
+% 
+
+% \definecolor{gd@color@alerted}{RGB}{130,139,139}       % RGB(130,139,139)
+% \definecolor{gd@color@alerted}{RGB}{135,4,82}          % RGB(135,4,82)
+
+
+\definecolor{gd@color@white}{RGB}{254,254,254}         % RGB(254,254,254)
+\definecolor{gd@color@black}{RGB}{009,009,009}         % RGB(009,009,009)
+
+\colorlet{gd@color@emblem}{gd@color@secondary!55!gd@color@primary}
+
+
+\colorlet{gd@color@wtext}{gd@color@white!95!gd@color@primary}
+\colorlet{gd@color@btext}{gd@color@primary!25!gd@color@black}
+\colorlet{gd@color@text}{gd@color@black!95!gd@color@white}
+
+\colorlet{solidF}{gd@color@primary!25!gd@color@black}
+
+\colorlet{fillA}{gd@color@primary!15!white}
+\colorlet{fillB}{gd@color@secondary!15!white}
+\colorlet{fillC}{gd@color@alerted!15!white}
+
+\long\def\hl#1{\textcolor{gd@color@secondary}{#1}}
+\long\def\imp#1{\textcolor{gd@color@alerted}{#1}}
+
+% General
+\setbeamercolor{normal text}{fg=gd@color@btext}
+\setbeamercolor{structure}{fg=gd@color@text}
+\setbeamercolor{alerted text}{fg=gd@color@alerted}
+\setbeamercolor{example text}{fg=gd@color@white}
+\setbeamercolor{copyright text}{fg=gd@color@wtext}
+\setbeamercolor{palette primary}{fg=gd@color@btext}
+% \setbeamercolor{palette secondary}{fg=hsrmWarmGreyDark,bg=hsrmWarmGreyLight}
+% \setbeamercolor{palette tertiary}{fg=black,bg=hsrmWarmGreyLight}
+% \setbeamercolor{palette quaternary}{fg=white, bg=hsrmWarmGreyDark}
+% Titlepage
+\setbeamercolor{title}{fg=gd@color@primary}
+\setbeamercolor{subtitle}{parent=normal text}
+\setbeamercolor{institute}{parent=normal text}
+% Content
+\setbeamercolor{frametitle}{fg=gd@color@wtext,bg=gd@color@primary}
+
+% Page Number
+\setbeamercolor{page number in head/foot}{fg=gd@color@btext}
+
+\setbeamerfont{title}{size=\fontsize{22}{22}}
+\setbeamerfont{subtitle}{size=\fontsize{12}{14}}
+\setbeamerfont{section title}{size=\fontsize{19}{19}}
+
+\setbeamercolor{description item}{fg=gd@color@black}
+
+\setbeamercolor{enumerate item}{fg=gd@color@black}
+\setbeamercolor{enumerate subitem}{fg=gd@color@black}
+\setbeamercolor{enumerate subsubitem}{fg=gd@color@black}
+
+\setbeamerfont{section in toc}{size=\fontsize{12}{14}}
+\setbeamerfont{subsection in toc}{size=\fontsize{8}{12}}
+\setbeamertemplate{section in toc}{\medskip\vfill\inserttocsection\par}
+
+\setbeamertemplate{subsection in toc}{\qquad{\scalebox{0.65}{\raisebox{0.75pt}{$\blacksquare$}}} \inserttocsubsection\par}
+
+\setbeamertemplate{itemize items}{\scalebox{0.65}{\raisebox{1.75pt}{$\blacksquare$}}}
+\setbeamertemplate{itemize subitem}{\tiny\tikz[baseline=-1.15ex]{\fill (0,0) circle (1.65pt);}}
+% \setlength{\leftmargini}{1.15em}
+\setbeamerfont{date}{size=\fontsize{10}{11}}
+
+\defbeamertemplate{description item}{greendream}{\textsc{\small\insertdescriptionitem:}}
+\setbeamertemplate{description item}[greendream]
+
+
+% Head
+\setbeamertemplate{frametitle}{%
+\nointerlineskip%
+    \vskip-2pt%
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.35cm,rightskip=0.35cm,ht=3.25ex,dp=1.5ex]{frametitle}
+	 \usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
+\end{beamercolorbox}
+}
+
+% Foot
+\usenavigationsymbolstemplate{}
+\setbeamertemplate{footline}
+{%
+\begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.35cm,rightskip=0.35cm]{structure}%
+\usebeamerfont{page number in head/foot}%
+{\insertshortauthor\(\;\circ\;\)\insertshorttitle{}\expandafter\ifx\expandafter\\\insertsubsection\\\else{} \(-\) \insertsubsection\fi}%
+%{\hfill\insertshortdate\hfill}%
+{\hfill\insertframenumber\,/\,\inserttotalframenumber}%
+\end{beamercolorbox}%
+}
+
+\newcounter{sectioncount}
+\setcounter{sectioncount}{0}
+\let\oldsection\section
+\renewcommand{\section}[2][]{%
+    \write\@auxout{\noexpand\global\noexpand \stepcounter{sectioncount}}%
+    \ifx\\#1\\\oldsection{#2}\else\oldsection[#1]{#2}\fi%
+}
+
+
+\def\tikzcirc#1{\tikz{\draw[thick] (0,0) circle (4.5pt) node[font=\scriptsize,align=center] {\hyperlink{section.#1}{~}};}}
+\def\ftikzcirc#1{\tikz{\draw[thick,fill=gd@color@wtext] (0,0) circle (4.5pt) node[font=\scriptsize,align=center] {\hyperlink{section.#1}{~}};}}
+
+\AtBeginSection[]{\begingroup%
+\setbeamercolor{background canvas}{bg=gd@color@primary}%
+\begin{frame}[plain,t]
+\hypertarget{section.\thesection}{}%
+\vskip4em\vfill%
+\centering\usebeamerfont{section title}\textcolor{gd@color@wtext}{\insertsectionhead}\vskip0.25em\par{}
+\textcolor{gd@color@wtext}{\foreach \i in {1,...,\thesectioncount}{\ifnum\i=\value{section}\ftikzcirc{\i}\else\tikzcirc{\i}\fi}}\par%\vfill\scriptsize
+% \setbeamertemplate{subsection in toc}{\color{gd@color@wtext}{\tiny\tikz[baseline=-0.65ex]{\fill (0,0) circle (1.65pt);}~~\inserttocsubsection\vskip4pt\par}}
+% \begin{multicols}{2}
+%     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,sectionstyle=hide/hide]    
+% \end{multicols}
+\vfill%
+\end{frame}
+\endgroup
+}
+\def\TitleImage{}
+
+\setbeamertemplate{title page}{
+    \vskip2em
+    {\usebeamerfont{title}\usebeamercolor{title}\MakeUppercase{\inserttitle}\par}
+    {\usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle\(\;\circ\;\){\usebeamerfont{date}\usebeamercolor{date}\insertdate}\par}%
+    \vfill\parbox[t][10.5em]{\linewidth}{\vfill\centering\resizebox{!}{7.5em}{\TitleImage}\vfill}
+    \begin{minipage}{0.75\linewidth}
+        \ifx\insertauthor\@empty%
+        \else{\usebeamerfont{author}\usebeamercolor{author}\insertauthor\par}%
+        \fi%
+        \ifx\insertinstitut\@empty%
+        \else{\usebeamerfont{institute}\usebeamercolor{institute}\insertinstitute\par}%
+        \fi
+        %\begin{tikzpicture}[overlay,remember picture]
+        %    \node[above left=0.5em,yshift=0.4em,scale=0.65] at(current page.south %east) {\usebox{\emblembox}};
+        %\end{tikzpicture}\unskip%
+    \end{minipage}\nolinebreak\hskip2em\nolinebreak\begin{minipage}{0.25\linewidth}
+        %\usebox{\emblembox}%
+        \hfill\scalebox{0.6}{\LILLYxFACULTYxPRAKTISCHEINFORMATIK}%
+    \end{minipage}\vskip1em%
+}
+
+\AtBeginDocument{\begin{frame}[plain]
+\titlepage%
+\end{frame}}
+
+
+
+% Emblem
+
+\DeclareFixedFont{\normalNumber}{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
+
+\DeclareFixedFont{\smallNumber}{U}{eur}{b}{n}{9} %% Euler Font für die Kapitelnummern - ich finde die toll
+
+\def\@@university@name{ulm university}
+
+% TODO: rewrite this :D
+
+%% Upper Text %% Symbol %% WHITE Color %% BACK Color %% Tikz %% Size %% FONTSIZE UPPER
+\def\LILLYxGENxFACULTY#1#2#3#4#5#6#7#8#9{%
+% #1 Upper Text [Mathematik,...]
+% #2 Symbol to be displayed [$\pi$], can be theoretically everything.
+% #3 'White' Color, mainly the color of the outer Ring
+% #4 Color of the Symbol
+% #5 Tikz picture Arguments (main color)
+% #6 Fontsize of the Symbol
+% #7 Extra font-options for the upper text
+% #8 Offset for the text radius
+% #9 Offset for the Shadow of the symbol #2
+    \begin{tikzpicture}[#5]
+        % Draw the upper Text in color #3 and extra formatting #7
+        \draw [decorate,decoration={text along path,text align=center,%
+                text={|\footnotesize\normalNumber\color{#3}#7|#1}}]% Upper text
+            (-1.275-#8,0) arc [start angle=180, end angle=00, radius=1.275+#8];% Offset #8
+
+        % Draw the two bullets in the main color of the tikzpicture
+        \draw(-1.5,0) node {{$\bullet$}} ++ (3,0) node {{$\bullet$}};
+        % Draw the lower text (\@@university@name) in color #3
+        \draw [decorate,decoration={text along path,text align=center,
+                text={|\footnotesize\normalNumber\color{#3}|\@@university@name}}]
+            (-1.6,0) arc [start angle=-180, end angle=00, radius=1.6];
+        % Draw the inner thick circle in #3
+        \draw[very thick, color=#3] (0,0) circle (1.25);
+        % Draw the outer thick circle in #3
+        \draw[thick, color=#3] (0,0) circle (1.75);
+        % Draw the inner 'dot' circle in #3
+        \draw[thin, color=#3] circle (1.2);
+        % Draw the dots on the inner 'dot' circle in #3
+        \foreach \r in {0,20,...,360} {
+            \filldraw[#3] (\r:1.2) circle (0.01) node (\r) {};
+        }
+        % Draw the connection-lines in the main color of the tikzpicture
+        \foreach \r in {0,20,...,360}  {
+            \foreach \rr in {0,20,...,\r}{
+                \draw[very thin] (\r) -- (\rr);
+            }
+        }
+        % Draw the symbol #2 shading with an offset of #9 and a size of #6
+        \node[opacity=0.5] at(0.02+#9,-#9) {\fontsize{#6}{16pt}\selectfont#2};
+        % Draw the symbol #2 with size #6 (same as shadow), color of #4
+        \draw (0.02,0) node {\fontsize{#6}{16pt}\selectfont\color{#4}#2};
+   \end{tikzpicture}
+}
+
+
+\def\LILLYxFACULTYxPRAKTISCHEINFORMATIK{%
+    \LILLYxGENxFACULTY{Praktische Informatik}{\hspace*{-0.025em}\bfseries\faCode}{gd@color@emblem}{gd@color@emblem}{gd@color@emblem}{50pt}{\smallNumber}{0.125}{0.05}
+}
+
+% \newsavebox{\emblembox}
+% \sbox{\emblembox}{\LILLYxFACULTYxPRAKTISCHEINFORMATIK}
+
+
+
+\setbeamercolor{block title}{use=structure,fg=gd@color@white,bg=solidF}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+
+\setbeamertemplate{theorems}[numbered]
+
+\setbeamertemplate{theorem begin}
+{%
+\begin{\inserttheoremblockenv}
+{\inserttheoremname\inserttheoremnumber
+\ifx\inserttheoremaddition\@empty\else:\space\inserttheoremaddition\fi%
+}%
+}
+
+\def\widei{\setlength\itemsep{1em}}
+
+\newcommand\twosplit[3][t]{%
+\begin{columns}[#1]
+\begin{column}{0.475\linewidth}
+    #2
+\end{column}\hfill
+\begin{column}{0.475\linewidth}
+    #3
+\end{column}
+\end{columns}
+}
+
+
+
+\def\th@exercise{%
+\normalfont % body font
+\setbeamercolor{block title example}{use=structure,fg=gd@color@white,bg=solidF}
+\setbeamercolor{block body example}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\def\inserttheoremblockenv{exampleblock}
+}
+
+
+\theoremstyle{exercise}
+\newtheorem{exercise}{Aufgabe}
+
+\def\th@TheStyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=gd@color@alerted,fg=gd@color@white}
+    \setbeamercolor{block body example}{bg=gd@color@alerted!10,fg=gd@color@black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+
+\theoremstyle{TheStyle}
+\newtheorem{solve}{Lösung}
+
+\tikzset{
+    block/.style={rectangle,draw,#1,font=\color{gd@color@black},rounded corners=0pt,minimum height=\baselineskip,execute at begin node={\strut}},
+    block/.default=solidF,
+    iblock/.style={block=gd@color@primary,fill=gd@color@primary!21!gd@color@white},
+    ball/.style={circle,draw,#1,font=\color{gd@color@black}},
+    iball/.style={ball=gd@color@primary,fill=gd@color@primary!21!gd@color@white},
+    oball/.style={ball=gd@color@alerted,fill=gd@color@alerted!21!gd@color@white},
+    ball/.default=solidF,
+    link/.style={-Kite}
+}
+
+\long\def\say#1{\glqq#1\grqq{}}
+
+\def\@outro{}
+\def\outro#1{\gdef\@outro{#1}}
+
+\AtEndDocument{
+    \begingroup%
+    \setbeamercolor{background canvas}{bg=gd@color@primary}%
+    \begin{frame}[plain,b]
+    {}\color{gd@color@white}%
+    \pgfmathsetmacro\extlenw{\textwidth+2em}
+    \hspace*{-1em}\parbox{\extlenw pt}{\parbox[b]{0.35\textwidth}{%
+        {\small\textbf{\insertauthor}}\\
+        {\footnotesize\@outro{}}%
+    }\hfill\parbox[b]{0.35\textwidth}{%
+    {\hbox{}\hfill\footnotesize\href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}%
+    }}\vspace*{1em}%
+    \end{frame}
+    \endgroup
+}
