@@ -2171,8 +2171,8 @@ static int methode(int n) {
             \begin{umlseqdiag}
               \umlactor[class=Player]{playerA}
               \umlcontrol[class=Server,x=6]{mainServer}
-              \begin{umlcall}[op={\bjava{createLobby("test")}},op-style={right=-0.2ex}]{playerA}{mainServer}
-                \begin{umlcallself}[op={erstelle Lobby\ldots},]{mainServer}
+              \begin{umlcall}[op={\bjava{createLobby("test")}}]{playerA}{mainServer}
+                \begin{umlcallself}[op={erstelle Lobby\ldots},op-style={right}]{mainServer}
                 \end{umlcallself}
                 \begin{umlfragment}[type=alt, inner xsep=5]
                   \begin{umlcall}[op={\bjava{true /*:ws:success */}},type=return]{mainServer}{playerA}
