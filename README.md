@@ -4,4 +4,4 @@
 
 Quelldateien für den Foliensatz meines inoffiziellen Eidi-Repetitoriums.
 
-Ein Kompilat (ohne Animationen) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep/gh-pages/slides-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/slides-eidi-rep.pdf) befinden.
+Ein Kompilat (ohne Animationen) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/slides-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/slides-eidi-rep.pdf) befinden.
