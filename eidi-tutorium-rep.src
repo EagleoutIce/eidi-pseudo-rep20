@@ -1,111 +1,4 @@
-\def\<{\ensuremath{\langle}}
-\def\>{\ensuremath{\rangle}}
-\def\mto{\ensuremath{\to}}
-\def\mprec{\ensuremath{\prec}}
-
-%% -----------------------------------------------------------------------------
-%% Basic Packages
-%% -----------------------------------------------------------------------------
-
-% TODO: fix inkonsistencies with old variant
-% TODO: remove it shape (boxes etc) and TODO: maybe make all graphics with the solid design?
-% TODO: remove alot of it
-% TODO: fix errors with border slide 202 and probably others
-% center stuff and maybe add bibliography? :D
-
-% encoding:
-\RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
-
-\RequirePackage[defaultfam,light,tabular,lining]{montserrat}
-\RequirePackage{sfmath}
-
-\RequirePackage{tikz} % we need it anyways - will load xcolor
-\usetikzlibrary{calc, arrows.meta, decorations, decorations.pathreplacing}
-
-\RequirePackage[english,main=ngerman]{babel}
-
-\RequirePackage{microtype}
-
-\RequirePackage{sopra-listings,sopra-models,sopra-attachments,forest,array,booktabs,colortbl}
-\solLoadLanguage{bash}
-
-% für die Heap und Stack Freuden
-\newcommand*\hsElement[2]{\draw #1 [thin] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
-\newcommand*\hsmElement[3]{\draw #1 [thin,color=#3] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
-\newcommand*\hsfElement[3]{\draw #1 [thin,color=#3, fill=#3] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
-
-\newcommand*\stackElement[2] {\hsElement{(0.5,#1)}{#2}}
-\newcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{candypink}}
-\newcommand*\heapElement[2] {\hsElement{(5.5,#1)}{#2}}
-\newcommand*\heapeElement[2] {\hsmElement{(5.5,#1)}{#2}{limegreen}}
-\newcommand*\heapclassElement[2] {\hsfElement{(5.5,#1)}{\textcolor{white}{\T{\textbf{\large{#2}}}}}{tealblue}}
-\newcommand*\heapclassChild[2] {\hsmElement{(5.5,#1)}{\textcolor{black}{\scriptsize{#2}}}{tealblue}}
-\renewcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{btcd@color@primary}}
-
-%% -----------------------------------------------------------------------------
-%% Theme
-%% -----------------------------------------------------------------------------
-\def\ThemePath{beamer-themes/colorful-dream/}
-\usepackage[emblem,theorems]{\ThemePath/beamerthemecolorful-dream}
-
-\lstcolorlet{keywordA}{btcd@color@primary}
-\lstcolorlet{keywordB}{btcd@color@secondary}
-\lstcolorlet{keywordC}{btcd@color@secondary}
-\lstcolorlet{comments}{btcd@color@primary!20!btcd@color@white!50!btcd@color@black}
-
-\lstcolorlet{literals}{btcd@color@secondary!75!btcd@color@white}
-\makeatletter
-
-\sol@list@define@styles{%
-    {keywordA:      \color{sol@colors@lst@keywordA}\bfseries},%
-    {keywordB:      \color{sol@colors@lst@keywordB}},%
-    {keywordC:      \color{sol@colors@lst@keywordC}},%
-}
-\makeatother
-
-
-%% -----------------------------------------------------------------------------
-%% Extra Sprachdefinition
-%% -----------------------------------------------------------------------------
-
-% Taken from lilly code extensions
-\makeatletter
-\newenvironment{lillyHighlight}[1][]
-{\begingroup\tikzset{lilly@Highlight@par/.style={#1}}\begin{lrbox}{\@tempboxa}}
-{\end{lrbox}\lilly@lsthighlight@box[lilly@Highlight@par]{\@tempboxa}\endgroup}
-
-\newcommand\@lillyLstHL[1][]{%
-  \begin{lillyHighlight}[#1]\bgroup\aftergroup\lilly@lsthighlight@endenv%
-}
-\def\lilly@lsthighlight@endenv{%
-  \end{lillyHighlight}%
-  \egroup
-}
-\newcommand{\lilly@lsthighlight@box}[2][]{%
-  \tikz[#1]{%
-    \pgfpathrectangle{\pgfpoint{1pt}{0pt}}{\pgfpoint{\wd #2}{\ht #2}}%
-    \pgfusepath{use as bounding box}%
-    \node[anchor=base west, outer sep=0pt,inner xsep=1pt, inner ysep=-1.105pt, rounded corners=1.65pt, minimum height=\ht\strutbox+1pt,#1]{\raisebox{1pt}{\strut}\strut\usebox{#2}};
-  }%
-}
-
-\providecommand{\lstHLZWS}{\@lillyLstHL[fill=btcd@color@primary!24,draw=btcd@color@primary!24]}
-\providecommand{\lstHLVGL}{\@lillyLstHL[fill=btcd@color@alerted!36!btcd@color@primary!36,draw=btcd@color@alerted!36!btcd@color@primary!36]}
-\providecommand{\lstHLINK}{\@lillyLstHL[fill=btcd@color@alerted!24,draw=btcd@color@alerted!24]}
-\providecommand{\lstHLDEK}{\@lillyLstHL[fill=btcd@color@black!9,draw=btcd@color@black!9]}
-
-\lstdefinelanguage{xJava}{
-    language=lJava,
-    moredelim=**[is][{\lstHLZWS}]{|zws|}{|zws|},%
-    moredelim=**[is][{\lstHLVGL}]{|vgl|}{|vgl|},%
-    moredelim=**[is][{\lstHLINK}]{|inc|}{|inc|},%
-    moredelim=**[is][{\lstHLDEK}]{|dec|}{|dec|}%
-}
-\makeatother
-
-\def\linksort#1{\hyperlink{mrk:sort-#1}{#1}}
-\def\alglabel#1{\hypertarget{mrk:sort-#1}{}}
+\input{configuration.tex}
 
 \title{EidI-Repetitorium SoSe20}
 \subtitle{Naja, das inoffizielle}
@@ -115,48 +8,6 @@
 \outro{Ulm, den \today}
 
 \SetEmblem[university Ulm]{Praktische Informatik}{\faCode}
-
-
-\setcounter{tocdepth}{4}
-
-\newcounter{ctrtasks}
-\def\Task#1{\only<1>{\stepcounter{ctrtasks}\pdfbookmark[4]{Aufgabe \thectrtasks: #1}{id@bkmrk@eidi@\thectrtasks}}}
-\def\Time#1{\ifx\\#1\\\else\hbox{}\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
-
-\colorlet{solidF}{btcd@color@primary!25!btcd@color@black}
-
-\colorlet{fillA}{btcd@color@primary!15!white}
-\colorlet{fillB}{btcd@color@secondary!15!white}
-\colorlet{fillC}{btcd@color@alerted!15!white}
-
-\long\def\hl#1{\textcolor{btcd@color@secondary}{#1}}
-\long\def\imp#1{\textcolor{btcd@color@alerted}{#1}}
-\long\def\say#1{\glqq{#1}\grqq{}}
-
-\def\widei{\setlength\itemsep{1em}}
-
-\newcommand\twosplit[3][t]{%
-\begin{columns}[#1]
-\begin{column}{0.475\linewidth}
-    #2
-\end{column}\hfill
-\begin{column}{0.475\linewidth}
-    #3
-\end{column}
-\end{columns}
-}
-
-% TODO: outsource in sub packages?
-\tikzset{
-    block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=0pt,minimum height=\baselineskip,execute at begin node={\strut}},
-    block/.default=solidF,
-    iblock/.style={block=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
-    ball/.style={circle,draw,#1,font=\color{btcd@color@black}},
-    iball/.style={ball=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
-    oball/.style={ball=btcd@color@alerted,fill=btcd@color@alerted!21!btcd@color@white},
-    ball/.default=solidF,
-    link/.style={-Kite}
-}
 
 \titleimage{%
     \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
@@ -173,14 +24,8 @@
     \end{tikzpicture}%
 }
 
-\def\O{\ensuremath{\mathcal{O}}}
-
-%% Mittwoch: 86, static
-%% Freitag: Folie 99, Call by Value
-
 \begin{document}
-\tikzumlset{fill class=btcd@color@white}
-\attachfilesetup{color=btcd@color@secondary,author={Florian Sihler}}
+
 \pdfbookmark[2]{Themenübersicht}{eidi@toc@mainview}
 \begin{frame}{Themenübersicht, I}
     \begin{center}
@@ -203,7 +48,7 @@
     \begin{center}
         \footnotesize\begin{minipage}{0.95\linewidth}
 Der folgende Dokumentsatz hat keinen Anspruch auf vollständige Richtigkeit.
-Er wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist eher als unverbindliche Hilfe im Kontext seiner Natur als Zusammenfassung zu verstehen. 
+Er wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist eher als unverbindliche Hilfe im Kontext seiner Natur als Zusammenfassung zu verstehen.
 Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien, weiter wird ein Verständnis über die Themen vorrausgesetzt, so versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück -- sofern vonnöten. \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
@@ -241,7 +86,7 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX{} und Ti\texti
         \item Zu Beginn gilt es einige Begriffe zu klären: \begin{description}[Elementaroperation]
             \item[Prozess] Die Ausführung der Schritte eines Algorithmus
             \item[Prozessor] Der Ausführende (Mensch, Computer, \ldots)
-            \item[Elementaroperation] Eine einzelne, eindeutige Handlung. 
+            \item[Elementaroperation] Eine einzelne, eindeutige Handlung.
         \end{description}
         \item Ein Algorithmus besitzt einige Eigenschaften: \begin{description}[Ausführbarkeit]
             \item[Ausführbarkeit] Die Anleitung muss ausführ- und reproduzierbar sein.
@@ -303,7 +148,7 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX{} und Ti\texti
         \widei
         \item Ein Algorithmus benötigt (formal) eine: \begin{description}[iV]
             \item[V] Vorbedingung (wie \say{positive ganze Zahl})
-            \item[N] Nachbedingung (wie \say{negative Fließkommazahl}) 
+            \item[N] Nachbedingung (wie \say{negative Fließkommazahl})
         \end{description}
         \item Algorithmen fundieren auf einem \emph{Problem} der realen Welt und werden durch Abstraktion formuliert.
         \item (Java-)Programme sind eine Darstellung von Algorithmen,\pause{} die von Maschinen interpretiert und realisiert werden.
@@ -451,7 +296,7 @@ public static int simpleMod(int a, int b){
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Determinismus und Determiniertheit}
     \begin{exercise}<2->[Deterministische Determiniertheit \Time{2}]
-        \pause{}Nenne je ein Beispiel für einen Algorithmus der: 
+        \pause{}Nenne je ein Beispiel für einen Algorithmus der:
         \begin{enumerate}[<+(1)->]
             \item[i)] nicht-deterministisch ist und determiniert.
             \item[ii)] sowohl deterministisch ist, als auch determiniert.
@@ -494,7 +339,7 @@ public static int simpleMod(int a, int b){
                 \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
                 \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
                 \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches/dynmaisches Linken}\\\hphantom{statisch/dy}(Java)}} -- (link);
-    
+
             \end{scope}
         \end{tikzpicture}
         }
@@ -549,7 +394,7 @@ public static int simpleMod(int a, int b){
         \widei
         \item Java kann manche Datentypen ineinander Umwandeln.\pause{} Es gilt:\pause{}
         \begin{center}
-            \bjava{byte} \mprec{} \bjava{short} \mprec{} \bjava{int} \mprec{} \bjava{long} \mprec{} \bjava{float} \mprec{} \bjava{double} 
+            \bjava{byte} \mprec{} \bjava{short} \mprec{} \bjava{int} \mprec{} \bjava{long} \mprec{} \bjava{float} \mprec{} \bjava{double}
         \end{center}
         \pause{}Sowie:\pause{}
         \begin{center}
@@ -557,7 +402,7 @@ public static int simpleMod(int a, int b){
         \end{center}
         \item So kann Java einen \bjava{char} implizit in einen \bjava{int} umwandeln\pause{} (da der Wertebereich größer ist).\pause{} Umgekehrt allerdings nicht.
         \item \imp{Floats und Doubles unterliegen einem Rundungsproblem.}
-        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:) :lan:Variable:ran:} eine explizite Konvertierung erfolgen.
+        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung erfolgen.
     \end{itemize}
 \end{frame}
 
@@ -693,7 +538,7 @@ Random rnd = new Random();
 \begin{plainjava}
 private static String generateWelcomeMessage(String name, int age,
         boolean married) {
-    return "Welcome, " + name /* ... */ ; 
+    return "Welcome, " + name /* ... */ ;
 }
 \end{plainjava}
 }
@@ -703,7 +548,7 @@ private static String generateWelcomeMessage(String name, int age,
 
 \begin{frame}{Signatur \& Überladung}
     \begin{itemize}[<+(1)->]
-        \item Die Signatur einer Methode/Funktion besteht aus dem Namen sowie den Datentypen der Parameter.\pause{} Der Rückgabetyp ist \emph{kein} Teil der Signatur. 
+        \item Die Signatur einer Methode/Funktion besteht aus dem Namen sowie den Datentypen der Parameter.\pause{} Der Rückgabetyp ist \emph{kein} Teil der Signatur.
         \item Beispiel: \bjava{generateWelcomeMessage(String, int, boolean)}.
         \item Java erlaubt keine zwei Funktionen mit gleicher Signatur im selben Gültigkeitsbereich.
         \item Man kann allerdings Funktionen mit gleichem Namen,\par{} aber verschiedener Parameterliste erstellen.\pause{} Dieses Prinzip wird \emph{Überladen} (Overloading) genannt.
@@ -980,7 +825,7 @@ for(int i = 0, k = 1; i < 20; i++, k *= 2)
 \begin{frame}[fragile]{break und continue}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Das Schlüsselwort \bjava{break} bricht die \say{innerste} Schleife ab. 
+        \item Das Schlüsselwort \bjava{break} bricht die \say{innerste} Schleife ab.
         \item Mit \bjava{continue} wird nur der aktuelle Durchlauf abgebrochen und,\pause{} zum Beispiel in einer \bjava{for}-Schleife,\pause{} das Inkrement durchgeführt:\pause{}
 \begin{plainjava}
 for(int i = 0, k = 1; i < 20; i++, k *= 2) {
@@ -1022,7 +867,7 @@ for(int ding : dinge){
 \begin{plainjava}
 double[] a = new double[42]; // 42 Elemente, alle: 0.0d
 int[] b = {2, 4, 6, 8, 10}; // 5 Elemente
-char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente 
+char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente
 \end{plainjava}
         \item Die Länge erhalten wir durch \bjava{:lan:array:ran:.length}.\pause{} Dies ist hier \emph{keine} Methode (im Gegensatz zu \bjava{:lan:string:ran:.length()})!
     \end{itemize}
@@ -1179,7 +1024,7 @@ for (int[][] ex : x) {
         \pause{}Erkläre jeweils in ein bis zwei Sätzen: \begin{enumerate}[<+(1)->]
             \item[i)] Was ist ein Deadlock (und wann tritt er auf)?
             \item[ii)] Was veranschaulicht ein Histogramm?
-            \item[iii)] Was versteht man unter einem deterministischen Algorithmus? 
+            \item[iii)] Was versteht man unter einem deterministischen Algorithmus?
         \end{enumerate}
     \end{exercise}
 \end{frame}
@@ -1188,7 +1033,7 @@ for (int[][] ex : x) {
     \begin{solve}<2->[Begriffserklärungen]
         \begin{enumerate}[<+(1)->]
             \item[i)] Ein Deadlock (Verklemmung) ist ein gemeinsamer Zustand parallel laufender Programme,\pause{} bei der diese sich gegenseitig blockieren.\pause{} Beispiel:\pause{} Prozess \(A\) benötigt die Ressource \(R_1\) um \(R_2\) fertigzustellen,\pause{} Prozess \(B\) hingegen hält \(R_1\) und benötigt \(R_2\) um sie fertigzustellen.
-            \item[ii)] Ein Histogramm bezeichnet die grafische Veranschaulichung von Häufigkeiten.  
+            \item[ii)] Ein Histogramm bezeichnet die grafische Veranschaulichung von Häufigkeiten.
             \item[iii)] Ein Algorithmus ist deterministisch, sofern sein nächster Schritt zu jeder Zeit eindeutig ist.
         \end{enumerate}
     \end{solve}
@@ -1247,7 +1092,7 @@ for (int[][] ex : x) {
     \begin{exercise}<2->[Programmieren: Turtlewalk, II \Time{6}]
         \pause{}Im Kontext der vorherigen Aufgabe existiere die Methode \bjava{moveTurtle(int tx, int ty)}.\pause{} Weiter seien nun diese Konstanten gegeben:\pause{}
 \begin{plainjava}
-static final int UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3; 
+static final int UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3;
 \end{plainjava}
     \pause{}Schreibe eine Methode \bjava{moveTurtle(int)} die die relative Bewegung um \emph{so viele Felder wie möglich} vornimmt.\pause{} Die Methode soll die Anzahl der gegangenen zurückgeben.\pause{} Hinweis: Oben definieren wir als eine Erhöhung der \(y\)-Koordinate.
     \end{exercise}
@@ -1261,7 +1106,7 @@ public static int moveTurtle(int dir){
     switch (dir) {
         case UP:    ty=1; break; case DOWN: ty=-1; break;
         case RIGHT: tx=1; break; case LEFT: tx=-1; break;
-        default: return -1; // Unterscheiden von kein Feld  
+        default: return -1; // Unterscheiden von kein Feld
     }
     int total = 0;
     while(moveTurtle(tx,ty)) { total++; }
@@ -1321,7 +1166,7 @@ public static int moveTurtle(int dir){
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Vorteile der OOP]
         Hier angegeben werden exemplarisch vier, jeweils mit kurzer Erklärung:\begin{description}
-            \item[Modularität] Eine Klasse kann unabhängig von anderen geschrieben und gehalten werden. 
+            \item[Modularität] Eine Klasse kann unabhängig von anderen geschrieben und gehalten werden.
             \item[Informationsverdeckung] Die Implementierungsdetails des Objekts werden verborgen.
             \item[Wiederverwendbarkeit] Eine Klasse kann so geschrieben werden, dass sie auch in anderen Projekten wiederverwendet werden kann\pause{} (ein Datentyp wie ein Ringbuffer zum Beispiel).
             \item[Komposition/Polymorphie] Eine Klasse definiert eine Schnittstelle, die sie von der Implementation abstrahiert,\pause{} so dass diese sich problemlos austauschen lässt.
@@ -1376,7 +1221,7 @@ public static int moveTurtle(int dir){
 \begin{frame}[fragile]{Implementation: Konstruktor}
 \begin{plainjava}
 !*\onslide<2->*!public class Point2D {
-!*\onslide<2->*!    
+!*\onslide<2->*!
 !*\onslide<3->*!    private double x, y;
 !*\onslide<2->*!
 !*\onslide<4->*!    // Leerer Konstruktor
@@ -1449,7 +1294,7 @@ public static int moveTurtle(int dir){
 \begin{frame}[fragile]{Statische Methoden/Attribute}
 \begin{itemize}[<+(1)->]
     \item<1-> Eine ausführliche Erklärung liegt hier: \attachPdfTextDesc{data/static.pdf}{static.pdf}{PDF-Dokument welches den Umgang mit statischen Funktionen und Methoden (in Java) genauer erklärt.}.
-    \item Alle Methoden die wir so definieren sind an ein Objekt gebunden. 
+    \item Alle Methoden die wir so definieren sind an ein Objekt gebunden.
     \item Manche Methoden sind aber nur logisch an eine Klasse gebunden\pause{} und nicht von den Ausprägungen eines Objekts.
     \item So zum Beispiel die Mathe-Funktionen wie \bjava{Math.random()}, \bjava{Math.floor(double)}.
     \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch eine \bjava{distance(Point2D, Point2D)} für zwei Punkte machen.
@@ -1544,14 +1389,14 @@ System.out.println(wohinGehtEs(Richtung.RECHTS));
 \begin{frame}[fragile,c]{Alternative Richtungs-Enum}
 \begin{plainjava}
 !*\onslide<2->*!enum Richtung {
-!*\onslide<6->*!    HOCH("Es geht nach oben!"), 
-!*\onslide<7->*!    RUNTER("Es geht nach unten!"), 
-!*\onslide<8->*!    LINKS("Es geht nach links!"), 
+!*\onslide<6->*!    HOCH("Es geht nach oben!"),
+!*\onslide<7->*!    RUNTER("Es geht nach unten!"),
+!*\onslide<8->*!    LINKS("Es geht nach links!"),
 !*\onslide<9->*!    RECHTS("Es geht nach rechts!");
-!*\onslide<2->*!    
+!*\onslide<2->*!
 !*\onslide<3->*!    private String text;
 !*\onslide<4->*!    public String getText() { return this.text; }
-!*\onslide<2->*!    
+!*\onslide<2->*!
 !*\onslide<5->*!    Richtung(String text) {
 !*\onslide<5->*!        this.text = text;
 !*\onslide<5->*!    }
@@ -1606,49 +1451,49 @@ public static String wohinGehtEs(Richtung ziel){
     \begin{solve}<2->[Was liefert dieser Code?]
         \pause{}Der Code liefert \(21\) und \(42\). Ersterer Wert, da wir das Array ja so zuweisen,\pause{} den zweiten, weil durch die Übergabe des Arrays mittels \emph{call-by-reference} auch das Ursprungsarray verändert wird.
         \begin{center}
-            \onslide<4->{\begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]    
-                \node [above] at (4.5, 0) {1}; 
+            \onslide<4->{\begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
+                \node [above] at (4.5, 0) {1};
                 \node [below] at (2,-4.5) {Stack};
                 \node [below] at (7,-4.5) {Heap};
-                
+
                 \heapElement{-0.5}{\bfseries Globales};
-    
+
                 \heapElement{-1}{\T{\{ 21 \}}};
-    
+
                 \stackElement{-1}{arr: \phantom{b}};
-    
+
                 \stackElement{-0.5}{\bfseries main};
                 \filldraw (2.2,-1.28) circle (2pt);
                 \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-        
+
                 \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
                 \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-                
+
             \end{tikzpicture}}\qquad\onslide<5->{
-                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]    
-                \node [above] at (4.5, 0) {2}; 
+                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
+                \node [above] at (4.5, 0) {2};
                 \node [below] at (2,-4.5) {Stack};
                 \node [below] at (7,-4.5) {Heap};
-                
+
                 \heapElement{-0.5}{\bfseries Globales};
-    
+
                 \heapElement{-1}{\T{\{ 21 \}}};
-    
+
                 \stackElement{-1}{arr: \phantom{b}};
                 \stackElement{-2}{x: \phantom{b}};
-    
+
                 \stackElement{-0.5}{\bfseries main};
                 \stackElement{-1.5}{\bfseries multBy2};
 
                 \filldraw (2.2,-1.28) circle (2pt);
                 \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-        
+
                 \filldraw (2.2,-2.28) circle (2pt);
                 \draw [-Kite] (2.2,-2.28) -- ++(1,0) --  ++(1.3,1) -- ++(1,0);
-        
+
                 \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
                 \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-                
+
             \end{tikzpicture}}
         \end{center}
     \end{solve}
@@ -1660,15 +1505,15 @@ public static String wohinGehtEs(Richtung ziel){
     \begin{solve}<1->[Was liefert dieser Code?\hfill{}(Fortsetzung)]
         \pause{}\begin{center}
             \onslide<2->{
-                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]    
-                \node [above] at (4.5, 0) {3}; 
+                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
+                \node [above] at (4.5, 0) {3};
                 \node [below] at (2,-4.5) {Stack};
                 \node [below] at (7,-4.5) {Heap};
-                
+
                 \heapElement{-0.5}{\bfseries Globales};
-    
+
                 \heapElement{-1}{\T{\{ 42 \}}};
-    
+
                 \stackElement{-1}{arr: \phantom{b}};
                 \stackElement{-2}{x: \phantom{b}};
 
@@ -1677,33 +1522,33 @@ public static String wohinGehtEs(Richtung ziel){
 
                 \filldraw (2.2,-1.28) circle (2pt);
                 \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-        
+
                 \filldraw (2.2,-2.28) circle (2pt);
                 \draw [-Kite] (2.2,-2.28) -- ++(1,0) --  ++(1.3,1) -- ++(1,0);
-        
+
                 \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
                 \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-                
+
             \end{tikzpicture}}\qquad\onslide<3->{
-                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]    
-                \node [above] at (4.5, 0) {4}; 
+                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
+                \node [above] at (4.5, 0) {4};
                 \node [below] at (2,-4.5) {Stack};
                 \node [below] at (7,-4.5) {Heap};
-                
+
                 \heapElement{-0.5}{\bfseries Globales};
-    
+
                 \heapElement{-1}{\T{\{ 42 \}}};
-    
+
                 \stackElement{-1}{arr: \phantom{b}};
-    
+
                 \stackElement{-0.5}{\bfseries main};
 
                 \filldraw (2.2,-1.28) circle (2pt);
                 \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-                
+
                 \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
                 \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-                
+
             \end{tikzpicture}}
         \end{center}
         \onslide<4->{\textit{Hinweis: eine derartige Grafik wird nicht gefordert werden, sie kann aber durchaus beim Verständnis der Thematik hilfreich sein.}}
@@ -1812,7 +1657,7 @@ class Laenge {
 !*\onslide<5->*!    SCHIENE(true),
 !*\onslide<6->*!    WAGGON(false),
 !*\onslide<7->*!    LOKOMOTIVE(false);
-!*\onslide<3->*!    
+!*\onslide<3->*!
 !*\onslide<8->*!    boolean befahrbar;
 !*\onslide<9->*!    Schiene(boolean befahrbar) {
 !*\onslide<9->*!        this.befahrbar = befahrbar;
@@ -1983,7 +1828,7 @@ class Laenge {
         \widei
         \item Die Erfassung der Laufzeitkomplexität erfolgt durch die Auflistung der notwendigen (Rechen-)Schritte:\pause{}
 \begin{plainjava}[language=xJava]
-static int methode(int n) {       
+static int methode(int n) {
     !**!|zws|int count = 2;|zws|
         for(|zws|int i = 1;|zws| |vgl|i <= n;|vgl| |inc|i++|inc|) {
             for(|zws|int j = n;|zws| |vgl|j > i;|vgl| |dec|j--|dec|)
@@ -2062,7 +1907,7 @@ static int methode(int n) {
         \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (c2) at (-4,-2) {Klassendiagramm};}
         \onslide<7->{\node[iblock,font=\scriptsize\sffamily] (c3) at (1,-2) {Sequenzdiagramm};}
         \onslide<8->{\node (c4) at (6,-2) {Kommunikations\-struktur-Diagr.};}
-        
+
         \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (left1) at (-4,-3) {Objektdiagramm};
         \node[] (left2) at (-4,-4) {Paketdiagramm};}
 
@@ -2449,7 +2294,7 @@ int getDistance(String a, String b){
     !*\onslide<2->*!}
     \end{plainjava}
     \end{frame}
-    
+
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
         \item[]\begin{description}[Linear]
@@ -2497,7 +2342,7 @@ int getDistance(String a, String b){
         \item Daten werden sortiert um die Suche zu vereinfachen.
         \item Wir unterscheiden zwei Sortierverfahren: \begin{description}[Extern]
             \item[Intern] Hier liegt der gesamte Datenbestand im Arbeitspeicher,\pause{} alle Elemente sind zugreifbar (Array, \ldots)
-            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert,\pause{} für das Sortieren werden in der Regel nur die obersten Element eines Stapels betrachtet (Dateien, \ldots).\pause{} In der Regel lassen sich durch Modifikationen und unterstützenden Methoden die selben Verfahren wie bei der Internen Variante verwenden. 
+            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert,\pause{} für das Sortieren werden in der Regel nur die obersten Element eines Stapels betrachtet (Dateien, \ldots).\pause{} In der Regel lassen sich durch Modifikationen und unterstützenden Methoden die selben Verfahren wie bei der Internen Variante verwenden.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -2834,7 +2679,7 @@ public static void bubbleSort(int[] arr) {
         \onslide<3->{Binärbaum, bei dem gilt: \(\text{Vaterknoten} < \text{Kindknoten}\).}
     \end{definition}
     \begin{itemize}[<+(1)->]
-        \item Neue Elemente werden von Unten an als neues Kind hinzugefügt. \pause{}Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist. 
+        \item Neue Elemente werden von Unten an als neues Kind hinzugefügt. \pause{}Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist.
         \item Beim Entfernen eines Elements wird das Blatt vor der aktuellen Einfügeposition als neue Wurzel getauscht.
         \item Beispiel: Einfügen der Elemente \(4,2,1,3\).
     \end{itemize}
@@ -3020,7 +2865,7 @@ class Element {
 \begin{frame}[fragile]{Listen - Einfach verkettete Liste}
     \begin{itemize}[<+(1)->]
         \item Vorteil einer einfach Verketten Liste:\pause{} Das Löschen und Hinzufügen neuer Elemente ist leicht (\(\O(1)\)).\pause{} Nachteil:\pause{} Der direkte Zugriff ist nur durch ein Traversieren möglich.
-        \item Hinweis: Manche Operationen benötigen eine Sonderbehandlung im Falle einer leeren Liste.\pause{} So zum Beispiel das Einfügen. 
+        \item Hinweis: Manche Operationen benötigen eine Sonderbehandlung im Falle einer leeren Liste.\pause{} So zum Beispiel das Einfügen.
         \item Betrachten wir einmal das Einfügen eines neuen Elements:
     \end{itemize}%
     \begin{multicols}{2}
@@ -3031,7 +2876,7 @@ class Element {
             \node[inner sep=0pt] (b) at (2.25,0) {\Element{2}};
             \node[inner sep=0pt] (c) at (4.5,0) {\Element{3}};
             \node[inner sep=0pt] (d) at (6.75,0) {\EndElement};
-        
+
             \foreach[remember=\i as \li (initially a)] \i in {b,c,d}{
                 \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
                 \fill ($(\li.east)+(-1em,0)$) circle (2pt);
@@ -3216,7 +3061,7 @@ class Element {
         \item Die Verwaltung rekursiver Methoden erfolgt über den Stack, so \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
         \item Auf Stacks sind zwei wichtige Operationen definiert: \begin{description}[push]
             \item[push] Legt das Element oben auf dem Stack ab.
-            \item[pop] Entfernt das oberste Element und liefert es zurück. 
+            \item[pop] Entfernt das oberste Element und liefert es zurück.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -3225,7 +3070,7 @@ class Element {
     \begin{itemize}[<+(1)->]
         \item Eine Warteschlange ist eine Datenstruktur, nach dem FIFO-Prinzip (First-In, First-Out).\pause{} Es ist nur möglich Elemente hinten in der Schlange einzureihen und vorne von der Schlange zu entfernen.
         \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendFirst(Element)} und \bjava{removeLast(Element)} zulässt.
-        \item Queues können zum Puffern verwendet werden (analog zum Schalter). 
+        \item Queues können zum Puffern verwendet werden (analog zum Schalter).
         \item Auf Queues sind zwei wichtige Operationen definiert: \begin{description}[dequeue]
             \item[enqueue] Reiht ein Element (hinten) in die Schlange ein.
             \item[dequeue] Nimmt ein Element (vorne) aus der Schlange.
@@ -3283,7 +3128,7 @@ class Element {
         \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
-            \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger. 
+            \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger.
             \item[Innerer] Ein innerer Knoten ist jeder Knoten der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Vater.
         \end{description}
     \end{itemize}
@@ -3588,7 +3433,7 @@ class Node {
     \item Die Traversierungsverfahren entsprechen Notationsschemata: \begin{description}[Post-Order]
         \item[In-Order] repräsentiert die geläufige Infix Notation: \((A + B) * (C - D)\) (die Klammern entsprechen der Ausführreihenfolge und sind natürlich nicht Teil)
         \item[Pre-Order] entspricht der Präfix-Notation: \(* + A B - C D\).
-        \item[Post-Order] entspricht der Postifx-Notation: \(A B + C D - *\). 
+        \item[Post-Order] entspricht der Postifx-Notation: \(A B + C D - *\).
     \end{description}
     \end{itemize}
 \end{frame}
@@ -3706,7 +3551,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
             \node[kreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
         \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -3714,7 +3559,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
             \node[ikreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
         \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -3722,7 +3567,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
             \node[ikreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
         \end{tikzpicture}
         \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -3730,7 +3575,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
             \node[ikreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
         \end{tikzpicture}
     \end{enumerate}
@@ -3760,7 +3605,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[okreis] (c) at (2,-2) {3};
             \node[okreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
         \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -3768,7 +3613,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[okreis] (c) at (2,-2) {3};
             \node[ikreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
         \end{tikzpicture}
         \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -3776,7 +3621,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
             \node[ikreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
         \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -3784,7 +3629,7 @@ class Node {
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
             \node[ikreis] (d) at (0,-2) {4};
-        
+
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
         \end{tikzpicture}
     \end{enumerate}
@@ -3904,13 +3749,13 @@ public class Node {
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Traversierung eines Baumes - Java]
 \begin{plainjava}
-void inorder(Node n)  { 
+void inorder(Node n)  {
     if (n == null) return;
 
-    inorder(n.left); 
-    System.out.println(n.value); 
-    inorder(n.right); 
-} 
+    inorder(n.left);
+    System.out.println(n.value);
+    inorder(n.right);
+}
 \end{plainjava}
     \end{solve}
 \end{frame}
@@ -3924,7 +3769,7 @@ void inorder(Node n)  {
     \hypertarget{mrk:Vererbung}{}%
     \begin{itemize}[<+(1)->]
         \item Eine Klasse die von einer anderen Klasse erbt, übernimmt all ihre Eigenschaften und kann diese verändern oder modifizieren.
-        \item Die Subklasse kann hier sowohl als Spezialisierung aufgefasst werden (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert). 
+        \item Die Subklasse kann hier sowohl als Spezialisierung aufgefasst werden (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert).
         \item In Java/in der Objektorientierung wird das Konzept der Erweiterung verfolgt.
         \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe),\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), \emph{Dozent} (zugeteilte Vorlesung), \ldots
         \item Zwischen vererbenden Klassen gilt eine \emph{is-a} Relation.\pause{} So gilt Beispielsweise \emph{Student is-a Mensch is-a Lebewesen}.
@@ -3989,7 +3834,7 @@ class Mensch extends Lebewesen {
 class Student extends Mensch {
     long matrikelnummer;
 
-    Student(int a, float g, String n, 
+    Student(int a, float g, String n,
             long m) {
         super(a,g,n);
         matrikelnummer = m:
@@ -4002,7 +3847,7 @@ class Student extends Mensch {
 class Dozent extends Mensch {
     String vorlesung;
 
-    Dozent(int a, float g, String n, 
+    Dozent(int a, float g, String n,
            String v) {
         super(a,g,n);
         vorlesung = v:
@@ -4053,7 +3898,7 @@ herbert instanceof Dozent // :yields: false
 \begin{frame}[fragile,c]{Abstrakte Klassen, ein Beispiel}
 \begin{plainjava}
 !*\onslide<2->*!abstract class AbstractList {
-!*\onslide<2->*!    
+!*\onslide<2->*!
 !*\onslide<3->*!    // Für 'super()'
 !*\onslide<3->*!    public AbstractList() { }
 !*\onslide<2->*!
@@ -4094,7 +3939,7 @@ herbert instanceof Dozent // :yields: false
     \begin{itemize}[<+(1)->]
         \item Attribute werden Java \emph{statisch} und Methoden \emph{dynamisch} gebunden.
         \item Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
-            \item[statisch] Nehmen wir an, wir haben zwei Klassen \bjava{A} und \bjava{B}, wobei \bjava{B} von \bjava{A} erbt.\pause{} Beide deklarieren die Variable \bjava{i}, in \bjava{A} wird sie auf \(32\), in \bjava{B} auf \(42\) gesetzt.\pause{} Es ergibt sich: 
+            \item[statisch] Nehmen wir an, wir haben zwei Klassen \bjava{A} und \bjava{B}, wobei \bjava{B} von \bjava{A} erbt.\pause{} Beide deklarieren die Variable \bjava{i}, in \bjava{A} wird sie auf \(32\), in \bjava{B} auf \(42\) gesetzt.\pause{} Es ergibt sich:
 \begin{plainjava}
 !*\onslide<+->*!A a = new A();
 !*\onslide<+->*!B b = new B();
@@ -4147,7 +3992,7 @@ herbert instanceof Dozent // :yields: false
 \begin{plainjava}
 public interface Sortable {
     boolean le(Sortable o); // '<='
-    boolean lt(Sortable o); // '<' 
+    boolean lt(Sortable o); // '<'
     boolean eq(Sortable o); // '=='
 }
 \end{plainjava}
@@ -4175,7 +4020,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
     \begin{itemize}[<+(1)->]
         \widei
         \item Auch für ein Interface wird die \emph{is-a} Relation durch \bjava{instanceof} erfüllt.
-        \item Ein Interface wie \bjava{Sortable} wird in Java durch \bjava{Comparable} mit nur einer einzelnen Funktion \bjava{compareTo()} gelöst. 
+        \item Ein Interface wie \bjava{Sortable} wird in Java durch \bjava{Comparable} mit nur einer einzelnen Funktion \bjava{compareTo()} gelöst.
         \item Interfaces sollten dann verwendet werdenn wenn es um eine Funktionalität geht (wie \bjava{Drawable}, \bjava{Moveable}, \bjava{Consumeable}, \ldots)
         \item Das Implementieren eines Interfaces wird in UML durch eine gestrichelte, das Erweitern einer Klasse durch eine durchgezogene  Linie gekennzeichnet.% Pfeil am Ende?
     \end{itemize}
@@ -4320,7 +4165,7 @@ public class A {
 \end{frame}
 
 
-\begin{frame}{}
+\begin{frame}\relax
     \usebeamercolor{title}%
     \vskip1em
     {\centering\usebeamerfont{title}\MakeUppercase{Ein Wort zum Abschluss}\par}

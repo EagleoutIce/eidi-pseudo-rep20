@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
             lfs: true
-  
+
       - name: Checkout submodules
         uses: textbook/git-checkout-submodule-action@master
         with:
@@ -35,7 +35,7 @@ jobs:
           cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
           git add -f slides-eidi-rep.pdf
           git commit -m "Update PDF by workflow"
-          
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
