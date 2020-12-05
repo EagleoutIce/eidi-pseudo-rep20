@@ -878,11 +878,11 @@ char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente
         \widei
         \item Arrays werden in Java als ein Block gespeichert.\pause{} Das bedeutet, ein Array aus \(12\) \bjava{int}-Elementen nimmt einen Speicherblock von \(12 \cdot 32\,\text{bit}\) ein.
         \item Greift man auf einen nicht erlaubten Index zu,\pause{} so wird eine \bjava{ArrayIndexOutOfBoundsException} geworfen.
-        \item Da Arrays eine komplexe Datenstruktur sind,\pause{} wird bei der Erstellung in der Variable selbst nur die Speicheradressen abgelegt.\pause{} So verweisen bei:\pause{}
+        \item Da Arrays eine komplexe Datenstruktur sind, wird bei der Erstellung in der Variable selbst nur die Speicheradressen abgelegt.\pause{} In:\pause{}
 \begin{plainjava}
 int[] a = {2, 4, 6, 8, 10}, b = a;
 \end{plainjava}
-        \pause{}beide Variablen auf den selben Datensatz. Änderungen betreffen beide:\pause{}
+        \pause{}verweisen beide Variablen auf den selben Datensatz:\pause{}
 \begin{plainjava}
 a[4] = 42; b[2] = 7;
 for(int i = 0; i < a.length; i++)
@@ -1793,7 +1793,7 @@ class Laenge {
     \begin{itemize}[<+(1)->]
         \widei
         \item Manche Probleme, die kompliziert sind,\pause{} lassen sich durch Rekursion in immer kleinere Probleme aufspalten, die dann beherrschbarer sind.
-        \item Dieses Problem wird uns bei den Sortieralgorithmen \hyperlink[mrk:sort-Mergesort]{Merge-} und \linksort{Quicksort} wieder begegnen.
+        \item Dieses Problem wird uns bei den Sortieralgorithmen \hyperlink{mrk:sort-Mergesort}{Merge-} und \linksort{Quicksort} wieder begegnen.
     \end{itemize}
 \end{frame}
 
@@ -2074,7 +2074,7 @@ static int methode(int n) {
 \end{exercise}
 \end{frame}
 
-\begin{frame}[c,fragile]{Übungsaufgabe -- Lösung}
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
 \begin{solve}<2->[Zahlen konvertieren]
     \pause{}Konvertieren wir die Zahl zuerst ins Binärsystem (schnelle Konvertierung mit je \(3\) Bits),\pause{} dann von dort aus ins Hexadezimalsystem,\pause{} nun ins Dezimalsystem (nicht gefordert) und dann in \(b = 3\):\pause{} \begin{description}[b = 16]
         \item[b = 2] \(42_{(8)} = \overbrace{100}^{4}\overbrace{010}^{2}\;{}_{(2)}\)
@@ -2084,7 +2084,7 @@ static int methode(int n) {
 \end{solve}
 \end{frame}
 
-\begin{frame}[c,fragile]{Übungsaufgabe -- Lösung}
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
 \addtocounter{solve}{-1}
 \begin{solve}<1->[Zahlen konvertieren\hfill{}(Fortsetzung)]
     \begin{description}[b = 16]
@@ -2171,7 +2171,7 @@ int getDistance(String a, String b){
     \end{exercise}\onslide<1->
 \end{frame}
 
-\begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
     \begin{solve}<2->[Rechenaufwand berechnen]
     \pause{}Handeln wir zuerst den \emph{best-case} ab.\pause{} Hier ist der String \bjava{a} \bjava{null} und die erste \bjava{if}-Bedingung terminiert mit \bjava{-1}.\pause{} Wir haben also im \emph{best-case} mit einem Aufwand von einem Vergleich und damit: \(\O(1)\).\pause{} (Auch wenn dieser \emph{best-case} relativ sinnfrei ist.\pause{} Was wäre denn der \emph{best-case} bei einer \say{gültigen} Eingabe\pause{} (also zwei gleichlangen Strings, die nicht \bjava{null} sind)?)\pause{} Kommen wir nun zum \emph{worst-case}:
     \end{solve}
@@ -2195,7 +2195,7 @@ int getDistance(String a, String b){
 \end{frame}
 
 
-\begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
     \addtocounter{solve}{-1}%
     \begin{solve}<1->[Rechenaufwand berechnen\hfill{}(Fortsetzung)]
         \pause{}Sei die Länge von \bjava{a} durch \(n\) notiert (\bjava{a.length()}\(\widehat{=} n\))
@@ -2674,7 +2674,7 @@ public static void bubbleSort(int[] arr) {
 \end{frame}
 
 \begin{frame}{Exkurs: Heap}
-    \hypertarget{heap}{}%
+    \hypertarget{mrk:Heap}{}%
     \begin{definition}<2->[Heap]
         \onslide<3->{Binärbaum, bei dem gilt: \(\text{Vaterknoten} < \text{Kindknoten}\).}
     \end{definition}
