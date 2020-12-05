@@ -1793,7 +1793,7 @@ class Laenge {
     \begin{itemize}[<+(1)->]
         \widei
         \item Manche Probleme, die kompliziert sind,\pause{} lassen sich durch Rekursion in immer kleinere Probleme aufspalten, die dann beherrschbarer sind.
-        \item Dieses Problem wird uns bei den Sortieralgorithmen \hyperref[mrk:sort-Mergesort]{Merge-} und \linksort{Quicksort} wieder begegnen.
+        \item Dieses Problem wird uns bei den Sortieralgorithmen \hyperlink[mrk:sort-Mergesort]{Merge-} und \linksort{Quicksort} wieder begegnen.
     \end{itemize}
 \end{frame}
 
@@ -2287,7 +2287,7 @@ int getDistance(String a, String b){
 
 \begin{frame}[fragile,c]{Klassische Suchverfahren}
     \begin{plainjava}
-    !*\onslide<2->*!int linear_search(int[] sequence, int key){
+    !*\onslide<2->*!int linearSearch(int[] sequence, int key){
     !*\onslide<3->*!    for(int i = 0; i < sequence.length; i++)
     !*\onslide<4->*!        if(sequence[i] == key) return i;
     !*\onslide<5->*!    return -1; // Magic Number für "not found"
@@ -2318,7 +2318,7 @@ int getDistance(String a, String b){
 
 \begin{frame}[fragile,c]{Klassische Suchverfahren}
     \begin{plainjava}
-!*\onslide<2->*!int binary_search(int[] sequence, int key){
+!*\onslide<2->*!int binarySearch(int[] sequence, int key){
 !*\onslide<3->*!    int min = 0, max = sequence.length-1;
 !*\onslide<4->*!    while(min <= max) {
 !*\onslide<5->*!        int middle = (min + max)/2; // Mitte
@@ -2775,6 +2775,7 @@ public static void bubbleSort(int[] arr) {
     \begin{solve}<2->[Sortieralgorithmen zeichnen]
         \pause{}Hier sind Split- und Mergephase wieder aufgespalten:\pause{}
 \begin{center}
+    \tikzset{block/.append style={rounded rectangle}}%
     \scalebox{0.75}{
     \begin{forest}
         for tree={inner sep=4pt,block,outer sep=1pt,execute at begin node={\strut}}
