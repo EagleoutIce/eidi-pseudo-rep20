@@ -5,6 +5,7 @@ name: Compile the slides (noanim)
     branches:
     - master
     - main
+  workflow_dispatch:
 
 jobs:
   build:
