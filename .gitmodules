@@ -1,6 +1,0 @@
-[submodule "sopra-collection"]
-	path = sopra-collection
-	url = https://github.com/EagleoutIce/sopra-collection
-[submodule "beamer-themes"]
-	path = beamer-themes
-	url = https://github.com/EagleoutIce/beamer-themes

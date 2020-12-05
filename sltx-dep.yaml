@@ -1,0 +1,10 @@
+target: docker-container
+dependencies:
+    sopra-collection:
+      url: https://github.com/EagleoutIce/sopra-collection
+      grab-files: ["**/*.sty=>./","**/*.cls=>./"]
+      grab-dirs: ["sopra-listings/Languages=>Languages/"]
+      dep: sltx-dep.yml
+    beamer-themes:
+      url: https://github.com/EagleoutIce/beamer-themes
+      grab-files: ["**/*.sty=>./"]

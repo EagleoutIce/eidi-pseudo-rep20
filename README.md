@@ -1,4 +1,4 @@
-[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](http://perso.crans.org/besson/LICENSE.html) ![Compile the slides (noanim)](https://github.com/EagleoutIce/eidi-pseudo-rep/workflows/Compile%20the%20slides%20(noanim)/badge.svg)
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](http://perso.crans.org/besson/LICENSE.html) ![Compile the slides (noanim)](https://github.com/EagleoutIce/eidi-pseudo-rep20/workflows/Compile%20the%20slides%20(noanim)/badge.svg)
 
 # eidi-pseudo-rep
 
