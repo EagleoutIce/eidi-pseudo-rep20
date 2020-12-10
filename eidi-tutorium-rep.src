@@ -2671,7 +2671,7 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Sortierverfahren: Zusammenfassung}
     \begin{table}[H]
         \renewcommand\arraystretch{1.35}
-        \begin{tabular}{p{0.2\linewidth}p{0.175\linewidth}p{0.175\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
+        \begin{tabular}{p{0.2\linewidth}p{0.195\linewidth}p{0.195\linewidth}p{0.13\linewidth}p{0.13\linewidth}}
         \toprule
             Sortierverfahren & worst-case & average-case & Speicher & Ansatz \\
         \midrule
@@ -2767,21 +2767,21 @@ public static void bubbleSort(int[] arr) {
 \end{frame}
 
 % Ugly but still, i am lazy right now
-\def\Element#1{%
+\def\Element#1{{\renewcommand{\arraystretch}{1.4}%
     \begin{tabular}{|>{\centering}p{1em}|p{1em}|}
         \hline
             \strut#1 & \\
         \hline
     \end{tabular}%
-}
+}}
 
-\def\EndElement{
+\def\EndElement{{\renewcommand{\arraystretch}{1.5}%
     \begin{tabular}{|>{\centering\arraybackslash}p{1em}|}
         \hline
             \strut/\\
         \hline
     \end{tabular}
-}
+}}
 
 \begin{frame}[fragile]{Listen - Einfach verkettete Liste}
     \renewcommand\arraystretch{1.35}%
@@ -2802,11 +2802,11 @@ class Element {
 \end{plainjava}
     \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
 \centering\begin{tikzpicture}[scale=0.7,every node/.style={transform shape}]
-    \node[inner sep=0pt] (a) at (0,0) {\Element{4}};
-    \node[inner sep=0pt] (b) at (2.25,0) {\Element{2}};
-    \node[inner sep=0pt] (c) at (4.5,0) {\Element{1}};
-    \node[inner sep=0pt] (d) at (6.75,0) {\Element{3}};
-    \node[inner sep=0pt] (e) at (9,0) {\EndElement};
+    \node[enode] (a) at (0,0) {\Element{4}};
+    \node[enode] (b) at (2.25,0) {\Element{2}};
+    \node[enode] (c) at (4.5,0) {\Element{1}};
+    \node[enode] (d) at (6.75,0) {\Element{3}};
+    \node[enode] (e) at (9,0) {\EndElement};
 
     \foreach[remember=\i as \li (initially a)] \i in {b,c,d,e}{
         \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
@@ -2835,25 +2835,25 @@ class Element {
 \begin{enumerate}[<+(1)->]
     \widei
     \item \begin{tikzpicture}[scale=0.75,every node/.style={transform shape}]
-            \node[inner sep=0pt] (a) at (0,0) {\Element{4}};
-            \node[inner sep=0pt] (b) at (2.25,0) {\Element{2}};
-            \node[inner sep=0pt] (c) at (4.5,0) {\Element{3}};
-            \node[inner sep=0pt] (d) at (6.75,0) {\EndElement};
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{2}};
+            \node[enode] (c) at (4.5,0) {\Element{3}};
+            \node[enode] (d) at (6.75,0) {\EndElement};
 
             \foreach[remember=\i as \li (initially a)] \i in {b,c,d}{
                 \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
                 \fill ($(\li.east)+(-1em,0)$) circle (2pt);
             }
 
-            \node[inner sep=0pt] (e) at (4.5,1) {\Element{1}};
+            \node[enode] (e) at (4.5,1) {\Element{1}};
 
         \end{tikzpicture}
     \item \begin{tikzpicture}[scale=0.75,every node/.style={transform shape}]
-        \node[inner sep=0pt] (a) at (0,0) {\Element{4}};
-        \node[inner sep=0pt] (b) at (2.25,0) {\Element{2}};
-        \node[inner sep=0pt] (c) at (4.5,0) {\Element{3}};
-        \node[inner sep=0pt] (d) at (6.75,0) {\EndElement};
-        \node[inner sep=0pt] (e) at (4.5,1) {\Element{1}};
+        \node[enode] (a) at (0,0) {\Element{4}};
+        \node[enode] (b) at (2.25,0) {\Element{2}};
+        \node[enode] (c) at (4.5,0) {\Element{3}};
+        \node[enode] (d) at (6.75,0) {\EndElement};
+        \node[enode] (e) at (4.5,1) {\Element{1}};
 
         \foreach[remember=\i as \li (initially a)] \i in {b}{
             \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
@@ -2877,12 +2877,12 @@ class Element {
 
     \end{tikzpicture}
     \item \begin{tikzpicture}[scale=0.75,every node/.style={transform shape}]
-        \node[inner sep=0pt] (a) at (0,0) {\Element{4}};
-        \node[inner sep=0pt] (b) at (2.25,0) {\Element{2}};
-        \node[inner sep=0pt] (c) at (4.5,0) {\Element{3}};
-        \node[inner sep=0pt] (d) at (6.75,0) {\EndElement};
+        \node[enode] (a) at (0,0) {\Element{4}};
+        \node[enode] (b) at (2.25,0) {\Element{2}};
+        \node[enode] (c) at (4.5,0) {\Element{3}};
+        \node[enode] (d) at (6.75,0) {\EndElement};
 
-        \node[inner sep=0pt] (e) at (4.5,1) {\Element{1}};
+        \node[enode] (e) at (4.5,1) {\Element{1}};
 
         \foreach[remember=\i as \li (initially a)] \i in {b}{
             \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
@@ -2948,13 +2948,13 @@ public void appendLastIter(Element current, int i){
     \end{solve}
 \end{frame}
 
-\def\Element#1{%
+\def\Element#1{{\renewcommand{\arraystretch}{1.4}%
     \begin{tabular}{|p{1em}|>{\centering}p{1em}|p{1em}|}
         \hline
             & \strut#1 & \\
         \hline
     \end{tabular}%
-}
+}}
 
 % NOTE: TODO: NOTE: gutes Beispiel: Undo & Redo, Vearbeitungsverlauf.
 % Für doppelt verketteter Baum: GUI/Scene graph parent/child beziehung
@@ -2979,11 +2979,11 @@ class Element {
 \end{plainjava}
     \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
 \centering\begin{tikzpicture}[scale=0.7,every node/.style={transform shape}]
-    \node[inner sep=0pt] (a) at (1.25*0,0) {\Element{4}};
-    \node[inner sep=0pt] (b) at (1.25*2.25,0) {\Element{2}};
-    \node[inner sep=0pt] (c) at (1.25*4.5,0) {\Element{1}};
-    \node[inner sep=0pt] (d) at (1.15*6.75,0) {\EndElement};
-    \node[inner sep=0pt] (e) at (-2.25,0) {\EndElement};
+    \node[enode] (a) at (1.25*0,0) {\Element{4}};
+    \node[enode] (b) at (1.25*2.25,0) {\Element{2}};
+    \node[enode] (c) at (1.25*4.5,0) {\Element{1}};
+    \node[enode] (d) at (1.15*6.75,0) {\EndElement};
+    \node[enode] (e) at (-2.25,0) {\EndElement};
 
     \foreach[remember=\i as \li (initially a)] \i in {b,c}{
         \draw[-Kite] ($(\li.east)+(-1em,-4pt)$) -- ($(\i.west)+(0,-4pt)$);

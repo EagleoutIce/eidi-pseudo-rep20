@@ -146,7 +146,8 @@
     iball/.style={ball=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
     oball/.style={ball=btcd@color@alerted,fill=btcd@color@alerted!21!btcd@color@white},
     ball/.default=solidF,
-    link/.style={-Kite}
+    link/.style={-Kite},
+    enode/.style={inner sep=0pt}%
 }
 
 %% -----------------------------------------------------------------------------
@@ -159,7 +160,7 @@
 \def\lhnsielementformat#1{\textbf{\vphantom{A}#1}}
 \long\def\lhnselementbox#1#2{\pbox{#1}{#2}}%
 \makeatletter
-\lhns@minborderheight=4cm
-\lhns@borderbuff=1.25em
+\lhns@minborderheight=4.75cm
+\lhns@borderbuff=1.33em
 \makeatother
 \tikzset{lhns@impstyle/.style={}}%
