@@ -1447,54 +1447,40 @@ public static String wohinGehtEs(Richtung ziel){
     \end{exercise}\onslide<1->
 \end{frame}
 
+
+\long\def\PresentHS<#1>#2#3{%
+\onslide<#1>{\resizebox{4.865cm}{!}{\begin{tikzpicture}
+\begin{heap-n-stack}{#2}
+#3
+\end{heap-n-stack}
+\end{tikzpicture}}}%
+}
 \begin{frame}[fragile,c]{Eine leichte Aufgabe als Einstieg -- Lösung}
     \begin{solve}<2->[Was liefert dieser Code?]
         \pause{}Der Code liefert \(21\) und \(42\). Ersterer Wert, da wir das Array ja so zuweisen,\pause{} den zweiten, weil durch die Übergabe des Arrays mittels \emph{call-by-reference} auch das Ursprungsarray verändert wird.
         \begin{center}
-            \onslide<4->{\begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
-                \node [above] at (4.5, 0) {1};
-                \node [below] at (2,-4.5) {Stack};
-                \node [below] at (7,-4.5) {Heap};
+\PresentHS<4->{1}{%
+\istack{main}
+\stack{arr:}
+\renderstack
 
-                \heapElement{-0.5}{\bfseries Globales};
+\iheap{Globales}
+\heap{\T{\{ 21 \}}}
+\renderheap
+\draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west);
+}\qquad\PresentHS<5->{2}{%
+\istack{main}
+\stack{arr:}
+\istack{multBy2}
+\stack{x:\phantom{rr}}
+\renderstack
 
-                \heapElement{-1}{\T{\{ 21 \}}};
-
-                \stackElement{-1}{arr: \phantom{b}};
-
-                \stackElement{-0.5}{\bfseries main};
-                \filldraw (2.2,-1.28) circle (2pt);
-                \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-
-                \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
-                \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-
-            \end{tikzpicture}}\qquad\onslide<5->{
-                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
-                \node [above] at (4.5, 0) {2};
-                \node [below] at (2,-4.5) {Stack};
-                \node [below] at (7,-4.5) {Heap};
-
-                \heapElement{-0.5}{\bfseries Globales};
-
-                \heapElement{-1}{\T{\{ 21 \}}};
-
-                \stackElement{-1}{arr: \phantom{b}};
-                \stackElement{-2}{x: \phantom{b}};
-
-                \stackElement{-0.5}{\bfseries main};
-                \stackElement{-1.5}{\bfseries multBy2};
-
-                \filldraw (2.2,-1.28) circle (2pt);
-                \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-
-                \filldraw (2.2,-2.28) circle (2pt);
-                \draw [-Kite] (2.2,-2.28) -- ++(1,0) --  ++(1.3,1) -- ++(1,0);
-
-                \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
-                \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-
-            \end{tikzpicture}}
+\iheap{Globales}
+\heap{\T{\{ 21 \}}}
+\renderheap
+\draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
+\draw[lhns] (stack-3) -- ++(0.75,0) -- ([xshift=-0.75cm]r1) -- (r1);
+}
         \end{center}
     \end{solve}
 \end{frame}
@@ -1504,52 +1490,28 @@ public static String wohinGehtEs(Richtung ziel){
     \addtocounter{solve}{-1}%
     \begin{solve}<1->[Was liefert dieser Code?\hfill{}(Fortsetzung)]
         \pause{}\begin{center}
-            \onslide<2->{
-                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
-                \node [above] at (4.5, 0) {3};
-                \node [below] at (2,-4.5) {Stack};
-                \node [below] at (7,-4.5) {Heap};
+\PresentHS<2->{3}{%
+\istack{main}
+\stack{arr:}
+\istack{multBy2}
+\stack{x:\phantom{rr}}
+\renderstack
 
-                \heapElement{-0.5}{\bfseries Globales};
+\iheap{Globales}
+\heap{\T{\{ 42 \}}}
+\renderheap
+\draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
+\draw[lhns] (stack-3) -- ++(0.75,0) -- ([xshift=-0.75cm]r1) -- (r1);
+}\qquad\PresentHS<3->{4}{%
+\istack{main}
+\stack{arr:}
+\renderstack
 
-                \heapElement{-1}{\T{\{ 42 \}}};
-
-                \stackElement{-1}{arr: \phantom{b}};
-                \stackElement{-2}{x: \phantom{b}};
-
-                \stackElement{-0.5}{\bfseries main};
-                \stackElement{-1.5}{\bfseries multBy2};
-
-                \filldraw (2.2,-1.28) circle (2pt);
-                \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-
-                \filldraw (2.2,-2.28) circle (2pt);
-                \draw [-Kite] (2.2,-2.28) -- ++(1,0) --  ++(1.3,1) -- ++(1,0);
-
-                \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
-                \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-
-            \end{tikzpicture}}\qquad\onslide<3->{
-                \begin{tikzpicture}[scale=0.55, every node/.style={transform shape}]
-                \node [above] at (4.5, 0) {4};
-                \node [below] at (2,-4.5) {Stack};
-                \node [below] at (7,-4.5) {Heap};
-
-                \heapElement{-0.5}{\bfseries Globales};
-
-                \heapElement{-1}{\T{\{ 42 \}}};
-
-                \stackElement{-1}{arr: \phantom{b}};
-
-                \stackElement{-0.5}{\bfseries main};
-
-                \filldraw (2.2,-1.28) circle (2pt);
-                \draw [-Kite] (2.2,-1.28) --  ++(3.3,0);
-
-                \draw [dashed,rounded corners=1.5pt] (0,0) rectangle ++(4,-5.5);
-                \draw [dashed,rounded corners=1.5pt] (5,0) rectangle ++(4,-5.5);
-
-            \end{tikzpicture}}
+\iheap{Globales}
+\heap{\T{\{ 42 \}}}
+\renderheap
+\draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
+}
         \end{center}
         \onslide<4->{\textit{Hinweis: eine derartige Grafik wird nicht gefordert werden, sie kann aber durchaus beim Verständnis der Thematik hilfreich sein.}}
     \end{solve}
@@ -3058,7 +3020,7 @@ class Element {
     \begin{itemize}[<+(1)->]
         \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).\pause{} Es ist nur möglich Elemente oben auf den Stapel zu legen, oder das oberste zu nehmen.
         \item Stacks lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulässt.
-        \item Stacks können bei der Auswertung arithmetischer Funktionien verwendet werden (siehe GdRA).
+        \item Stacks können bei der Auswertung arithmetischer Funktionien verwendet werden (siehe GdRa).
         \item Die Verwaltung rekursiver Methoden erfolgt über den Stack, so \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
         \item Auf Stacks sind zwei wichtige Operationen definiert: \begin{description}[push]
             \item[push] Legt das Element oben auf dem Stack ab.

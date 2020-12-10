@@ -25,19 +25,6 @@
 \RequirePackage{sopra-listings,sopra-models,sopra-attachments,forest,array,booktabs,colortbl}
 \solLoadLanguage{bash}
 
-% für die Heap und Stack Freuden
-\newcommand*\hsElement[2]{\draw #1 [thin] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
-\newcommand*\hsmElement[3]{\draw #1 [thin,color=#3] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
-\newcommand*\hsfElement[3]{\draw #1 [thin,color=#3, fill=#3] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
-
-\newcommand*\stackElement[2] {\hsElement{(0.5,#1)}{#2}}
-\newcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{candypink}}
-\newcommand*\heapElement[2] {\hsElement{(5.5,#1)}{#2}}
-\newcommand*\heapeElement[2] {\hsmElement{(5.5,#1)}{#2}{limegreen}}
-\newcommand*\heapclassElement[2] {\hsfElement{(5.5,#1)}{\textcolor{white}{\T{\textbf{\large{#2}}}}}{tealblue}}
-\newcommand*\heapclassChild[2] {\hsmElement{(5.5,#1)}{\textcolor{black}{\scriptsize{#2}}}{tealblue}}
-\renewcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{btcd@color@primary}}
-
 %% -----------------------------------------------------------------------------
 %% Theme
 %% -----------------------------------------------------------------------------
@@ -161,3 +148,18 @@
     ball/.default=solidF,
     link/.style={-Kite}
 }
+
+%% -----------------------------------------------------------------------------
+%% Heap and Stack
+%% -----------------------------------------------------------------------------
+
+\usepackage{lecture-heap-n-stack}
+
+\def\lhnselementformat#1{\texttt{#1}}
+\def\lhnsielementformat#1{\textbf{\vphantom{A}#1}}
+\long\def\lhnselementbox#1#2{\pbox{#1}{#2}}%
+\makeatletter
+\lhns@minborderheight=4cm
+\lhns@borderbuff=1.25em
+\makeatother
+\tikzset{lhns@impstyle/.style={}}%
