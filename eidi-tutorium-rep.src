@@ -3447,12 +3447,12 @@ class Node {
 
     \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-    \end{minipage}\quad\begin{minipage}{0.45\linewidth}
-        \[\bordermatrix{~ & 1 & 2 & 3 & 4 \cr
-        1 & 0 & 1 & 0 & 0\cr
-        2 & 0 & 0 & 1 & 1\cr
-        3 & 1 & 0 & 0 & 1\cr
-        4 & 0 & 1 & 0 & 0 \cr
+    \end{minipage}\quad\begin{minipage}{0.45\linewidth}%
+        \[\bordermatrix{~ & \textcolor{gray}{1} & \textcolor{gray}{2} & \textcolor{gray}{3} & \textcolor{gray}{4} \cr
+        \textcolor{gray}{1} & 0 & 1 & 0 & 0\cr
+        \textcolor{gray}{2} & 0 & 0 & 1 & 1\cr
+        \textcolor{gray}{3} & 1 & 0 & 0 & 1\cr
+        \textcolor{gray}{4} & 0 & 1 & 0 & 0\cr
         }\]
     \end{minipage}
 \end{frame}
