@@ -2123,8 +2123,8 @@ public int ggT(int a, int b){
 int getDistance(String a, String b){
     if(a == null || b == null) return -1;
     if(a.length() != b.length()) return -1;
-    int dist = |num||cmt|0x|cmt|0|num|;
-    for(int i = |num||cmt|0b|cmt|0|num|; i < a.length(); i++)
+    int dist = 0x0;
+    for(int i = 0b0; i < a.length(); i++)
         if(a.charAt(i) != b.charAt(i))
             dist++;
     return dist;
@@ -2146,8 +2146,8 @@ int getDistance(String a, String b){
 int getDistance(String a, String b){
     if(|vgl|a == null|vgl| || |vgl|b == null|vgl|) return -1;
     if(|vgl|a.length() != b.length()|vgl|) return -1;
-    !**!|zws|int dist = |num||cmt|0x|cmt|0|num|;|zws|
-    for(|zws|int i = |num||cmt|0b|cmt|0|num|;|zws| |vgl|i < a.length();|vgl| |inc|i++|inc|)
+    !**!|zws|int dist = 0x0;|zws|
+    for(|zws|int i = 0b0;|zws| |vgl|i < a.length();|vgl| |inc|i++|inc|)
         if(|vgl|a.charAt(i) != b.charAt(i)|vgl|)
             !**!|inc|dist++|inc|;
     return dist;

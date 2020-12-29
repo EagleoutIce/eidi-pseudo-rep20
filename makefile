@@ -1,4 +1,3 @@
-# list all papers
 SLIDESTEX := $(shell ls *.tex)
 SOURCESTEX := $(shell ls *.src)
 SLIDESPDF := $(addsuffix .pdf,$(basename $(SLIDESTEX)))
