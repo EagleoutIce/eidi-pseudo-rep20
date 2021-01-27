@@ -121,7 +121,7 @@ for(int i = 0, k = 1; i < 20; i++, k *= 2) {
         \item Mit Java Version 5 gibt es eine weitere Variante der \bjava{for}-Schleife:\pause{}
 \begin{plainjava}
 for(:lan:Variable-Deklaration:ran: : :lan:Iterierbare Variable:ran:) {
-    // Etwas mit der Variable machen.
+    // Etwas mit der Variable machen
 }
 \end{plainjava}
         \pause{}\textit{Hinweis: Ohne Wissen über Interfaces ist es schwer zu \say{erfassen}, welche Datentypen erlaubt sind.\pause{} So: Arrays, Enumerationen (mittels \bjava{.values()}).}
@@ -147,7 +147,7 @@ double[] a = new double[42]; // 42 Elemente, alle: 0.0d
 int[] b = {2, 4, 6, 8, 10}; // 5 Elemente
 char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente
 \end{plainjava}
-        \item Die Länge erhalten wir durch \bjava{:lan:array:ran:.length}.\pause{} Dies ist hier \emph{keine} Methode (im Gegensatz zu \bjava{:lan:string:ran:.length()})!
+        \item Die Länge erhalten wir durch \bjava{:lan:array:ran:.length}.\pause{} Dies ist \emph{keine} Methode (im Gegensatz zu \bjava{:lan:string:ran:.length()})!
     \end{itemize}
 \end{frame}
 
@@ -220,12 +220,15 @@ int x = b[2][3]; // x :yields: 5
 !*\onslide<3->*!}
 \end{plainjava}
     \end{itemize}
+\ifull
     \Task{Zählschleife in Iterationsschleife umwandeln}
     \begin{exercise}<8->[Iteration mit for-each \Time{4}]
         Schreibe diese Methode so um, dass sie den \bjava{for}-each Mechanismus verwendet.
     \end{exercise}
+\fi
 \end{frame}
 
+\ifull
 \begin{frame}[c,fragile]{Verschachtelte for-Schleifen -- Lösung}
     \begin{solve}<2->[Iteration mit for-each]
 \begin{plainjava}
@@ -240,9 +243,10 @@ int x = b[2][3]; // x :yields: 5
 \end{plainjava}
     \end{solve}
 \end{frame}
+\fi
 
-\subsection{Übungsaufgaben}
-
+\fullsubsection{Übungsaufgaben}
+\ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche Kompilier- und Laufzeitfehler, III}
     \begin{exercise}<2->[Fehler finden, III \Time{4}]
@@ -343,8 +347,8 @@ for (int[][] ex : x) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Programmieren: Turtlewalk}
     \begin{exercise}<2->[Programmieren: Turtlewalk \Time{6}]
-        \pause{}Das Array \bjava{static boolean[][] field} repräsentiere ein rechteckiges Gitter (welches mindestens \(1\) Feld umfasst).\pause{} Für jedes Feld \bjava{field[i][j]} gibt der Wert an, ob es passierbar (\bjava{true}) oder blockiert (\bjava{false}) ist.\pause{} Die Variablen \bjava{static int turtle_x, turtle_y;}\pause{} repräsentieren eine Schildkröte an Position \bjava{field[turtle_y][turtle_x]}.
-        \pause{}Schreibe eine Funktion \bjava{moveTurtle(int,int)} die versucht die Schildkröte relativ um \(x\) und \(y\) zu bewegen.\pause{} Eine Bewegung gelingt nur, wenn das Zielfeld frei ist.\pause{} In diesem Fall gilt es \bjava{turtle_x} und \bjava{turtle_y} zu modifizieren und \bjava{true} zurück zu liefern.\pause{} Andernfalls sollen die Koordinaten unverändert bleiben, sowie ein \bjava{false} zurückgegeben werden.
+        \pause{}Das Array \bjava{static boolean[][] field} repräsentiere ein rechteckiges Gitter (welches mindestens \(1\) Feld umfasst).\pause{} Für jedes Feld \bjava{field[i][j]} gibt der Wert an, ob es passierbar (\bjava{true}) oder blockiert (\bjava{false}) ist.\pause{} Die Variablen \bjava{static int turtleX, turtleY;}\pause{} repräsentieren eine Schildkröte an Position \bjava{field[turtleY][turtleX]}.
+        \pause{}Schreibe eine Funktion \bjava{moveTurtle(int,int)} die versucht die Schildkröte relativ um \(x\) und \(y\) zu bewegen.\pause{} Eine Bewegung gelingt nur, wenn das Zielfeld frei ist.\pause{} In diesem Fall gilt es \bjava{turtleX} und \bjava{turtleY} zu modifizieren und \bjava{true} zurück zu liefern.\pause{} Andernfalls sollen die Koordinaten unverändert bleiben, sowie ein \bjava{false} zurückgegeben werden.
     \end{exercise}
 \end{frame}
 
@@ -352,13 +356,13 @@ for (int[][] ex : x) {
     \begin{solve}<2->[Programmieren: Turtlewalk]
         \begin{plainjava}
 !*\onslide<3->*!public static boolean moveTurtle(int tx, int ty){
-!*\onslide<4->*!    int nx = turtle_x + tx, ny = turtle_y + ty;
+!*\onslide<4->*!    int nx = turtleX + tx, ny = turtleY + ty;
 !*\onslide<5->*!    if(nx >= field[0].length || nx < 0 // x-Richtung
 !*\onslide<6->*!       || ny >= field.length || ny < 0 // y-Richtung
 !*\onslide<7->*!       || !field[ny][nx]) // blockiert
 !*\onslide<8->*!            return false;
-!*\onslide<9->*!    turtle_x = nx;
-!*\onslide<9->*!    turtle_y = ny;
+!*\onslide<9->*!    turtleX = nx;
+!*\onslide<9->*!    turtleY = ny;
 !*\onslide<10->*!    return true;
 !*\onslide<3->*!}
         \end{plainjava}
@@ -395,3 +399,4 @@ public static int moveTurtle(int dir){
 \end{frame}
 
 % Aufgabe: for in while Schleife umschreiben
+\fi

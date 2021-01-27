@@ -11,10 +11,9 @@
 % encoding:
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\AtEndPreamble{
+
 \RequirePackage[defaultfam,light,tabular,lining]{montserrat}
 \RequirePackage{sfmath}
-}
 
 \RequirePackage{tikz} % we need it anyways - will load xcolor
 \usetikzlibrary{calc, arrows.meta, decorations, decorations.pathreplacing}
@@ -35,14 +34,15 @@
 \lstcolorlet{keywordB}{btcd@color@secondary}
 \lstcolorlet{keywordC}{btcd@color@secondary}
 \lstcolorlet{comments}{btcd@color@primary!20!btcd@color@white!50!btcd@color@black}
+\lstcolorlet{numbers}{btcd@color@alerted!90!btcd@color@primary!50!btcd@color@black}
 
-\lstcolorlet{literals}{btcd@color@secondary!75!btcd@color@white}
+\lstcolorlet{literals}{btcd@color@alerted!60!btcd@color@primary!80!btcd@color@black}
 \makeatletter
 
 \sol@list@define@styles{%
-    {keywordA:      \color{sol@colors@lst@keywordA}\bfseries},%
-    {keywordB:      \color{sol@colors@lst@keywordB}},%
-    {keywordC:      \color{sol@colors@lst@keywordC}},%
+  {keywordA: \color{sol@colors@lst@keywordA}\bfseries},%
+  {keywordB: \color{sol@colors@lst@keywordB}},%
+  {keywordC: \color{sol@colors@lst@keywordC}},%
 }
 \makeatother
 
@@ -172,6 +172,8 @@
 %% -----------------------------------------------------------------------------
 \usepackage{lithie-profiles}
 
+\RegisterProfile{short}{}
+
 \newif\ifull
 \ifprofile{default}{
   \def\profileshorttitle{Volle Version}
@@ -182,4 +184,9 @@
   \ullfalse
 }{}
 
-% => empty üaufgaben (gray + no link addtocontents?)
+% => empty übungsaufgaben (gray + no link)
+\ifull
+\let\fullsubsection\subsection
+\else
+\let\fullsubsection\fakesubsection
+\fi

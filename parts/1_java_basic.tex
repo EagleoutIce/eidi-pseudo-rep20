@@ -66,8 +66,8 @@
         \widei
         \item Java ist eine \emph{streng typisierte} Sprache.\pause{} Jede Variable kann nur Daten \emph{eines (bestimmten) Typs speichern}.
         \item Wir unterscheiden zwischen \emph{primitiven} und \emph{komplexen} Datentypen. \begin{description}[Primitive]
-            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean} (Hinweis: \emph{call-by-value})
-            \item[Komplexe] \bjava{String}, \bjava{Random}, \ldots (Hinweis: \emph{call-by-reference})
+            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean} (Hinweis: \emph{\hyperlink{mrk:call-by-val}{call-by-value}})
+            \item[Komplexe] \bjava{String}, \bjava{Random}, \ldots (Hinweis: \emph{\hyperlink{mrk:call-by-ref}{call-by-reference}})
         \end{description}
     \end{itemize}
 \end{frame}
@@ -112,6 +112,7 @@ final int SUPER_ZAHL = 42;
         \end{alignat*}
         \vspace*{-0.5cm}\onslide<1->
     \end{itemize}
+\ifull
     \Task{Code zur Präzedenz}
     \begin{exercise}<11->[Was liefert dieser Code? \Time{3}]
         \begin{plainjava}[columns={[c]fullflexible}]
@@ -119,9 +120,11 @@ int x = 40, m = 3;
 System.out.println(-x++ - --m);
 System.out.println(x > 41 || m > 1 && 2 != 3);
         \end{plainjava}
-    \end{exercise}\onslide<1->
+    \end{exercise}
+    \fi\onslide<1->
 \end{frame}
 
+\ifull
 \begin{frame}[fragile,c]{Präzedenzregeln -- Lösung}
     \begin{solve}<2->[Was liefert dieser Code?]
         \pause{}\begin{plainjava}[columns={[c]fullflexible}]
@@ -164,8 +167,9 @@ System.out.println(x); // :yields: 9
         \pause{}Durch die \(4\) Inkremente ist \bjava{x} nun \(9\).\pause{} (\textit{Das ist \emph{kein} guter Code!})
     \end{solve}
 \end{frame}
+\fi
 
-\begin{frame}{Präzedenzregeln - Kommentar}
+\begin{frame}{Präzedenzregeln -- Kommentar}
     \begin{itemize}[<+(1)->]
         \widei
         \item Java wendet die mathematischen Rechenregeln wie bekannt an.
@@ -194,12 +198,12 @@ Random rnd = new Random();
     \begin{itemize}[<+(1)->]
         \widei
         \item Jede Variable/jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
-        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[\T{s1.substring(a,b)}]
-            \item[\T{s1.equals(s2)}] prüft ob die Zeichenketten gleich sind.
-            \item[\T{s1.length()}] liefert die Länge einer Zeichenkette.
-            \item[\T{s1.charAt(k)}] liefert das \T{k}-te Zeichen.
-            \item[\T{s1.substring(a,b)}] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
-            \item[\T{s1.toUpperCase()}] liefert die Zeichenkette in Großbuchstaben.
+        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{s1.substring(a,b)}]
+            \item[{s1.equals(s2)}] prüft ob die Zeichenketten gleich sind.
+            \item[{s1.length()}] liefert die Länge einer Zeichenkette.
+            \item[{s1.charAt(k)}] liefert das \T{k}-te Zeichen.
+            \item[{s1.substring(a,b)}] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
+            \item[{s1.toUpperCase()}] liefert die Zeichenkette in Großbuchstaben.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -260,9 +264,8 @@ private static String generateWelcomeMessage(String name, int age,
     \end{definition}
 \end{frame}
 
-\subsection{Übungsaufgaben}
-
-
+\fullsubsection{Übungsaufgaben}
+\ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche syntaktischer Fehler, I}
     \begin{exercise}<2->[Fehler finden, I \Time{3}]
@@ -351,7 +354,6 @@ double d(int d1, double... d2) { /* ... */ }
 \end{frame}
 
 
-
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Konkatenation}
     \begin{exercise}<2->[Konkatenation \Time{2}]
@@ -403,3 +405,4 @@ println("c - a - 1 = " + ('c' - 1 - 'a'));
     Wir berechnen also in der Klammer den wert \(1\).\pause{} Dieser wir nun normal zum String konkateniert, was die Ausgabe erzeugt.
     \end{solve}
 \end{frame}
+\fi

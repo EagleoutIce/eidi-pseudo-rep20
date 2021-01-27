@@ -25,15 +25,19 @@ jobs:
         echo "tx-default" | sltx docker
     - name: Compile the Documents
       run: |
-        sltx compile --root --profile "tx-default" "noanim-eidi-tutorium-rep.tex"
-        sltx compile --root --profile "tx-default" "eidi-tutorium-rep.tex"
+        sltx compile --root --profile "tx-default"
+
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-          cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
-          cp eidi-tutorium-rep.pdf animated-slides-eidi-rep.pdf
-        git add -f "slides-eidi-rep.pdf" "animated-slides-eidi-rep.pdf"
+
+        cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
+        cp eidi-tutorium-rep.pdf animated-slides-eidi-rep.pdf
+        cp noanim-short-eidi-tutorium-rep.pdf short-slides-eidi-rep.pdf
+        cp short-eidi-tutorium-rep.pdf short-animated-slides-eidi-rep.pdf
+
+        git add -f "slides-eidi-rep.pdf" "animated-slides-eidi-rep.pdf" "short-slides-eidi-rep.pdf" "short-animated-slides-eidi-rep.pdf"
         git commit -m "Full recompilation"
     - name: Push changes
       uses: ad-m/github-push-action@master

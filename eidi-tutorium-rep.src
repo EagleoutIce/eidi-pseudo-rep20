@@ -1,6 +1,6 @@
 \input{configuration.tex}
 
-\title{EidI-Repetitorium WiSe20/21}
+\title[EidI-Rep]{EidI-Repetitorium WiSe20/21}
 \subtitle{\profileshorttitle}
 \author{Florian Sihler}
 \date{27.01.2021}
@@ -13,7 +13,7 @@
     \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
     \node at(0,0) [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
     \foreach \l [count=\xi] in {Wert\-zu\-wei\-sun\-gen,An\-weis\-ungs\-block,Operatoren,Leer,Be\-ding\-te An\-weis\-ung,Mehr\-fach\-ver\-zwei\-gung,Wdh. \-an\-weis\-ung\-en} {
-        \node at(2.2*\xi-8*1.1,-2) [rounded corners = 6pt,rectangle, draw, text width=1.8cm,align=center,font=\scriptsize\sffamily] (\xi) {\l};
+        \node[minimum height=1cm] at(2.2*\xi-8*1.1,-2) [rounded corners = 6pt,rectangle, draw, text width=1.8cm,align=center,font=\scriptsize\sffamily] (\xi) {\l};
         \draw[-Kite] (0) to[out=270- 3*7 +\xi*5,in=90] (\xi);
     }
 

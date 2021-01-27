@@ -152,7 +152,7 @@ class Element {
     \end{multicols}
 \end{frame}
 
-
+\ifull
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{LinkedList - insert}
     \begin{exercise}<2->[Einfach verkettete Liste - Einfügen\Time{5}]
@@ -195,6 +195,7 @@ public void appendLastIter(Element current, int i){
 \end{plainjava}
     \end{solve}
 \end{frame}
+\fi
 
 \def\Element#1{{\renewcommand{\arraystretch}{1.4}%
     \begin{tabular}{|p{1em}|>{\centering}p{1em}|p{1em}|}
@@ -415,6 +416,7 @@ class Node {
     \end{itemize}
 \end{frame}
 
+% burn this -.-
 \begin{frame}[c]{Traversierungsverfahren}
     \begin{center}\pause{}
     \begin{tikzpicture}[fakeblock/.style={rectangle,draw=btcd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
@@ -623,7 +625,7 @@ class Node {
 \begin{frame}{Suchbäume}
     \begin{itemize}[<+(1)->]
         \item Bäume können auch nützliche Datenstrukturen sein, wenn man sie \emph{ordnet}.
-        \item So existieren Suchbäume (Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) binäre Suche)
+        \item So existieren Suchbäume (Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) \hyperlink{mrk:binsearch}{binäre Suche})
         \item Vergleiche hierzu auch die Datenstruktur \hyperlink{mrk:Heap}{Heap}.
         \item Die Traversierungsverfahren lassen sich auch auf Bäume mit höherem Verzweigungsgrad anwenden!
     \end{itemize}
@@ -847,8 +849,8 @@ class Node {
 \end{multicols}
 \end{frame}
 
-\subsection{Übungsaufgaben}
-
+\fullsubsection{Übungsaufgaben}
+\ifull
 % TODO: Liste aufgaben, Baum Aufgaben und eine Aufgabe für binärbäume sowie suchbäume und so.. heap and STack..
 
 \begin{frame}[fragile,c]{Übungsaufgabe}
@@ -970,4 +972,4 @@ void inorder(Node n)  {
 \end{plainjava}
     \end{solve}
 \end{frame}
-
+\fi

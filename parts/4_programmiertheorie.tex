@@ -104,7 +104,8 @@
     \end{itemize}
 \end{frame}
 
-\subsection{Laufzeitkomplexität}
+\fullsubsection{Laufzeitkomplexität}
+\ifull
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
@@ -187,6 +188,7 @@ static int methode(int n) {
         \end{center}
     \end{itemize}
 \end{frame}
+\fi
 
 \subsection{Modellierung durch UML}
 
@@ -368,19 +370,20 @@ static int methode(int n) {
 \end{frame}
 
 
-\begin{frame}{Darstellung ganzer Zahlen}
+\begin{frame}[fragile]{Darstellung ganzer Zahlen}
 \begin{itemize}[<+(1)->]
     \item Dies ergibt: \(1010_{(2)}\).
     \item Hinweis: es existieren weitere (schnelle) Konvertierungsverfahren,\pause{} die es zum Beispiel das Hexadezimalsystem direkt ins Dualsystem zu konvertieren.\pause{} Da hier jede Ziffer im Hexadezimalsystem \(4\) Bits einnimmt, geht die Konvertierung schneller:\pause{} \[
         AFFE_{(16)} = \overbrace{1010}^{A}\;\overbrace{1111}^{F}\;\overbrace{1111}^{F}\;\overbrace{1110}^{E}\;{}_{(2)}\vspace*{-0.4cm}
     \]
 \end{itemize}
-\Task{Zahlen konvertieren}%
+\ifull\Task{Zahlen konvertieren}%
 \begin{exercise}<+->[Zahlen konvertieren\Time{3}]
     \onslide<+->{Konvertiere \(42_{(8)}\) zur Basis \(b = 16\), \(b = 3\) und ins Binärsystem.}
-\end{exercise}
+\end{exercise}\fi
 \end{frame}
 
+\ifull
 \begin{frame}[c]{Übungsaufgabe -- Lösung}
 \begin{solve}<2->[Zahlen konvertieren]
     \pause{}Konvertieren wir die Zahl zuerst ins Binärsystem (schnelle Konvertierung mit je \(3\) Bits),\pause{} dann von dort aus ins Hexadezimalsystem,\pause{} nun ins Dezimalsystem (nicht gefordert) und dann in \(b = 3\):\pause{} \begin{description}[b = 16]
@@ -405,9 +408,10 @@ static int methode(int n) {
     \end{description}
 \end{solve}
 \end{frame}
+\fi
 
-\subsection{Übungsaufgaben}
-
+\fullsubsection{Übungsaufgaben}
+\ifull
 \begin{frame}[fragile,c]{Funktion zu Rekursion}
     \Task{Schleife zu Rekursion}
     \begin{exercise}<2->[Schleife zu Rekursion\Time{4}]
@@ -546,3 +550,4 @@ int getDistance(String a, String b){
         \pause{}Eine derartige Kategorisierung kann auch genauer präzisiert werden.
     \end{solve}
 \end{frame}
+\fi

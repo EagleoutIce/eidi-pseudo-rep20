@@ -35,7 +35,7 @@
     \end{itemize}
 \end{frame}
 
-
+\ifull
 \begin{frame}[c]{Eine Aufgabe zwischendurch}
     \Task{Vorteile der OOP}
     \begin{exercise}<2->[Vorteile der OOP \Time{2}]
@@ -53,6 +53,7 @@
         \end{description}
     \end{solve}
 \end{frame}
+\fi
 
 \subsection{Klassen}
 \begin{frame}[c]{Vom Klassenkonzept zum Javacode}
@@ -109,9 +110,9 @@
 !*\onslide<2->*!
 !*\onslide<5->*!    // Initialisiere mit Punkt
 
-!*\onslide<5->*!    public Point2D(double _x, double _y) {
-!*\onslide<6->*!        this.x = _x; // geht
-!*\onslide<6->*!        this.y = _y; // genauso
+!*\onslide<5->*!    public Point2D(double x, double y) {
+!*\onslide<6->*!        this.x = x;
+!*\onslide<6->*!        this.y = y;
 !*\onslide<5->*!    }
 !*\onslide<2->*!}
 \end{plainjava}
@@ -145,7 +146,7 @@
 \end{itemize}
 \end{frame}
 
-
+\ifull
 \begin{frame}[c]{Eine Aufgabe zwischendurch}
     \Task{Eine .equals()-Methode}
     % TODO: attribute des Punktes wiederholen
@@ -170,6 +171,7 @@
 \end{plainjava}
     \end{solve}
 \end{frame}
+\fi
 
 \begin{frame}[fragile]{Statische Methoden/Attribute}
 \begin{itemize}[<+(1)->]
@@ -182,7 +184,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Der Lebenszyklus eines Objekts}
+\begin{frame}[fragile]{Der Lebenszyklus eines Objekts}
     \begin{itemize}[<+(1)->]
         \item Mit dem Erstellen eines Objekts,\pause{} haben wir eine Variable, die auf es zeigt.
         \item Durch weitere Zuweisungen\pause{} oder Methodenaufrufe können wir weitere Zeiger darauf erstellen.
@@ -190,18 +192,22 @@
         \item Wenn keine Variable mehr auf das Objekt zeigt,\pause{} gibt es (zumindest an sich) keine Möglichkeit mehr auf das Objekt zuzugreifen.
         \item In diesem Fall wird es (irgendwann) vom Garbage-Collector aufgeräumt
     \end{itemize}
+\ifull
     \Task{Garbage Collector}
     \begin{exercise}<8->[Garbage Collector]
         \pause{}Kann der Java Garbage Collector direkt beeinflusst werden? Was sind die Möglichkeiten?
     \end{exercise}
+\fi\onslide<1->
 \end{frame}
 
+\ifull
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Garbage Collector]
         Wir können den Collector nicht direkt beeinflussen!\pause{} Allerdings können wir nicht mehr benötigte Objekte auf \bjava{null} setzen\pause{} und mittels \bjava{System.gc()} den Prozess anstoßen.\pause{}\medskip\newline
         Information: Der GC räumt nicht nur Speicher auf sondern füllt auch Speicherlücken.\pause{} Es gibt verschiedene Varianten für einen GC (Referencecount,\pause{} Mark \& Sweep,\pause{} Stop \& Copy).\pause{} Wird ein Objekt aufgeräumt,\pause{} ruft Java die Methode \bjava{finalize()} auf.
     \end{solve}
 \end{frame}
+\fi
 
 \subsection{Enumerationen}
 \begin{frame}[fragile]{Enumerationen}
@@ -303,12 +309,13 @@ public static String wohinGehtEs(Richtung ziel){
 \begin{frame}[fragile]{Klassen als Parameter: call-by-reference}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Wenn wir komplexe Datentypen als Parameter übergeben oder zuweisen,\pause{} wird \emph{keine} Kopie des Objekts erstellt,\pause{} sondern eine Referenz auf das Objekt übergeben.
+        \item \hypertarget{mrk:call-by-ref}{Wenn} wir komplexe Datentypen als Parameter übergeben oder zuweisen,\pause{} wird \emph{keine} Kopie des Objekts erstellt,\pause{} sondern eine Referenz auf das Objekt übergeben.
         \item Dieser (Parameter-)Übergabemechanismus wird \emph{call-by-reference} genannt.
-        \item Für eine genauere Betrachtung hilft der Foliensatz \(8\) zu Übungsblatt \(7\).
+        \item Für eine genauere Betrachtung hilft der Foliensatz zu Übungsblatt \(7\).
     \end{itemize}
 \end{frame}
 
+\ifull
 \begin{frame}[fragile,c]{Eine leichte Aufgabe als Einstieg}
     \Task{Übung zu call-by-reference}
     \begin{exercise}<2->[Was liefert dieser Code? \Time{1}]
@@ -359,7 +366,7 @@ public static String wohinGehtEs(Richtung ziel){
 \heap{\T{\{ 21 \}}}
 \renderheap
 \draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
-\draw[lhns] (stack-3) -- ++(0.75,0) -- ([xshift=-0.75cm]r1) -- (r1);
+\draw[lhns] (stack-3) -- ++(1.25,0) -- ([xshift=-0.75cm]r1) -- (r1);
 }
         \end{center}
     \end{solve}
@@ -381,7 +388,7 @@ public static String wohinGehtEs(Richtung ziel){
 \heap{\T{\{ 42 \}}}
 \renderheap
 \draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
-\draw[lhns] (stack-3) -- ++(0.75,0) -- ([xshift=-0.75cm]r1) -- (r1);
+\draw[lhns] (stack-3) -- ++(1.25,0) -- ([xshift=-0.75cm]r1) -- (r1);
 }\qquad\PresentHS<3->{4}{%
 \istack{main}
 \stack{arr:}
@@ -396,19 +403,20 @@ public static String wohinGehtEs(Richtung ziel){
         \onslide<4->{\textit{Hinweis: eine derartige Grafik wird nicht gefordert werden, sie kann aber durchaus beim Verständnis der Thematik hilfreich sein.}}
     \end{solve}
 \end{frame}
+\fi
 
 \begin{frame}[fragile]{Der nette Bruder: call-by-value}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Bei Klassen und Arrays wird nun also nicht das Element selbst,\pause{} sondern nur die Referenz übergeben.
+        \item \hypertarget{mrk:call-by-val}{Bei} Klassen und Arrays wird nun also nicht das Element selbst,\pause{} sondern nur die Referenz übergeben.
         \item Bei primitiven Datentypen hingegen wird der Wert \emph{kopiert},\pause{} wan übergibt also den eigentlichen Wert der Variable.
         \item Man sagt auch, dass Methoden mit \emph{call-by-value} \say{keine} (nach bisheriger Betrachtung) Seiteneffekte hervorrufen,\pause{} da sie die übergebenen Daten nicht modifizieren.
         \item Wenn man auch komplexe Datentypen kopieren möchte,\pause{} so erstellt man sie in der Regel neu (\bjava{clone()}) und greift auf die \emph{call-by-value}-Charakteristik der primitiven Datentypen zurück.
     \end{itemize}
 \end{frame}
 
-\subsection{Übungsaufgaben}
-
+\fullsubsection{Übungsaufgaben}
+\ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche syntaktischer Fehler, IV}
     \begin{exercise}<2->[Fehler finden, IV \Time{3}]
@@ -533,3 +541,4 @@ class Laenge {
         \end{plainjava}
     \end{solve}
 \end{frame}
+\fi
