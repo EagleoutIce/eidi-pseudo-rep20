@@ -1,0 +1,548 @@
+\section{Weiterführende Konzepte}
+
+\subsection{Suchverfahren}
+
+\begin{frame}{Suchverfahren formal}
+    \begin{itemize}[<+(1)->]
+        \item Ein Suchverfahren hat die Aufgabe in einer Folge an Elementen,\pause{} die zu finden, die einem Muster oder gewissen Eigenschaften entsprechen.
+        \item Es gibt zwei Varianten: \begin{description}[Heuristisch]
+            \item[Einfach] Durchlaufen Suchraum auf Basis einer Datenstruktur.
+            \item[Heuristisch] Besitzen zusätzliches Wissen (Sortierung,\ldots) über die Daten die sie zur Beschleunigung der Suche verwenden.
+        \end{description}
+        \item Die \emph{Eigenschaften} nach denen gesucht werden soll, kann man auch als \emph{Merkmale} bezeichnen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Klassische Suchverfahren}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Uns sind zwei Verfahren bekannt Elemente zu suchen: \begin{description}[Linear]
+            \item[Linear] Die lineare/naive/sequentielle Suche beginnt am Anfang der Folge und prüft Element für Element ob es sich um das gesuchte handelt.\pause{} Die Komplexität beträgt \(\O(n)\).
+        \end{description}
+        \vfill
+        \begin{center}
+            \onslide<5->{\begin{tikzpicture}
+                \foreach[remember=\i as \li(initially 0)] \i in {1,...,10}{
+                    \ifnum\i=6
+                        \node[inner sep=4.35pt,iball,double,outer sep=2pt] (\i) at(\i,0) {};
+                    \else
+                        \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(\i,0) {};
+                    \fi
+                    \ifnum\i>1
+                        \draw (\li.east) -- (\i.west);
+                    \fi
+                }
+                \onslide<+->{
+                    \foreach[remember=\i as \li (initially 1)] \i in {2,...,6}{
+                        \draw[-Kite] (\li.80) to[bend left] (\i.100);
+                    }
+                }
+            \end{tikzpicture}}
+        \end{center}
+        \vfill\hbox{}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Klassische Suchverfahren}
+    \begin{plainjava}
+    !*\onslide<2->*!int linearSearch(int[] sequence, int key){
+    !*\onslide<3->*!    for(int i = 0; i < sequence.length; i++)
+    !*\onslide<4->*!        if(sequence[i] == key) return i;
+    !*\onslide<5->*!    return -1; // Magic Number für "not found"
+    !*\onslide<2->*!}
+    \end{plainjava}
+    \end{frame}
+
+\begin{frame}{Klassische Suchverfahren}
+    \begin{itemize}[<+(1)->]
+        \item[]\begin{description}[Linear]
+            \item[Binär] Die binäre Suche benötigt eine (aufsteigend) \emph{sortierte} und arbeitet sich baumartig durch die Folge.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Wenn er größer ist, wird im Suchfenster rechts von der Mitte, wenn er kleiner links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
+        \end{description}
+        \vspace*{1em}
+        \begin{center}
+            \onslide<7->{\scalebox{0.65}{\begin{forest}
+                for tree={inner sep=4pt,ball,outer sep=1pt}
+                [,name=m1[[[][[][,phantom]]][[][[][]]]][,name=m2[][,name=m3[,name=m4,iball,inner sep=4.35pt,double[,phantom][]][[]]]]]
+                \onslide<+->{
+                    \draw[-Kite] (m1) to[bend left,looseness=1.25] (m2);
+                    \draw[-Kite] (m2) to[bend left,looseness=1.15] (m3);
+                    \draw[-Kite] (m3) to[bend right,looseness=1] (m4);
+                }
+            \end{forest}}}
+        \end{center}
+        \vfill\hbox{}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Klassische Suchverfahren}
+    \begin{plainjava}
+!*\onslide<2->*!int binarySearch(int[] sequence, int key){
+!*\onslide<3->*!    int min = 0, max = sequence.length-1;
+!*\onslide<4->*!    while(min <= max) {
+!*\onslide<5->*!        int middle = (min + max)/2; // Mitte
+!*\onslide<6->*!        if(sequence[middle] == key) // gefunden
+!*\onslide<6->*!            return middle;
+!*\onslide<7->*!        else if(key < sequence[middle]) // links
+!*\onslide<7->*!            max = middle - 1;
+!*\onslide<8->*!        else // rechts
+!*\onslide<8->*!            min = middle + 1;
+!*\onslide<4->*!    }
+!*\onslide<9->*!    return -1; // Magic Number für "not found"
+!*\onslide<2->*!}
+\end{plainjava}
+\end{frame}
+
+\subsection{Sortierverfahren}
+
+\begin{frame}{Sortierverfahren formal}
+    \begin{itemize}[<+(1)->]
+        \item Beschreibt einen Prozess bei dem Elemente aufgrund eines Ordnungskriteriums ihrer Eigenschaften in eine Reihenfolge gebracht werden.
+        \item Daten werden sortiert um die Suche zu vereinfachen.
+        \item Wir unterscheiden zwei Sortierverfahren: \begin{description}[Extern]
+            \item[Intern] Hier liegt der gesamte Datenbestand im Arbeitspeicher,\pause{} alle Elemente sind zugreifbar (Array, \ldots)
+            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert,\pause{} für das Sortieren werden in der Regel nur die obersten Element eines Stapels betrachtet (Dateien, \ldots).\pause{} In der Regel lassen sich durch Modifikationen und unterstützenden Methoden die selben Verfahren wie bei der Internen Variante verwenden.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sortierverfahren formal}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Bei der Vorgehensweise unterscheiden wir (im Kontext der Vorlesung) drei Ansätze: \begin{description}[Divide-and-Conquer]
+            \item[Sukzessiv] Schritt für Schritt wird die Anzahl an unsortierten Elementen verringert.\pause{} In der Regel iterativ implementiert.
+            \item[Divide-and-Conquer] Daten werden aufgeteilt,\pause{} in Teilen sortiert und dann aus sortierten Teilmengen sortiert zusammengefügt.\pause{} In der Regel rekursiv implementiert.
+            \item[Halde] Sortieren mit dafür geeigneten Datenstrukturen wie dem \emph{Heap}.\pause{} In der Regel rekursiv implementiert.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\def\List#1#2{
+    \foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
+        \ifnum\i>#2
+            \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
+        \else
+            \node[inner sep=4pt,iball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
+        \fi
+        \ifnum\i>1
+            \draw (\li.east) -- (\i.west);
+        \fi
+    }
+}
+
+\begin{frame}{Sortierverfahren: Selectionsort}\alglabel{Selectionsort}
+    \begin{definition}<2->[Selectionsort \hfill{}(iterativ)]
+        \onslide<3->{Prinzip: Wahl des kleinsten Elements im unsortierten Teil, \onslide<4->{Anfügen des Elements als größtes Element des sortierten Teils.}}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Kann auch von oben nach unten implementiert werden.
+        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item Ist das kleinste Element an erster Stelle des unsortierten Teils wird dennoch getauscht (nach Vorlesung).
+    \end{itemize}
+    \vfill
+    \begin{center}\pause{}
+        \begin{minipage}{0.9\linewidth}
+            \begin{multicols}{2}
+                \begin{enumerate}[<+(1)->]
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{4,2,1,3}{0}
+                        \draw[Kite-Kite] (1.north) to[bend left] (3.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{1,2,4,3}{1}
+                        \draw[Kite-Kite] (2) to[loop above] (2);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{1,2,4,3}{2}
+                        \draw[Kite-Kite] (3.north) to[bend left] (4.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{1,2,3,4}{4}
+                    \end{tikzpicture}
+                \end{enumerate}
+            \end{multicols}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile,c]{Sortierverfahren: Selectionsort}
+    \begin{plainjava}
+!*\onslide<2->*!public static void selectionSort(int[] arr) {
+!*\onslide<3->*!    for(int i = 0; i < arr.length-1; i++) {
+!*\onslide<4->*!        int min = i; // Suche Minimum
+!*\onslide<5->*!        for (int j = i+1; j < arr.length; j++)
+!*\onslide<6->*!            if(arr[j] < arr[min])
+!*\onslide<6->*!                min = j;
+!*\onslide<7->*!        // Tausche 'i' und 'min'
+!*\onslide<8->*!        int tmp = arr[i];
+!*\onslide<9->*!        arr[i] = arr[min];
+!*\onslide<10->*!        arr[min] = tmp;
+!*\onslide<3->*!    }
+!*\onslide<2->*!}
+    \end{plainjava}
+\end{frame}
+
+\begin{frame}{Sortierverfahren: Insertionsort}\alglabel{Insertionsort}
+    \begin{definition}<2->[Insertionsort \hfill{}(iterativ)]
+        \onslide<3->{Prinzip: Wahl des ersten Elements im unsortierten Teil, \onslide<4->{Sortieren des Elements in den bereits sortierten Teil.}}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item Das Tauschen erfolgt durch durchgehende Vertauschungen.
+        \item Ist das Element schon an der richtigen Position wird dennoch getauscht.
+    \end{itemize}
+    \vfill
+    \begin{center}\pause
+        \begin{minipage}{0.9\linewidth}
+            \begin{multicols}{2}
+                \begin{enumerate}[<+(1)->]
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{4,2,1,3}{1}
+                        \draw[-Kite] (1) to (2);
+                        \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (2.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{2,4,1,3}{2}
+                        \draw[-Kite] (1) to (2);
+                        \draw[-Kite] (2) to (3);
+                        \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (3.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{1,2,4,3}{3}
+                        \draw[-Kite] (3) to (4);
+                        \draw[Kite-Kite] ([xshift=-15pt]3.north) to[bend left] (4.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{1,2,3,4}{4}
+                    \end{tikzpicture}
+                \end{enumerate}
+            \end{multicols}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile,c]{Sortierverfahren: Insertionsort}
+    \begin{plainjava}
+!*\onslide<2->*!public static void insertionSort(int[] arr) {
+!*\onslide<3->*!    for(int i = 0; i < arr.length; i++) {
+!*\onslide<4->*!        int pos = i - 1, elem = arr[i];
+!*\onslide<5->*!        while(pos >= 0 && arr[pos] > elem) { // Verschiebe
+!*\onslide<6->*!            arr[pos+1] = arr[pos];
+!*\onslide<6->*!            pos--;
+!*\onslide<5->*!        }
+!*\onslide<7->*!        arr[pos+1] = elem;
+!*\onslide<3->*!    }
+!*\onslide<2->*!}
+    \end{plainjava}
+\end{frame}
+
+% \fi
+
+
+\def\List#1#2{
+    \foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
+        \ifnum\i<#2
+            \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
+        \else
+            \node[inner sep=4pt,iball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
+        \fi
+        \ifnum\i>1
+            \draw (\li.east) -- (\i.west);
+        \fi
+    }
+}
+
+\begin{frame}{Sortierverfahren: Bubblesort}\alglabel{Bubblesort}
+    \begin{definition}<2->[Bubblesort \hfill{}(iterativ)]
+        \onslide<3->{Prinzip: Vertausche benachbarte Elemente wenn sie nicht in Sortierungsreihenfolge sind.}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item Mit jedem Durchgang über das Array wird (mindestens) ein Element an die richtige Position getauscht.
+        \item Verbesserung: Shaker-Sort, schiebt abwechselnd das maximale und minimale Element an die (Ziel-)Position.
+    \end{itemize}
+    \vfill
+    \begin{center}\pause
+        \begin{minipage}{0.9\linewidth}
+            \begin{multicols}{2}
+                \begin{enumerate}[<+(1)->]
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{4,2,1,3}{5}
+                        \draw[Kite-Kite] (1.north) to[bend left] (2.north);
+                        \draw[Kite-Kite] (2.north) to[bend left] (3.north);
+                        \draw[Kite-Kite] (3.north) to[bend left] (4.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{2,1,3,4}{4}
+                        \draw[Kite-Kite] (1.north) to[bend left] (2.north);
+                    \end{tikzpicture}
+                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                        \List{1,2,3,4}{0}
+                    \end{tikzpicture}
+                    \item<1->[]
+                \end{enumerate}
+            \end{multicols}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile,c]{Sortierverfahren: Bubblesort}
+    \begin{plainjava}
+public static void bubbleSort(int[] arr) {
+    for(int i = arr.length - 1; i >= 1; i--) {
+        for(int j = 0; j < i; j++) {
+            if(arr[j] > arr[j+1]) { // Vertausche
+                int tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
+        }
+    }
+}
+    \end{plainjava}
+\end{frame}
+
+% TODO: maybe make with separate circles?
+
+\newsavebox{\dotA}
+\newsavebox{\dotB}
+\newsavebox{\dotC}
+\newsavebox{\dotD}
+\newsavebox{\dotE}
+\newsavebox{\dotF}
+\newsavebox{\dotG}
+
+
+\def\TikzList#1#2#3{%
+\savebox{#3}{\begin{tikzpicture}
+    \foreach[count=\i,remember=\i as \li (initially 0)] \n in {#1}{
+        \ifnum\i=#2
+            \node[inner sep=4pt,iball,outer sep=0pt,scale=0.8] (\i) at(0.7*\i,0) {\n};
+        \else
+            \node[inner sep=4pt,ball,outer sep=0pt,scale=0.8] (\i) at(0.7*\i,0) {\n};
+        \fi
+        \ifnum\i>1 \draw(\li) -- (\i); \fi
+    }
+    \end{tikzpicture}}
+}
+
+\TikzList{4,2,1,3}{5}{\dotA}
+\TikzList{4,2}{5}{\dotB}
+\TikzList{1,3}{5}{\dotC}
+\TikzList{4}{5}{\dotD}
+\TikzList{2}{5}{\dotE}
+\TikzList{1}{5}{\dotF}
+\TikzList{3}{5}{\dotG}
+
+
+\begin{frame}{Sortierverfahren: Mergesort}\alglabel{Mergesort}
+    \begin{definition}<2->[Mergesort \hfill{}(rekursiv)]
+        \onslide<3->{Prinzip: Aufteilen der Elemente in einelementige, sortierte Teilfolgen. \onslide<4->{Zusammenfügen sortierter Teilefolgen.}}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        % \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item Verfolgt \emph{easy split}, \emph{hard join}. Das Aufteilen ist leicht (trivial), das Zusammenfügen aufwändig, da hier die Sortierung erfolgen muss.
+        \item Teilt sich auf in: \emph{Split} (aufteilen) und \emph{Merge} (verschmelzen).
+    \end{itemize}
+    \vfill
+    \begin{center}\pause
+        \scalebox{0.58}{\begin{forest}
+            for tree={}
+            [\usebox{\dotA},[{\usebox{\dotB}}[{\usebox{\dotD}}][{\usebox{\dotE}}]][{\usebox{\dotC}}[{\usebox{\dotF}}][{\usebox{\dotG}}]]]
+            \node at(0,1) {Split};
+        \end{forest}} \qquad~~\qquad%
+        \TikzList{1,2,3,4}{5}{\dotA}%
+        \TikzList{2,4}{5}{\dotB}%
+        \TikzList{1,3}{5}{\dotC}%
+        \TikzList{4}{5}{\dotD}%
+        \TikzList{2}{5}{\dotE}%
+        \TikzList{1}{5}{\dotF}%
+        \TikzList{3}{5}{\dotG}%
+        \scalebox{0.48}{\begin{forest}
+            for tree={grow=north}
+            [\usebox{\dotA},[{\usebox{\dotC}}[{\usebox{\dotG}}][{\usebox{\dotF}}]][{\usebox{\dotB}}[{\usebox{\dotE}}][{\usebox{\dotD}}]]]
+            \node at(0,3.75) {Merge};
+        \end{forest}}
+    \end{center}
+\end{frame}
+
+\TikzList{4,2,1,3}{4}{\dotA}
+\TikzList{1,2}{2}{\dotB}
+\TikzList{1,3}{5}{\dotC}
+\TikzList{4}{5}{\dotD}
+\TikzList{2}{5}{\dotE}
+\TikzList{1}{5}{\dotF}
+\TikzList{3}{5}{\dotG}
+
+\begin{frame}{Sortierverfahren: Quicksort}\alglabel{Quicksort}
+    \begin{definition}<2->[Quicksort \hfill{}(rekursiv)]
+        \onslide<3->{Prinzip: Wahl eines Pivotelements (nach Vorlesung: das Letzte).
+        \onslide<4->{Aufteilen der Liste in Teil größer und kleiner des Pivotelements. \onslide<5->{Wenn Teillisten nach gleichem Prinzip sortiert: zusammenfügen aus \emph{Links + Pivot + Rechts}.}}}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item Verfolgt \emph{hard split}, \emph{easy join}. Das Aufteilen ist aufwändig (sortieren), das Zusammenfügen trivial.
+    \end{itemize}
+    \vfill
+    \begin{center}\pause
+        \scalebox{0.58}{\begin{forest}
+            for tree={}
+            [{\usebox{\dotA}},[{\usebox{\dotB}}[{\usebox{\dotF}}][,phantom]][{{\usebox{\dotD}}}[,phantom][,phantom]]]
+            \node at(0,1) {Split};
+        \end{forest}} \qquad~~\qquad%
+        \TikzList{1,2,3,4}{3}{\dotA}
+        \TikzList{1,2}{2}{\dotB}
+        \TikzList{1,3}{5}{\dotC}
+        \TikzList{4}{5}{\dotD}
+        \TikzList{2}{5}{\dotE}
+        \TikzList{1}{5}{\dotF}
+        \TikzList{3}{5}{\dotG}
+        \scalebox{0.58}{\begin{forest}
+            for tree={grow=north}
+            [{\usebox{\dotA}},[{{\usebox{\dotD}}}[,phantom][,phantom]][{\usebox{\dotB}}[,phantom][{\usebox{\dotF}}]]]
+            %[{\(1,2,\mathbf{3},4\)},iblock[{\(4\)}[,phantom][,phantom]][{\(1,\mathbf{2}\)}[,phantom][\(1\)]]]
+            \node at(0,3.75) {Merge};
+        \end{forest}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Sortierverfahren: Heapsort}\alglabel{Heapsort}
+    \begin{definition}<2->[Heapsort \hfill{}(rekursiv)]
+        \onslide<3->{Prinzip: Verwenden eines (Min-)Heaps zur Speicherung der Elemente. \onslide<4->{Sukzessives Entfernen des Wurzelelements (aktuelles Minimum), wiederherstellung der Heap-Eigenschaft.}}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item Die genaue Funktionsweise eines Heaps veranschaulichen wir gleich separat
+    \end{itemize}
+    \vfill
+    \begin{center}\pause
+        \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [1,iball[3[4][,phantom]][2]]
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [2,iball[3][4]]
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [3,iball[4][,phantom]]
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [4,iball]
+        \end{forest}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Exkurs: Heap}
+    \hypertarget{mrk:Heap}{}%
+    \begin{definition}<2->[Heap]
+        \onslide<3->{Binärbaum, bei dem gilt: \(\text{Vaterknoten} < \text{Kindknoten}\).}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Neue Elemente werden von Unten an als neues Kind hinzugefügt. \pause{}Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist.
+        \item Beim Entfernen eines Elements wird das Blatt vor der aktuellen Einfügeposition als neue Wurzel getauscht.
+        \item Beispiel: Einfügen der Elemente \(4,2,1,3\).
+    \end{itemize}
+    \vfill
+    \begin{center}\pause
+        \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [4[,fill=white][,phantom]]
+        \end{forest}}} \(\overset{1}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [4,name=4[1,name=1][,fill=white]]
+            \draw[Kite-Kite] (4) to[bend right] (1);
+        \end{forest}}} \(\overset{2}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [1[4[,fill=white][,phantom]][2]]
+        \end{forest}}} \(\overset{3}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [1[4,name=4[3,name=3][,phantom]][2]]
+            \draw[Kite-Kite] (4) to[bend right] (3);
+        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
+            [1[3[4][,phantom]][2]]
+        \end{forest}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]{Sortierverfahren: Zusammenfassung}
+    \begin{table}[H]
+        \renewcommand\arraystretch{1.35}
+        \begin{tabular}{p{0.2\linewidth}p{0.195\linewidth}p{0.195\linewidth}p{0.13\linewidth}p{0.13\linewidth}}
+        \toprule
+            Sortierverfahren & worst-case & average-case & Speicher & Ansatz \\
+        \midrule
+            \linksort{Selectionsort} & \(\O(n^2)\) & \(\O(n^2)\) & \(\O(1)\) & iterativ \\
+            \linksort{Insertionsort} & \(\O(n^2)\) & \(\O(n^2)\) & \(\O(1)\) & iterativ \\
+            \linksort{Bubblesort} & \(\O(n^2)\) & \(\O(n^2)\) & \(\O(1)\) & iterativ \\
+            \linksort{Mergesort} & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
+            \linksort{Quicksort} & \(\O(n^2)\) & \(\O(n \log n)\) & \(\O(\log n)\) & rekursiv \\
+            \linksort{Heapsort} & \(\O(n\log n)\) & \(\O(n \log n)\) & \(\O(1)\) & rekursiv \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Eigenschaft: Stabil}
+    \begin{definition}<2->[Stabiles Sortierverfahren]
+        \onslide<3->{Ein Sortierverfahren heißt stabil, wenn es die Reihenfolge (aus Sicht des Verfahrens) gleicher Element nicht ändert.}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Beispiel: Eine bereits alphabetisch nach Nachnamen sortierte Liste an Personen wird nun nach Alter sortiert.\pause{} Bei einem stabilen Sortierverfahren bleibt die alphabetische Sortierung bei Personen des selben Alters erhalten.
+        \item Stabile Sortierverfahren (nach Implementation der Vorlesung):\pause{} \linksort{Insertionsort}, \linksort{Quicksort} und \linksort{Mergesort}.
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Konzept: Backtracking}
+
+\begin{frame}{Backtracking}
+    \begin{itemize}[<+(1)->]
+        \item Backtracking ist eine rekursive Lösungsstrategie.
+        \item Das Problem wird von einer Teillösung aus erweitert, bis man auf die Gesamtlösung stößt,\pause{} oder in eine \say{Sackgasse} gelangt (trial and error), in diesem Fall probiert man eine andere Erweiterung.
+        \item Beispiele: \begin{itemize}
+            \item Wegfindung im Labyrinth.\pause{} Wir beginnen mit dem Startfeld und gehen solange einen Weg entlang bis wir am Zeil ankommen.\pause{} Kommen wir an eine Sackgasse springen wir zur letzten Position zurück an der es noch einen anderen Weg gab.
+            \item Lösung eines Sudoku.\pause{} Wir beginnen mit dem Sudoku und fügen in das erste freie Feld eine der möglichen Zahlen ein.\pause{} Wir verfahren so, bis alle Felder gefüllt sind, oder wir in ein Feld keine Zahl mehr eintragen können.\pause{} In diesem Fall springen wir zum letzen Punkt zurück, an dem wir noch andere Zahlen eintragen konnten.
+            \item Rucksackproblem, \(8\)-Damen Problem, \ldots
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Übungsaufgaben}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Sortieralgorithmen abwägen}
+    \begin{exercise}<2->[Sortieralgorithmen abwägen \Time{2}]
+        Quicksort hat eine schlechtere \emph{worst-case} Laufzeit als Mergesort, wieso trifft man in der Praxis dennoch häufig Quicksort?
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Sortieralgorithmen abwägen]
+        \pause{}Mergesort benötigt einen zusätzlichen Speicherplatz von \(\O(n)\), Quicksort ist in-place implementiert und benötigt lediglich \(\O(\log n)\) Speicherplatz zum Verwalten der rekursiven Aufrufe.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Sortieralgorithmen zeichnen}
+    \begin{exercise}<2->[Sortieralgorithmen zeichnen \Time{5}]
+        \pause{}Veranschauliche den Sortierprozess der Zahlenfolge \(5,7,2,5,3,-19,6\) unter der Verwendung von \emph{Mergesort} grafisch.\pause{} Gib jeden Schritt aus.
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Sortieralgorithmen zeichnen]
+        \pause{}Hier sind Split- und Mergephase wieder aufgespalten:\pause{}
+\begin{center}
+    \tikzset{block/.append style={rounded rectangle}}%
+    \scalebox{0.75}{
+    \begin{forest}
+        for tree={inner sep=4pt,block,outer sep=1pt,execute at begin node={\strut}}
+        [{\(5,7,2,5,3,-19,6\)}[{\(5,7,2,5\)}[{\(5,7\)}[5][7]][{\(2,5\)}[2][5]]][{\(3,-19,6\)}[3][{\(-19,6\)}[-19][6]]]]
+    \end{forest}}\qquad~~\qquad\pause{}\scalebox{0.75}{
+        \begin{forest}
+            for tree={inner sep=4pt,block,outer sep=1pt,execute at begin node={\strut},grow=north}
+            [{\(-19,2,3,5,5,6,7\)},iblock[{\(-19,3,6\)}[{\(-19,6\)}[6][-19]][3]][{\(2,5,5,7\)}[{\(2,5\)}[5][2]][{\(5,7\)}[7][5]]]]
+        \end{forest}}
+\end{center}
+    \end{solve}
+\end{frame}

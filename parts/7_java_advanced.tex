@@ -1,0 +1,403 @@
+
+\section{Java Advanced}
+
+\subsection{Vererbung \& Abstraktion}
+
+\begin{frame}{Das Konzept der Vererbung}
+    \hypertarget{mrk:Vererbung}{}%
+    \begin{itemize}[<+(1)->]
+        \item Eine Klasse die von einer anderen Klasse erbt, übernimmt all ihre Eigenschaften und kann diese verändern oder modifizieren.
+        \item Die Subklasse kann hier sowohl als Spezialisierung aufgefasst werden (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert).
+        \item In Java/in der Objektorientierung wird das Konzept der Erweiterung verfolgt.
+        \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe),\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), \emph{Dozent} (zugeteilte Vorlesung), \ldots
+        \item Zwischen vererbenden Klassen gilt eine \emph{is-a} Relation.\pause{} So gilt Beispielsweise \emph{Student is-a Mensch is-a Lebewesen}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Vererbung in Java}
+    \begin{itemize}[<+(1)->]
+        \item Vererbung wird in Java durch den Schlüsselbegriff \bjava{extends} realisiert.
+        \item In Java kann eine Klasse nur von maximal einer anderen Erben.
+        \item Auf Attribute der Mutterklasse die \bjava{private} sind,\pause{} können wir in erbenden Kindklassen nicht zugreifen.
+        \item Der Konstruktor sowie Methoden der Superklasse können (soweit Sichtbar) durch \bjava{super} erreicht werden.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Ein Beispiel in Java}
+    \begin{itemize}[<+(1)->]
+        \item Hinweis: Die Attribute sind lediglich exemplarisch und nicht wertend gemeint.
+    \end{itemize}
+    \pause{}\begin{center}
+        \scriptsize%
+        \begin{columns}
+            \begin{column}{.42\textwidth}
+\begin{plainjava}
+class Lebewesen {
+    int alter;
+    float grosse;
+
+    Lebewesen(int a, float g) {
+        alter = a;
+        groesse = g;
+    }
+}
+\end{plainjava}
+            \end{column}\pause{}
+            \begin{column}{.5\textwidth}
+\begin{plainjava}
+class Mensch extends Lebewesen {
+    String name;
+
+    Mensch(int a, float g, String n) {
+        super(a,g);
+        name = n;
+    }
+}
+\end{plainjava}
+            \end{column}
+        \end{columns}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Ein Beispiel in Java}
+    \begin{itemize}[<+(1)->]
+        \item<1-> Hinweis: Die Attribute sind lediglich exemplarisch und nicht wertend gemeint.
+    \end{itemize}
+    \pause{}\begin{center}
+        \scriptsize%
+        \begin{columns}
+            \begin{column}{.49\textwidth}
+\begin{plainjava}
+class Student extends Mensch {
+    long matrikelnummer;
+
+    Student(int a, float g, String n,
+            long m) {
+        super(a,g,n);
+        matrikelnummer = m:
+    }
+}
+\end{plainjava}
+            \end{column}\pause{}
+            \begin{column}{.49\textwidth}
+\begin{plainjava}
+class Dozent extends Mensch {
+    String vorlesung;
+
+    Dozent(int a, float g, String n,
+           String v) {
+        super(a,g,n);
+        vorlesung = v:
+    }
+}
+\end{plainjava}
+            \end{column}
+        \end{columns}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{instanceof und getClass()}
+    \begin{itemize}[<+(1)->]
+        \item Das Prinzip erlaubt uns Polymorphie.\pause{} So ist folgender Code valide:\pause{}
+\begin{plainjava}
+Mensch herbert = new Student(19, 184.12f, "herbert", 123456789);
+\end{plainjava}
+        \pause{}da die Klasse \bjava{Student} von \bjava{Mensch} \emph{erbt}.\pause{} Wir können allerdings nicht auf die Zusatzfunktionalitäten von \bjava{Student} zugreifen.
+        \item Ob \bjava{herbert} auch wirklich ein Student ist,\pause{} können wir mit \bjava{instanceof} prüfen:\pause{}
+\begin{plainjava}
+herbert instanceof Student // :yields: true
+herbert instanceof Mensch // :yields: true
+herbert instanceof Lebewesen // :yields: true
+herbert instanceof Dozent // :yields: false
+\end{plainjava}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Kommentare}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Das Prinzip der Vererbung ist integral für die Objektorientierung und unglaublich mächtig.
+        \item Methoden der Superklasse lassen sich überladen (gleicher Name, andere Signatur),\pause{} als auch überschreiben (gleiche Signatur)
+        \item Vererbung sollte nur dann verwendet werden,\pause{} wenn es sich wirklich um eine Erweiterung handelt und nicht wenn die Klasse nur die Eigenschaften (logisch) besitzt.\pause{} Beispiel: \bjava{Auto} sollte nicht von \bjava{Motor} erben, da es zwar einen besitzt, aber kein Motor ist.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Abstrakte Klassen}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Vererbung ermöglicht uns Polymorphie erst wirklich.\pause{} So können wir eine Klasse \bjava{List} erschaffen (in Java: \bjava{AbstractList}, bereits vorhanden), die die Zugriffe definiert und entsprechend Klassen \bjava{ArrayList}, \bjava{LinkedList}, \ldots\pause{} die diese Operationen implementieren.
+        \item Wenn diese Klassen (wie bei \bjava{List}) wirklich nur Blaupausen/Vorlagen sind,\pause{} können wir sie als \bjava{abstract} bezeichnen.\pause{} Von solchen Klassen darf kein Objekt erstellt werden,\pause{} von ihnen kann aber geerbt werden.
+        \item Eine abstrakte Klasse kann weiter abstrakte Methoden (ohne Rumpf!) definieren.\pause{} Solche Methoden \emph{müssen} von einer nicht-abstrakten erbenden Klasse implementiert werden.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Abstrakte Klassen, ein Beispiel}
+\begin{plainjava}
+!*\onslide<2->*!abstract class AbstractList {
+!*\onslide<2->*!
+!*\onslide<3->*!    // Für 'super()'
+!*\onslide<3->*!    public AbstractList() { }
+!*\onslide<2->*!
+!*\onslide<4->*!    abstract void add(Element e);
+!*\onslide<5->*!    int size() {
+!*\onslide<5->*!        // ...
+!*\onslide<5->*!    }
+!*\onslide<2->*!
+!*\onslide<6->*!    // ...
+!*\onslide<2->*!}
+\end{plainjava}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Abstrakte Klassen, ein Beispiel}
+\begin{plainjava}
+!*\onslide<2->*!abstract class ArrayList extends AbstractList {
+!*\onslide<3->*!    Element[] elems;
+!*\onslide<2->*!
+!*\onslide<4->*!    public ArrayList() {
+!*\onslide<5->*!        super();
+!*\onslide<6->*!        elems = new Element[0];
+!*\onslide<4->*!    }
+!*\onslide<2->*!
+!*\onslide<7->*!    public void add(Element e) {
+!*\onslide<8->*!        // ...
+!*\onslide<7->*!    }
+!*\onslide<2->*!
+!*\onslide<9->*!    // ...
+!*\onslide<2->*!}
+\end{plainjava}
+\end{frame}
+
+
+% \subsection{Bindungen in Java}
+
+\begin{frame}[fragile]{Statische Bindung}
+    \begin{itemize}[<+(1)->]
+        \item Attribute werden Java \emph{statisch} und Methoden \emph{dynamisch} gebunden.
+        \item Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
+            \item[statisch] Nehmen wir an, wir haben zwei Klassen \bjava{A} und \bjava{B}, wobei \bjava{B} von \bjava{A} erbt.\pause{} Beide deklarieren die Variable \bjava{i}, in \bjava{A} wird sie auf \(32\), in \bjava{B} auf \(42\) gesetzt.\pause{} Es ergibt sich:
+\begin{plainjava}
+!*\onslide<+->*!A a = new A();
+!*\onslide<+->*!B b = new B();
+!*\onslide<+->*!A c = new B();
+!*\onslide<+->*!System.out.println(a.i); // :yields: 32
+!*\onslide<+->*!System.out.println(b.i); // :yields: 42
+!*\onslide<+->*!System.out.println(c.i); // :yields: 32
+            \end{plainjava}
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dynamische Bindung}
+    \begin{itemize}[<+(1)->]
+        \item<1-> Attribute werden Java \emph{statisch} und Methoden \emph{dynamisch} gebunden.
+        \item<1-> Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
+            \item[dynamisch] Angenommen die Klasse \bjava{Mensch} hat die Methode \bjava{hallo()}, die einfach \say{Hallo ich bin ein Mensch} ausgibt.\pause{} \bjava{Student} überschreibt nun \bjava{hallo()} sie gibt nun \say{Hallo ich bin ein Student} aus.\pause{} Wir erhalten:\pause{} \begin{plainjava}
+!*\onslide<+->*!Student a = new Student(/*...*/);
+!*\onslide<+->*!Mensch b = new Mensch(/*...*/);
+!*\onslide<+->*!Mensch c = new Student(/*...*/);
+!*\onslide<+->*!a.hallo(); // :yields: Hallo ich bin ein Student
+!*\onslide<+->*!b.hallo(); // :yields: Hallo ich bin ein Mensch
+!*\onslide<+->*!c.hallo(); // :yields: Hallo ich bin ein Student
+            \end{plainjava}
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Interfaces}
+
+% Wichtige Interfaces
+
+% TODO: 'default', warum keine Attribute
+\begin{frame}{Wenn Vererbung nicht reicht}
+    \begin{itemize}[<+(1)->]
+        \item Java erlaubt keine Mehrfachvererbung.\pause{} Allerdings gibt es Klassen die mehrere \say{Eigenschaften} erfüllen.
+        \item So können wir über unsere Listen iterieren,\pause{} über Bäume aber auch.
+        \item Deswegen kann eine Java Klasse (beliebig viele) Schnittstellen mittels \bjava{implements} implementieren.
+        \item Ein solches \bjava{interface} kann von einer Klasse die es implementieren will Methoden fordern.
+        \item Weiter kann ein \bjava{interface} seit Java \(8\) durch \bjava{default} Standardimplementationen für die Methoden liefern.
+        \item Ein \bjava{interface} kann \emph{keine} Attribute definieren, diese werden automatisch zu Konstanten.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Wenn Vererbung nicht reicht}
+    \begin{itemize}[<+(1)->]
+        \item So gibt es zum Beispiel das Java-Interface \bjava{Iterable} welches anzeigt, dass man über den Datentyp (mittels \bjava{for}-each) iterieren kann.
+        \item Da \emph{Generics} kein Teil der Vorlesung sind, wurde das Interface \emph{Sortable} definiert:\pause{}
+\begin{plainjava}
+public interface Sortable {
+    boolean le(Sortable o); // '<='
+    boolean lt(Sortable o); // '<'
+    boolean eq(Sortable o); // '=='
+}
+\end{plainjava}
+        \item Dies zeigt auch, wie man Interface-Bezeichnet wie (abstrakte) Klassen als Typanforderung liefern kann.\pause{} (Polymorphieeee)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Interface Beispiel}
+\begin{plainjava}
+public class Element implements Sortable /*, interfaceB, ... */ {
+    int value;
+    Element next;
+
+    // Nur als Beispiel:
+    public boolean le(Sortable o) {
+        return this.value <= ((Element)o).value;
+    }
+
+    // ...
+}
+\end{plainjava}
+\end{frame}
+
+\begin{frame}{Weitere Kommentare}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Auch für ein Interface wird die \emph{is-a} Relation durch \bjava{instanceof} erfüllt.
+        \item Ein Interface wie \bjava{Sortable} wird in Java durch \bjava{Comparable} mit nur einer einzelnen Funktion \bjava{compareTo()} gelöst.
+        \item Interfaces sollten dann verwendet werdenn wenn es um eine Funktionalität geht (wie \bjava{Drawable}, \bjava{Moveable}, \bjava{Consumeable}, \ldots)
+        \item Das Implementieren eines Interfaces wird in UML durch eine gestrichelte, das Erweitern einer Klasse durch eine durchgezogene  Linie gekennzeichnet.% Pfeil am Ende?
+    \end{itemize}
+\end{frame}
+
+\subsection{Fehlerbehandlungen}
+\begin{frame}{Arten von Fehlern}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Wir unterscheiden zwei Arten von Fehlern: \begin{description}[Schwere]
+            \item[Schwere] solche Fehler sind kritisch sollen zu einem Programmabbruch führen.
+            \item[Leichte] solche Fehler können (zur Laufzeit) korrigiert werden.
+        \end{description}
+        \item Wie schwer ein Fehler ist, hängt von der Situation ab.
+        \item Die Behandlung eines Fehlers erfolgt in der Regel durch die aufrufende Methode.
+        \item Ein Fehlerobjekt wird nur dann erzeugt,\pause{} wenn die Methode scheitert.
+        \item Fehlerobjekte sind in Java Objekte von Klasse,\pause{} die von der \bjava{Exception} Klasse erben.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Arten von Fehlern}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Eine \emph{explizite} Ausnahme können wir mittels \bjava{throw} werfen.
+        \item Eine \emph{implizite} Ausnahme wird von der Java Virtual Machine geworfen\pause{} (Division durch Null, Zugriff auf \bjava{null}, \ldots)
+        \item Wir werfen eine explizite Ausnahme/einen Error (allgemein: ein \bjava{Throwable}): \pause{}
+\begin{plainjava}
+throw new IndexOutOfBoundsException();
+\end{plainjava}
+        \item Wird eine Ausnahme nicht behandelt,\pause{} bricht das Programm ab.
+        \item Java-Errors wie \bjava{InternalError}  lassen sich nicht sinnvoll behandeln!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Behandeln von Fehlern}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Um einen Fehler zu behandeln, bietet Java das \bjava{try-catch}-Konstrukt
+\begin{plainjava}
+try {
+    // Anweisungen, Methodenaufrufe, :ldots:
+} catch(:lan:FehlerKlasseA:ran: :lan:Bezeichner:ran:) {
+    // Behandle Fehler der Klasse :lan:FehlerKlasseA:ran:
+} catch(:lan:FehlerKlasseB:ran: :lan:Bezeichner:ran:) {
+    // Behandle Fehler der Klasse :lan:FehlerKlasseB:ran:
+} finally {
+    // Anweisungen die immer ausgeführt werden.
+}
+\end{plainjava}
+        \item Das \bjava{finally} ist optional, auch kann nur ein \bjava{catch}-Block auftreten.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Behandeln von Fehlern}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item bei mehreren \bjava{catch}-Blöcken wird von oben nach unten ein passender gesucht.\pause{} Erben die Fehler also voneinander (so wie alle von \bjava{Exception}),\pause{} sollten die \say{allgemeineren} weiter unten stehen.
+        \item Beispiel:\pause{}
+\begin{plainjava}
+try {
+    System.out.println(42 / 0);
+} catch (ArithmeticException ex) {
+    // Behandlung
+    System.err.println("Division durch 0!");
+    ex.printStackTrace();
+}
+\end{plainjava}
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Übungsaufgaben}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Statische/Dynamische Bindung}
+    \begin{exercise}<2->[Statische/Dynamische Bindung \Time{4}]
+        Erkläre kurz den Unterschied zwischen statischer und dynamischer Bindung und wann Java was verwendet.
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Statische/Dynamische Bindung]
+        Die \emph{statische} Bindung verwendet Java bei Attributen. Sie wird zur Kompilierzeit aufgelöst und sorgt dafür, dass in Subklassen überschriebene Variablen stets die Klasse der Variable, die auf das Objekt zeigt bestimmt welche Ausprägung des Attributs verwendet wird.\medskip\newline%
+        \pause{}Die \emph{dynamische} Bindung verwendet Java bei Methoden. Sie wird zur Laufzeit aufgelöst und bedeutet, dass im Falle des Überschreibens von Methoden einer Subklasse die Klasse des Objekts entscheidet welche verwendet wird und nicht die der Variable die darauf zeigt.
+    \end{solve}
+\end{frame}
+
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Suche syntaktischer Fehler, V}
+    \begin{exercise}<2->[Fehler finden, V \Time{4}]
+        \pause{}Finde und korrigiere alle (syntaktischen und semantischen) Fehler:\pause{}
+{\footnotesize
+        \begin{plainvoid}
+public class A {
+    private static final class B extends A {
+        public B() {
+            super(this);
+        }
+    }
+
+    public A(A other){}
+    public abstract class C extends A.B {
+        protected abstract boolean _$get$(String);
+    }
+}
+        \end{plainvoid}
+}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Fehler finden, V]
+        \pause{}\footnotesize\begin{plainjava}
+public class A {
+    private static class B extends A {
+        public B() {
+            super(null);
+        }
+    }
+
+    public A(A other){}
+    public abstract class C extends A.B {
+        protected abstract boolean _$get$(String a);
+    }
+}
+        \end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<1->[Fehler finden, V\hfill{}(Fortsetzung)]
+        \begin{enumerate}
+            \item Das \bjava{final} ist an sich nicht Falsch, dann kann aber \bjava{C} nicht mehr von \bjava{B} erben.
+            \item Der Bezeichner \bjava{this} darf nicht innerhalb eines Konstruktoraufrufs verwendet werden.
+            \item In der Methode \bjava{_$get$} genügt nicht die Signatur,\pause{} Java erwartet (nicht-bindende) Variablenbezeichner.
+        \end{enumerate}
+        \pause{}\textit{Hinweis:}\pause{} Die Dollarzeichen sind kein Fehler,\pause{} aber es ist Konvention sie nicht zu verwenden (Java verwendet sie intern für zum Beispiel generierten Code).
+    \end{solve}
+\end{frame}

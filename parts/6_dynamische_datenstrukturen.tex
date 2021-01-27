@@ -1,0 +1,973 @@
+
+\section{Dynamische Datenstrukturen}
+
+\subsection{Listen}
+
+\begin{frame}{Listen - Dynamische Arrays}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Für eine Implementation: Betrachte das \href{https://github.com/EagleoutIce/eidi-weihnachttsblatt-19_20}{Weihnachtsblatt}.
+        \item Eine ArrayList ist die einfachste Implementation einer Liste.
+        \item Wir halten intern ein Array, welches wir dynamisch vergrößern oder Verkleinern.
+        \item Das Problem: Einfüge und Löschoperationen bedeuten einen großen Aufwand (kopieren der Elemente).
+        \item Der Vorteil: Der Zugriff auf ein bestimmtes Element erfolgt (da ein Array zugrunde liegt) in \(\O(1)\).
+    \end{itemize}
+\end{frame}
+
+% Ugly but still, i am lazy right now
+\def\Element#1{{\renewcommand{\arraystretch}{1.4}%
+    \begin{tabular}{|>{\centering}p{1em}|p{1em}|}
+        \hline
+            \strut#1 & \\
+        \hline
+    \end{tabular}%
+}}
+
+\def\EndElement{{\renewcommand{\arraystretch}{1.5}%
+    \begin{tabular}{|>{\centering\arraybackslash}p{1em}|}
+        \hline
+            \strut/\\
+        \hline
+    \end{tabular}
+}}
+
+\begin{frame}[fragile]{Listen - Einfach verkettete Liste}
+    \renewcommand\arraystretch{1.35}%
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Hier ist ein Datentyp als Objekt konstruiert, das eine Referenz auf das nächste Objekt besitzt.
+        \item Das erste Element, das die Liste beginnt, bezeichnen wir als \emph{Head}, das Letzte, das auf einen definierten letzten Wert (wie \bjava{null}) zeigt, nennen wir \emph{Tail}/\emph{Foot}.
+    \end{itemize}%
+    \pause{}
+    \begin{minipage}{0.4\linewidth}
+\small%
+\begin{plainjava}
+class Element {
+    public int value;
+    public Element next;
+    // ...
+}
+\end{plainjava}
+    \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
+\centering\begin{tikzpicture}[scale=0.7,every node/.style={transform shape}]
+    \node[enode] (a) at (0,0) {\Element{4}};
+    \node[enode] (b) at (2.25,0) {\Element{2}};
+    \node[enode] (c) at (4.5,0) {\Element{1}};
+    \node[enode] (d) at (6.75,0) {\Element{3}};
+    \node[enode] (e) at (9,0) {\EndElement};
+
+    \foreach[remember=\i as \li (initially a)] \i in {b,c,d,e}{
+        \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+        \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+    }
+
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {head}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]d.south west) to[edge node={node[below=5pt] {foot}}] ([xshift=3.75pt,yshift=-4pt]d.south east);
+
+\end{tikzpicture}
+\end{minipage}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Doppelt verkettete Listen verbrauchen mehr Speicher und sind komplizierter (da zwei Verweise).
+    \end{itemize}%
+\end{frame}
+
+
+\begin{frame}[fragile]{Listen - Einfach verkettete Liste}
+    \begin{itemize}[<+(1)->]
+        \item Vorteil einer einfach Verketten Liste:\pause{} Das Löschen und Hinzufügen neuer Elemente ist leicht (\(\O(1)\)).\pause{} Nachteil:\pause{} Der direkte Zugriff ist nur durch ein Traversieren möglich.
+        \item Hinweis: Manche Operationen benötigen eine Sonderbehandlung im Falle einer leeren Liste.\pause{} So zum Beispiel das Einfügen.
+        \item Betrachten wir einmal das Einfügen eines neuen Elements:
+    \end{itemize}%
+    \begin{multicols}{2}
+\begin{enumerate}[<+(1)->]
+    \widei
+    \item \begin{tikzpicture}[scale=0.75,every node/.style={transform shape}]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{2}};
+            \node[enode] (c) at (4.5,0) {\Element{3}};
+            \node[enode] (d) at (6.75,0) {\EndElement};
+
+            \foreach[remember=\i as \li (initially a)] \i in {b,c,d}{
+                \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+                \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+            }
+
+            \node[enode] (e) at (4.5,1) {\Element{1}};
+
+        \end{tikzpicture}
+    \item \begin{tikzpicture}[scale=0.75,every node/.style={transform shape}]
+        \node[enode] (a) at (0,0) {\Element{4}};
+        \node[enode] (b) at (2.25,0) {\Element{2}};
+        \node[enode] (c) at (4.5,0) {\Element{3}};
+        \node[enode] (d) at (6.75,0) {\EndElement};
+        \node[enode] (e) at (4.5,1) {\Element{1}};
+
+        \foreach[remember=\i as \li (initially a)] \i in {b}{
+            \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+            \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+        }
+
+        \draw[-Kite,densely dashed] ($(b.east)+(-1em,0)$) -- (c.west);
+        \fill ($(b.east)+(-1em,0)$) circle (2pt);
+
+
+        \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0.5,1) -- (e.west);
+        \fill ($(b.east)+(-1em,0)$) circle (2pt);
+
+        \draw[-Kite] ($(e.east)+(-1em,0)$) -- (c.north);
+        \fill ($(e.east)+(-1em,0)$) circle (2pt);
+
+        \foreach[remember=\i as \li (initially c)] \i in {d}{
+            \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+            \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+        }
+
+    \end{tikzpicture}
+    \item \begin{tikzpicture}[scale=0.75,every node/.style={transform shape}]
+        \node[enode] (a) at (0,0) {\Element{4}};
+        \node[enode] (b) at (2.25,0) {\Element{2}};
+        \node[enode] (c) at (4.5,0) {\Element{3}};
+        \node[enode] (d) at (6.75,0) {\EndElement};
+
+        \node[enode] (e) at (4.5,1) {\Element{1}};
+
+        \foreach[remember=\i as \li (initially a)] \i in {b}{
+            \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+            \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+        }
+
+        \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0.5,1) -- (e.west);
+        \fill ($(b.east)+(-1em,0)$) circle (2pt);
+
+        \draw[-Kite] ($(e.east)+(-1em,0)$) -- (c.north);
+        \fill ($(e.east)+(-1em,0)$) circle (2pt);
+
+        \foreach[remember=\i as \li (initially c)] \i in {d}{
+            \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+            \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+        }
+    \end{tikzpicture}
+\end{enumerate}
+    \end{multicols}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{LinkedList - insert}
+    \begin{exercise}<2->[Einfach verkettete Liste - Einfügen\Time{5}]
+        \pause{}Sei der folgende Code gegeben:\pause{}
+\begin{plainjava}
+class Element {
+    public int value;
+    public Element next;
+    public Element(int value, Element next) {
+        this.value = value; this.next = next;
+    }
+}
+\end{plainjava}
+        \pause{}Schreibe eine Methode \bjava{appendLast(Element root, int i)},\pause{} die ein neues \bjava{Element} mit Wert \(i\) an das Ende der Liste,\pause{} die durch den Kopf \bjava{root} gekennzeichnet wird, anhängt.
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \begin{solve}<2->[Einfach verkettete Liste - Einfügen]
+        Die erste Methode behandelt den Sonderfall \say{leere Liste}. Die zweite traversiert die Liste so lange,\pause{} bis wir am \emph{Foot} angekommen sind und ersetzt dann den Verweis des vorletzten:\pause{}
+\begin{plainjava}
+public void appendLast(Element root, int i) {
+    if(root == null) root = new Element(i, null);
+    else appendLastIter(root, i);
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<2->[Einfach verkettete Liste - Einfügen\hfill{}(Fortsetzung)]
+        Wir iterieren:
+\begin{plainjava}
+public void appendLastIter(Element current, int i){
+    if(current.next == null) // found
+        current.next = new Element(i, null);
+    else appendLastIter(current.next, i);
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\def\Element#1{{\renewcommand{\arraystretch}{1.4}%
+    \begin{tabular}{|p{1em}|>{\centering}p{1em}|p{1em}|}
+        \hline
+            & \strut#1 & \\
+        \hline
+    \end{tabular}%
+}}
+
+% NOTE: TODO: NOTE: gutes Beispiel: Undo & Redo, Vearbeitungsverlauf.
+% Für doppelt verketteter Baum: GUI/Scene graph parent/child beziehung
+
+\begin{frame}[fragile]{Listen - Doppelt verkettete Liste}
+    \renewcommand\arraystretch{1.35}%
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Mit einfach verketteten Listen können wir in \say{eine Richtung iterieren}.\pause{} Einen Vorgänger kann man damit nur sehr aufwändig bestimmen.
+        \item Die doppelt verkettete Liste hält nun jeweils auch noch die Referenz auf das vorherige Element.
+    \end{itemize}%
+    \pause{}
+    \begin{minipage}{0.4\linewidth}
+\small%
+\begin{plainjava}
+class Element {
+    public int value;
+    public Element next;
+    public Element prev;
+    // ...
+}
+\end{plainjava}
+    \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
+\centering\begin{tikzpicture}[scale=0.7,every node/.style={transform shape}]
+    \node[enode] (a) at (1.25*0,0) {\Element{4}};
+    \node[enode] (b) at (1.25*2.25,0) {\Element{2}};
+    \node[enode] (c) at (1.25*4.5,0) {\Element{1}};
+    \node[enode] (d) at (1.15*6.75,0) {\EndElement};
+    \node[enode] (e) at (-2.25,0) {\EndElement};
+
+    \foreach[remember=\i as \li (initially a)] \i in {b,c}{
+        \draw[-Kite] ($(\li.east)+(-1em,-4pt)$) -- ($(\i.west)+(0,-4pt)$);
+        \fill ($(\li.east)+(-1em,-4pt)$) circle (2pt);
+
+        \draw[-Kite] ($(\i.west)+(1em,4pt)$) -- ($(\li.east)+(0,4pt)$);
+        \fill ($(\i.west)+(1em,4pt)$) circle (2pt);
+    }
+
+    \draw[-Kite] ($(c.east)+(-1em,0)$) -- ($(d.west)+(0,0)$);
+    \fill ($(c.east)+(-1em,0)$) circle (2pt);
+
+    \draw[-Kite] ($(a.west)+(1em,0)$) -- ($(e.east)+(0,0)$);
+    \fill ($(a.west)+(1em,0)$) circle (2pt);
+
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {head}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {foot}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
+
+\end{tikzpicture}
+\end{minipage}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Den \say{Datentyp} einfach verkettete Liste gliedern wir in eine neue Klasse \bjava{LinkedList} aus, die auch die Operationen wie hinzufügen und löschen übernimmt.
+    \end{itemize}%
+\end{frame}
+
+
+% Weitere Aufgabe mit toString()?
+
+\subsection{Stacks \& Queues}
+
+\begin{frame}{Datenstruktur: Stack}
+    \hypertarget{mrk:Stack}{}%
+    \begin{itemize}[<+(1)->]
+        \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).\pause{} Es ist nur möglich Elemente oben auf den Stapel zu legen, oder das oberste zu nehmen.
+        \item Stacks lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulässt.
+        \item Stacks können bei der Auswertung arithmetischer Funktionien verwendet werden (siehe GdRa).
+        \item Die Verwaltung rekursiver Methoden erfolgt über den Stack, so \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
+        \item Auf Stacks sind zwei wichtige Operationen definiert: \begin{description}[push]
+            \item[push] Legt das Element oben auf dem Stack ab.
+            \item[pop] Entfernt das oberste Element und liefert es zurück.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur: Queue}
+    \begin{itemize}[<+(1)->]
+        \item Eine Warteschlange ist eine Datenstruktur, nach dem FIFO-Prinzip (First-In, First-Out).\pause{} Es ist nur möglich Elemente hinten in der Schlange einzureihen und vorne von der Schlange zu entfernen.
+        \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendFirst(Element)} und \bjava{removeLast(Element)} zulässt.
+        \item Queues können zum Puffern verwendet werden (analog zum Schalter).
+        \item Auf Queues sind zwei wichtige Operationen definiert: \begin{description}[dequeue]
+            \item[enqueue] Reiht ein Element (hinten) in die Schlange ein.
+            \item[dequeue] Nimmt ein Element (vorne) aus der Schlange.
+        \end{description}
+        \item Es existieren Derivate, wie die \emph{double-ended queue} (ein- und ausreihen auf beiden Seiten) oder die \emph{priority queue} (Elemente mit höherer Prioritöt werden bei \T{enqueue} zuerst aus der Schlange genommen).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Vergleich: Stack und Queue}
+    \begin{center}
+        \begin{columns}
+            \pause{}
+            \begin{column}{.45\textwidth}
+\centering\begin{tikzpicture}[scale=0.85,every node/.style={transform shape}]
+    \draw (0,0) |- ++(3,-4) -- ++(0,4);
+    \node at(1.5,-3.5) {42};
+    \node at(1.5,-2.5) {13};
+    \draw (0,-3) -- ++(3,0);
+    \draw (0,-2) -- ++(3,0);
+
+    \draw[Kite-] (3,-2.5) -- ++(1,0) node[right] {top};
+
+    \draw[-Kite] (-0.5,0.25) node[left] {push} -| ++(1.75,-0.75);
+    \draw[Kite-] (3.5,0.25) node[right] {pop} -| ++(-1.75,-0.75);
+
+\end{tikzpicture}
+            \end{column}
+            \pause{}%
+            \begin{column}{.45\textwidth}
+\centering\begin{tikzpicture}[scale=0.85,every node/.style={transform shape}]
+    \draw (0,0) -- ++(0,-4)++(3,0) -- ++(0,4);
+    \node at(1.5,-2.5) {42};
+    \node at(1.5,-1.5) {13};
+    \draw (0,-3) -- ++(3,0);
+    \draw (0,-2) -- ++(3,0);
+    \draw (0,-1) -- ++(3,0);
+
+    \draw[Kite-] (3,-2.5) -- ++(1,0) node[right] {head};
+    \draw[Kite-] (3,-1.5) -- ++(1,0) node[right] {tail};
+
+    \draw[-Kite] (-0.5,0.25) node[left] {enqueue} -| ++(1.75,-0.75);
+    \draw[Kite-,overlay] (3.5,-4.25) node[right] {dequeue} -| ++(-1.75,0.75);
+
+\end{tikzpicture}
+            \end{column}
+        \end{columns}
+    \end{center}
+\end{frame}
+
+\subsection{Bäume}
+
+\begin{frame}{Bäume: Formal}
+    \begin{itemize}[<+(1)->]
+        \item Im Gegensatz zu Listen halten Bäume referenzen auf mehrere Nachfolger.
+        \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
+        \item Knoten erhalten verschiedene Bezeichner: \begin{description}
+            \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
+            \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger.
+            \item[Innerer] Ein innerer Knoten ist jeder Knoten der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Vater.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bäume: Mathematisch}
+    \begin{definition}[Baum]
+Ein Baum \(B\) ist ein Tupel (azyklischer Graph) \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und einer Mente an Kanten \(E = V \times V\).\pause{} Die Kanten sind gerichtet und zwischen zwei Knoten darf nur eine Kante in eine Richtung existieren.\pause{} Weiter darf die Anzahl der eingehenden Kanten für jeden Knoten nur maximal \(1\) sein und kein Zyklus vorkommen.
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Ein Baum lässt sich auch als rekursive Datenstruktur auffassen.
+        \item Hier ist jeder Knoten gleichzeitig die \say{Wurzel} eines Teilbaumes\pause{} der entweder leer sein (\(\widehat{=}\) Blatt)\pause{} oder noch weitere Knoten enthalten kann (\(\widehat{=}\) innerer Knoten).
+        \item Jedem Knoten ordnen wir eine \emph{Ebene} zu. \pause{}Sie entspricht der Länge des Pfades von der Wurzel zum Knoten.\pause{} Der Wurzelknoten hat die Ebene \(1\).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bäume: Mathematisch}
+    \begin{itemize}[<+(1)->]
+        \item Die Höhe des Baumes ist die tiefste Ebene auf der ein Knoten existiert.
+        \item Die Verzweigung eines Knotens bezeichnet die Anzahl seiner Kinder.
+        \item Binärbäume, bei denen alle Knoten einen Verzweigungsgrad von maximal zwei haben,\pause{} sind von einer besonderen Bedeutung für die Informatik.\pause{} (Sie lassen sich übrigens auch in einem Array repräsentieren.)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Bäume: Implementation}
+    \pause{}
+    \begin{minipage}{0.4\linewidth}
+\small%
+\begin{plainjava}
+class Node {
+    public int value;
+    public Node left;
+    public Node right;
+    // ...
+}
+\end{plainjava}
+    \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
+\centering\scalebox{0.625}{\begin{forest}
+    for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,edge=-Kite}
+    [7[3[4[1][9]][,phantom]][6[1[,phantom][5]][3[,phantom][,phantom]]]]
+\end{forest}}
+\end{minipage}\vfill
+    \begin{itemize}[<+(1)->]
+        \item Wie bei einer einfach verketteten Liste können wir nun den Baum in eine Richtung traversieren.
+        \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Bäume: Implementation, II}
+    \pause{}
+    \begin{minipage}{0.4\linewidth}
+\small%
+\begin{plainjava}
+class Node {
+    public Node father;
+
+    public int value;
+    public Node left;
+    public Node right;
+    // ...
+}
+\end{plainjava}
+    \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
+\centering\scalebox{0.625}{\begin{forest}
+    for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,edge=Kite-Kite}
+    [7[3[4[1][9]][,phantom]][6[1[,phantom][5]][3[,phantom][,phantom]]]]
+\end{forest}}
+\end{minipage}\vfill
+    \begin{itemize}[<+(1)->]
+        \item Wie bei einer einfach verketteten Liste können wir nun den Baum in eine Richtung traversieren.
+        \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Traversierungsverfahren}
+    \begin{center}\pause{}
+    \begin{tikzpicture}[fakeblock/.style={rectangle,draw=btcd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
+        \draw[fakeblock] (0,0) rectangle ++ (3.5,0.65) node[fakesource] {Breitendurchlauf};
+    \draw[fakeblock] (4,0) rectangle ++ (3.5,0.65) node[fakesource] {Tiefendurchlauf};
+    \draw[fakeblock] (1.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Pre-Order};
+    \draw[fakeblock] (4.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {In-Order};
+    \draw[fakeblock] (7.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Post-Order};
+    \draw[-latex] (4+3.5/2,0) to[in=90,out=270] (2.75,-0.85);
+    \draw[-latex] (4+3.5/2,0) to[in=90,out=270] (5.75,-0.85);
+    \draw[-latex] (4+3.5/2,0) to[in=90,out=270] (8.75,-0.85);
+    \draw[fakeblock] (1.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
+    \draw[fakeblock] (4.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
+    \draw[fakeblock] (7.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
+
+    \draw[fakeblock] (0+0.75,0) |- ++(2,-0.5) -- ++(0,0.5);
+    \node at(0.1 + 1.65, -0.25) {\tiny Ebenen};
+
+    \node at(0.1 + 1.65, 0.75) [above] { \begin{tikzpicture}[
+        scale=0.425, every node/.style={transform shape},
+        ring/.style={
+            ball,%
+            execute at begin node={\strut}%
+        }]
+        \node[ring] at (0,0) (one) {1};
+        \node[ring] at (-1.75,-1) (two) {2};
+        \node[ring] at (1.75,-1) (tre) {5};
+        \node[ring] at (2.75,-2) (for) {7};
+        \node[ring] at (.75,-2) (fiv) {6};
+        \node[ring] at (-2.75,-2) (six) {3};
+        \node[ring] at (-.75,-2) (sev) {4};
+        \begin{scope}[every path/.style={densely dotted, thin,black!45}]
+            \draw (one) -- (two);
+            \draw (one) -- (tre);
+            \draw (two) -- (six);
+            \draw (two) -- (sev);
+            \draw (tre) -- (for);
+            \draw (tre) -- (fiv);
+            \end{scope}
+        \begin{scope}[every path/.style={densely dashed}]
+            \draw[-latex] (one) -- (two);
+            \draw[-latex] (two) -- (tre);
+            \draw[-latex] (tre) -- (six);
+            \draw[-latex] (six) -- (sev);
+            \draw[-latex,scale=0.5,transform shape] (sev) -- (fiv);
+            \draw[-latex] (fiv) -- (for);
+        \end{scope}
+
+    \end{tikzpicture}};
+
+
+    \node at(1.6 + 1.15, -1.75) {\tiny root, left, right};
+    \node at(1.6 + 1.15, -2.15) [below] { \begin{tikzpicture}[
+        scale=0.425, every node/.style={transform shape},
+        ring/.style={
+            ball,%
+            execute at begin node={\strut}%
+        }]
+        \node[ring] at (0,0) (one) {1};
+        \node[ring] at (-1.75,-1) (two) {2};
+        \node[ring] at (1.75,-1) (tre) {5};
+        \node[ring] at (2.75,-2) (for) {7};
+        \node[ring] at (.75,-2) (fiv) {6};
+        \node[ring] at (-2.75,-2) (six) {3};
+        \node[ring] at (-.75,-2) (sev) {4};
+        \begin{scope}[every path/.style={densely dotted, thin,black!45}]
+        \draw (one) -- (two);
+        \draw (one) -- (tre);
+        \draw (two) -- (six);
+        \draw (two) -- (sev);
+        \draw (tre) -- (for);
+        \draw (tre) -- (fiv);
+        \end{scope}
+        \begin{scope}[every path/.style={densely dashed}]
+            \draw[-latex] (one) -- (two);
+            \draw[-latex] (two) -- (six);
+            \draw[-latex] (six) to[bend left] (sev);
+            \draw[-latex] (sev) to[out=85,in = 185,looseness=1.15] (tre);
+            \draw[-latex] (tre) -- (fiv);
+            \draw[-latex] (fiv) -- (for);
+        \end{scope}
+        %%DRAW DEFAULTS DENSLEY DOTTED IN GRAY TO KEEP STYLE
+    \end{tikzpicture}};
+    \node at(4.6 + 1.15, -1.75) {\tiny left, root, right};
+    \node at(4.6 + 1.15, -2.15) [below] { \begin{tikzpicture}[
+        scale=0.425, every node/.style={transform shape},
+        ring/.style={
+            ball,%
+            execute at begin node={\strut}%
+        }]
+        \node[ring] at (0,0) (one) {1};
+        \node[ring] at (-1.75,-1) (two) {2};
+        \node[ring] at (1.75,-1) (tre) {5};
+        \node[ring] at (2.75,-2) (for) {7};
+        \node[ring] at (.75,-2) (fiv) {6};
+        \node[ring] at (-2.75,-2) (six) {3};
+        \node[ring] at (-.75,-2) (sev) {4};
+        \begin{scope}[every path/.style={densely dotted, thin,black!45}]
+            \draw (one) -- (two);
+            \draw (one) -- (tre);
+            \draw (two) -- (six);
+            \draw (two) -- (sev);
+            \draw (tre) -- (for);
+            \draw (tre) -- (fiv);
+            \end{scope}
+        \begin{scope}[every path/.style={densely dashed}]
+            \draw[-latex] (six) -- (two);
+            \draw[-latex] (two) -- (sev);
+            \draw[-latex] (sev) to[bend left] (one);
+            \draw[-latex] (one) to[bend left] (fiv);
+            \draw[-latex] (fiv) -- (tre);
+            \draw[-latex] (tre) -- (for);
+        \end{scope}
+
+    \end{tikzpicture}};
+    \node at(7.6 + 1.15, -1.75) {\tiny left, right, root};
+    \node at(7.6 + 1.15, -2.15) [below] { \begin{tikzpicture}[
+        scale=0.425, every node/.style={transform shape},
+        ring/.style={
+            ball,%
+            execute at begin node={\strut}%
+        }]
+        \node[ring] at (0,0) (one) {1};
+        \node[ring] at (-1.75,-1) (two) {2};
+        \node[ring] at (1.75,-1) (tre) {5};
+        \node[ring] at (2.75,-2) (for) {7};
+        \node[ring] at (.75,-2) (fiv) {6};
+        \node[ring] at (-2.75,-2) (six) {3};
+        \node[ring] at (-.75,-2) (sev) {4};
+        \begin{scope}[every path/.style={densely dotted, thin,black!45}]
+            \draw (one) -- (two);
+            \draw (one) -- (tre);
+            \draw (two) -- (six);
+            \draw (two) -- (sev);
+            \draw (tre) -- (for);
+            \draw (tre) -- (fiv);
+            \end{scope}
+        \begin{scope}[every path/.style={densely dashed}]
+            \draw[-latex] (six) -- (sev);
+            \draw[-latex] (sev) -- (two);
+            \draw[-latex] (two) to[bend left] (fiv);
+            \draw[-latex] (fiv) -- (for);
+            \draw[-latex] (for) -- (tre);
+            \draw[-latex] (tre) -- (one);
+        \end{scope}
+
+    \end{tikzpicture}};
+    \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Traversierung: Breitensuche}
+    \begin{itemize}[<+(1)->]
+        \item In der Breitensuche werden die Knoten Ebene für Ebene von links nach rechts besucht.
+        \item \say{Besucht} steht hier für alle möglichen Varianten der Bearbeitung. Dies gilt auch für alle folgenden Traversierungen.
+        \item Der folgende Baum veranschaulicht die Reihenfolge der Besuche:
+    \end{itemize}
+    \pause{}\begin{center}
+        \scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            [1[2[4[8][9]][5[10][11]]][3[6[12][13]][7[14][15]]]]
+        \end{forest}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Traversierung: Pre-Order}
+    \begin{itemize}[<+(1)->]
+        \item Bei der Pre-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
+        \item Mit der Pre-Order Strategie wird der aktuelle Knoten bearbeitet, dann rekursiv der linke, dann rekursiv der rechte Teilbaum.\pause{} (Analog gespiegelt)
+    \end{itemize}
+    \pause{}\begin{center}
+        \scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            [1[2[3[4][5]][6[7][8]]][9[10[11][12]][13[14][15]]]]
+        \end{forest}}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}{Traversierung: In-Order}
+    \begin{itemize}[<+(1)->]
+        \item Bei der In-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
+        \item Mit der In-Order Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} (Analog gespiegelt)
+    \end{itemize}
+    \pause{}\begin{center}
+        \scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            [8[4[2[1][3]][6[5][7]]][12[10[9][11]][14[13][15]]]]
+        \end{forest}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Traversierung: Post-Order}
+    \begin{itemize}[<+(1)->]
+        \item Bei der Post-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
+        \item Mit der Post-Order Strategie wird erst rekursiv der linke, dann der rechte Teilbaum und erst dann der Knoten selbst bearbeitet.\pause{} (Analog gespiegelt)
+    \end{itemize}
+    \pause{}\begin{center}
+        \scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            [15[7[3[1][2]][6[4][5]]][14[10[8][9]][13[11][12]]]]
+        \end{forest}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Suchbäume}
+    \begin{itemize}[<+(1)->]
+        \item Bäume können auch nützliche Datenstrukturen sein, wenn man sie \emph{ordnet}.
+        \item So existieren Suchbäume (Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) binäre Suche)
+        \item Vergleiche hierzu auch die Datenstruktur \hyperlink{mrk:Heap}{Heap}.
+        \item Die Traversierungsverfahren lassen sich auch auf Bäume mit höherem Verzweigungsgrad anwenden!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Arithmetische Bäume}
+    \begin{itemize}[<+(1)->]
+        \item Binärbäume helfen uns arithmetische Operationen darzustellen.
+    \end{itemize}
+    \pause{}
+    \begin{center}
+        \scalebox{0.625}{\begin{forest}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            [*[+[A][B]][-[C][D]]]
+        \end{forest}}
+    \end{center}
+    \begin{itemize}[<+(1)->]
+    \item Die Traversierungsverfahren entsprechen Notationsschemata: \begin{description}[Post-Order]
+        \item[In-Order] repräsentiert die geläufige Infix Notation: \((A + B) * (C - D)\) (die Klammern entsprechen der Ausführreihenfolge und sind natürlich nicht Teil)
+        \item[Pre-Order] entspricht der Präfix-Notation: \(* + A B - C D\).
+        \item[Post-Order] entspricht der Postifx-Notation: \(A B + C D - *\).
+    \end{description}
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Graphen}
+
+\begin{frame}{Graphen}
+    \begin{itemize}[<+(1)->]
+        \item Im Gegensatz zu Bäumen können in Graphen die Knoten auch mehrere Vorgänger haben.
+    \end{itemize}
+    \pause{}
+    \begin{definition}[Ungerichter Graph]
+        Ist ein Tupel \(G = (V,E)\) aus Knoten \(V\) und Kanten \(E \subset \binom{V}{2}\).
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \item Die Definitionen von Graphen sind bereits aus FG bekannt. Sie werden hier dennoch zusammengefasst.
+    \end{itemize}
+    \pause{}
+    \begin{definition}[Gerichteter Graph]
+        Ein gerichteter Graph definiert sich grundlegend identisch zum ungerichteten, unterscheidet sich aber in sofern, als dass die Kanten nicht durch Mengen sondern durch Tupel dargestellt, also gerichtet sind.
+    \end{definition}
+\end{frame}
+
+
+\begin{frame}{Begriffe in einem Graphen}
+    \pause{}
+    \begin{description}[Zusammenhang]
+        \item[Zusammenhang] ein Graph heißt zusammenhängend, wenn man jeden Knoten von jedem anderen aus (über die Kanten) erreichen kann.\pause{}
+        \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
+        \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.\pause{}
+        \item[Grad] bezeichnet die Anzahl an Knoten die mit einem Knoten verbunden sind.\pause{} Ist der Graph gerichtet so wird zwischen Eingangs- und Ausgangsgrad unterschieden.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Varianten von Graphen}
+    \begin{itemize}[<+(1)->]
+        \item Ein gewichteter Graph weißt den Kanten durch eine Abbildung \(w: E \to M\) einen Wert zu.
+        \item Wir können einen Graphen durch eine \emph{Adjazenzmatrix} beschreiben.\pause{} Hierbei entsprechen die jeweiligen Zellen \(m_{i,j}\), dass eine Verbindung vom Knoten \(i\) zum Knoten \(j\) besteht.
+    \end{itemize}
+    \vfill\pause{}
+    \begin{minipage}{0.45\linewidth}
+\centering\begin{tikzpicture}[kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}]
+    \node[kreis] (a) at (0,0) {1};
+    \node[kreis] (b) at (2,0) {2};
+    \node[kreis] (c) at (2,-2) {3};
+    \node[kreis] (d) at (0,-2) {4};
+
+    \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
+\end{tikzpicture}
+    \end{minipage}\quad\begin{minipage}{0.45\linewidth}%
+        \[\bordermatrix{~ & \textcolor{gray}{1} & \textcolor{gray}{2} & \textcolor{gray}{3} & \textcolor{gray}{4} \cr
+        \textcolor{gray}{1} & 0 & 1 & 0 & 0\cr
+        \textcolor{gray}{2} & 0 & 0 & 1 & 1\cr
+        \textcolor{gray}{3} & 1 & 0 & 0 & 1\cr
+        \textcolor{gray}{4} & 0 & 1 & 0 & 0\cr
+        }\]
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Adjazenzlisten}
+    \begin{itemize}[<+(1)->]
+        \item Adjazenzlisten sind eine andere Variante Graphen zu repräsentieren.
+        \item Hier hält jeder Knoten eine (verkettete) Liste an seinen benachbarten Knoten.
+    \end{itemize}
+    \vfill\pause{}
+    \begin{minipage}{0.45\linewidth}
+\centering\begin{tikzpicture}[kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}]
+    \node[kreis] (a) at (0,0) {1};
+    \node[kreis] (b) at (2,0) {2};
+    \node[kreis] (c) at (2,-2) {3};
+    \node[kreis] (d) at (0,-2) {4};
+
+    \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
+\end{tikzpicture}
+    \end{minipage}\quad\begin{minipage}{0.45\linewidth}
+        \begin{enumerate}
+            \item \(\to 2\)
+            \item \(\to 3 \to 4\)
+            \item \(\to 1 \to 4\)
+            \item \(\to 2\)
+        \end{enumerate}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Algorithmen auf Graphen}
+    \begin{itemize}[<+(1)->]
+        \item Eine gängiges Problem ist es herauszufinden ob ein Graph Zyklen enthält und/oder ob er zusammenhängend ist.
+        \item Wegfindungsproblem wie das kürzeste Wege Probleme (Routenfindung, \ldots), Traveling Salesman Problem
+        \item Finden des minimalen, aufspannenden Baum.
+        \item Exemplarisch betrachtet die Vorlesung die Breiten- und die Tiefensuche.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Graphen durchsuchen: Tiefensuche}
+    \begin{itemize}[<+(1)->]
+        \item In der Tiefensuche besucht man von einem Startknoten aus die anderen benachbarten Knoten und markiert diese.
+        \item Dies wird solange vollzogen bis man auf einen bereits beobachteten Knoten trifft.
+        \item In diesem Fall wird eine andere Kante besucht. Existiert keine mehr, so geht man zum letzten Knoten zuvor zurück und probiert die Ansätze dort erneut.
+    \end{itemize}
+    \vfill\pause{}
+    \begin{multicols}{5}
+        \scriptsize%
+    \begin{enumerate}[<+(1)->]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+    \node[ikreis] (a) at (0,0) {1};
+    \node[kreis] (b) at (2,0) {2};
+    \node[kreis] (c) at (2,-2) {3};
+    \node[kreis] (d) at (0,-2) {4};
+
+    \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
+\end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[kreis] (c) at (2,-2) {3};
+            \node[kreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[kreis] (c) at (2,-2) {3};
+            \node[ikreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[kreis] (c) at (2,-2) {3};
+            \node[ikreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[ikreis] (c) at (2,-2) {3};
+            \node[ikreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
+        \end{tikzpicture}
+    \end{enumerate}
+\end{multicols}
+\end{frame}
+
+\begin{frame}{Graphen durchsuchen: Breitensuche}
+    \begin{itemize}[<+(1)->]
+        \item In der Breitensuche besucht man von einem Startknoten aus erst alle benachbarten Knoten.
+        \item In diesem Zuge merkt man sich die Nachbarn dieser Knoten uns besucht anschließend diese.
+        \item Der Vorteil:\pause{} Wenn alle Kanten gleich Gewichtet sind lässt sich so direkt der kürzeste Weg identifizieren.
+    \end{itemize}
+    \vfill\pause{}
+    \begin{multicols}{5}
+        \scriptsize%
+    \begin{enumerate}[<+(1)->]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+    \node[ikreis] (a) at (0,0) {1};
+    \node[okreis] (b) at (2,0) {2};
+    \node[kreis] (c) at (2,-2) {3};
+    \node[kreis] (d) at (0,-2) {4};
+
+    \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
+\end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[okreis] (c) at (2,-2) {3};
+            \node[okreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[okreis] (c) at (2,-2) {3};
+            \node[ikreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[ikreis] (c) at (2,-2) {3};
+            \node[ikreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+            \node[ikreis] (a) at (0,0) {1};
+            \node[ikreis] (b) at (2,0) {2};
+            \node[ikreis] (c) at (2,-2) {3};
+            \node[ikreis] (d) at (0,-2) {4};
+
+            \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
+        \end{tikzpicture}
+    \end{enumerate}
+\end{multicols}
+\end{frame}
+
+\subsection{Übungsaufgaben}
+
+% TODO: Liste aufgaben, Baum Aufgaben und eine Aufgabe für binärbäume sowie suchbäume und so.. heap and STack..
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{LinkedList - toString()}
+    \begin{exercise}<2->[LinkedList - toString() \Time{4}]
+        Gegeben sei folgender Code.\pause{} Es darf davon ausgegangen werden, dass \bjava{get(int)} korrekt implementiert ist.\pause{} Schreibe eine Methode \bjava{toString()} die die Elemente in korrekter Reihenfolge setzt.\pause{}
+{\footnotesize
+\begin{plainjava}
+public class LinkedList {
+    public static class Element {
+        int value; Element next;
+        public Element(int _v, Element _n) {
+            value = _v; next = _n;
+        }
+    }
+    Element head;
+    public LinkedList() { /* ... */ }
+    public Element get(int index) { /* ... */ }
+}
+\end{plainjava}
+}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \begin{solve}<2->[LinkedList - toString()]
+        \pause{}
+\begin{plainjava}
+!*\onslide<3->*!public String toString() {
+!*\onslide<4->*!    Element current = head;
+!*\onslide<5->*!    String str_list = "";
+!*\onslide<6->*!    while(current != null) {
+!*\onslide<7->*!        str_list += current.value + ", ";
+!*\onslide<8->*!        current = current.next;
+!*\onslide<6->*!    }
+!*\onslide<9->*!    return str_list;
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Theorie: Stack und Queue}
+    \begin{exercise}<2->[Theorie zu Stapel und Warteschlange \Time{5}]
+        Bewerte (wahr/falsch) und Begründe jeweils: \begin{enumerate}[<+(1)->]
+            \item Eine Warteschlange lässt sich auch dann implementieren, wenn nur die Datenstruktur \emph{Stack} existiert.
+            \item Stacks folgen dem FIFO-Prinzip.
+            \item Der Java-(Objekt-)Heap bezeichnet sich nach der Datenstruktur Heap.
+        \end{enumerate}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Theorie zu Stapel und Warteschlange]
+        \begin{enumerate}[<+(1)->]
+            \item Queue durch Stack:\pause{} Dies ist wahr. Hierzu benötigt man zwei Stacks, \(A\) und \(B\).\pause{} Neue Elemente werden auf \(A\) abgelegt und von \(B\) genommen.\pause{} Ist \(B\) leer, so werden alle Elemente von \(A\) genommen und auf \(B\) abgelegt (und damit umgedreht).
+            \item Stacks sind FIFO:\pause{} Dies ist falsch.\pause{} Stacks folgen dem LIFO (Last-In, First-Out) Prinzip (siehe: \hyperlink{mrk:Stack}{Stack}).
+            \item Java-Heap ist Heap:\pause{} Dies ist falsch, der Heap auf dem (komplexe) Daten abgelegt werden,\pause{} hat nur den selben Namen.\pause{} (Siehe: \url{https://stackoverflow.com/questions/756861/whats-the-relationship-between-a-heap-and-the-heap}.)
+        \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Traversierung eines Baumes}
+    \begin{exercise}<2->[Traversierung eines Baumes \Time{4}]
+        Gegeben sei der folgende Binärbaum. Gib sowohl die Besuchsreihenfolge des Breitendurchlaufs als auch des In- und Post-Order Durchlaufs an.\pause{}
+        \begin{center}
+            \scalebox{0.6}{\begin{forest}
+                for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,execute at begin node={\strut},minimum width=1.2cm}
+                [A[B[,phantom][C[D][,phantom]]][E[F[,phantom][,phantom]][G[H][I]]]]
+            \end{forest}}
+        \end{center}
+        \pause{}Hinweis, die Pre-Order Traversierung wäre: \(A,B,C,D,E,F,G,H,I\).
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Traversierung eines Baumes]
+        \begin{center}
+            \scalebox{0.5}{\begin{forest}
+                for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,execute at begin node={\strut},minimum width=1.2cm}
+                [A[B[,phantom][C[D][,phantom]]][E[F[,phantom][,phantom]][G[H][I]]]]
+            \end{forest}}
+        \end{center}
+        \begin{enumerate}[<+(1)->]
+            \item Breitendurchlauf:\pause{} \(A,B,E,C,F,G,D,H,I\).
+            \item In-Order:\pause{} \(B,D,C,A,F,E,H,G,I\)
+            \item Post-Order:\pause{} \(D,C,B,F,H,I,G,E,A\).
+        \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Traversierung eines Baumes - Java}
+    \begin{exercise}<2->[Traversierung eines Baumes - Java \Time{4}]
+        Es sei durch folgende Klasse ein Knoten eines Binärbaums notiert, der mit \bjava{Node root} beginnt.\pause{} Schreibe eine Funktion \bjava{inorder(Node)}, die eine In-Order Traversierung vornimmt.\pause{} Der Knoten soll (jeweils) einfach durch \bjava{System.out.println} ausgegeben werden.\pause{}
+\begin{plainjava}
+public class Node {
+    public int value;
+    public Node left, right;
+    public Node(int _v) {
+        /* ... */
+    }
+}
+\end{plainjava}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \begin{solve}<2->[Traversierung eines Baumes - Java]
+\begin{plainjava}
+void inorder(Node n)  {
+    if (n == null) return;
+
+    inorder(n.left);
+    System.out.println(n.value);
+    inorder(n.right);
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+

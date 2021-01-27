@@ -1,0 +1,405 @@
+\section{Java-Basics}
+\subsection{Wie ein Java-Programm entsteht}
+\begin{frame}[c]{Vom Text zum Programm}
+    \begin{center}
+        \onslide<2->{
+        \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}, rec/.style={block,minimum width=3.25cm},irec/.style={iblock,minimum width=3.25cm}]
+            \draw (0,0) node[right,irec] (prg) {Programmtext};
+            \draw (2,-1) node[right,rec] (bib) {Bibliotheken};
+            \draw (2,-2) node[right,rec] (adMac) {Maschinencode};
+            \draw (6,-1.5) node[right,rec] (link) {Linker};
+            \begin{scope}[every path/.style={link}]
+                \draw (prg) -- ++(2,0) node[right,rec] (comp) {Compiler};
+                \draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};
+                \draw (bib) -| ++ (2,-0.4) -- ([yshift=0.1cm]link.west);
+                \draw (adMac) -| ++ (2,0.4) -- ([yshift=-0.1cm]link.west);
+                \draw (link) -- ++(2,0) node[right, irec] (prog) {Program};
+                \draw (mac) -- ++ (0,-0.62) -| (link.north);
+                \draw (prg)++(0,0.75) node[above] {\tiny Das machen wir} -- (prg);
+                \draw (prog)++(0,-0.75) node[below] {\tiny Das wollen wir} -- (prog);
+                \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
+                \draw (comp)++(0,0.75) node[above] {\tiny Syntax-Analyse} -- (comp);
+                \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
+                \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
+                \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches/dynmaisches Linken}\\\hphantom{statisch/dy}(Java)}} -- (link);
+
+            \end{scope}
+        \end{tikzpicture}
+        }
+    \end{center}
+\end{frame}
+
+\begin{frame}{Vom Text zum Programm}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt Java die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class})
+        \item Dieser Code kann vom Interpreter \bbash{java} ausgeführt werden:\pause{} \bbash{java :lan:Name:ran:}
+        \item Ein paar wichtige Punkte: \begin{itemize}
+            \item Bei den \T{.class}-Dateien handelt es sich um \emph{keine} \T{.zip}-Dateien!
+            \item Die \T{.jar}-Dateien von Java sind \T{.zip}-Archive.
+            \item Der Interpreter (\bbash{java}) ist sowohl im Java-Runtime-Environment (JRE) als auch im Java-Development-Kit (JDK) enthalten.
+            \item Der Compiler wird nur mit der JDK ausgeliefert.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Bezeichner \& Variablen}
+
+\begin{frame}{Gültige Java-Bezeichner}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Java stellt folgende Regeln an Bezeichner für Variablen, Klassen, \ldots \begin{itemize}
+            \item Diese dürfen nur aus Buchstaben, Ziffern, dem Unterstrich (\_) und dem Dollarzeichen (\$) bestehen.
+            \item Ein Bezeichner darf \emph{nicht} mit einer Ziffer angeführt werden.
+            \item Schlüsselbegriffe (wie \bjava{int}, \bjava{double}, \ldots) dürfen nicht als Bezeichner verwendet werden.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Variablen und Wertzuweisungen}
+    \pause{}
+    \begin{center}
+        \parbox{7cm}{\!\bjava{int zahl = -42, super_zahl = 4;}\\\bjava{zahl = 42;}
+        }
+    \end{center}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Java ist eine \emph{streng typisierte} Sprache.\pause{} Jede Variable kann nur Daten \emph{eines (bestimmten) Typs speichern}.
+        \item Wir unterscheiden zwischen \emph{primitiven} und \emph{komplexen} Datentypen. \begin{description}[Primitive]
+            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean} (Hinweis: \emph{call-by-value})
+            \item[Komplexe] \bjava{String}, \bjava{Random}, \ldots (Hinweis: \emph{call-by-reference})
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Konvertierung primitiver Datentypen}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Java kann manche Datentypen ineinander Umwandeln.\pause{} Es gilt:\pause{}
+        \begin{center}
+            \bjava{byte} \mprec{} \bjava{short} \mprec{} \bjava{int} \mprec{} \bjava{long} \mprec{} \bjava{float} \mprec{} \bjava{double}
+        \end{center}
+        \pause{}Sowie:\pause{}
+        \begin{center}
+            \bjava{char} \mprec{} \bjava{int}
+        \end{center}
+        \item So kann Java einen \bjava{char} implizit in einen \bjava{int} umwandeln\pause{} (da der Wertebereich größer ist).\pause{} Umgekehrt allerdings nicht.
+        \item \imp{Floats und Doubles unterliegen einem Rundungsproblem.}
+        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung erfolgen.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Konstanten und Hinweise}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Konstanten werden in Java mit dem Schlüsselbegriff \bjava{final} gekennzeichnet: \begin{plainjava}
+final int SUPER_ZAHL = 42;
+        \end{plainjava}
+        \item Schreiben wir eine Fließkommazahl wie \bjava{3.1415}\pause{} interpretiert sie Java erstmal als \bjava{double}.\pause{} Damit es sie als \bjava{float} interpretiert müssen wir ein \bjava{f} anstellen.\pause{} Also: \bjava{3.1415f}.
+        \item Zeichen (\bjava{char}) werden in Java im UTF-16 Format gespeichert.\pause{} Für die unteren \(7\)-Bit ist es identisch zur ASCII-Kodierung.
+        \item Der \say{Datentyp} \bjava{void} gibt bei Methoden an,\pause{} dass diese nichts zurück geben!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Präzedenzregeln}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Operationen werden in Java in einer gewissen Reihenfolge ausgeführt.\pause{} Diese wird durch die Präzedenzregeln bestimmt:\onslide<1->
+        \begin{alignat*}{3}
+            \onslide<4->{\Big[a\text{++},a\text{-\!\! -}\Big]}&\onslide<5->{\to~\Big[!a, -a, \text{++}a,\text{-\!\! -}a\Big]}&&\onslide<6->{\pause\to~\Big[*,/,\%\Big]} &&\onslide<7->{\to~\Big[a+b,a-b\Big]}\\
+            &\onslide<8->{\to~\Big[==,>=,<,\ldots\Big]} &&\onslide<9->{\to~\Big[\&\&\Big]}&&\onslide<10->{\to~\Big[||\Big]}\onslide<1->
+        \end{alignat*}
+        \vspace*{-0.5cm}\onslide<1->
+    \end{itemize}
+    \Task{Code zur Präzedenz}
+    \begin{exercise}<11->[Was liefert dieser Code? \Time{3}]
+        \begin{plainjava}[columns={[c]fullflexible}]
+int x = 40, m = 3;
+System.out.println(-x++ - --m);
+System.out.println(x > 41 || m > 1 && 2 != 3);
+        \end{plainjava}
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Präzedenzregeln -- Lösung}
+    \begin{solve}<2->[Was liefert dieser Code?]
+        \pause{}\begin{plainjava}[columns={[c]fullflexible}]
+System.out.println(-x++ - --m); // :yields: -42
+        \end{plainjava}
+        \pause{}Aufgrund der Postfix-Notation \bjava{x++} wird \bjava{x} \emph{nach} dem Ausdruck um \(1\) erhöht!\pause{} Wegen des Präfix-Dekrements von \bjava{m} wird \bjava{m} um eins verringert.\pause{} Nun werden \bjava{-x} (\(=-40\)) mit \bjava{m} (\(= 2\)) subtrahiert (\bjava{= -42}).\pause{} \bjava{x} ist nun \bjava{41}.
+        \begin{plainjava}[columns={[c]fullflexible}]
+System.out.println(x > 41 || m > 1 && 2 != 3); // :yields: true
+        \end{plainjava}
+        Da \bjava{||} am schwächsten bindet,\pause{} werden zuerst \bjava{x > 41} (\bjava{41 > 41} \(\to\) \bjava{false}) und \bjava{m > 1:ws:&& 2:ws:!= 3} betrachtet.\pause{} Nun wird also \bjava{m > 1} (\bjava{2 > 1} \(\to\) \bjava{true}) und \bjava{2 != 3} (\bjava{true}) ausgewertet.\pause{} Damit evaluiert das \bjava{true:ws:&& true} zu \bjava{true} und somit auch das \bjava{false:ws:|| true} zu \bjava{true}.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Präzedenzregeln, II}
+\Task{Code zur Präzedenz, II}
+\begin{exercise}<2->[Was liefert dieser Code?, II \Time{2}]
+    \begin{plainjava}[columns={[c]fullflexible}]
+int x = 5;
+System.out.println(x);
+System.out.println(x++ + ++x + x++ + ++x);
+System.out.println(x);
+    \end{plainjava}
+    \pause{}\textit{Hinweis: Dies ist lediglich eine Bonusübung, um den Unterschied zwischen der Präfix- und der Postfixnotation klar zu machen.}
+\end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Präzedenzregeln, II -- Lösung}
+    \begin{solve}<2->[Was liefert dieser Code?, II]
+        \pause{}\begin{plainjava}[columns={[c]fullflexible}]
+System.out.println(x); // :yields: 5
+        \end{plainjava}
+        \pause{}Zu Beginn hält \bjava{x} den Wert \(5\), so weit nichts besonderes.
+        \begin{plainjava}[columns={[c]fullflexible}]
+System.out.println(x++ + ++x + x++ + ++x); // :yields: 28
+        \end{plainjava}
+        \pause{}Dies ist wohl die schwierigste Zeile.\pause{} Aufgeschlüsselt wird hier addiert: \(5 + 7 + 7 + 9 = 28\).\pause{} Die erste \(5\), da \bjava{x} erst nachträglich erhöht wird.\pause{} Dann wird \bjava{x}, welches jetzt \(6\) ist, direkt um eins erhöht.\pause{} \bjava{x} ist jetzt \(7\), das Spiel wiederholt sich für das Hintere \bjava{++x}.\pause{}
+        \begin{plainjava}[columns={[c]fullflexible}]
+System.out.println(x); // :yields: 9
+        \end{plainjava}
+        \pause{}Durch die \(4\) Inkremente ist \bjava{x} nun \(9\).\pause{} (\textit{Das ist \emph{kein} guter Code!})
+    \end{solve}
+\end{frame}
+
+\begin{frame}{Präzedenzregeln - Kommentar}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Java wendet die mathematischen Rechenregeln wie bekannt an.
+        \item Auch das Klammern funktioniert wie gewohnt.
+        \item Boolesche Operatoren funktionieren wie in der Aussagenlogik.
+    \end{itemize}
+\end{frame}
+
+\subsection{Komplexe Datentypen}
+
+\begin{frame}[fragile]{Komplexe Datentypen}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Java erlaubt es mit Klassen komplexe Datentypen zu konstruieren.
+        \item Der wichtigste ist \bjava{String},\pause{} welcher von Java eine Sonderbehandlung erfährt.
+        \item Bei der Deklaration eines komplexen Datentyps:\pause{}
+\begin{plainjava}
+Random rnd = new Random();
+\end{plainjava}
+        \pause{}speichert Java für \bjava{rnd} die Adresse,\pause{} an der sich die eigentlichen Daten des Objekts befinden.
+        \item Deswegen sollen Strings mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen\pause{} und damit ob die Zeichenketten identisch sind.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Strings}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Jede Variable/jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
+        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[\T{s1.substring(a,b)}]
+            \item[\T{s1.equals(s2)}] prüft ob die Zeichenketten gleich sind.
+            \item[\T{s1.length()}] liefert die Länge einer Zeichenkette.
+            \item[\T{s1.charAt(k)}] liefert das \T{k}-te Zeichen.
+            \item[\T{s1.substring(a,b)}] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
+            \item[\T{s1.toUpperCase()}] liefert die Zeichenkette in Großbuchstaben.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\subsection{Subroutinen}
+\begin{frame}[fragile]{Funktionen}
+    \begin{itemize}[<+(1)->]
+        \item Analog zur \bjava{main}-Funktion, lassen sich in Java Routinen implementieren.
+        \item Die allgemeine Syntax lautet:\pause{}
+{\footnotesize
+\begin{plainjava}
+:lan:Zugriffsmodifikatoren:ran: :lan:Rückgabetyp:ran: :lan:Name:ran:(:lan:Parameterliste:ran:) {
+    :lan:Körper:ran:
+}
+\end{plainjava}
+}
+        \item Beispiel: \pause{}
+{\footnotesize
+\begin{plainjava}
+private static String generateWelcomeMessage(String name, int age,
+        boolean married) {
+    return "Welcome, " + name /* ... */ ;
+}
+\end{plainjava}
+}
+        \item Hinweis:\pause{} Bevor wir zu Klassen an sich kommen,\pause{} machen wir alle Funktionen \bjava{static},\pause{} um sie auch von der \bjava{main}-Methode aus aufrufen zu können.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Signatur \& Überladung}
+    \begin{itemize}[<+(1)->]
+        \item Die Signatur einer Methode/Funktion besteht aus dem Namen sowie den Datentypen der Parameter.\pause{} Der Rückgabetyp ist \emph{kein} Teil der Signatur.
+        \item Beispiel: \bjava{generateWelcomeMessage(String, int, boolean)}.
+        \item Java erlaubt keine zwei Funktionen mit gleicher Signatur im selben Gültigkeitsbereich.
+        \item Man kann allerdings Funktionen mit gleichem Namen,\par{} aber verschiedener Parameterliste erstellen.\pause{} Dieses Prinzip wird \emph{Überladen} (Overloading) genannt.
+        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)}, \ldots).\pause{} Entscheidet Java welche Methode aufgerufen werden soll\pause{} (es nimmt die,\pause{} die am \say{nächsten} dran ist).
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Zugriffsmodifikatoren}
+
+\begin{frame}{private und public}
+    \begin{itemize}[<+(1)->]
+        \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{description}[protected]
+            \item[private] Zugriff ist nur innerhalb der Klasse erlaubt.
+            \item[\say{default}] gibt man nichts an, so kann die Variable von Überall im Paket erreicht werden.
+            \item[protected] ist sichtbar im gesamten Paket sowie in allen Kindklassen (\hyperlink{mrk:Vererbung}{Vererbung}).
+            \item[public] ist überall sichtbar (auch über Pakete hinweg).
+        \end{description}
+        \item Hinweis (Vorgriff):\pause{} Objekte einer Klasse können auch auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Es gilt festzuhalten\ldots}
+    \begin{definition}[Subroutinen]
+        Eine Subroutine/Funktion ist ein \emph{Unterprogramm},\pause{} das von anderen Programm(teilen) aufgerufen und so wiederverwendet werden kann.\pause{}\medskip\newline Sie wird durch ihre \emph{Signatur} eindeutig identifiziert,\pause{} die in Java aus einem Bezeichner sowie einer Liste an Datentypen der Parameter besteht. Ein Unterprogramm ist in der Lage Daten an den aufrufenden Teil zurückzuliefern.
+    \end{definition}
+\end{frame}
+
+\subsection{Übungsaufgaben}
+
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Suche syntaktischer Fehler, I}
+    \begin{exercise}<2->[Fehler finden, I \Time{3}]
+        \pause{}Finde und korrigiere alle (syntaktischen) Fehler:\pause{}
+        \begin{plainvoid}
+public void main(String[] hihi) {
+    private final int X = 12;
+    System.out.printLn("Huhu " + (byte) X)
+}
+        \end{plainvoid}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Fehler finden, I]
+        \pause{}\begin{plainjava}
+public static void main(String[] hihi) {
+    final int X = 12;
+    System.out.println("Huhu " + (byte) X);
+}
+        \end{plainjava}
+    \begin{enumerate}[<+(1)->]
+        \item Die \bjava{main}-Methode muss \bjava{static} sein!
+        \item Zugriffsmodifikatoren wie \bjava{private} dürfen nicht in einer Funktion auftreten.
+        \item Die Funktion \bjava{printLn} heißt \bjava{println}.
+        \item In der Ausgabezeile fehlt ein Semikolon!
+    \end{enumerate}
+    \pause{}\textit{Hinweis: das \say{hihi} ist kein Fehler!}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Suche syntaktischer Fehler, II}
+    \begin{exercise}<2->[Fehler finden, II \Time{3}]
+        \pause{}Finde und korrigiere alle (syntaktischen) Fehler:\pause{}
+        \begin{plainvoid}
+public int double(int x) { return (2*)x; }
+
+public static void main() {
+    System.in.print(double(21));
+}
+        \end{plainvoid}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Fehler finden, II]
+        \pause{}\begin{plainjava}
+public static int doDouble(int x) { return (2*x); }
+public static void main(String[] args) {
+    System.out.print(doDouble(21));
+}
+        \end{plainjava}
+    \begin{enumerate}[<+(1)->]
+        \item Der Bezeichner \bjava{double} ist für eine Funktion nicht erlaubt.
+        \item Der Ausdruck in der Funktion ist ungültig geklammert.
+        \item Die Funktion muss \bjava{static} sein um aufgerufen werden zu können.
+        \item Die \bjava{main}-Methode benötigt die Signatur \bjava{main(String[])}!
+        \item \bjava{System.in} hat die Funktion \bjava{print(String)} nicht.
+    \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Methodensignaturen}
+    \begin{exercise}<2->[Signaturen \Time{2}]
+        \pause{}Gibt die Signaturen folgender Funktionen an.\pause{} Sollte eine Signatur ungültig sein, begründe wieso:\pause{}
+        \begin{plainvoid}
+String a(int a1, double a2) { /* ... */ }
+int b(String[] b1, int b2, double[] b3) { /* ... */ }
+double c(String... c1, char c2) { /* ... */ }
+double d(int d1, double... d2) { /* ... */ }
+        \end{plainvoid}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Signaturen]
+        \begin{enumerate}[<+(1)->]
+            \item \bjava{String a(int a1, double a2)} hat die Signatur \bjava{a(int,double)}
+            \item \bjava{int b(String[] b1, int b2, double[] b3)} hat die Signatur \bjava{b(String[], int, double[])}
+            \item \bjava{double c(String... c1, char c2)} ist nicht möglich,\pause{} da nach \emph{varargs} keine verpflichtenden Argumente mehr kommen dürfen.
+            \item \bjava{double d(int d1, double... d2)} hat die Signatur \bjava{d(int,double...)}
+        \end{enumerate}
+    \end{solve}
+\end{frame}
+
+
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Konkatenation}
+    \begin{exercise}<2->[Konkatenation \Time{2}]
+        \pause{}Was geben die folgenden Zeilen aus? (wenn \bjava{println} einfach nur ein \bjava{System.out.println} ist):\pause{}
+        \begin{plainjava}
+println("2 + 3 = " + 2 + 3);
+println(-'=' + 2 * 3 + '=' + " 2*3");
+println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10));
+println("c - a - 1 = " + ('c' - 1 - 'a'));
+        \end{plainjava}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Konkatenation]
+\pause{}
+\begin{plainjava}
+println("2 + 3 = " + 2 + 3); // :yields: '2 + 3 = 23'
+\end{plainjava}
+    \pause{}Da der linke Operand von \bjava{+} ein \bjava{String} ist,\pause{} wird erst die \bjava{2} als String konkateniert,\pause{} und dann die \bjava{3} ebenfalls als Zeichen.\pause{}
+\begin{plainjava}
+println(-'=' + 2 * 3 + '=' + " 2*3"); // :yields: '6 2*3'
+\end{plainjava}
+    \pause{}Da die \bjava{char}s einfach in ihren Integerwert konvertiert werden,\pause{} findet erst beim letzten Plus eine Konkatenation statt.
+    \end{solve}
+\end{frame}
+\begin{frame}[c,fragile]{Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<1->[Konkatenation\hfill(Fortsetzung)]
+\pause{}
+\begin{plainjava}
+println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10));
+    // :yields: '-10 * 2 = -20_b10'
+\end{plainjava}
+    \pause{}Die erste arithmetische Operation liefert \bjava{-10},\pause{} welches dann zum String konkateniert wird.\pause{} Anschließend greift die Präzedenzregel \say{Punkt vor Strich}\pause{} wobei das Ergebnis anschließend als String konkateniert wird.\pause{} Dann wird in der Klammer durch erneute Konkatenation \bjava{_b10} erzeugt.\pause{}\\
+    \textit{Hinweis: Der Unterstich bei \bjava{-10} ist in Java (zwischen Zahlen) komplett valide\pause{} und wird in der Regel zum trennen von \(1000\)er Blöcken verwendet.}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<1->[Konkatenation\hfill(Fortsetzung)]
+\pause{}
+\begin{plainjava}
+println("c - a - 1 = " + ('c' - 1 - 'a'));
+    // :yields: 'c - a - 1 = 1'
+\end{plainjava}
+    \pause{}Java berechnet zuerst die Operationen in der Klammer und wandelt die Zeichen in ihre ASCII-Werte um.\pause{} Diese muss man hierfür nicht kennen,\pause{} da es genügt zu Wissen, dass zwischen \T{a} und \T{c} ein Abstand von \(2\) vorliegt der um eins verringert wird.\pause{}
+    Wir berechnen also in der Klammer den wert \(1\).\pause{} Dieser wir nun normal zum String konkateniert, was die Ausgabe erzeugt.
+    \end{solve}
+\end{frame}

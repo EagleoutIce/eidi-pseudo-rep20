@@ -1,0 +1,548 @@
+
+\section{Programmiertheorie}
+
+\subsection{Rekursion}
+\begin{frame}[fragile]{Rekursive und iterative Programmierung}
+    \begin{definition}<2->[Rekursive Methode]
+        \pause{}Eine Methode oder Funktion bezeichnen wir als \emph{rekursiv}, wenn sie sich:\pause{} \begin{description}[indirekt]
+            \item[direkt] selbst aufruft, sich also selbst referenziert.\pause{}
+            \item[indirekt] selbst aufruft, also eine andere Methode aufruft, die (über irgendwelche Umwege) wieder die Methode referenziert.
+        \end{description}
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Eine rekursive Methode lässt sich in zwei Komponenten gliedern, der: \begin{description}[Abbruchbedingung]
+            \item[Abbruchbedingung] Berechnet den Wert zum beenden der Rekursion.\pause{} Hier wird die Methode nicht weiter referenziert.
+            \item[Rekursiver Zweig] Enthält die rekursiv auszuführende Prozedur.\pause{} In der Regel eine naive Implementation einer rekursiv definierten Funktion.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Arten von Rekursion}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Es gibt zwei Positionen, an denen ein rekursiver Aufruf erfolgen kann.\begin{description}
+            \item[Head] Hier erfolgt der rekursive Aufruf zu Beginn der Rekursion (also vor der Datenverarbeitung).
+            \item[Tail] Hier erfolgt der rekursive Aufruf zu Ende der Rekursion.\pause{} Ein solcher Abstieg lässt sich (und wird) in der Regel einfach in eine Iteration transformieren.
+        \end{description}
+    \end{itemize}
+\begin{center}\scriptsize%
+\begin{minipage}{0.45\linewidth}
+\begin{plainjava}
+!*\onslide<11->*!// :yields: 1 2 3 4 5 6 :ldots:
+!*\onslide<6->*!public void headDecrement(int i){
+!*\onslide<7->*!    // Abbruchbedingung
+!*\onslide<7->*!    if(i == 0) return;
+!*\onslide<8->*!    // Rekursion
+!*\onslide<8->*!    else headDecrement(i-1);
+!*\onslide<10->*!    // Verarbeitung
+!*\onslide<10->*!    System.out.println(i);
+!*\onslide<6->*!}
+\end{plainjava}
+\end{minipage}\qquad\begin{minipage}{0.45\linewidth}
+\begin{plainjava}
+!*\onslide<12->*!// :yields: 10 9 8 7 6 :ldots:
+!*\onslide<6->*!public void tailDecrement(int i){
+!*\onslide<7->*!    // Abbruchbedingung
+!*\onslide<7->*!    if(i == 0) return;
+!*\onslide<9->*!    // Verarbeitung
+!*\onslide<9->*!    else System.out.println(i);
+!*\onslide<10->*!    // Rekursion
+!*\onslide<10->*!    tailDecrement(i-1);
+!*\onslide<6->*!}
+\end{plainjava}
+\end{minipage}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Baumartige Rekursion}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Eine Methode kann sich auch mehrfach (auch indirekt) selbst referenzieren.
+        \item In diesem Fall entsteht kein \say{linearer} Abstieg,\pause{} sondern vielmehr eine Baum-/Kaskadenartige Verzweigung.
+        \item Beliebte Beispiele: Fibonacci, Binomialkoeffizient.
+    \end{itemize}
+    \onslide<6->{
+        \vfill\hbox{}
+        \hfill\scalebox{0.75}{\begin{forest}
+            [f(12)
+                [f(11)
+                    [f(10)
+                        [\ldots]
+                        [\ldots]
+                    ]
+                    [f(9)
+                        [\ldots]
+                        [\ldots]
+                    ]
+                ]
+                [f(10)
+                    [\ldots]
+                    [\ldots]
+                ]
+            ]
+        \end{forest}
+    }}\vfill\hbox{}
+\end{frame}
+
+
+\begin{frame}[fragile]{Verschränkte und geschachtelte Rekursion}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Es existieren weitere Varianten der Rekursion: \begin{description}[geschachtelt]
+            \item[geschachtelt] hier ist (mindestens) ein Parameter im rekursiven Aufruf selbst ein rekursiver Aufruf.\pause{} (Beispiele: Modulo, Ackermann)
+            \item[verschränkt] hier rufen sich mehrere Funktionen rekursiv gegenseitig auf.\pause{} Diese Variante lässt sich schwer bis gar nicht (direkt) in eine Schleife übersetzten.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Das Paradigma: Divide and Conquer}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Manche Probleme, die kompliziert sind,\pause{} lassen sich durch Rekursion in immer kleinere Probleme aufspalten, die dann beherrschbarer sind.
+        \item Dieses Problem wird uns bei den Sortieralgorithmen \hyperlink{mrk:sort-Mergesort}{Merge-} und \linksort{Quicksort} wieder begegnen.
+    \end{itemize}
+\end{frame}
+
+\subsection{Laufzeitkomplexität}
+\begin{frame}{Komplexitätsbetrachtung}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Da die Länge, die ein Programm (in Sekunden) benötigt,\pause{} von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme, \ldots) abhängig ist,\pause{} betrachten wir die Skalierung eines Algorithmus für umfangreiche Eingaben.
+    \end{itemize}
+    \begin{definition}<6->[Effizienz]
+        \pause{}Die Effizienz eines Programms wird durch seinen \emph{Speicheraufwand} sowie seiner \emph{Laufzeit} bestimmt.
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item<8-> Letztere werden wir genauer betrachten. \onslide<9->{Genauer, in welcher Komplexitätsklasse liegt der Algorithmus?}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Komplexitätsbetrachtung}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Diese Laufzeitkomplexität betrachten wir für drei Fälle: \begin{description}[average-case]
+            \item[worst-case] die Laufzeitkomplexität im schlechtesten Fall für den (spezifischen) Algorithmus.
+            \item[best-case] die Laufzeitkomplexität im günstigsten Fall für den (spezifischen) Algorithmus.
+            \item[average-case] die Laufzeitkomplexität im durchschnittlichen Fall für den (spezifischen) Algorithmus.\pause{} Dies ist in der Regel das Verhalten bei einer gleichverteilten Eingabe.
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Erfassen der Komplexität}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Die Erfassung der Laufzeitkomplexität erfolgt durch die Auflistung der notwendigen (Rechen-)Schritte:\pause{}
+\begin{plainjava}[language=xJava]
+static int methode(int n) {
+    !**!|zws|int count = 2;|zws|
+        for(|zws|int i = 1;|zws| |vgl|i <= n;|vgl| |inc|i++|inc|) {
+            for(|zws|int j = n;|zws| |vgl|j > i;|vgl| |dec|j--|dec|)
+                !**!|inc|count++;|inc|
+        }
+    return count;
+}
+    \end{plainjava}
+    \end{itemize}
+    \begin{multicols}{2}
+        \begin{itemize}[<+(1)->]
+            \item \bjava[language=xJava]{|zws|Zuweisungen|zws|}\,: \(2+n\)
+            \item \bjava[language=xJava]{|vgl|Vergleiche|vgl|}\,: \(n+1+\frac{n(n+1)}{2}\)
+            \item \bjava[language=xJava]{|inc|Inkrementierungen|inc|}\,: \(n+\frac{n(n-1)}{2}\)
+            \item \bjava[language=xJava]{|dec|Dekrementierungen|dec|}\,: \(\frac{n(n-1)}{2}\)
+        \end{itemize}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}{Erfassen der Komplexität}
+    \begin{itemize}[<+(1)->]
+        \item Insgesamt ergibt sich damit ein Aufwand von \(\frac{3n^2}{2} + \frac{5n}{2} + 3\).
+        \item Eine genauere Betrachtung findet sich in den Folien des \(10\) Tutoriums, zu Übungsblatt \(9\).
+        \item Da für große Datenmengen Konstanten und Faktoren irrelevant werden,\pause{} interessiert wie die Funktion skaliert/wächst.
+    \end{itemize}
+    \begin{definition}<6->[\O-Notation]
+        \pause{}Es gilt \(T(n) \in \O(f(n))\), wenn \(f(n)\) eine obere Schranke von \(T(n)\) ist, also:\pause{} \[T(n) \in \O(f(n))\pause{}\iff\pause{} \exists n_0 \in \mathbb{N}\:\pause{} c \in \mathbb{R}^+\:\pause{} \forall n \geq n_0:\pause{} T(n) \leq c \cdot f(n).\vspace*{-\topskip}\]
+    \end{definition}
+\end{frame}
+
+\begin{frame}[fragile]{Erfassen der Komplexität}
+    \begin{itemize}[<+(1)->]
+        \item Bei der Berechnung helfen die gängigen mathematischen Gesetze\pause{} (Logarithmus, \ldots)
+        \item Die wichtigste Rechenregel:\pause{} \(\O(f(n) + g(n)) = \O(\max\{f(n), g(n)\})\)
+        \item Neben der \(\O\) Notation, existieren noch weitere Notationen,\pause{} wie \(\Omega(n)\), welches analog die untere Grenze darstellt.
+        \item In der Regel reichen die folgenden wichtigsten Komplexitätsklassen:\vskip2em\pause{}
+\begin{center}%
+\resizebox{0.975\linewidth}{!}{%
+\setlength{\aboverulesep}{0pt}%
+\setlength{\belowrulesep}{0pt}%
+\setlength{\extrarowheight}{.45ex}%
+\begin{tabular}{c*{8}{c}}
+    \toprule
+    & \onslide<9->{\cellcolor{btcd@color@primary!100!btcd@color@alerted!21} \(\O(1)\)} & \onslide<10->{\cellcolor{btcd@color@primary!85!btcd@color@alerted!21}\(\O(\log n)\)} & \onslide<11->{\cellcolor{btcd@color@primary!69!btcd@color@alerted!21} \(\O(n)\)} & \onslide<12->{\cellcolor{btcd@color@primary!53!btcd@color@alerted!21} \(\O(n\log n)\)} & \onslide<13->{\cellcolor{btcd@color@primary!36!btcd@color@alerted!21} \(\O(n^2)\)} & \onslide<14->{\cellcolor{btcd@color@primary!19!btcd@color@alerted!21} \(\O(n^3)\)} & \onslide<15->{\cellcolor{btcd@color@primary!14!btcd@color@alerted!21} \(\O(2^n)\)} & \onslide<16->{\cellcolor{btcd@color@primary!0!btcd@color@alerted!21} \(\O(n!)\)} \\[0.45ex]\midrule
+    Bsp: & \onslide<9->{\(42\)} & \onslide<10->{\(4 \log (3n)\)} & \onslide<11->{\(4n-3\)} & \onslide<12->{\(4n\log(2n)\)} & \onslide<13->{\(n^2 + 2n - 1\)} & \onslide<14->{\(n^3 - 42n^2\)} & \onslide<15->{\(14\cdot2^n\)}& \onslide<16->{\(n! \cdot 10^{-42}\)}\\
+    Bez: &\onslide<9->{\footnotesize konst.} & \onslide<10->{\footnotesize logarithm.} & \onslide<11->{\footnotesize linear} &\onslide<12->{\footnotesize linear log.} & \onslide<13->{\footnotesize quadratisch} & \onslide<14->{\footnotesize kubisch} & \onslide<15->{\footnotesize exponentiell} & \onslide<16->{\footnotesize faktoriell} \\
+\bottomrule
+\end{tabular}}
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+\subsection{Modellierung durch UML}
+
+\begin{frame}{UML, Grundlagen}
+    \begin{itemize}[<+(1)->]
+        \item Die Unified Modeling Language (UML) ist eine Kollektion an UML-Diagrammarten,\pause{} die es erlaubt ein Problem/Programm/Projekt aus verschiedenen Blickwinkeln zu betrachten.
+        \item Im Kontext der Vorlesung gilt es drei Typen kurz zu skizzieren: \begin{description}[Sequenzdiagramme]
+            \item[Klassendiagramme] modellieren die Beziehungen und Eigenschaften der beteiligten Klassen.
+            \item[Objektdiagramme] modellieren die Beziehungen und Ausprägungen (spezifischer) Objekte.
+            \item[Sequenzdiagramme] modellieren den Nachrichtenaustausch in einem Programm.\pause{} Ist ereignisbasiert.
+        \end{description}
+        \item UML wird hier (wie in der Vorlesung auch) nur oberflächlich betrachtet.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{UML, Ein Überblick}
+\begin{center}
+    \resizebox{0.95\linewidth}{!}{
+\begin{tikzpicture}[every node/.append style={text width=4.5cm, align=center, execute at begin node={\strut},block,font=\small\sffamily}]
+    \onslide<2->{\node[iblock,text width=] (a) at (0,0) {UML};}
+    \onslide<3->{\node[] (b1) at(-5,-1) {Strukturdiagramme};}
+    \onslide<4->{\node[] (b2) at (0,-1) {Verhaltensdiagramme};}
+    \onslide<5->{\node (b3) at (5,-1) {Weitere Diagramme};}
+    \begin{scope}[every node/.append style={text width=3.25cm,font=\scriptsize\sffamily}]
+        \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (c2) at (-4,-2) {Klassendiagramm};}
+        \onslide<7->{\node[iblock,font=\scriptsize\sffamily] (c3) at (1,-2) {Sequenzdiagramm};}
+        \onslide<8->{\node (c4) at (6,-2) {Kommunikations\-struktur-Diagr.};}
+
+        \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (left1) at (-4,-3) {Objektdiagramm};
+        \node[] (left2) at (-4,-4) {Paketdiagramm};}
+
+        \onslide<7->{\node[] (middle1) at (1,-3) {Anwendungsfalldiagr.};
+        \node[] (middle2) at (1,-4) {Kommunikationsdiagr.};
+        \node[] (middle3) at (1,-5) {Aktivitätsdiagmm};
+        \node[] (middle4) at (1,-6) {Zustandsdiagr.};
+        \node (middle5) at (1,-7) {\ldots};}
+
+        \onslide<8->{\node (right1) at (6,-3) {Komponentendiagr.};
+        \node (right2) at (6,-4) {Verteilungsdiagr.};}
+    \end{scope}
+
+
+    \onslide<5->{ \draw (a) -| (b1) (a) -- (b2) (a) -| (b3);}
+    % \draw (b1.195) -- ++(0,-0.33) (b1.345) -- ++(0,-0.33);
+    \onslide<9->{\draw (b2.195) |- (c3) (b3.195) |- (c4);
+    \draw (b1.195) |- (c2);
+    \foreach \i in {1,2} {\draw (b1.195) |- (left\i);\draw (b3.195) |- (right\i);}
+    \foreach \i in {1,...,5} {\draw (b2.195) |- (middle\i);}}
+
+\end{tikzpicture}
+    }
+\end{center}
+\end{frame}
+
+\begin{frame}[c]{UML, Klassendiagramme}
+    \begin{center}
+        \onslide<2->{
+        \begin{tikzpicture}[scale=0.65, every node/.style={transform shape}]
+            \tikzumlset{fill class=white, fill note=white!20} % , font=\small\LILLYxlstTypeWriter
+            \umlclass[x=0,y=0,name=stud]{Student}{
+                {\umlstatic{+ studierendenzahl : int}}\\
+                {- name : String}\\
+                {- matrikelnummer : int}\\
+                {+ besuchtVorlesungen : String[5]}}{
+                    {+ Student (name : String, nummer : int)}\\
+                    {+ getName() : String}\\
+                    {+ getNummer() : int}\\
+                    {+ addVorlesung(String name) : void}\\
+                    {+ getVorlesungen() : String[5]}\\
+                    {+ removeVorlesung(String name) : void }}
+            \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2) -- ++(0,-1.92) node [black,midway, above,rotate=90,yshift=0.75cm] {Attribute};
+            \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=0.75cm] {Methoden};
+            \node at(0,3.25) [above] (kln) {Klassenname};
+            \draw[-latex] (kln) -- ++(0,-0.799);
+            {\node [right] at (4.5,1.82-1.54/2+0.9) {\parbox{9cm}{
+                {(\textbf{--}) steht für ein \bjava{private} Attribut}\\
+                {(\textbf{+}) für ein \bjava{public} Attribut}\\
+                {(\textbf{\#}) für ein \bjava{protected} Attribut}\\
+                {\bjava{static}-Komponenten werden unterstrichen.}}};
+            }
+            \onslide<3->{\draw [latex-] (4.15,1.85-1.3) -- ++(3,0) node[right] {\small bis zu 5 Vorlesungen};}
+            \onslide<4->{\umlclass[x=11,y=-2,name=gang]{Studiengang}{- name : String\\- prof : String}{ + Studiengang(name : String, prof : String)\\ + getName() : String\\ + getProfessor() : String};}
+            \only<5->{\umlassoc[mult1=0..3,pos1=0.965, mult2=*, pos2=0.2]{Student}{Studiengang};}
+            \onslide<6->{\draw [decorate,decoration={brace,amplitude=7pt,raise=4pt,mirror},yshift=0pt] (4.125,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-0.75cm] {\begin{minipage}{8cm}
+                \centering\scriptsize Ein Student kann bis zu 3 Studiengänge gleichzeitig besuchen, ein Studiengang kann von unendlich vielen Studenten besucht werden.
+            \end{minipage}};]}
+        \end{tikzpicture}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{UML, Klassendiagramme}
+    \begin{itemize}[<+(1)->]
+        \item Es gibt noch weitere Assoziationen.
+        \item So kann diese gerichtet sein (Pfeil am Ende) um eine Leserichtung vorzuschreiben,\pause{} oderein gefülltes (Komposition) oder leeres (Aggregation) Rechteck haben um Teile eines Ganzen zu modellieren.
+        \item Gestrichelte Assoziationen markieren Abhängigkeiten.
+        \item Vererbungen werden durch einen nicht augefüllten Pfeil gekennzeichnet.
+        \item Pakete werden durch einen extra Kasten gekennzeichnet.
+        \item \textit{Wichtig:} Attribute deren Typ eine andere Klasse ist werden durch eine Assoziation gekennzeichnet,\pause{} dies gilt auch, wenn eine Klasse sich selbst referenziert\pause{} (LinkedList, \ldots).
+        \item Für weiterführende informationen siehe Folien des neunten Tutoriums.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{UML, Objektdiagramme}
+    \begin{itemize}[<+(1)->]
+        \item Objektdiagramme ähneln Klassendiagrammen.
+        \item Allerdings handelt es sich immer um explizite Ausprägungen einer Klasse\pause{} (\(\Rightarrow\) keine Methoden).
+        \item Sie werden eher selten verwendet.
+    \end{itemize}
+    \vfill\pause{}
+    \begin{center}
+        \begin{tikzpicture}[scale=0.75]
+            \node[rectangle split, rectangle split parts = 2,align=center,draw,inner sep=7pt] at(0,0) {%
+                \bfseries \underline{objektname : Klassenname}\nodepart{two}
+                    attributA = <(aktueller) Wert> \\
+                    attributB = <(aktueller) Wert> \\
+                    \(\vdots\)
+            };
+        \end{tikzpicture}
+    \end{center}\vfill\hbox{}
+\end{frame}
+
+\begin{frame}{UML, Sequenzdiagramme}
+    \begin{itemize}[<+(1)->]
+        \item Bilden den Nachrichtenaustausch ab.\pause{} Das Senden und Empfangen wird auf Basis von Ereignissen ausgelöst,\pause{} diese rufen wiederrum Reaktionen hervor.
+        \item Die Nachrichten können jeweils synchron (durchgezogene Linie) oder asynchron (gestrichelte Linie) ausgetauscht werden.
+        \item Nachrichten selbst können Methodenaufrufe,\pause{} Rückgabewerte\pause{} oder externe Ereignisse sein (wie Zeitereignisse).
+        \item Der Zeitliche Ablauf wird hierbei durch \say{Lebenslinien} gekennzeichnet.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{UML, Sequenzdiagramme - ein Beispiel}
+    \begin{center}
+        \resizebox{0.6\linewidth}{!}{\begin{tikzpicture}
+            \begin{umlseqdiag}
+              \umlactor[class=Player]{playerA}
+              \umlcontrol[class=Server,x=6]{mainServer}
+              \begin{umlcall}[op={\bjava{createLobby("test")}}]{playerA}{mainServer}
+                \begin{umlcallself}[op={erstelle Lobby\ldots},op-style={right}]{mainServer}
+                \end{umlcallself}
+                \begin{umlfragment}[type=alt, inner xsep=5]
+                  \begin{umlcall}[op={\bjava{true /*:ws:success */}},type=return]{mainServer}{playerA}
+                  \end{umlcall}
+                  \umlfpart[error]
+                  \begin{umlcall}[op={\bjava{false /*:ws:failure */}},type=return]{mainServer}{playerA}
+                  \end{umlcall}
+                \end{umlfragment}
+              \end{umlcall}
+            \end{umlseqdiag}
+        \end{tikzpicture}}
+    \end{center}
+\end{frame}
+
+\subsection{Zahlensysteme}
+
+\begin{frame}{Darstellung ganzer Zahlen}
+    \begin{itemize}[<+(1)->]
+        \item Um Zahlen darzustellen verwenden wir ein \emph{Stellenwertsystem}.
+        \item Das bedeutet der Wert einer Ziffer ergibt sich nicht nur über die Basis\pause{} sondern auch über die Stelle.
+    \end{itemize}
+    \vfill
+    \begin{definition}<5->[Stellenwertsystem]
+        \pause{}Bei einer Basis \(b\) und einer Zahl \(z\) aus den Ziffern = \(z = z_{n} z_{n-1}\ldots z_0\)\pause{} ergibt sich ihr Wert im uns bekannten Dezimalsystem (\(b = 10\)) durch:\pause{} \[b_{10} = \sum_{i = 0}^{n} z_i \cdot b^i\]
+    \end{definition}
+    \vfill\hbox{}
+\end{frame}
+
+\begin{frame}{Darstellung ganzer Zahlen}
+\begin{itemize}[<+(1)->]
+    \item Die wichtigsten Basen für uns sind:\pause{} \(b = 2\) (dual/binär),\pause{} \(b = 8\) (Oktal)\pause{} und \(b = 16\) (Hexadezimal)
+    \item Im Hexadezimalsystem werden die Ziffern \(\geq 10\) durch die Buchstaben \(A\,\widehat{=}\,10\) bis \(F\,\widehat{=}\,15\) dargestellt.
+    \item Wir können eine Zahl aus dem Dezimalsystem in jedes andere konvertieren,\pause{} indem wir sukzessiv die Ziffern durch \say{\(\mod b\)} generieren\pause{} und die Zahl dann (ohne Rest) durch \(b\) dividieren.
+    \item Beispiel: \(z = 10\) soll ins Dualsystem konvertiert werden:\pause{} \begin{alignat*}{3}
+        \onslide<+->{10 & \div 2 = 5 \qquad&10 \mod 2 &= 0 \;(\leftarrow LSB) \\}
+        \onslide<+->{5 & \div 2 = 2 \qquad&5 \mod 2 &= 1 \\}
+        \onslide<+->{2 & \div 2 = 1 \qquad&2 \mod 2 &= 0 \\}
+        \onslide<+->{1 & \div 2 = 0 \qquad&1 \mod 2 &= 1 \;(\leftarrow MSB)\\}
+    \end{alignat*}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Darstellung ganzer Zahlen}
+\begin{itemize}[<+(1)->]
+    \item Dies ergibt: \(1010_{(2)}\).
+    \item Hinweis: es existieren weitere (schnelle) Konvertierungsverfahren,\pause{} die es zum Beispiel das Hexadezimalsystem direkt ins Dualsystem zu konvertieren.\pause{} Da hier jede Ziffer im Hexadezimalsystem \(4\) Bits einnimmt, geht die Konvertierung schneller:\pause{} \[
+        AFFE_{(16)} = \overbrace{1010}^{A}\;\overbrace{1111}^{F}\;\overbrace{1111}^{F}\;\overbrace{1110}^{E}\;{}_{(2)}\vspace*{-0.4cm}
+    \]
+\end{itemize}
+\Task{Zahlen konvertieren}%
+\begin{exercise}<+->[Zahlen konvertieren\Time{3}]
+    \onslide<+->{Konvertiere \(42_{(8)}\) zur Basis \(b = 16\), \(b = 3\) und ins Binärsystem.}
+\end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
+\begin{solve}<2->[Zahlen konvertieren]
+    \pause{}Konvertieren wir die Zahl zuerst ins Binärsystem (schnelle Konvertierung mit je \(3\) Bits),\pause{} dann von dort aus ins Hexadezimalsystem,\pause{} nun ins Dezimalsystem (nicht gefordert) und dann in \(b = 3\):\pause{} \begin{description}[b = 16]
+        \item[b = 2] \(42_{(8)} = \overbrace{100}^{4}\overbrace{010}^{2}\;{}_{(2)}\)
+        \item[b = 16] \(100010_{(2)} = \overbrace{2}^{10}\overbrace{2}^{0010}\;{}_{(16)}\) (wir füllen also links mit Nullen auf, wenn die Bits kein Vielfaches von vier sind)
+        \item[b = 10] \(4 \cdot 8^1 + 2 \cdot 8^0 = 32 + 2 = 34_{(10)}\)
+    \end{description}
+\end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
+\addtocounter{solve}{-1}
+\begin{solve}<1->[Zahlen konvertieren\hfill{}(Fortsetzung)]
+    \begin{description}[b = 16]
+        \item[b = 3] Wir verwenden sukzessive Division um von \(34_{(10)}\) auf \(b = 3\) zu kommen:\pause{} \begin{alignat*}{3}
+            \onslide<+->{34 & \div 3 = 11 \qquad&34 \mod 3 &= 1 \;(\leftarrow LSB) \\}
+            \onslide<+->{11 & \div 3 = 3 \qquad&11 \mod 3 &= 2 \\}
+            \onslide<+->{3 & \div 3 = 1 \qquad&3 \mod 3 &= 0 \\}
+            \onslide<+->{1 & \div 3 = 0 \qquad&1 \mod 3 &= 1 \;(\leftarrow MSB)\\}
+        \end{alignat*}
+        Damit ergibt sich:\pause{} \(42_{(8)} = 100010_{(2)} = 22_{(16)} = 34_{(10)} = 1021_{(3)}\)
+    \end{description}
+\end{solve}
+\end{frame}
+
+\subsection{Übungsaufgaben}
+
+\begin{frame}[fragile,c]{Funktion zu Rekursion}
+    \Task{Schleife zu Rekursion}
+    \begin{exercise}<2->[Schleife zu Rekursion\Time{4}]
+        Wandle folgenden Code in einen rekursiven Algorithmus um:\pause{}
+        \begin{plainjava}
+!*\onslide<3->*!public int ggT(int a, int b){
+!*\onslide<4->*!    while(b != 0){
+!*\onslide<5->*!        int tmp = b;
+!*\onslide<5->*!        b = a % b;
+!*\onslide<5->*!        a = tmp;
+!*\onslide<4->*!    }
+!*\onslide<6->*!    return a;
+!*\onslide<3->*!}
+        \end{plainjava}
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Funktion zu Rekursion -- Lösung}
+    \begin{solve}<2->[Schleife zu Rekursion]
+\begin{plainjava}
+public int ggT(int a, int b){
+    if(b == 0) return a;
+    else return ggt(b, a % b);
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Rekursiver Konverter}
+    \Task{Rekursion zur Konvertierung}
+    \begin{exercise}<2->[Rekursion zur Konvertierung\Time{4}]
+        \pause{}Schreibe einen rekursiven Algorithmus, der einen positiven Integer in seine Binärdarstellung (als \bjava{String}) verwandelt.\pause{}
+        Beispiel:\pause{}
+\begin{plainjava}
+|plain|int2bin|plain|(42) // :yields: 101010
+\end{plainjava}
+    \pause{}Hinweis: um eine Zahl in einen String zu konvertieren kann Konkatenation,\pause{} sowie \bjava{String.valueOf(int)} verwendet werden.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Funktion zu Rekursion -- Lösung}
+    \begin{solve}<2->[Schleife zu Rekursion]
+\begin{plainjava}
+!*\onslide<3->*!public String |plain|int2bin|plain|(int num){
+!*\onslide<4->*!    if(num < 2) return String.valueOf(num);
+!*\onslide<5->*!    return |plain|int2bin|plain|(num / 2) + String.valueOf(num % 2);
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Rechenaufwand berechnen}
+    \begin{exercise}<2->[Rechenaufwand berechnen\Time{6}]
+        \pause{}Wie viele Rechenschritte benötigt das folgende Verfahren einmal im \emph{worst-} und im \emph{best-case}? Gib jeweils auch die \O-Notation an: \pause{}
+\begin{plainjava}
+int getDistance(String a, String b){
+    if(a == null || b == null) return -1;
+    if(a.length() != b.length()) return -1;
+    int dist = 0x0;
+    for(int i = 0b0; i < a.length(); i++)
+        if(a.charAt(i) != b.charAt(i))
+            dist++;
+    return dist;
+}
+\end{plainjava}
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
+    \begin{solve}<2->[Rechenaufwand berechnen]
+    \pause{}Handeln wir zuerst den \emph{best-case} ab.\pause{} Hier ist der String \bjava{a} \bjava{null} und die erste \bjava{if}-Bedingung terminiert mit \bjava{-1}.\pause{} Wir haben also im \emph{best-case} mit einem Aufwand von einem Vergleich und damit: \(\O(1)\).\pause{} (Auch wenn dieser \emph{best-case} relativ sinnfrei ist.\pause{} Was wäre denn der \emph{best-case} bei einer \say{gültigen} Eingabe\pause{} (also zwei gleichlangen Strings, die nicht \bjava{null} sind)?)\pause{} Kommen wir nun zum \emph{worst-case}:
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<1->[Rechenaufwand berechnen\hfill{}(Fortsetzung)]
+\begin{plainjava}[language=xJava]
+int getDistance(String a, String b){
+    if(|vgl|a == null|vgl| || |vgl|b == null|vgl|) return -1;
+    if(|vgl|a.length() != b.length()|vgl|) return -1;
+    !**!|zws|int dist = 0x0;|zws|
+    for(|zws|int i = 0b0;|zws| |vgl|i < a.length();|vgl| |inc|i++|inc|)
+        if(|vgl|a.charAt(i) != b.charAt(i)|vgl|)
+            !**!|inc|dist++|inc|;
+    return dist;
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<1->[Rechenaufwand berechnen\hfill{}(Fortsetzung)]
+        \pause{}Sei die Länge von \bjava{a} durch \(n\) notiert (\bjava{a.length()}\(\widehat{=} n\))
+\begin{multicols}{2}
+    \begin{enumerate}[<+(1)->]
+        \item \bjava[language=xJava]{|zws|Zuweisungen|zws|}\,: \(2\)
+        \item \bjava[language=xJava]{|vgl|Vergleiche|vgl|}\,: \(3 + n + n + 1\)
+        \item \bjava[language=xJava]{|inc|Inkrementierungen|inc|}\,: \(n+n\)
+        \item \bjava[language=xJava]{|dec|Dekrementierungen|dec|}\,: \(0\)
+    \end{enumerate}
+\end{multicols}
+    \pause{}Insgesamt ergibt sich damit: \((2) + (4 + 2n) + (2n) + (0) = 6 + 4n\).\pause{} Dieser Rechenaufwand liegt in \(6 + 4n \in \O(n)\).\smallskip\newline\pause{}Hinweis:\pause{} Der Vergleich im Kopf einer \bjava{for}-Schleife wird einmal öfters ausgeführt,\pause{} als die \bjava{for}-Schleife selbst.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Komplexitätsklassen ordnen}
+    \begin{exercise}<2->[Komplexitätsklassen ordnen\Time{4}]
+        \pause{}Ordne die folgenden Komplexitätsklassen ohne Beweis, von der am geringsten skalierenden zur am stärksten skalierenden.\pause{}
+        \begin{multicols}{3}
+            \begin{enumerate}[<+(1)->]\widei
+                \item \(\O(n \cdot \log(n^2))\)
+                \item \(\O(\frac{n}{12}) + \O(n^3)\)
+                \item \(\O(4^n)-\O(2^n)\)
+                \item \(\O(\frac{n!}{n})\)
+                \item \(\O(14n+12)\)
+            \end{enumerate}
+        \end{multicols}
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
+    \begin{solve}<2->[Komplexitätsklassen ordnen]
+        \pause{}Es ergibt sich: \begin{enumerate}[<+(1)->]
+            \item \(\O(14n+12) = \O(n)\)
+            \item \(\O(n \cdot \log(n^2)) = \O(n \cdot 2 \cdot \log(n)) = \O(n \log n)\)
+            \item \(\O(\frac{n}{12}) + \O(n^3) = \O(n^3)\)
+            \item \(\O(4^n) - \O(2^n) = \O(4^n - 2^n) = \O(4^n)\)
+            \item \(\O(\frac{n!}{n}) = \O((n-1)!) = \O(n!)\)
+        \end{enumerate}
+        \pause{}Eine derartige Kategorisierung kann auch genauer präzisiert werden.
+    \end{solve}
+\end{frame}

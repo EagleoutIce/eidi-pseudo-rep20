@@ -1,0 +1,251 @@
+\section{Theoretische Grundlagen}
+\subsection{Der Algorithmusbegriff}
+\begin{frame}{Was ist ein Algorithmus?}
+    \pause{}
+    \begin{definition}[Algorithmus]
+        \pause{}Ein \emph{Algorithmus} ist eine \emph{eindeutige Handlungsvorschrift} zur Lösung eines Problems.
+    \end{definition}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Es existieren verschiedene Darstellungsformen: \begin{itemize}
+            \item Textuell \pause(1. Tue dies, 2. Tue das, 3. Falls \(X\)\ldots)
+            \item Grafisch \pause(Instruktionsabläufe, Graphen, Grafiken, \ldots)
+            \item Pseudocode
+        \end{itemize}
+        \item Klassische Alltagsbeispiele:\pause{} (Koch-)Rezepte,\pause{} Gebrauchsanleitungen,\pause{} \ldots
+    \end{itemize}
+\end{frame}
+
+\subsection{Algorithmen analysieren}
+\begin{frame}{Algorithmuseigenschaften}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Zu Beginn gilt es einige Begriffe zu klären: \begin{description}[Elementaroperation]
+            \item[Prozess] Die Ausführung der Schritte eines Algorithmus
+            \item[Prozessor] Der Ausführende (Mensch, Computer, \ldots)
+            \item[Elementaroperation] Eine einzelne, eindeutige Handlung.
+        \end{description}
+        \item Ein Algorithmus besitzt einige Eigenschaften: \begin{description}[Ausführbarkeit]
+            \item[Ausführbarkeit] Die Anleitung muss ausführ- und reproduzierbar sein.
+            \item[Endlichkeit] Der gesamte Algorithmus muss mit endlich viel Text beschrieben werden können.
+            \item[Termination] Der Algorithmus muss nach endlich vielen Schritten zum Ende kommen.
+            \item[Verarbeitung] Ein Algorithmus erhält Eingabeobjekte \(E\),\pause{} hält lokale Daten \(D\)\pause{} und erzeugt Ausgabedaten \(A\).
+        \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Eigenschaften für die Analyse}
+    \twosplit{%
+    \begin{block}<2->{Korrektheit}
+        \onslide<3->{Ein Algorithmus ist korrekt, wenn er für jede (definierte) Eingabe, die korrekte Ausgabe erzeugt.}
+    \end{block}\bigskip
+    \begin{block}<6->{Partielle Korrektheit}
+        \onslide<7->{Wenn der Algorithmus terminiert, ist er korrekt.}
+    \end{block}
+    }{%
+    \begin{block}<4->{Robust}
+        \onslide<5->{Ein Algorithmus ist (maximal) robust, wenn er falsche Eingabe erkennen und abfangen kann.}
+    \end{block}\bigskip
+    \begin{block}<8->{Totale Korrektheit}
+        \onslide<9->{Der Algorithmus ist partiell korrekt und terminiert.}
+    \end{block}
+    }
+\end{frame}
+
+\begin{frame}{Eigenschaften für die Analyse}
+    \twosplit{%
+    \begin{block}<2->{Determinismus}
+        \onslide<3->{Der Ablauf des Algorithmus ist \emph{eindeutig}. Für jede Anweisung folgt bei gleichen Vorraussetzungen dieselbe.}
+    \end{block}
+    }{%
+    \begin{block}<4->{Determiniertheit}
+        \onslide<5->{Die selben Eingabedaten erzeugen immer die selben Ausgabedaten.}
+    \end{block}
+    }\bigskip
+    \begin{itemize}
+        \item<6-> Die Begriffe sind zu unterscheiden!
+        \item<7-> So können bei einem Algorithmus verschiedene Wege zum selben Ziel führen.
+        \item<8-> (Sinnfreies) Beispiel: \onslide<9->{Der Algorithmus kann jedes Element eines Arrays quadrieren. \onslide<10->{Die Reihenfolge wählt er zufällig aus!}}
+        \item<11-> Dieser Algorithmus \emph{determiniert}, \onslide<12->{ist aber \emph{nicht-deterministisch}!}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Schema eines Algorithmus}
+    \onslide<2->{
+    \begin{figure}
+        \begin{tikzpicture}
+            \node[block] (A) at(0,0) {Algorithmus};
+            \node (V) at(-5,0) {Vorbedingung};
+            \node (N) at(5,0) {Nachbedingung};
+            \draw[link] (V) edge (A) (A) edge (N);
+        \end{tikzpicture}
+    \end{figure}}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Ein Algorithmus benötigt (formal) eine: \begin{description}[iV]
+            \item[V] Vorbedingung (wie \say{positive ganze Zahl})
+            \item[N] Nachbedingung (wie \say{negative Fließkommazahl})
+        \end{description}
+        \item Algorithmen fundieren auf einem \emph{Problem} der realen Welt und werden durch Abstraktion formuliert.
+        \item (Java-)Programme sind eine Darstellung von Algorithmen,\pause{} die von Maschinen interpretiert und realisiert werden.
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{Schema eines Algorithmus}
+    \onslide<2->{
+    \begin{figure}
+\begin{tikzpicture}[
+    every node/.style={transform shape},block/.append style={minimum width={3.5cm}},
+    scale=0.75]
+    \node[block] at(0,0) (PM)  {Problem};
+    \node[block] at(0,-3) (AL)  {Algorithmus};
+    \node[block] at(0,-5) (PR)  {Programm};
+    \node[block] at(0,-7) (MA)  {Maschine};
+    \draw[link] (PM) -- (AL);
+    \draw[link] (AL) -- (PR);
+    \draw[link] (PR) -- (MA);
+    \node[left=0.5cm] at (0,-1.5) {Abstraktion};
+    \node[left=0.5cm] at (0,-4) {Implementierung};
+    \node[left=0.5cm] at (0,-6) {Realisierung};
+
+    \node[right,align=left,text width=5cm] at (0.5,-1.45) {\begin{itemize}
+        \item Problemanalyse
+        \item Funktionale\\ Spezifikation
+        \item Algorithmenentwurf
+    \end{itemize}
+    };
+
+    \node[right,align=left,text width=5cm] at (0.5,-3.85) {\begin{itemize}
+             \item Darstellung in\\Programmiersprache
+         \end{itemize}
+    };
+
+    \node[right,align=left,text width=5cm] at (0.5,-5.85) {\begin{itemize}
+            \item Umsetzung in\\ Maschinenbefehle
+        \end{itemize}
+    };
+    % \node[right,align=left] at (0,-4) {\begin{itemize}
+    %         \item Darstellung in\\Programmiersprache
+    %     \end{itemize}
+    %     };
+    % \node[right,align=left] at (0,-6) {\begin{itemize}
+    %         \item Umsetzung in\\ Maschinenbefehle
+    %     \end{itemize}
+    %     };
+\end{tikzpicture}
+    \end{figure}}
+\end{frame}
+
+\subsection{Konzeptionalisierung}
+
+\begin{frame}{Wie ein Programm entsteht}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Ein Programm selbst fällt nicht einfach aus dem Wolken (leider).
+        \item Grundlegend gliedert man (im Softwareengineering) die Konstruktion in sechs Phasen.
+        \item Die sechste Phase (Dokumentation) unterscheidet sich in sofern,\pause{} als dass sie Parallel zu den anderen stets aktiv ist.
+        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code, zu verschiedenen Lösungsansätzen,\pause{} sowie dem Ablauf selbst mit ein!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Wie ein Programm entsteht}
+    \begin{center}
+        \resizebox{0.95\linewidth}{!}{
+        \begin{tikzpicture}
+            \onslide<2->{\node[iblock,minimum width=3cm] (init) at (-5.5,0) {Problem};}
+            \foreach[count=\i,remember=\i as \li (initially init)] \l in {Analyse, Entwurf, Implementierung, Test \& Revision} {
+                \pgfmathsetmacro\ovlskip{int(\i+2)};
+                \onslide<\ovlskip->{
+                \node[block,minimum width=5cm] (\i) at(0,-1.6*\i+1.6) {\l};
+                \draw[link] (\li) -- (\i);}
+            }
+            \onslide<3->{
+                \node[above right=0.75cm,yshift=-0.5cm,align=left,font=\scriptsize,text width=4.25cm] (d1) at (1.north east) {Untersuche Problem, in der Regel in Zusammenarbeit mit Nicht-Informatikern.};
+                \draw[densely dashed] (d1.west) -- (1.east);
+            }
+            \onslide<4->{
+                \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus, kreativer Prozess (beantwortet auch Fragen wie: \say{gibt es das schon?})};
+                \draw[densely dashed] (d2.west) -- (2.east);
+            }
+            \onslide<5->{
+                \node[right=0.75cm,align=left,font=\scriptsize,text width=4.25cm] (d3) at (3.north east) {Übersetze Algorithmus in Programmiersprache};
+                \draw[densely dashed] (d3.west) -- (3.east);
+            }
+            \onslide<6->{
+                \node[left=0.75cm,yshift=0.25cm,align=right,font=\scriptsize,text width=4.25cm] (d4) at (4.north west) {Prüft das Programm auf (logische und technische) Fehler.\\[0.25em] Diese Phase kann im Allgemeinen nur die Anwesenheit und nicht die Abwesenheit von Fehlern aufzeigen.};
+                \draw[densely dashed] (d4.east) -- (4.west);
+            }
+            \onslide<7->{
+                \node[iblock,minimum width=3cm] (exit) at (5.5,-3*1.6) {Programm};
+            \draw[link] (4) -- (exit);
+            }\onslide<1->{}
+        \end{tikzpicture}}
+    \end{center}
+\end{frame}
+
+\subsection{Übungsaufgaben}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Algorithmus beschreiben}
+    \begin{exercise}<2->[Algorithmus beschreiben \Time{2}]
+        Beschreibe einen Algorithmus, der das maximale Element einer Datenmenge bestimmt.\pause{}
+        \textit{Hinweis: Auf den Elementen muss keine numerische Ordnung definiert sein.}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Algorithmus beschreiben]
+        \pause{}Wir betrachten den textuellen Ansatz: \begin{enumerate}[<+(1)->]
+            \item Keine Eingabedaten?\pause{} Fertig.
+            \item Setze Maximum auf erstes Element der Eingabedaten.
+            \item Tue für jedes weitere Element der Eingabedaten: \begin{enumerate}
+                \item Ist das zu betrachtende Element \say{größer} als das bisherige Maximum? \begin{description}
+                    \item[Ja] ersetze Maximum durch dieses Element
+                    \item[Nein] tue nichts
+                \end{description}
+            \end{enumerate}
+        \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Charakteristika eines Algorithmus}
+    \begin{exercise}<2->[Charakteristika \Time{2}]
+        Ist der folgende Algorithmus (total) korrekt?\pause{}
+        \begin{plainjava}
+public static int simpleMod(int a, int b){
+    while(a >= b)
+        a -= b;
+    return a;
+}
+        \end{plainjava}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Charakteristika]
+       \pause{}Der Algorithmus ist nicht total korrekt.\pause{} So liefert er für ein negatives \T{b} kein korrektes Ergebnis,\pause{} da hier \T{a -= b} zu einem Überlauf führt.\pause{}\par{}
+       Ferner ist er auch nicht partiell korrekt.\pause{} So liefert er für ein negatives \T{a} bei einem positiven \T{b} einfach nur \T{a} zurück.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Determinismus und Determiniertheit}
+    \begin{exercise}<2->[Deterministische Determiniertheit \Time{2}]
+        \pause{}Nenne je ein Beispiel für einen Algorithmus der:
+        \begin{enumerate}[<+(1)->]
+            \item[i)] nicht-deterministisch ist und determiniert.
+            \item[ii)] sowohl deterministisch ist, als auch determiniert.
+        \end{enumerate}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Deterministische Determiniertheit]
+        \pause{}\begin{enumerate}[<+(1)->]
+            \item[i)] Suche, ob ein Element in den Eingabedaten vorkommt.\pause{} Die Elemente werden in einer zufälligen Reihenfolge verglichen.
+            \item[ii)] Ein Algorithmus der eine Zahl verdoppelt, in dem er sie mit \(2\) multipliziert.
+        \end{enumerate}
+    \end{solve}
+\end{frame}

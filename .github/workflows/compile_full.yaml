@@ -1,0 +1,43 @@
+name: Compile all slides (noanim, anim, noanim_reduced, anim_reduced)
+
+'on':
+  push:
+   tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v2
+      with:
+        lfs: true
+        submodules: true
+    - name: Setup Python environment for sltx
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Setup and run sltx-install
+      run: |
+        pip install sltx
+        echo "tx-default" | sltx docker
+    - name: Compile the Documents
+      run: |
+        sltx compile --root --profile "tx-default" "noanim-eidi-tutorium-rep.tex"
+        sltx compile --root --profile "tx-default" "eidi-tutorium-rep.tex"
+    - name: Commit
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+          cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
+          cp eidi-tutorium-rep.pdf animated-slides-eidi-rep.pdf
+        git add -f "slides-eidi-rep.pdf" "animated-slides-eidi-rep.pdf"
+        git commit -m "Full recompilation"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true

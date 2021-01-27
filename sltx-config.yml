@@ -1,4 +1,6 @@
 default_files:
   - eidi-tutorium-rep
   - noanim-eidi-tutorium-rep
-default_threads: 2
+  - short-eidi-tutorium-rep
+  - noanim-short-eidi-tutorium-rep
+default_threads: 4
