@@ -6,11 +6,11 @@ Quelldateien für den Foliensatz meines inoffiziellen Eidi-Repetitoriums.
 
 ## Der Foliensatz
 
-Ein Kompilat (ohne Animation) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/slides-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/slides-eidi-rep.pdf) befinden.
+Der Foliensatz (ohne Animation) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/slides-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/slides-eidi-rep.pdf) befinden.
 
 ## Weitere Varianten
 
-Ein Kompilat (mit Animation) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/animated-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/animated-eidi-rep.pdf) befinden.
+Der Foliensatz (mit Animation) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/animated-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/animated-eidi-rep.pdf) befinden.
 
 Die Kurzversion (ohne Animation) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/short-slides-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/short-slides-eidi-rep.pdf) befinden.
 

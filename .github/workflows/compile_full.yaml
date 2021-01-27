@@ -1,4 +1,4 @@
-name: Compile all slides (noanim, anim, noanim_reduced, anim_reduced)
+name: Compile all slides
 
 'on':
   push:
