@@ -33,11 +33,11 @@ jobs:
         git config --local user.name "GitHub Action"
 
         cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
-        cp eidi-tutorium-rep.pdf animated-slides-eidi-rep.pdf
+        cp eidi-tutorium-rep.pdf animated-eidi-rep.pdf
         cp noanim-short-eidi-tutorium-rep.pdf short-slides-eidi-rep.pdf
-        cp short-eidi-tutorium-rep.pdf short-animated-slides-eidi-rep.pdf
+        cp short-eidi-tutorium-rep.pdf short-animated-eidi-rep.pdf
 
-        git add -f "slides-eidi-rep.pdf" "animated-slides-eidi-rep.pdf" "short-slides-eidi-rep.pdf" "short-animated-slides-eidi-rep.pdf"
+        git add -f "slides-eidi-rep.pdf" "animated-eidi-rep.pdf" "short-slides-eidi-rep.pdf" "short-animated-eidi-rep.pdf"
         git commit -m "Full recompilation"
     - name: Push changes
       uses: ad-m/github-push-action@master
