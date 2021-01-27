@@ -72,6 +72,7 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX{} und Ti\texti
 \input{parts/7_java_advanced}
 
 \begin{frame}\relax
+    \pdfbookmark[0]{Ein Wort zum Abschluss}{wortzumabschluss}%
     \usebeamercolor{title}%
     \vskip1em
     {\centering\usebeamerfont{title}\MakeUppercase{Ein Wort zum Abschluss}\par}
