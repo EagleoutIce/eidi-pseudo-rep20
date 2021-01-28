@@ -500,9 +500,9 @@ public static void bubbleSort(int[] arr) {
         \item Backtracking ist eine rekursive Lösungsstrategie.
         \item Das Problem wird von einer Teillösung aus erweitert, bis man auf die Gesamtlösung stößt,\pause{} oder in eine \say{Sackgasse} gelangt (trial and error), in diesem Fall probiert man eine andere Erweiterung.
         \item Beispiele: \begin{itemize}
-            \item Wegfindung im Labyrinth.\pause{} Wir beginnen mit dem Startfeld und gehen solange einen Weg entlang bis wir am Zeil ankommen.\pause{} Kommen wir an eine Sackgasse springen wir zur letzten Position zurück an der es noch einen anderen Weg gab.
-            \item Lösung eines Sudoku.\pause{} Wir beginnen mit dem Sudoku und fügen in das erste freie Feld eine der möglichen Zahlen ein.\pause{} Wir verfahren so, bis alle Felder gefüllt sind, oder wir in ein Feld keine Zahl mehr eintragen können.\pause{} In diesem Fall springen wir zum letzen Punkt zurück, an dem wir noch andere Zahlen eintragen konnten.
-            \item Rucksackproblem, \(8\)-Damen Problem, \ldots
+            \item \emph{Wegfindung im Labyrinth:}\pause{} Gehe vom Startfeld aus solange einen Weg entlang, bis am Ziel angekommen.\pause{} Im Fall einer Sackgasse: springe zur letzten Position zurück, an der es noch einen anderen Weg gab.
+            \item \emph{Lösung eines Sudoku.}\pause{} Füge in erstes freies Feld eine der dort möglichen Zahlen ein.\pause{} Verfahre so, bis alle Felder gefüllt sind oder für ein Feld keine Zahl mehr möglich ist.\pause{} In diesem Fall: springe zum letzten Punkt zurück, an dem noch andere Zahlen möglich sind. Probiere weiter.
+            \item Rucksackproblem, 8-Damen Problem, \ldots
         \end{itemize}
     \end{itemize}
 \end{frame}

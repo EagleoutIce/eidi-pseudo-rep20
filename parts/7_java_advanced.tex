@@ -101,7 +101,7 @@ class Dozent extends Mensch {
     \begin{itemize}[<+(1)->]
         \item Das Prinzip erlaubt uns Polymorphie.\pause{} So ist folgender Code valide:\pause{}
 \begin{plainjava}
-Mensch herbert = new Student(19, 184.12f, "herbert", 123456789);
+Mensch herbert = new Student(19, 184.12f, "herbert", 12345);
 \end{plainjava}
         \pause{}da die Klasse \bjava{Student} von \bjava{Mensch} \emph{erbt}.\pause{} Wir können allerdings nicht auf die Zusatzfunktionalitäten von \bjava{Student} zugreifen.
         \item Ob \bjava{herbert} auch wirklich ein Student ist,\pause{} können wir mit \bjava{instanceof} prüfen:\pause{}
@@ -120,7 +120,7 @@ herbert instanceof Dozent // :yields: false
         \widei
         \item Das Prinzip der Vererbung ist integral für die Objektorientierung und unglaublich mächtig.
         \item Methoden der Superklasse lassen sich überladen (gleicher Name, andere Signatur),\pause{} als auch überschreiben (gleiche Signatur)
-        \item Vererbung sollte nur dann verwendet werden,\pause{} wenn es sich wirklich um eine Erweiterung handelt und nicht wenn die Klasse nur die Eigenschaften (logisch) besitzt.\pause{} Beispiel: \bjava{Auto} sollte nicht von \bjava{Motor} erben, da es zwar einen besitzt, aber kein Motor ist.
+        \item Vererbung sollte nur dann verwendet werden,\pause{} wenn es sich wirklich um eine Erweiterung handelt und nicht wenn die Klasse nur die Eigenschaften (logisch) besitzt.\pause{} Beispiel: \solGet{keywordC}{Auto} sollte nicht von \solGet{keywordC}{Motor} erben, da es zwar einen besitzt, aber kein Motor ist.
     \end{itemize}
 \end{frame}
 
@@ -177,8 +177,8 @@ herbert instanceof Dozent // :yields: false
     \begin{itemize}[<+(1)->]
         \item Attribute werden Java \emph{statisch} und Methoden \emph{dynamisch} gebunden.
         \item Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
-            \item[statisch] Nehmen wir an, wir haben zwei Klassen \bjava{A} und \bjava{B}, wobei \bjava{B} von \bjava{A} erbt.\pause{} Beide deklarieren die Variable \bjava{i}, in \bjava{A} wird sie auf \(32\), in \bjava{B} auf \(42\) gesetzt.\pause{} Es ergibt sich:
-\begin{plainjava}
+            \item[statisch] Nehmen wir an, wir haben zwei Klassen \solGet{keywordC}{A} und \solGet{keywordC}{B}, wobei \solGet{keywordC}{B} von \solGet{keywordC}{A} erbt.\pause{} Beide deklarieren die Variable \bjava{i}, in \solGet{keywordC}{A} wird sie auf \(32\), in \solGet{keywordC}{B} auf \(42\) gesetzt.\pause{} Es ergibt sich:
+\begin{plainjava}[morekeywords={[3]{A,B}}]
 !*\onslide<+->*!A a = new A();
 !*\onslide<+->*!B b = new B();
 !*\onslide<+->*!A c = new B();
@@ -316,7 +316,7 @@ try {
 \begin{frame}[fragile]{Behandeln von Fehlern}
     \begin{itemize}[<+(1)->]
         \widei
-        \item bei mehreren \bjava{catch}-Blöcken wird von oben nach unten ein passender gesucht.\pause{} Erben die Fehler also voneinander (so wie alle von \bjava{Exception}),\pause{} sollten die \say{allgemeineren} weiter unten stehen.
+        \item Bei mehreren \bjava{catch}-Blöcken wird von oben nach unten ein passender gesucht.\pause{} Erben die Fehler also voneinander (so wie alle von \bjava{Exception}),\pause{} sollten die \say{allgemeineren} weiter unten stehen.
         \item Beispiel:\pause{}
 \begin{plainjava}
 try {
@@ -342,10 +342,43 @@ try {
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Statische/Dynamische Bindung]
-        Die \emph{statische} Bindung verwendet Java bei Attributen. Sie wird zur Kompilierzeit aufgelöst und sorgt dafür, dass in Subklassen überschriebene Variablen stets die Klasse der Variable, die auf das Objekt zeigt bestimmt welche Ausprägung des Attributs verwendet wird.\medskip\newline%
+        Die \emph{statische} Bindung verwendet Java bei Attributen. Sie wird zur Kompilierzeit aufgelöst und sorgt dafür, dass in Subklassen überschriebene Variablen stets die Klasse der Variable, die auf das Objekt zeigt bestimmt, welche Ausprägung des Attributs verwendet wird.\medskip\newline%
         \pause{}Die \emph{dynamische} Bindung verwendet Java bei Methoden. Sie wird zur Laufzeit aufgelöst und bedeutet, dass im Falle des Überschreibens von Methoden einer Subklasse die Klasse des Objekts entscheidet welche verwendet wird und nicht die der Variable die darauf zeigt.
     \end{solve}
 \end{frame}
+
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Bindungen Praktisch}
+    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]
+\begin{plainjava}[morekeywords={[3]{A,B}},aboveskip=0pt,belowskip=0pt]
+public class A {
+    int a = 0; void x(int a) { this.a = 2 - a; }
+    static class B extends A
+        { int a = 1; void x(int a) { this.a = 2 * a; } }
+
+    public static void main(String[] args) {
+        A a = new A(); a.x(4);
+        B b = new B(); b.x(4);
+        A c = new B(); c.x(4);
+        System.out.format("%d %d %d", a.a, b.a, c.a);
+    }
+}
+\end{plainjava}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Was liefert dieser Code?]
+        Er liefert \say{\bjava{-2 8 0}}. Warum?
+        \begin{description}[XX:]
+            \item[-2] Es wird \bjava[morekeywords={[3]{A,B}}]{A::x} aufgerufen, damit ist \T{a}: \(2 - 4 = -2\).
+            \item[8] Es wird \bjava[morekeywords={[3]{A,B}}]{B::x} aufgerufen, damit ist \T{a}: \(2 \cdot 4 = 8\).
+            \item[0] Da Attribute statisch gebunden werden, verändert \bjava[morekeywords={[3]{A,B}}]{B::x} \emph{nicht} das \T{a} in \bjava[morekeywords={[3]{A,B}}]{A} und dieses bleibt damit beim initialen Wert: \(0\).
+        \end{description}
+    \end{solve}
+\end{frame}
+
 
 
 \begin{frame}[c,fragile]{Übungsaufgabe}
@@ -394,7 +427,7 @@ public class A {
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Fehler finden, V\hfill{}(Fortsetzung)]
         \begin{enumerate}
-            \item Das \bjava{final} ist an sich nicht Falsch, dann kann aber \bjava{C} nicht mehr von \bjava{B} erben.
+            \item Das \bjava{final} ist an sich nicht falsch, dann kann aber \bjava{C} nicht mehr von \bjava{B} erben.
             \item Der Bezeichner \bjava{this} darf nicht innerhalb eines Konstruktoraufrufs verwendet werden.
             \item In der Methode \bjava{_$get$} genügt nicht die Signatur,\pause{} Java erwartet (nicht-bindende) Variablenbezeichner.
         \end{enumerate}
