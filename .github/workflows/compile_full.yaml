@@ -2,8 +2,9 @@ name: Compile all slides
 
 'on':
   push:
-   tags:
-      - 'v*'
+    branches:
+    - master
+    - main
   workflow_dispatch:
 
 jobs:
