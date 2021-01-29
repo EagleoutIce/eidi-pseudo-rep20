@@ -350,12 +350,16 @@ try {
 
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Bindungen Praktisch}
-    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]
+    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]\lstfs{9}
 \begin{plainjava}[morekeywords={[3]{A,B}},aboveskip=0pt,belowskip=0pt]
 public class A {
-    int a = 0; void x(int a) { this.a = 2 - a; }
-    static class B extends A
-        { int a = 1; void x(int a) { this.a = 2 * a; } }
+    int a = 0;
+    void x(int a) { this.a = 2 - a; }
+
+    static class B extends A {
+        int a = 1;
+        void x(int a) { this.a = 2 * a; }
+    }
 
     public static void main(String[] args) {
         A a = new A(); a.x(4);
