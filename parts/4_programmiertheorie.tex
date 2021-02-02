@@ -104,8 +104,7 @@
     \end{itemize}
 \end{frame}
 
-\fullsubsection{Laufzeitkomplexität}
-\ifull
+\subsection{Laufzeitkomplexität}
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
@@ -188,7 +187,6 @@ static int methode(int n) {
         \end{center}
     \end{itemize}
 \end{frame}
-\fi
 
 \subsection{Modellierung durch UML}
 
@@ -357,12 +355,12 @@ static int methode(int n) {
 \begin{itemize}[<+(1)->]
     \item Die wichtigsten Basen für uns sind:\pause{} \(b = 2\) (dual/binär),\pause{} \(b = 8\) (Oktal)\pause{} und \(b = 16\) (Hexadezimal)
     \item Im Hexadezimalsystem werden die Ziffern \(\geq 10\) durch die Buchstaben \(A\,\widehat{=}\,10\) bis \(F\,\widehat{=}\,15\) dargestellt.
-    \item Wir können eine Zahl aus dem Dezimalsystem in jedes andere konvertieren,\pause{} indem wir sukzessiv die Ziffern durch \say{\(\mod b\)} generieren\pause{} und die Zahl dann (ohne Rest) durch \(b\) dividieren.
+    \item Wir können eine Zahl aus dem Dezimalsystem in jedes andere konvertieren,\pause{} indem wir sukzessiv die Ziffern durch \say{\({}\bmod b\)} generieren\pause{} und die Zahl dann (ohne Rest) durch \(b\) dividieren.
     \item Beispiel: \(z = 10\) soll ins Dualsystem konvertiert werden:\pause{} \begin{alignat*}{3}
-        \onslide<+->{10 & \div 2 = 5 \qquad&10 \mod 2 &= 0 \;(\leftarrow LSB) \\}
-        \onslide<+->{5 & \div 2 = 2 \qquad&5 \mod 2 &= 1 \\}
-        \onslide<+->{2 & \div 2 = 1 \qquad&2 \mod 2 &= 0 \\}
-        \onslide<+->{1 & \div 2 = 0 \qquad&1 \mod 2 &= 1 \;(\leftarrow MSB)\\}
+        \onslide<+->{10 & \div 2 = 5 \qquad&10 \bmod 2 &= 0 \;(\leftarrow LSB) \\}
+        \onslide<+->{5 & \div 2 = 2 \qquad&5 \bmod 2 &= 1 \\}
+        \onslide<+->{2 & \div 2 = 1 \qquad&2 \bmod 2 &= 0 \\}
+        \onslide<+->{1 & \div 2 = 0 \qquad&1 \bmod 2 &= 1 \;(\leftarrow MSB)\\}
     \end{alignat*}
 \end{itemize}
 \end{frame}
