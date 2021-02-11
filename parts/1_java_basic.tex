@@ -250,11 +250,45 @@ private static String generateWelcomeMessage(String name, int age,
     \begin{itemize}[<+(1)->]
         \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{description}[protected]
             \item[private] Zugriff ist nur innerhalb der Klasse erlaubt.
-            \item[\say{default}] gibt man nichts an, so kann die Variable von Überall im Paket erreicht werden.
-            \item[protected] ist sichtbar im gesamten Paket sowie in allen Kindklassen (\hyperlink{mrk:Vererbung}{Vererbung}).
+            \item[\say{default}] gibt man nichts an, so kann die Variable von Überall im Paket (\say{selber Ordner}) erreicht werden.
+            \item[protected] ist sichtbar im gesamten Paket sowie in allen Unterklassen (\hyperlink{mrk:Vererbung}{Vererbung}).
             \item[public] ist überall sichtbar (auch über Pakete hinweg).
         \end{description}
         \item Hinweis (Vorgriff):\pause{} Objekte einer Klasse können auch auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gültigkeitsbereiche -- Scopes}
+    \begin{itemize}[<+(1)->]
+        \item Es gibt vier \emph{Geltungsbereiche} (\textit{engl.} scopes) für Variablen.
+\begin{plainjava}[language=xJava]
+!*\onslide<3->*!|inc|public|inc| class Pinguin { // !*\solGet{comments}{\textbf{1.}}*! global
+!*\onslide<4->*!    !**!|inc|private|inc| int sozialversicherungsnummer; // !*\solGet{comments}{\textbf{2.}}*! Klasse
+!*\onslide<5->*!    !**!|inc|protected|inc| int watschelIndex; // !*\solGet{comments}{\textbf{3.}}*! geschützt
+!*\onslide<6->*!    !**!|inc|public|inc| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*!
+!*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: package
+!*\onslide<3->*!}
+\end{plainjava}
+    \item Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} und in anderem Paket. Sichtbarkeiten:\medskip\par\pause{}
+    {\def\y{\faCheckSquareO}\def\n{\hspace*{-1pt}\faSquareO}\scriptsize\begin{minipage}{0.45\linewidth}
+        \begin{tabular}{p{6em}ccccc}
+             \toprule
+                            & 1 & 2 & 3 & 4 & 5 \\
+            \midrule
+                \T{Pinguin} & \y & \y & \y & \y & \y \\
+                \T{Tiger}   & \y & \n & \y & \y & \y \\
+            \bottomrule
+        \end{tabular}
+            \end{minipage}\hfill\begin{minipage}{0.45\linewidth}
+        \begin{tabular}{p{6em}ccccc}
+                \toprule
+                            & 1 & 2 & 3 & 4 & 5 \\
+            \midrule
+                \T{Auto} & \y & \n & \n & \y & \n \\
+                \T{Felspingu} & \y & \n & \y & \y & \n \\
+            \bottomrule
+        \end{tabular}
+            \end{minipage}}
     \end{itemize}
 \end{frame}
 
