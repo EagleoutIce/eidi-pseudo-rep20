@@ -62,26 +62,26 @@
         \item In diesem Fall entsteht kein \say{linearer} Abstieg,\pause{} sondern vielmehr eine Baum-/Kaskadenartige Verzweigung.
         \item Beliebte Beispiele: Fibonacci, Binomialkoeffizient.
     \end{itemize}
-    \onslide<6->{
-        \vfill\hbox{}
-        \hfill\scalebox{0.75}{\begin{forest}
-            [f(12)
-                [f(11)
-                    [f(10)
-                        [\ldots]
-                        [\ldots]
-                    ]
-                    [f(9)
-                        [\ldots]
-                        [\ldots]
-                    ]
-                ]
-                [f(10)
-                    [\ldots]
-                    [\ldots]
-                ]
+    \onslide<6->{%
+\vfill\hbox{}
+\hfill\scalebox{0.75}{\begin{forest}
+    [f(12)
+        [f(11)
+            [f(10)
+                [\ldots]
+                [\ldots]
             ]
-        \end{forest}
+            [f(9)
+                [\ldots]
+                [\ldots]
+            ]
+        ]
+        [f(10)
+            [\ldots]
+            [\ldots]
+        ]
+    ]
+\end{forest}
     }}\vfill\hbox{}
 \end{frame}
 
@@ -243,37 +243,37 @@ static int methode(int n) {
 
 \begin{frame}[c]{UML, Klassendiagramme}
     \begin{center}
-        \onslide<2->{
-        \begin{tikzpicture}[scale=0.65, every node/.style={transform shape}]
-            \tikzumlset{fill class=white, fill note=white!20} % , font=\small\LILLYxlstTypeWriter
-            \umlclass[x=0,y=0,name=stud]{Student}{
-                {\umlstatic{+ studierendenzahl : int}}\\
-                {- name : String}\\
-                {- matrikelnummer : int}\\
-                {+ besuchtVorlesungen : String[5]}}{
-                    {+ Student (name : String, nummer : int)}\\
-                    {+ getName() : String}\\
-                    {+ getNummer() : int}\\
-                    {+ addVorlesung(String name) : void}\\
-                    {+ getVorlesungen() : String[5]}\\
-                    {+ removeVorlesung(String name) : void }}
-            \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2) -- ++(0,-1.92) node [black,midway, above,rotate=90,yshift=0.75cm] {Attribute};
-            \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=0.75cm] {Methoden};
-            \node at(0,3.25) [above] (kln) {Klassenname};
-            \draw[-latex] (kln) -- ++(0,-0.799);
-            {\node [right] at (4.5,1.82-1.54/2+0.9) {\parbox{9cm}{
-                {(\textbf{--}) steht für ein \bjava{private} Attribut}\\
-                {(\textbf{+}) für ein \bjava{public} Attribut}\\
-                {(\textbf{\#}) für ein \bjava{protected} Attribut}\\
-                {\bjava{static}-Komponenten werden unterstrichen.}}};
-            }
-            \onslide<3->{\draw [latex-] (4.15,1.85-1.3) -- ++(3,0) node[right] {\small bis zu 5 Vorlesungen};}
-            \onslide<4->{\umlclass[x=11,y=-2,name=gang]{Studiengang}{- name : String\\- prof : String}{ + Studiengang(name : String, prof : String)\\ + getName() : String\\ + getProfessor() : String};}
-            \only<5->{\umlassoc[mult1=0..3,pos1=0.965, mult2=*, pos2=0.2]{Student}{Studiengang};}
-            \onslide<6->{\draw [decorate,decoration={brace,amplitude=7pt,raise=4pt,mirror},yshift=0pt] (4.125,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-0.75cm] {\begin{minipage}{8cm}
-                \centering\scriptsize Ein Student kann bis zu 3 Studiengänge gleichzeitig besuchen, ein Studiengang kann von unendlich vielen Studenten besucht werden.
-            \end{minipage}};]}
-        \end{tikzpicture}}
+        \onslide<2->{%
+\begin{tikzpicture}[scale=0.65, every node/.style={transform shape}]
+    \tikzumlset{fill class=white, fill note=white!20} % , font=\small\LILLYxlstTypeWriter
+    \umlclass[x=0,y=0,name=stud]{Student}{
+        {\umlstatic{+ studierendenzahl : int}}\\
+        {- name : String}\\
+        {- matrikelnummer : int}\\
+        {+ besuchtVorlesungen : String[5]}}{
+            {+ Student (name : String, nummer : int)}\\
+            {+ getName() : String}\\
+            {+ getNummer() : int}\\
+            {+ addVorlesung(String name) : void}\\
+            {+ getVorlesungen() : String[5]}\\
+            {+ removeVorlesung(String name) : void }}
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2) -- ++(0,-1.92) node [black,midway, above,rotate=90,yshift=0.75cm] {Attribute};
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=0.75cm] {Methoden};
+    \node at(0,3.25) [above] (kln) {Klassenname};
+    \draw[-latex] (kln) -- ++(0,-0.799);
+    {\node [right] at (4.5,1.82-1.54/2+0.9) {\parbox{9cm}{
+        {(\textbf{--}) steht für ein \bjava{private} Attribut}\\
+        {(\textbf{+}) für ein \bjava{public} Attribut}\\
+        {(\textbf{\#}) für ein \bjava{protected} Attribut}\\
+        {\bjava{static}-Komponenten werden unterstrichen.}}};
+    }
+    \onslide<3->{\draw [latex-] (4.15,1.85-1.3) -- ++(3,0) node[right] {\small bis zu 5 Vorlesungen};}
+    \onslide<4->{\umlclass[x=11,y=-2,name=gang]{Studiengang}{- name : String\\- prof : String}{ + Studiengang(name : String, prof : String)\\ + getName() : String\\ + getProfessor() : String};}
+    \only<5->{\umlassoc[mult1=0..3,pos1=0.965, mult2=*, pos2=0.2]{Student}{Studiengang};}
+    \onslide<6->{\draw [decorate,decoration={brace,amplitude=7pt,raise=4pt,mirror},yshift=0pt] (4.125,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-0.75cm] {\begin{minipage}{8cm}
+        \centering\scriptsize Ein Student kann bis zu 3 Studiengänge gleichzeitig besuchen, ein Studiengang kann von unendlich vielen Studenten besucht werden.
+    \end{minipage}};]}
+\end{tikzpicture}}
     \end{center}
 \end{frame}
 
@@ -296,12 +296,12 @@ static int methode(int n) {
     \vfill\pause{}
     \begin{center}
         \begin{tikzpicture}[scale=0.75]
-            \node[rectangle split, rectangle split parts = 2,align=center,draw,inner sep=7pt] at(0,0) {%
-                \bfseries \underline{objektname : Klassenname}\nodepart{two}
-                    attributA = <(aktueller) Wert> \\
-                    attributB = <(aktueller) Wert> \\
-                    \(\vdots\)
-            };
+\node[rectangle split, rectangle split parts = 2,align=center,draw,inner sep=7pt] at(0,0) {%
+    \bfseries \underline{objektname : Klassenname}\nodepart{two}
+        attributA = <(aktueller) Wert> \\
+        attributB = <(aktueller) Wert> \\
+        \(\vdots\)
+};
         \end{tikzpicture}
     \end{center}\vfill\hbox{}
 \end{frame}
@@ -317,23 +317,23 @@ static int methode(int n) {
 
 \begin{frame}[c]{UML, Sequenzdiagramme - ein Beispiel}
     \begin{center}
-        \resizebox{0.6\linewidth}{!}{\begin{tikzpicture}
-            \begin{umlseqdiag}
-              \umlactor[class=Player]{playerA}
-              \umlcontrol[class=Server,x=6]{mainServer}
-              \begin{umlcall}[op={\bjava{createLobby("test")}}]{playerA}{mainServer}
-                \begin{umlcallself}[op={erstelle Lobby\ldots},op-style={right}]{mainServer}
-                \end{umlcallself}
-                \begin{umlfragment}[type=alt, inner xsep=5]
-                  \begin{umlcall}[op={\bjava{true /*:ws:success */}},type=return]{mainServer}{playerA}
-                  \end{umlcall}
-                  \umlfpart[error]
-                  \begin{umlcall}[op={\bjava{false /*:ws:failure */}},type=return]{mainServer}{playerA}
-                  \end{umlcall}
-                \end{umlfragment}
-              \end{umlcall}
-            \end{umlseqdiag}
-        \end{tikzpicture}}
+\resizebox{0.6\linewidth}{!}{\begin{tikzpicture}
+    \begin{umlseqdiag}
+        \umlactor[class=Player]{playerA}
+        \umlcontrol[class=Server,x=6]{mainServer}
+        \begin{umlcall}[op={\bjava{createLobby("test")}}]{playerA}{mainServer}
+        \begin{umlcallself}[op={erstelle Lobby\ldots},op-style={right}]{mainServer}
+        \end{umlcallself}
+        \begin{umlfragment}[type=alt, inner xsep=5]
+            \begin{umlcall}[op={\bjava{true /*:ws:success */}},type=return]{mainServer}{playerA}
+            \end{umlcall}
+            \umlfpart[error]
+            \begin{umlcall}[op={\bjava{false /*:ws:failure */}},type=return]{mainServer}{playerA}
+            \end{umlcall}
+        \end{umlfragment}
+        \end{umlcall}
+    \end{umlseqdiag}
+\end{tikzpicture}}
     \end{center}
 \end{frame}
 
@@ -480,7 +480,7 @@ int getDistance(String a, String b){
 
 \begin{frame}[c]{Übungsaufgabe -- Lösung}
     \begin{solve}<2->[Rechenaufwand berechnen]
-    \pause{}Handeln wir zuerst den \emph{best-case} ab.\pause{} Hier ist der String \bjava{a} \bjava{null} und die erste \bjava{if}-Bedingung terminiert mit \bjava{-1}.\pause{} Wir haben also im \emph{best-case} mit einem Aufwand von einem Vergleich und damit: \(\O(1)\).\pause{} (Auch wenn dieser \emph{best-case} relativ sinnfrei ist.\pause{} Was wäre denn der \emph{best-case} bei einer \say{gültigen} Eingabe\pause{} (also zwei gleichlangen Strings, die nicht \bjava{null} sind)?)\pause{} Kommen wir nun zum \emph{worst-case}:
+    \pause{}Handeln wir zuerst den \emph{best-case} ab.\pause{} Hier ist der String \bjava{a} \bjava{null} und die erste \bjava{if}-Bedingung terminiert mit \bjava{-1}.\pause{} Wir haben also im \emph{best-case} mit einem Aufwand von einem Vergleich und damit: \(\O(1)\).\pause{} (Auch wenn dieser \emph{best-case} relativ sinnfrei ist.\pause{} Was wäre denn der \emph{best-case} bei einer \say{gültigen} Eingabe\pause{} (also zwei gleichlangen Strings, die nicht \bjava{null} sind)?)\pause{} Kommen wir nun zum \emph{worst-case}\ldots
     \end{solve}
 \end{frame}
 

@@ -2,9 +2,6 @@
 %% Basic Packages
 %% -----------------------------------------------------------------------------
 
-% TODO: fix inkonsistencies with old variant
-% TODO: remove it shape (boxes etc) and TODO: maybe make all graphics with the solid design?
-% TODO: remove alot of it
 % center stuff and maybe add bibliography? :D
 
 % encoding:
@@ -12,15 +9,13 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[defaultfam,light,tabular,lining]{montserrat}
-\RequirePackage{sfmath}
+\RequirePackage{sfmath,tikz} % we need it anyways - will load xcolor
 
-\RequirePackage{tikz} % we need it anyways - will load xcolor
 \usetikzlibrary{calc, arrows.meta, decorations, decorations.pathreplacing}
 
 \RequirePackage[english,main=ngerman]{babel}
 
-\RequirePackage{microtype}
-
+\RequirePackage{microtype,csquotes}
 \RequirePackage{sopra-listings,sopra-models,sopra-attachments,forest,array,booktabs,colortbl}
 \solLoadLanguage{bash}
 
@@ -29,6 +24,8 @@
 %% -----------------------------------------------------------------------------
 \usepackage[emblem,theorems]{beamerthemecolorful-dream}
 
+\makeatletter
+
 \lstcolorlet{keywordA}{btcd@color@primary}
 \lstcolorlet{keywordB}{btcd@color@secondary}
 \lstcolorlet{keywordC}{btcd@color@secondary}
@@ -36,21 +33,17 @@
 \lstcolorlet{numbers}{btcd@color@alerted!90!btcd@color@primary!50!btcd@color@black}
 
 \lstcolorlet{literals}{btcd@color@alerted!60!btcd@color@primary!80!btcd@color@black}
-\makeatletter
-
 \sol@list@define@styles{%
   {keywordA: \color{sol@colors@lst@keywordA}\bfseries},%
   {keywordB: \color{sol@colors@lst@keywordB}},%
   {keywordC: \color{sol@colors@lst@keywordC}},%
 }
-\makeatother
 
 %% -----------------------------------------------------------------------------
 %% Extra Defs
 %% -----------------------------------------------------------------------------
 
 % Taken from lilly code extensions
-\makeatletter
 \newenvironment{lillyHighlight}[1][]
 {\begingroup\tikzset{lilly@Highlight@par/.style={#1}}\begin{lrbox}{\@tempboxa}}
 {\end{lrbox}\lilly@lsthighlight@box[lilly@Highlight@par]{\@tempboxa}\endgroup}
@@ -62,6 +55,7 @@
   \end{lillyHighlight}%
   \egroup
 }
+
 \newcommand*{\lilly@lsthighlight@box}[2][]{%
   \tikz[#1]{%
     \pgfpathrectangle{\pgfpoint{1pt}{0pt}}{\pgfpoint{\wd #2}{\ht #2}}%
@@ -70,10 +64,10 @@
   }%
 }
 
-\providecommand{\lstHLZWS}{\@lillyLstHL[fill=btcd@color@primary!24,draw=btcd@color@primary!24]}
-\providecommand{\lstHLVGL}{\@lillyLstHL[fill=btcd@color@alerted!36!btcd@color@primary!36,draw=btcd@color@alerted!36!btcd@color@primary!36]}
-\providecommand{\lstHLINK}{\@lillyLstHL[fill=btcd@color@alerted!24,draw=btcd@color@alerted!24]}
-\providecommand{\lstHLDEK}{\@lillyLstHL[fill=btcd@color@black!9,draw=btcd@color@black!9]}
+\def\lstHLZWS{\@lillyLstHL[fill=btcd@color@primary!24,draw=btcd@color@primary!24]}
+\def\lstHLVGL{\@lillyLstHL[fill=btcd@color@alerted!36!btcd@color@primary!36,draw=btcd@color@alerted!36!btcd@color@primary!36]}
+\def\lstHLINK{\@lillyLstHL[fill=btcd@color@alerted!24,draw=btcd@color@alerted!24]}
+\def\lstHLDEK{\@lillyLstHL[fill=btcd@color@black!12,draw=btcd@color@black!12]}
 
 \lstdefinelanguage{xJava}{
     language=lJava,
@@ -82,7 +76,6 @@
     moredelim=**[is][{\lstHLINK}]{|inc|}{|inc|},%
     moredelim=**[is][{\lstHLDEK}]{|dec|}{|dec|}%
 }
-\makeatother
 
 \def\linksort#1{\hyperlink{mrk:sort-#1}{#1}}
 \def\alglabel#1{\hypertarget<1>{mrk:sort-#1}{}}
@@ -92,8 +85,6 @@
 \def\mto{\ensuremath{\to}}
 \def\mprec{\ensuremath{\prec}}
 
-
-
 %% -----------------------------------------------------------------------------
 %% General
 %% -----------------------------------------------------------------------------
@@ -102,7 +93,7 @@
 
 \newcounter{ctrtasks}
 \def\Task#1{\only<1>{\stepcounter{ctrtasks}\pdfbookmark[4]{Aufgabe \thectrtasks: #1}{id@bkmrk@eidi@\thectrtasks}}}
-\def\Time#1{\ifx\\#1\\\else\hbox{}\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
+\def\Time#1{\ifx!#1!\else\hbox{}\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
 
 \colorlet{solidF}{btcd@color@primary!25!btcd@color@black}
 
@@ -112,9 +103,9 @@
 
 \long\def\hl#1{\textcolor{btcd@color@secondary}{#1}}
 \long\def\imp#1{\textcolor{btcd@color@alerted}{#1}}
-\long\def\say#1{\glqq{#1}\grqq{}}
+\let\say\enquote
 
-\def\widei{\setlength\itemsep{1em}}
+\def\widei{\itemsep=1em}
 
 \newcommand\twosplit[3][t]{%
 \begin{columns}[#1]
@@ -156,13 +147,11 @@
 
 \usepackage{lecture-heap-n-stack}
 
-\def\lhnselementformat#1{\texttt{#1}}
+\let\lhnselementformat\texttt
 \def\lhnsielementformat#1{\textbf{\vphantom{A}#1}}
-\long\def\lhnselementbox#1#2{\pbox{#1}{#2}}%
-\makeatletter
+\let\lhnselementbox\pbox%
 \lhns@minborderheight=4.75cm
 \lhns@borderbuff=1.33em
-\makeatother
 \tikzset{lhns@impstyle/.style={}}%
 
 
@@ -174,18 +163,19 @@
 \RegisterProfile{short}{}
 
 \newif\ifull
-\ifprofile{default}{
+\ifprofile{default}{%
   \def\profileshorttitle{Volle Version}
   \ulltrue
-}{}
-\ifprofile{short}{
+}{
+\ifprofile{short}{%
   \def\profileshorttitle{Kurze Version}
   \ullfalse
-}{}
-
+}{}%
+}
 % => empty übungsaufgaben (gray + no link)
 \ifull
 \let\fullsubsection\subsection
 \else
 \let\fullsubsection\fakesubsection
 \fi
+\makeatother

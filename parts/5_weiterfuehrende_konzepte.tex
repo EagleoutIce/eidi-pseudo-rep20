@@ -21,23 +21,23 @@
         \end{description}
         \vfill
         \begin{center}
-            \onslide<5->{\begin{tikzpicture}
-                \foreach[remember=\i as \li(initially 0)] \i in {1,...,10}{
-                    \ifnum\i=6
-                        \node[inner sep=4.35pt,iball,double,outer sep=2pt] (\i) at(\i,0) {};
-                    \else
-                        \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(\i,0) {};
-                    \fi
-                    \ifnum\i>1
-                        \draw (\li.east) -- (\i.west);
-                    \fi
-                }
-                \onslide<+->{
-                    \foreach[remember=\i as \li (initially 1)] \i in {2,...,6}{
-                        \draw[-Kite] (\li.80) to[bend left] (\i.100);
-                    }
-                }
-            \end{tikzpicture}}
+\onslide<5->{\begin{tikzpicture}
+    \foreach[remember=\i as \li(initially 0)] \i in {1,...,10}{
+        \ifnum\i=6
+            \node[inner sep=4.35pt,iball,double,outer sep=2pt] (\i) at(\i,0) {};
+        \else
+            \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(\i,0) {};
+        \fi
+        \ifnum\i>1
+            \draw (\li.east) -- (\i.west);
+        \fi
+    }
+    \onslide<+->{
+        \foreach[remember=\i as \li (initially 1)] \i in {2,...,6}{
+            \draw[-Kite] (\li.80) to[bend left] (\i.100);
+        }
+    }
+\end{tikzpicture}}
         \end{center}
         \vfill\hbox{}
     \end{itemize}
@@ -51,7 +51,7 @@
     !*\onslide<5->*!    return -1; // Magic Number für "not found"
     !*\onslide<2->*!}
     \end{plainjava}
-    \end{frame}
+\end{frame}
 
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
@@ -59,17 +59,17 @@
             \item[Binär] \hypertarget<1>{mrk:binsearch}{Die} binäre Suche benötigt eine (aufsteigend) \emph{sortierte} und arbeitet sich baumartig durch die Folge.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Wenn er größer ist, wird im Suchfenster rechts von der Mitte, wenn er kleiner links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
         \end{description}
         \vspace*{1em}
-        \begin{center}
-            \onslide<7->{\scalebox{0.65}{\begin{forest}
-                for tree={inner sep=4pt,ball,outer sep=1pt}
-                [,name=m1[[[][[][,phantom]]][[][[][]]]][,name=m2[][,name=m3[,name=m4,iball,inner sep=4.35pt,double[,phantom][]][[]]]]]
-                \onslide<+->{
-                    \draw[-Kite] (m1) to[bend left,looseness=1.25] (m2);
-                    \draw[-Kite] (m2) to[bend left,looseness=1.15] (m3);
-                    \draw[-Kite] (m3) to[bend right,looseness=1] (m4);
-                }
-            \end{forest}}}
-        \end{center}
+\begin{center}
+    \onslide<7->{\scalebox{0.65}{\begin{forest}
+        for tree={inner sep=4pt,ball,outer sep=1pt}
+        [,name=m1[[[][[][,phantom]]][[][[][]]]][,name=m2[][,name=m3[,name=m4,iball,inner sep=4.35pt,double[,phantom][]][[]]]]]
+        \onslide<+->{
+            \draw[-Kite] (m1) to[bend left,looseness=1.25] (m2);
+            \draw[-Kite] (m2) to[bend left,looseness=1.15] (m3);
+            \draw[-Kite] (m3) to[bend right,looseness=1] (m4);
+        }
+    \end{forest}}}
+\end{center}
         \vfill\hbox{}
     \end{itemize}
 \end{frame}
@@ -140,27 +140,27 @@
     \end{itemize}
     \vfill
     \begin{center}\pause{}
-        \begin{minipage}{0.9\linewidth}
-            \begin{multicols}{2}
-                \begin{enumerate}[<+(1)->]
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{4,2,1,3}{0}
-                        \draw[Kite-Kite] (1.north) to[bend left] (3.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{1,2,4,3}{1}
-                        \draw[Kite-Kite] (2) to[loop above] (2);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{1,2,4,3}{2}
-                        \draw[Kite-Kite] (3.north) to[bend left] (4.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{1,2,3,4}{4}
-                    \end{tikzpicture}
-                \end{enumerate}
-            \end{multicols}
-        \end{minipage}
+\begin{minipage}{0.9\linewidth}
+\begin{multicols}{2}
+    \begin{enumerate}[<+(1)->]
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{4,2,1,3}{0}
+            \draw[Kite-Kite] (1.north) to[bend left] (3.north);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{1,2,4,3}{1}
+            \draw[Kite-Kite] (2) to[loop above] (2);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{1,2,4,3}{2}
+            \draw[Kite-Kite] (3.north) to[bend left] (4.north);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{1,2,3,4}{4}
+        \end{tikzpicture}
+    \end{enumerate}
+\end{multicols}
+\end{minipage}
     \end{center}
 \end{frame}
 
@@ -192,31 +192,31 @@
     \end{itemize}
     \vfill
     \begin{center}\pause
-        \begin{minipage}{0.9\linewidth}
-            \begin{multicols}{2}
-                \begin{enumerate}[<+(1)->]
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{4,2,1,3}{1}
-                        \draw[-Kite] (1) to (2);
-                        \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (2.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{2,4,1,3}{2}
-                        \draw[-Kite] (1) to (2);
-                        \draw[-Kite] (2) to (3);
-                        \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (3.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{1,2,4,3}{3}
-                        \draw[-Kite] (3) to (4);
-                        \draw[Kite-Kite] ([xshift=-15pt]3.north) to[bend left] (4.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{1,2,3,4}{4}
-                    \end{tikzpicture}
-                \end{enumerate}
-            \end{multicols}
-        \end{minipage}
+\begin{minipage}{0.9\linewidth}
+\begin{multicols}{2}
+    \begin{enumerate}[<+(1)->]
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{4,2,1,3}{1}
+            \draw[-Kite] (1) to (2);
+            \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (2.north);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{2,4,1,3}{2}
+            \draw[-Kite] (1) to (2);
+            \draw[-Kite] (2) to (3);
+            \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (3.north);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{1,2,4,3}{3}
+            \draw[-Kite] (3) to (4);
+            \draw[Kite-Kite] ([xshift=-15pt]3.north) to[bend left] (4.north);
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \List{1,2,3,4}{4}
+        \end{tikzpicture}
+    \end{enumerate}
+\end{multicols}
+\end{minipage}
     \end{center}
 \end{frame}
 
@@ -262,26 +262,26 @@
     \end{itemize}
     \vfill
     \begin{center}\pause
-        \begin{minipage}{0.9\linewidth}
-            \begin{multicols}{2}
-                \begin{enumerate}[<+(1)->]
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{4,2,1,3}{5}
-                        \draw[Kite-Kite] (1.north) to[bend left] (2.north);
-                        \draw[Kite-Kite] (2.north) to[bend left] (3.north);
-                        \draw[Kite-Kite] (3.north) to[bend left] (4.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{2,1,3,4}{4}
-                        \draw[Kite-Kite] (1.north) to[bend left] (2.north);
-                    \end{tikzpicture}
-                    \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
-                        \List{1,2,3,4}{0}
-                    \end{tikzpicture}
-                    \item<1->[]
-                \end{enumerate}
-            \end{multicols}
-        \end{minipage}
+\begin{minipage}{0.9\linewidth}
+    \begin{multicols}{2}
+        \begin{enumerate}[<+(1)->]
+            \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                \List{4,2,1,3}{5}
+                \draw[Kite-Kite] (1.north) to[bend left] (2.north);
+                \draw[Kite-Kite] (2.north) to[bend left] (3.north);
+                \draw[Kite-Kite] (3.north) to[bend left] (4.north);
+            \end{tikzpicture}
+            \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                \List{2,1,3,4}{4}
+                \draw[Kite-Kite] (1.north) to[bend left] (2.north);
+            \end{tikzpicture}
+            \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+                \List{1,2,3,4}{0}
+            \end{tikzpicture}
+            \item<1->[]
+        \end{enumerate}
+    \end{multicols}
+\end{minipage}
     \end{center}
 \end{frame}
 

@@ -22,7 +22,6 @@
                 \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
                 \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
                 \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches/dynmaisches Linken}\\\hphantom{statisch/dy}(Java)}} -- (link);
-
             \end{scope}
         \end{tikzpicture}
         }
@@ -269,8 +268,8 @@ private static String generateWelcomeMessage(String name, int age,
 !*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: package
 !*\onslide<3->*!}
 \end{plainjava}
-    \item Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} und in anderem Paket. Sichtbarkeiten:\medskip\par\pause{}
-    {\def\y{\faCheckSquareO}\def\n{\hspace*{-1pt}\faSquareO}\scriptsize\begin{minipage}{0.45\linewidth}
+    \item<8-> Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} und in anderem Paket. Sichtbarkeiten:\medskip\par
+    \onslide<9->{\def\y{\faCheckSquareO}\def\n{\hspace*{-1pt}\faSquareO}\scriptsize\begin{minipage}{0.45\linewidth}
         \begin{tabular}{p{6em}ccccc}
              \toprule
                             & 1 & 2 & 3 & 4 & 5 \\
