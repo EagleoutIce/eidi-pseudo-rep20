@@ -56,7 +56,7 @@
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
         \item[]\begin{description}[Linear]
-            \item[Binär] \hypertarget{mrk:binsearch}{Die} binäre Suche benötigt eine (aufsteigend) \emph{sortierte} und arbeitet sich baumartig durch die Folge.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Wenn er größer ist, wird im Suchfenster rechts von der Mitte, wenn er kleiner links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
+            \item[Binär] \hypertarget<1>{mrk:binsearch}{Die} binäre Suche benötigt eine (aufsteigend) \emph{sortierte} und arbeitet sich baumartig durch die Folge.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Wenn er größer ist, wird im Suchfenster rechts von der Mitte, wenn er kleiner links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
         \end{description}
         \vspace*{1em}
         \begin{center}
@@ -418,13 +418,13 @@ public static void bubbleSort(int[] arr) {
         \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1,iball[3[4][,phantom]][2]]
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [2,iball[3][4]]
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [3,iball[4][,phantom]]
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,iball]
         \end{forest}}}
@@ -432,7 +432,7 @@ public static void bubbleSort(int[] arr) {
 \end{frame}
 
 \begin{frame}{Exkurs: Heap}
-    \hypertarget{mrk:Heap}{}%
+    \hypertarget<1>{mrk:Heap}{}%
     \begin{definition}<2->[Heap]
         \onslide<3->{Binärbaum, bei dem gilt: \(\text{Vaterknoten} < \text{Kindknoten}\).}
     \end{definition}
@@ -446,18 +446,18 @@ public static void bubbleSort(int[] arr) {
         \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4[,fill=white][,phantom]]
-        \end{forest}}} \(\overset{1}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\overset{1}{\to}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,name=4[1,name=1][,fill=white]]
             \draw[Kite-Kite] (4) to[bend right] (1);
-        \end{forest}}} \(\overset{2}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\overset{2}{\to}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[4[,fill=white][,phantom]][2]]
-        \end{forest}}} \(\overset{3}{\rightarrow}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\overset{3}{\to}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[4,name=4[3,name=3][,phantom]][2]]
             \draw[Kite-Kite] (4) to[bend right] (3);
-        \end{forest}}} \(\rightarrow\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[3[4][,phantom]][2]]
         \end{forest}}}
