@@ -60,15 +60,34 @@
         \end{description}
         \vspace*{1em}
 \begin{center}
-    \onslide<7->{\scalebox{0.65}{\begin{forest}
-        for tree={inner sep=4pt,ball,outer sep=1pt}
-        [,name=m1[[[][[][,phantom]]][[][[][]]]][,name=m2[][,name=m3[,name=m4,iball,inner sep=4.35pt,double[,phantom][]][[]]]]]
-        \onslide<+->{
-            \draw[-Kite] (m1) to[bend left,looseness=1.25] (m2);
-            \draw[-Kite] (m2) to[bend left,looseness=1.15] (m3);
-            \draw[-Kite] (m3) to[bend right,looseness=1] (m4);
-        }
-    \end{forest}}}
+    \begin{minipage}[c]{.35\linewidth}
+        \centering\onslide<7->{\scalebox{0.65}{\begin{forest}
+            for tree={inner sep=4pt,ball,outer sep=1pt}
+            [,name=m1[[[][[][,phantom]]][[][[][]]]][,name=m2[][,name=m3[,name=m4,iball,inner sep=4.35pt,double[,phantom][]][[]]]]]
+            \onslide<+->{
+                \draw[-Kite] (m1) to[bend left,looseness=1.25] (m2);
+                \draw[-Kite] (m2) to[bend left,looseness=1.15] (m3);
+                \draw[-Kite] (m3) to[bend right,looseness=1] (m4);
+            }
+        \end{forest}}}
+    \end{minipage}\qquad\begin{minipage}[c]{.35\linewidth}
+        \onslide<8->{\scalebox{0.65}{\begin{tikzpicture}
+\foreach[remember=\i as \li(initially 0)] \i in {1,...,9}{
+    \ifnum\i=6
+        \node[inner sep=4.35pt,iball,double,outer sep=2pt] (\i) at(\i,0) {};
+    \else
+        \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(\i,0) {};
+    \fi
+    \ifnum\i>1
+        \draw (\li.east) -- (\i.west);
+    \fi
+}
+\onslide<+->{
+    \draw[-Kite] (5.80) to[bend left] (7.100);
+    \draw[-Kite] (7.-100) to[bend left] (6.-80);
+}
+\end{tikzpicture}}}
+\end{minipage}
 \end{center}
         \vfill\hbox{}
     \end{itemize}
