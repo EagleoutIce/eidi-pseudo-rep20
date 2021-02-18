@@ -7,7 +7,7 @@
         \item Ein Suchverfahren hat die Aufgabe in einer Folge an Elementen,\pause{} die zu finden, die einem Muster oder gewissen Eigenschaften entsprechen.
         \item Es gibt zwei Varianten: \begin{description}[Heuristisch]
             \item[Einfach] Durchlaufen Suchraum auf Basis einer Datenstruktur.
-            \item[Heuristisch] Besitzen zusätzliches Wissen (Sortierung,\ldots) über die Daten die sie zur Beschleunigung der Suche verwenden.
+            \item[Heuristisch] Besitzen zusätzliches Wissen (Sortierung,~\ldots) über die Daten die sie zur Beschleunigung der Suche verwenden.
         \end{description}
         \item Die \emph{Eigenschaften} nach denen gesucht werden soll, kann man auch als \emph{Merkmale} bezeichnen.
     \end{itemize}
@@ -44,13 +44,13 @@
 \end{frame}
 
 \begin{frame}[fragile,c]{Klassische Suchverfahren}
-    \begin{plainjava}
-    !*\onslide<2->*!int linearSearch(int[] sequence, int key){
-    !*\onslide<3->*!    for(int i = 0; i < sequence.length; i++)
-    !*\onslide<4->*!        if(sequence[i] == key) return i;
-    !*\onslide<5->*!    return -1; // Magic Number für "not found"
-    !*\onslide<2->*!}
-    \end{plainjava}
+\begin{plainjava}
+!*\onslide<2->*!int linearSearch(int[] sequence, int key){
+!*\onslide<3->*!    for(int i = 0; i < sequence.length; i++)
+!*\onslide<4->*!        if(sequence[i] == key) return i;
+!*\onslide<5->*!    return -1; // Magic Number für "not found"
+!*\onslide<2->*!}
+\end{plainjava}
 \end{frame}
 
 \begin{frame}{Klassische Suchverfahren}
@@ -99,8 +99,8 @@
         \item Beschreibt einen Prozess bei dem Elemente aufgrund eines Ordnungskriteriums ihrer Eigenschaften in eine Reihenfolge gebracht werden.
         \item Daten werden sortiert um die Suche zu vereinfachen.
         \item Wir unterscheiden zwei Sortierverfahren: \begin{description}[Extern]
-            \item[Intern] Hier liegt der gesamte Datenbestand im Arbeitspeicher,\pause{} alle Elemente sind zugreifbar (Array, \ldots)
-            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert,\pause{} für das Sortieren werden in der Regel nur die obersten Element eines Stapels betrachtet (Dateien, \ldots).\pause{} In der Regel lassen sich durch Modifikationen und unterstützenden Methoden die selben Verfahren wie bei der Internen Variante verwenden.
+            \item[Intern] Hier liegt der gesamte Datenbestand im Arbeitspeicher,\pause{} alle Elemente sind zugreifbar (Array,~\ldots)
+            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert,\pause{} für das Sortieren werden in der Regel nur die obersten Element eines Stapels betrachtet (Dateien,~\ldots).\pause{} In der Regel lassen sich durch Modifikationen und unterstützenden Methoden die selben Verfahren wie bei der Internen Variante verwenden.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -169,7 +169,7 @@
 !*\onslide<2->*!public static void selectionSort(int[] arr) {
 !*\onslide<3->*!    for(int i = 0; i < arr.length - 1; i++) {
 !*\onslide<4->*!        int min = i; // Suche Minimum
-!*\onslide<5->*!        for (int j = i+1; j < arr.length; j++)
+!*\onslide<5->*!        for (int j = i + 1; j < arr.length; j++)
 !*\onslide<6->*!            if(arr[j] < arr[min])
 !*\onslide<6->*!                min = j;
 !*\onslide<7->*!        // Tausche 'i' und 'min'
@@ -226,7 +226,7 @@
 !*\onslide<3->*!    for(int i = 1; i < arr.length; i++) {
 !*\onslide<4->*!        int pos = i - 1, elem = arr[i];
 !*\onslide<5->*!        while(pos >= 0 && arr[pos] > elem) { // Verschiebe
-!*\onslide<6->*!            arr[pos+1] = arr[pos];
+!*\onslide<6->*!            arr[pos + 1] = arr[pos];
 !*\onslide<6->*!            pos--;
 !*\onslide<5->*!        }
 !*\onslide<7->*!        arr[pos+1] = elem;
@@ -239,16 +239,16 @@
 
 
 \def\List#1#2{
-    \foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
-        \ifnum\i<#2
-            \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
-        \else
-            \node[inner sep=4pt,iball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
-        \fi
-        \ifnum\i>1
-            \draw (\li.east) -- (\i.west);
-        \fi
-    }
+\foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
+    \ifnum\i<#2
+        \node[inner sep=4pt,ball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
+    \else
+        \node[inner sep=4pt,iball,outer sep=2pt] (\i) at(1.25*\i,0) {\n};
+    \fi
+    \ifnum\i>1
+        \draw (\li.east) -- (\i.west);
+    \fi
+}
 }
 
 \begin{frame}{Sortierverfahren: Bubblesort}\alglabel{Bubblesort}
@@ -301,16 +301,7 @@ public static void bubbleSort(int[] arr) {
     \end{plainjava}
 \end{frame}
 
-% TODO: maybe make with separate circles?
-
-\newsavebox{\dotA}
-\newsavebox{\dotB}
-\newsavebox{\dotC}
-\newsavebox{\dotD}
-\newsavebox{\dotE}
-\newsavebox{\dotF}
-\newsavebox{\dotG}
-
+\newsavebox{\dotA} \newsavebox{\dotB} \newsavebox{\dotC} \newsavebox{\dotD} \newsavebox{\dotE} \newsavebox{\dotF} \newsavebox{\dotG}
 
 \def\TikzList#1#2#3{%
 \savebox{#3}{\begin{tikzpicture}
@@ -502,7 +493,7 @@ public static void bubbleSort(int[] arr) {
         \item Beispiele: \begin{itemize}
             \item \emph{Wegfindung im Labyrinth:}\pause{} Gehe vom Startfeld aus solange einen Weg entlang, bis am Ziel angekommen.\pause{} Im Fall einer Sackgasse: springe zur letzten Position zurück, an der es noch einen anderen Weg gab.
             \item \emph{Lösung eines Sudoku.}\pause{} Füge in erstes freies Feld eine der dort möglichen Zahlen ein.\pause{} Verfahre so, bis alle Felder gefüllt sind oder für ein Feld keine Zahl mehr möglich ist.\pause{} In diesem Fall: springe zum letzten Punkt zurück, an dem noch andere Zahlen möglich sind. Probiere weiter.
-            \item Rucksackproblem, 8-Damen Problem, \ldots
+            \item Rucksackproblem, 8-Damen Problem,~\ldots
         \end{itemize}
     \end{itemize}
 \end{frame}

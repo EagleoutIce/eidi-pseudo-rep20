@@ -47,10 +47,10 @@
 \begin{frame}{Gültige Java-Bezeichner}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Java stellt folgende Regeln an Bezeichner für Variablen, Klassen, \ldots \begin{itemize}
+        \item Java stellt folgende Regeln an Bezeichner für Variablen, Klassen,~\ldots \begin{itemize}
             \item Diese dürfen nur aus Buchstaben, Ziffern, dem Unterstrich (\_) und dem Dollarzeichen (\$) bestehen.
             \item Ein Bezeichner darf \emph{nicht} mit einer Ziffer angeführt werden.
-            \item Schlüsselbegriffe (wie \bjava{int}, \bjava{double}, \ldots) dürfen nicht als Bezeichner verwendet werden.
+            \item Schlüsselbegriffe (wie \bjava{int}, \bjava{double},~\ldots) dürfen nicht als Bezeichner verwendet werden.
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -66,7 +66,7 @@
         \item Java ist eine \emph{streng typisierte} Sprache.\pause{} Jede Variable kann nur Daten \emph{eines (bestimmten) Typs speichern}.
         \item Wir unterscheiden zwischen \emph{primitiven} und \emph{komplexen} Datentypen. \begin{description}[Primitive]
             \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean} (Hinweis: \emph{\hyperlink{mrk:call-by-val}{call-by-value}})
-            \item[Komplexe] \bjava{String}, \bjava{Random}, \ldots (Hinweis: \emph{\hyperlink{mrk:call-by-ref}{call-by-reference}})
+            \item[Komplexe] \bjava{String}, \bjava{Random},~\ldots (Hinweis: \emph{\hyperlink{mrk:call-by-ref}{call-by-reference}})
         \end{description}
     \end{itemize}
 \end{frame}
@@ -238,7 +238,7 @@ private static String generateWelcomeMessage(String name, int age,
         \item Beispiel: \bjava{generateWelcomeMessage(String, int, boolean)}.
         \item Java erlaubt keine zwei Funktionen mit gleicher Signatur im selben Gültigkeitsbereich.
         \item Man kann allerdings Funktionen mit gleichem Namen,\par{} aber verschiedener Parameterliste erstellen.\pause{} Dieses Prinzip wird \emph{Überladen} (Overloading) genannt.
-        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)}, \ldots).\pause{} Entscheidet Java welche Methode aufgerufen werden soll\pause{} (es nimmt die,\pause{} die am \say{nächsten} dran ist).
+        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)},~\ldots).\pause{} Entscheidet Java welche Methode aufgerufen werden soll\pause{} (es nimmt die,\pause{} die am \say{nächsten} dran ist).
     \end{itemize}
 \end{frame}
 

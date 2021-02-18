@@ -9,7 +9,7 @@
         \item Eine Klasse die von einer anderen Klasse erbt, übernimmt all ihre Eigenschaften und kann diese verändern oder modifizieren.
         \item Die Subklasse kann hier sowohl als Spezialisierung aufgefasst werden (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert).
         \item In Java/in der Objektorientierung wird das Konzept der Erweiterung verfolgt.
-        \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe),\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), \emph{Dozent} (zugeteilte Vorlesung), \ldots
+        \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe),\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), \emph{Dozent} (zugeteilte Vorlesung),~\ldots
         \item Zwischen vererbenden Klassen gilt eine \emph{is-a} Relation.\pause{} So gilt Beispielsweise \emph{Student is-a Mensch is-a Lebewesen}.
     \end{itemize}
 \end{frame}
@@ -127,7 +127,7 @@ herbert instanceof Dozent // :yields: false
 \begin{frame}{Abstrakte Klassen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Vererbung ermöglicht uns Polymorphie erst wirklich.\pause{} So können wir eine Klasse \bjava{List} erschaffen (in Java: \bjava{AbstractList}, bereits vorhanden), die die Zugriffe definiert und entsprechend Klassen \bjava{ArrayList}, \bjava{LinkedList}, \ldots\pause{} die diese Operationen implementieren.
+        \item Vererbung ermöglicht uns Polymorphie erst wirklich.\pause{} So können wir eine Klasse \bjava{List} erschaffen (in Java: \bjava{AbstractList}, bereits vorhanden), die die Zugriffe definiert und entsprechend Klassen \bjava{ArrayList}, \bjava{LinkedList},~\ldots\pause{} die diese Operationen implementieren.
         \item Wenn diese Klassen (wie bei \bjava{List}) wirklich nur Blaupausen/Vorlagen sind,\pause{} können wir sie als \bjava{abstract} bezeichnen.\pause{} Von solchen Klassen darf kein Objekt erstellt werden,\pause{} von ihnen kann aber geerbt werden.
         \item Eine abstrakte Klasse kann weiter abstrakte Methoden (ohne Rumpf!) definieren.\pause{} Solche Methoden \emph{müssen} von einer nicht-abstrakten erbenden Klasse implementiert werden.
     \end{itemize}
@@ -259,7 +259,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
         \widei
         \item Auch für ein Interface wird die \emph{is-a} Relation durch \bjava{instanceof} erfüllt.
         \item Ein Interface wie \bjava{Sortable} wird in Java durch \bjava{Comparable} mit nur einer einzelnen Funktion \bjava{compareTo()} gelöst.
-        \item Interfaces sollten dann verwendet werdenn wenn es um eine Funktionalität geht (wie \bjava{Drawable}, \bjava{Moveable}, \bjava{Consumeable}, \ldots)
+        \item Interfaces sollten dann verwendet werdenn wenn es um eine Funktionalität geht (wie \bjava{Drawable}, \bjava{Moveable}, \bjava{Consumeable},~\ldots)
         \item Das Implementieren eines Interfaces wird in UML durch eine gestrichelte, das Erweitern einer Klasse durch eine durchgezogene  Linie gekennzeichnet.% Pfeil am Ende?
     \end{itemize}
 \end{frame}
@@ -283,7 +283,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
     \begin{itemize}[<+(1)->]
         \widei
         \item Eine \emph{explizite} Ausnahme können wir mittels \bjava{throw} werfen.
-        \item Eine \emph{implizite} Ausnahme wird von der Java Virtual Machine geworfen\pause{} (Division durch Null, Zugriff auf \bjava{null}, \ldots)
+        \item Eine \emph{implizite} Ausnahme wird von der Java Virtual Machine geworfen\pause{} (Division durch Null, Zugriff auf \bjava{null},~\ldots)
         \item Wir werfen eine explizite Ausnahme/einen Error (allgemein: ein \bjava{Throwable}): \pause{}
 \begin{plainjava}
 throw new IndexOutOfBoundsException();

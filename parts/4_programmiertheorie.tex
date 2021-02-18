@@ -34,7 +34,7 @@
 !*\onslide<7->*!    // Abbruchbedingung
 !*\onslide<7->*!    if(i == 0) return;
 !*\onslide<8->*!    // Rekursion
-!*\onslide<8->*!    else headDecrement(i-1);
+!*\onslide<8->*!    else headDecrement(i - 1);
 !*\onslide<10->*!    // Verarbeitung
 !*\onslide<10->*!    System.out.println(i);
 !*\onslide<6->*!}
@@ -48,7 +48,7 @@
 !*\onslide<9->*!    // Verarbeitung
 !*\onslide<9->*!    else System.out.println(i);
 !*\onslide<10->*!    // Rekursion
-!*\onslide<10->*!    tailDecrement(i-1);
+!*\onslide<10->*!    tailDecrement(i - 1);
 !*\onslide<6->*!}
 \end{plainjava}
 \end{minipage}
@@ -65,22 +65,22 @@
     \onslide<6->{%
 \vfill\hbox{}
 \hfill\scalebox{0.75}{\begin{forest}
-    [f(12)
-        [f(11)
-            [f(10)
-                [\ldots]
-                [\ldots]
-            ]
-            [f(9)
-                [\ldots]
-                [\ldots]
-            ]
-        ]
+[f(12)
+    [f(11)
         [f(10)
             [\ldots]
             [\ldots]
         ]
+        [f(9)
+            [\ldots]
+            [\ldots]
+        ]
     ]
+    [f(10)
+        [\ldots]
+        [\ldots]
+    ]
+]
 \end{forest}
     }}\vfill\hbox{}
 \end{frame}
@@ -108,7 +108,7 @@
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Da die Länge, die ein Programm (in Sekunden) benötigt,\pause{} von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme, \ldots) abhängig ist,\pause{} betrachten wir die Skalierung eines Algorithmus für umfangreiche Eingaben.
+        \item Da die Länge, die ein Programm (in Sekunden) benötigt,\pause{} von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme,~\ldots) abhängig ist,\pause{} betrachten wir die Skalierung eines Algorithmus für umfangreiche Eingaben.
     \end{itemize}
     \begin{definition}<6->[Effizienz]
         \pause{}Die Effizienz eines Programms wird durch seinen \emph{Speicheraufwand} sowie seiner \emph{Laufzeit} bestimmt.
@@ -168,7 +168,7 @@ static int methode(int n) {
 
 \begin{frame}[fragile]{Erfassen der Komplexität}
     \begin{itemize}[<+(1)->]
-        \item Bei der Berechnung helfen die gängigen mathematischen Gesetze\pause{} (Logarithmus, \ldots)
+        \item Bei der Berechnung helfen die gängigen mathematischen Gesetze\pause{} (Logarithmus,~\ldots)
         \item Die wichtigste Rechenregel:\pause{} \(\O(f(n) + g(n)) = \O(\max\{f(n), g(n)\})\)
         \item Neben der \(\O\) Notation, existieren noch weitere Notationen,\pause{} wie \(\Omega(n)\), welches analog die untere Grenze darstellt.
         \item In der Regel reichen die folgenden wichtigsten Komplexitätsklassen:\vskip2em\pause{}
@@ -283,7 +283,7 @@ static int methode(int n) {
         \item So kann diese gerichtet sein (Pfeil am Ende) um eine Leserichtung vorzuschreiben,\pause{} oder ein gefülltes (Komposition) oder leeres (Aggregation) Rechteck haben um Teile eines Ganzen zu modellieren.
         \item Abhängigkeiten werden gestrichelt, Vererbungen durch einen nicht augefüllten Pfeil gekennzeichnet.
         \item Pakete werden durch einen extra Kasten gekennzeichnet.
-        \item \textit{Wichtig:} Attribute deren Typ eine andere Klasse ist werden durch eine Assoziation gekennzeichnet,\pause{} dies gilt auch, wenn eine Klasse sich selbst referenziert\pause{} (LinkedList, \ldots).
+        \item \textit{Wichtig:} Attribute deren Typ eine andere Klasse ist werden durch eine Assoziation gekennzeichnet,\pause{} dies gilt auch, wenn eine Klasse sich selbst referenziert\pause{} (LinkedList,~\ldots).
     \end{itemize}
 \end{frame}
 
@@ -346,7 +346,7 @@ static int methode(int n) {
     \end{itemize}
     \vfill
     \begin{definition}<5->[Stellenwertsystem]
-        \pause{}Bei einer Basis \(b\) und einer Zahl \(z\) aus den Ziffern = \(z = z_{n} z_{n-1}\ldots z_0\)\pause{} ergibt sich ihr Wert im uns bekannten Dezimalsystem (\(b = 10\)) durch:\pause{} \[z_{b} = \sum_{i = 0}^{n} z_i \cdot b^i\]
+        \pause{}Bei einer Basis \(b\) und einer Zahl \(z\) aus den Ziffern \(z = z_{n} z_{n-1}\ldots z_0\)\pause{} ergibt sich ihr Wert im uns bekannten Dezimalsystem (\(b = 10\)) durch:\pause{} \[z_{b} = \sum_{i = 0}^{n} z_i \cdot b^i\]
     \end{definition}
     \vfill\hbox{}
 \end{frame}
