@@ -1,4 +1,4 @@
-SLIDESTEX := $(shell ls *.tex)
+SLIDESTEX := $(shell ls eidi-*.tex)
 SOURCESTEX := $(shell ls *.src)
 SLIDESPDF := $(addsuffix .pdf,$(basename $(SLIDESTEX)))
 CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS vrb snm nav atfi cmd.tmp

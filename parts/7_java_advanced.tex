@@ -195,11 +195,11 @@ herbert instanceof Dozent // :yields: false
         \item<1-> Attribute werden Java \emph{statisch} und Methoden \emph{dynamisch} gebunden.
         \item<1-> Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
             \item[dynamisch] Angenommen die Klasse \bjava{Mensch} hat die Methode \bjava{hallo()}, die einfach \say{Hallo ich bin ein Mensch} ausgibt.\pause{} \bjava{Student} überschreibt nun \bjava{hallo()} sie gibt nun \say{Hallo ich bin ein Student} aus.\pause{} Wir erhalten:\pause{} \begin{plainjava}
-!*\onslide<+->*!Student a = new Student(/*...*/);
-!*\onslide<+->*!Mensch b = new Mensch(/*...*/);
+!*\onslide<+->*!Mensch a = new Mensch(/*...*/);
+!*\onslide<+->*!Student b = new Student(/*...*/);
 !*\onslide<+->*!Mensch c = new Student(/*...*/);
-!*\onslide<+->*!a.hallo(); // :yields: Hallo ich bin ein Student
-!*\onslide<+->*!b.hallo(); // :yields: Hallo ich bin ein Mensch
+!*\onslide<+->*!a.hallo(); // :yields: Hallo ich bin ein Mensch
+!*\onslide<+->*!b.hallo(); // :yields: Hallo ich bin ein Student
 !*\onslide<+->*!c.hallo(); // :yields: Hallo ich bin ein Student
             \end{plainjava}
         \end{description}

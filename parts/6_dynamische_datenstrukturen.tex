@@ -155,7 +155,7 @@ class Element {
 \ifull
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{LinkedList - insert}
-    \begin{exercise}<2->[Einfach verkettete Liste - Einfügen \Time{5}]
+    \begin{exercise}<2->[Einfach verkettete Liste - Einfügen \Time{6}]
         \pause{}Sei der folgende Code gegeben:\pause{}
 \begin{plainjava}
 class Element {
@@ -336,7 +336,7 @@ class Element {
 
 \begin{frame}{Bäume: Formal}
     \begin{itemize}[<+(1)->]
-        \item Im Gegensatz zu Listen halten Bäume referenzen auf mehrere Nachfolger.
+        \item Im Gegensatz zu Listen halten Bäume Referenzen auf mehrere Nachfolger.
         \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
@@ -425,9 +425,9 @@ class Node {
     \draw[fakeblock] (1.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Pre-Order};
     \draw[fakeblock] (4.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {In-Order};
     \draw[fakeblock] (7.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Post-Order};
-    \draw[-latex] (4+3.5/2,0) to[in=90,out=270] (2.75,-0.85);
-    \draw[-latex] (4+3.5/2,0) to[in=90,out=270] (5.75,-0.85);
-    \draw[-latex] (4+3.5/2,0) to[in=90,out=270] (8.75,-0.85);
+    \draw[-Kite] (4+3.5/2,0) to[in=90,out=270] (2.75,-0.85);
+    \draw[-Kite] (4+3.5/2,0) to[in=90,out=270] (5.75,-0.85);
+    \draw[-Kite] (4+3.5/2,0) to[in=90,out=270] (8.75,-0.85);
     \draw[fakeblock] (1.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
     \draw[fakeblock] (4.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
     \draw[fakeblock] (7.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
@@ -457,12 +457,12 @@ class Node {
             \draw (tre) -- (fiv);
             \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-latex] (one) -- (two);
-            \draw[-latex] (two) -- (tre);
-            \draw[-latex] (tre) -- (six);
-            \draw[-latex] (six) -- (sev);
-            \draw[-latex,scale=0.5,transform shape] (sev) -- (fiv);
-            \draw[-latex] (fiv) -- (for);
+            \draw[-Kite] (one) -- (two);
+            \draw[-Kite] (two) -- (tre);
+            \draw[-Kite] (tre) -- (six);
+            \draw[-Kite] (six) -- (sev);
+            \draw[-Kite,scale=0.5,transform shape] (sev) -- (fiv);
+            \draw[-Kite] (fiv) -- (for);
         \end{scope}
 
     \end{tikzpicture}};
@@ -491,12 +491,12 @@ class Node {
         \draw (tre) -- (fiv);
         \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-latex] (one) -- (two);
-            \draw[-latex] (two) -- (six);
-            \draw[-latex] (six) to[bend left] (sev);
-            \draw[-latex] (sev) to[out=85,in = 185,looseness=1.15] (tre);
-            \draw[-latex] (tre) -- (fiv);
-            \draw[-latex] (fiv) -- (for);
+            \draw[-Kite] (one) -- (two);
+            \draw[-Kite] (two) -- (six);
+            \draw[-Kite] (six) to[bend left] (sev);
+            \draw[-Kite] (sev) to[out=85,in = 185,looseness=1.15] (tre);
+            \draw[-Kite] (tre) -- (fiv);
+            \draw[-Kite] (fiv) -- (for);
         \end{scope}
         %%DRAW DEFAULTS DENSLEY DOTTED IN GRAY TO KEEP STYLE
     \end{tikzpicture}};
@@ -523,12 +523,12 @@ class Node {
             \draw (tre) -- (fiv);
             \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-latex] (six) -- (two);
-            \draw[-latex] (two) -- (sev);
-            \draw[-latex] (sev) to[bend left] (one);
-            \draw[-latex] (one) to[bend left] (fiv);
-            \draw[-latex] (fiv) -- (tre);
-            \draw[-latex] (tre) -- (for);
+            \draw[-Kite] (six) -- (two);
+            \draw[-Kite] (two) -- (sev);
+            \draw[-Kite] (sev) to[bend left] (one);
+            \draw[-Kite] (one) to[bend left] (fiv);
+            \draw[-Kite] (fiv) -- (tre);
+            \draw[-Kite] (tre) -- (for);
         \end{scope}
 
     \end{tikzpicture}};
@@ -555,12 +555,12 @@ class Node {
             \draw (tre) -- (fiv);
             \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-latex] (six) -- (sev);
-            \draw[-latex] (sev) -- (two);
-            \draw[-latex] (two) to[bend left] (fiv);
-            \draw[-latex] (fiv) -- (for);
-            \draw[-latex] (for) -- (tre);
-            \draw[-latex] (tre) -- (one);
+            \draw[-Kite] (six) -- (sev);
+            \draw[-Kite] (sev) -- (two);
+            \draw[-Kite] (two) to[bend left] (fiv);
+            \draw[-Kite] (fiv) -- (for);
+            \draw[-Kite] (for) -- (tre);
+            \draw[-Kite] (tre) -- (one);
         \end{scope}
 
     \end{tikzpicture}};
@@ -675,10 +675,10 @@ class Node {
 \begin{frame}{Begriffe in einem Graphen}
     \pause{}
     \begin{description}[Zusammenhang]
-        \item[Zusammenhang] ein Graph heißt zusammenhängend, wenn man jeden Knoten von jedem anderen aus (über die Kanten) erreichen kann.\pause{}
+        \item[Zusammenhang] Ein Graph heißt zusammenhängend, wenn man jeden Knoten von jedem anderen aus (über die Kanten) erreichen kann.\pause{}
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.\pause{}
-        \item[Grad] bezeichnet die Anzahl an Knoten die mit einem Knoten verbunden sind.\pause{} Ist der Graph gerichtet so wird zwischen Eingangs- und Ausgangsgrad unterschieden.
+        \item[Grad] Bezeichnet die Anzahl an Knoten die mit einem Knoten verbunden sind.\pause{} Ist der Graph gerichtet so wird zwischen Eingangs- und Ausgangsgrad unterschieden.
     \end{description}
 \end{frame}
 
@@ -735,7 +735,7 @@ class Node {
 \begin{frame}{Algorithmen auf Graphen}
     \begin{itemize}[<+(1)->]
         \item Eine gängiges Problem ist es herauszufinden ob ein Graph Zyklen enthält und/oder ob er zusammenhängend ist.
-        \item Wegfindungsproblem wie das kürzeste Wege Probleme (Routenfindung, \ldots), Traveling Salesman Problem
+        \item Wegfindungsproblem wie das kürzeste Wege Probleme (Routenfindung, \ldots), Traveling Salesman Problem.
         \item Finden des minimalen, aufspannenden Baum.
         \item Exemplarisch betrachtet die Vorlesung die Breiten- und die Tiefensuche.
     \end{itemize}
@@ -877,18 +877,19 @@ public class LinkedList {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[LinkedList - toString()]
-        \pause{}
+        \pause{} % TODO: comma at end
 \begin{plainjava}
 !*\onslide<3->*!public String toString() {
 !*\onslide<4->*!    Element current = head;
-!*\onslide<5->*!    String str_list = "";
+!*\onslide<5->*!    String strList = "";
 !*\onslide<6->*!    while(current != null) {
-!*\onslide<7->*!        str_list += current.value + ", ";
+!*\onslide<7->*!        strList += current.value + ", ";
 !*\onslide<8->*!        current = current.next;
 !*\onslide<6->*!    }
-!*\onslide<9->*!    return str_list;
+!*\onslide<9->*!    return strList;
 !*\onslide<3->*!}
 \end{plainjava}
+        \pause{}Ist kein Komma am Ende erwünscht so genügt ein Check der Form \bjava{if(current.next != null)} für das Anfügen des Kommas.
     \end{solve}
 \end{frame}
 
