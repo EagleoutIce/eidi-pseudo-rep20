@@ -35,12 +35,11 @@ jobs:
         cp noanim-short-eidi-tutorium-rep.pdf short-slides-eidi-rep.pdf
         cp short-eidi-tutorium-rep.pdf short-animated-eidi-rep.pdf
         pdftoppm -png -f 1 -l 1 ./noanim-eidi-tutorium-rep.pdf preview
-        ls
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f "slides-eidi-rep.pdf" "animated-eidi-rep.pdf" "short-slides-eidi-rep.pdf" "short-animated-eidi-rep.pdf" "preview-1.png"
+        git add -f "slides-eidi-rep.pdf" "animated-eidi-rep.pdf" "short-slides-eidi-rep.pdf" "short-animated-eidi-rep.pdf" "preview-001.png"
         git commit -m "Full recompilation"
     - name: Push changes
       uses: ad-m/github-push-action@master
