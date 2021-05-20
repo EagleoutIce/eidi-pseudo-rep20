@@ -70,15 +70,71 @@ while (:lan:Bedingung:ran:) {
 
 \begin{frame}[fragile]{while und do-while}
     \begin{itemize}[<+(1)->]
-        \item Im Gegensatz zur \bjava{while}-Schleife gibt es die \bjava{do-while}-Schleife,\pause{} die die Prüfung am Ende des Durchlaufs durchführt.\pause{} Sie wird also auch mindestens einmal durchgeführt,\pause{} auch wenn die Bedingung von Anfang an \emph{falsch} ist:
+        \item Im Gegensatz zur \bjava{while}-Schleife gibt es die \bjava{do-while}-Schleife,\pause{} die die Prüfung am Ende des Durchlaufs durchführt.\pause{} Sie wird also mindestens einmal durchgeführt,\pause{} auch wenn die Bedingung von beginn an \emph{falsch} ist:
         \begin{plainjava}
 do {
     :lan:Anweisung(en):ran:
 } while (:lan:Bedingung:ran:)|bhl|;|bhl| // <- Semikolon!
         \end{plainjava}
-        \item Wichtig und in der Regel vergessen wird das Semikolon am Ende der \bjava{do-while}-Anweisung.
+        \item Wichtig ist das Semikolon am Ende der \bjava{do-while}-Anweisung. Es wird gern vergessen
     \end{itemize}
 \end{frame}
+
+\ifull
+\begin{frame}[c,fragile]{Übungsaufgabe}
+\Task{While vs. Do-while, I}
+\begin{exercise}<2->[While vs. Do-While, I \Time{3}]
+    Erzeugen die Schleifen für \(i = 0\) die selbe Ausgabe?\pause{}
+    Gilt dies auch für \(i = 42\)?\pause
+\begin{plainjava}[multicols=2,aboveskip=0pt]
+int i = ?; /* a) 0, b) 42 */
+do {
+    System.out.print(i++);
+} while(i < 5);
+int i = ?; /* a) 0, b) 42 */
+while(i < 5) {
+    System.out.print(i++);
+}
+\end{plainjava}
+\end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[While vs. Do-While, I]
+        \begin{itemize}[<+(1)->]
+        \item Für \(i = 0\) produzieren beide Schleifen \say{01234} und brechen dann für \bjava{5 < 5} ab.
+        \item Für \(i = 42\) unterscheiden sich die Ausgaben. Hier gibt do-while noch \say{42} aus, während die while Schleife gar nicht erst betreten wird.
+        \end{itemize}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{While vs. Do-while, II}
+    \begin{exercise}<2->[While vs. Do-While, II \Time{3}]
+        Erzeugen die Schleifen für \(i = 0\) die selbe Ausgabe?\pause{}
+        Gilt dies auch für \(i = 15\)?\pause
+    \begin{plainjava}[multicols=2,aboveskip=0pt]
+int i = ?; /* a) 0, b) 15 */
+do {
+    System.out.print(i);
+} while(i++ < 7);
+int i = ?; /* a) 0, b) 15 */
+while(i++ < 7) {
+    System.out.print(i);
+}
+    \end{plainjava}
+    \end{exercise}
+    \end{frame}
+
+    \begin{frame}[c,fragile]{Lösung}
+        \begin{solve}<2->[While vs. Do-While, II]
+            \begin{itemize}[<+(1)->]
+            \item Für \(i = 0\) unterscheiden sich die Ausgaben! do-while produziert hier \say{01234567} und while \say{1234567} (da die Inkremente einmal vor der Ausgabe und einmal danach stattfinden). Bis \(7\) gehen die Ausgaben, da in \bjava{i++ < 7} die Variable \bjava{i} immer erst \emph{nach} dem Vergleich inkrementiert wird.
+            \item Für \(i = 15\) unterscheiden sich die Ausgaben ebenfalls. Hier gibt do-while noch \say{15} aus, während die while Schleife wieder nicht betreten wird.
+            \end{itemize}
+        \end{solve}
+    \end{frame}
+\fi
 
 \begin{frame}[fragile]{Zählschleifen mit for}
     \begin{itemize}[<+(1)->]
@@ -222,7 +278,7 @@ int x = b[2][3]; // x :yields: 5
 \ifull
     \Task{Zählschleife in Iterationsschleife umwandeln}
     \begin{exercise}<8->[Iteration mit for-each \Time{4}]
-        Schreibe diese Methode so um, dass sie den \bjava{for}-each Mechanismus verwendet.
+        Schreibe diese Methode so um, dass sie den for-each Mechanismus verwendet.
     \end{exercise}
 \fi
 \end{frame}
