@@ -72,7 +72,7 @@
 
 
 \begin{frame}{Schema eines Algorithmus}
-    \onslide<2->{
+    \pause
     \begin{figure}
         \begin{tikzpicture}
             \node[block] (A) at(0,0) {Algorithmus};
@@ -80,7 +80,7 @@
             \node (N) at(5,0) {Nachbedingung};
             \draw[link] (V) edge (A) (A) edge (N);
         \end{tikzpicture}
-    \end{figure}}
+    \end{figure}
     \begin{itemize}[<+(1)->]
         \widei
         \item Ein Algorithmus benötigt (formal) eine: \begin{description}[iV]
@@ -227,6 +227,42 @@ public static int simpleMod(int a, int b){
     \begin{solve}<2->[Charakteristika]
        \pause{}Der Algorithmus ist nicht total korrekt.\pause{} So liefert er für ein negatives \T{b} kein korrektes Ergebnis,\pause{} da hier \T{a -= b} zu einem Überlauf führt.\pause{}\par{}
        Ferner ist er auch nicht partiell korrekt.\pause{} So liefert er für ein negatives \T{a} bei einem positiven \T{b} einfach nur \T{a} zurück.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Korrektheitsbeweis}
+    \begin{exercise}<2->[Korrektheitsbeweis \Time{4}]
+        Zeigen Sie die totale Korrektheit für den folgenden Algorithmus:\smallskip\par
+\onslide<3->{%
+\begin{algorithm}[H]
+    \PreCode
+        \KwIn{$a, b, c \in \mathbb{N}$}
+        \KwOut{Maximum of $a, b, c$}
+    \StartCode
+        $elems := (a, b, c)$\;
+        $max := a$\;\label{alg:ex-max1}
+        \ForEach{elem \textbf{in} elems}{\label{alg:ex-fe1}%
+            \lIf{$elem > max$}{
+                $max := elem$
+            }
+        }
+        \KwRet{max}\;
+    \caption{Finden des Maximum}
+\end{algorithm}}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Korrektheitsbeweis]
+       \pause{}Wir zeigen die Termination und die partielle Korrektheit getrennt: \begin{itemize}[<+(1)->]
+           \item Das for-each aus Zeile~\ref{alg:ex-fe1} endet sicher nach drei Durchläufen. Es gibt keine weiteren Sprünge (wie Rekursion,~\ldots): der Algorithmus \emph{terminiert} für alle \(a, b, c \in \mathbb{N}\).
+           \item Hier kann man alle Fälle \(a = b = c\), \(a > b = c\),~\ldots einzeln prüfen. Sonst: \begin{itemize}
+             \item \(a = \max\{a, b, c\}\) so initialisiert Zeile~\ref{alg:ex-max1} \(max\) schon korrekt, \(b \leq a\) und \(c \leq a\).
+             \item \(b = \max\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(max\) für \(b\), da \(b \geq a\) und \(c \leq b\).
+             \item \(c = \max\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(max\) für \(c\), da \(c \geq a\) und \(b \leq c\).
+           \end{itemize}
+       \end{itemize}
     \end{solve}
 \end{frame}
 

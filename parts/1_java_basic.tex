@@ -264,12 +264,12 @@ private static String generateWelcomeMessage(String name, int age,
 !*\onslide<3->*!|inc|public|inc| class Pinguin { // !*\solGet{comments}{\textbf{1.}}*! global
 !*\onslide<4->*!    !**!|inc|private|inc| int sozialversicherungsnummer; // !*\solGet{comments}{\textbf{2.}}*! Klasse
 !*\onslide<5->*!    !**!|inc|protected|inc| int watschelIndex; // !*\solGet{comments}{\textbf{3.}}*! geschützt
-!*\onslide<6->*!    !**!|inc|public|inc| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*!
+!*\onslide<6->*!    !**!|inc|public|inc| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*! (erneut: global)
 !*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: package
 !*\onslide<3->*!}
 \end{plainjava}
-    \item<8-> Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} und in anderem Paket. Sichtbarkeiten:\medskip\par
-    \onslide<9->{\def\y{\faCheckSquareO}\def\n{\hspace*{-1pt}\faSquareO}\scriptsize\begin{minipage}{0.45\linewidth}
+    \item<8-> Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} aber sei in einem anderem Paket: \medskip\par
+    \onslide<9->{\def\y{\faCheckSquareO}\def\n{\hspace*{-1pt}\faSquareO}\scriptsize\begin{minipage}{.45\linewidth}
         \begin{tabular}{p{6em}ccccc}
              \toprule
                             & 1 & 2 & 3 & 4 & 5 \\
@@ -290,6 +290,76 @@ private static String generateWelcomeMessage(String name, int age,
             \end{minipage}}
     \end{itemize}
 \end{frame}
+
+\ifull
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \colorlet{folderbg}{btcd@color@secondary}\Task{Sichtbarkeiten in Java}
+    \begin{exercise}<2->[Sichtbarkeiten \Time{6}]
+        Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Sie dürfen annehmen, dass die Dateien und Importe korrekt sind. \par
+\begin{onlyenv}<4->
+\begin{minipage}{.7\linewidth}
+\lstfs{8}%
+\begin{plainjava}[morekeywords={[3]{Apple,Banana}},belowskip=0pt]
+public class Apple { void eat() { /* ... */ } }
+public class Banana extends Apple {
+  public int lookAt(int x) { /* ... */ }
+  public void eat() { /* ... */ }
+  protected boolean eat(float amount) { /* ... */ }
+}
+\end{plainjava}
+\begin{plainjava}[multicols=2,morekeywords={[3]{Apple,Banana,Skyrim,Morrowind}},aboveskip=0pt]
+class Morrowind {
+  static int test() {
+    new Apple().eat(); // 1
+    Banana b = new Banana();
+    b.lookAt(14); // 2
+    b.eat(); // 3
+}}
+class Skyrim extends Banana {
+  static int test() {
+    new Apple().eat(); // 4
+    eat(3f); // 5
+    Banana b = new Banana();
+    b.lookAt(14); // 6
+}}
+\end{plainjava}
+\end{minipage}%
+\end{onlyenv}%
+\hfill\onslide<3->{\parbox{.275\linewidth}{\begin{fancydir}
+[worlds, dir
+    [fruits, dir
+        [Apple.java, cfile={btcd@color@primary}{J}]
+        [Banana.java, cfile={btcd@color@primary}{J}]
+    ]
+    [Skyrim.java, cfile={btcd@color@primary}{J}]
+    [Morrowind.java, cfile={btcd@color@primary}{J}]
+]
+\end{fancydir}}}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Sichtbarkeiten]
+       \begin{enumerate}[<+(1)->]
+            \item \emph{Ungültig}: Die Konstruktion eines \say{Apple-Objektes} funktioniert, \bjava[morekeywords={[3]{Apple}}]{Apple::eat()} ist in \bjava[morekeywords={[3]{Morrowind}}]{Morrowind} aber nicht sichtbar (package private).
+            \item \emph{Gültig}: Von \bjava[morekeywords={[3]{Banana}}]{Banana} kann ein Objekt erzeugt werden, \bjava[morekeywords={[3]{Banana}}]{Banana::lookAt(int)} ist \bjava{public} sichtbar.
+            \item \emph{Gültig}: Von \bjava[morekeywords={[3]{Banana}}]{Banana} kann ein Objekt erzeugt werden, weiter erweitert \bjava[morekeywords={[3]{Banana}}]{Banana::eat()} mit dem Überschreiben die Sichtbarkeit von \bjava[morekeywords={[3]{Apple}}]{Apple::eat()} auf \bjava{public}.
+       \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Sichtbarkeiten\hfill(Fortsetzung)]
+       \begin{enumerate}[<+(1)->]
+            \setcounter{enumi}{3}
+           \item \emph{Ungültig}: Die Konstruktion eines \say{Apple-Objektes} funktioniert, \bjava[morekeywords={[3]{Apple}}]{Apple::eat()} ist in \bjava[morekeywords={[3]{Skyrim}}]{Skyrim} aber nicht sichtbar (package private).
+           \item \emph{Ungültig}: \bjava[morekeywords={[3]{Skyrim}}]{Skyrim::test()} ist statisch, für \bjava[morekeywords={[3]{Banana}}]{Banana::eat(float)} benötigt es aber ein Objekt.
+           \item \emph{Gültig}: Von \bjava[morekeywords={[3]{Banana}}]{Banana} kann ein Objekt erzeugt werden, \bjava[morekeywords={[3]{Banana}}]{Banana::lookAt(int)} ist \bjava{public} sichtbar.
+       \end{enumerate}
+    \end{solve}
+\end{frame}
+\fi
 
 \begin{frame}[c]{Es gilt festzuhalten\ldots}
     \begin{definition}[Subroutinen]
