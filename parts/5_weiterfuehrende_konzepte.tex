@@ -120,7 +120,7 @@
 \begin{frame}[fragile,c]{Binäre Suche}
     \Task{Die binäre Suche}
     \begin{exercise}<2->[Binäre Suche \Time{6}]
-        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits sortiertes Array mit der binarySearch Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
+        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits aufsteigend sortiertes Array mit der binarySearch Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
         Wird der Schlüssel nicht gefunden, so soll die Methode einen negativen Wert zurückliefern.
     \end{exercise}\onslide<1->
 \end{frame}
@@ -240,6 +240,37 @@
     \end{center}
 \end{frame}
 
+
+\ifull
+\begin{frame}[fragile,c]{Selectionsort implementieren}
+    \Task{Selectionsort implementieren}
+    \begin{exercise}<2->[Selectionsort implementieren \Time{6}]
+        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)} die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert.\pause{} Das übergebene Array darf nicht verändert werden.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Selectionsort implementieren -- Lösung}
+    \begin{solve}<2->[Selectionsort implementieren]
+\lstfs{10}\begin{plainjava}
+!*\onslide<3->*!public static int[] selectionSort(int[] arr) {
+!*\onslide<4->*!    // Erzeuge Kopie
+!*\onslide<5->*!    int[] newArr = new int[arr.length];
+!*\onslide<5->*!    for(int i = 0; i < arr.length; i++)
+!*\onslide<5->*!        newArr[i] = arr[i];
+!*\onslide<5->*!
+!*\onslide<6->*!    // Sortiere nach Selectionsort
+!*\onslide<7->*!    for(int i = 0; i < arr.length - 1; i++) {
+!*\onslide<8->*!        int min = getMin(arr, i, arr.length);
+!*\onslide<9->*!        swap(arr, i, min);
+!*\onslide<7->*!    }
+!*\onslide<7->*!
+!*\onslide<10->*!    return arr;
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+\fi
+
 \begin{frame}[fragile,c]{Sortierverfahren: Selectionsort}
     \begin{plainjava}
 !*\onslide<2->*!public static void selectionSort(int[] arr) {
@@ -296,18 +327,44 @@
     \end{center}
 \end{frame}
 
-\begin{frame}[fragile,c]{Sortierverfahren: Insertionsort}
-    \begin{plainjava}
+\ifull
+\begin{frame}[fragile,c]{Insertionsort implementieren}
+    \Task{Insertionsort implementieren}
+    \begin{exercise}<2->[Insertionsort implementieren \Time{6}]
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)} die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void insertionSort(int[])} die das übergebene Array mittels Insertionsort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Insertionsort implementieren -- Lösung}
+    \begin{solve}<2->[Insertionsort implementieren]
+\lstfs{10}\begin{plainjava}
 !*\onslide<2->*!public static void insertionSort(int[] arr) {
 !*\onslide<3->*!    for(int i = 1; i < arr.length; i++) {
-!*\onslide<4->*!        int pos = i - 1, elem = arr[i];
-!*\onslide<5->*!        while(pos >= 0 && arr[pos] > elem) { // Verschiebe
-!*\onslide<6->*!            arr[pos + 1] = arr[pos];
-!*\onslide<6->*!            pos--;
+!*\onslide<4->*!        int pos = i;
+!*\onslide<5->*!        while(pos > 0 && arr[pos] <= arr[pos - 1]) {
+!*\onslide<6->*!            swap(arr, pos, pos - 1);
+!*\onslide<6->*!            pos -= 1;
 !*\onslide<5->*!        }
-!*\onslide<7->*!        arr[pos+1] = elem;
 !*\onslide<3->*!    }
 !*\onslide<2->*!}
+    \end{plainjava}
+    \end{solve}
+\end{frame}
+\fi
+
+\begin{frame}[fragile,c]{Sortierverfahren: Insertionsort}
+    \pause Hier eine Variante, die verschiebt:
+    \begin{plainjava}
+!*\onslide<3->*!public static void insertionSort(int[] arr) {
+!*\onslide<4->*!    for(int i = 1; i < arr.length; i++) {
+!*\onslide<5->*!        int pos = i - 1, elem = arr[i];
+!*\onslide<6->*!        while(pos >= 0 && arr[pos] > elem) { // Verschiebe
+!*\onslide<7->*!            arr[pos + 1] = arr[pos];
+!*\onslide<7->*!            pos--;
+!*\onslide<6->*!        }
+!*\onslide<8->*!        arr[pos+1] = elem;
+!*\onslide<4->*!    }
+!*\onslide<3->*!}
     \end{plainjava}
 \end{frame}
 
