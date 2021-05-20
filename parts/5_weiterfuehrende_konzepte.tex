@@ -43,6 +43,28 @@
     \end{itemize}
 \end{frame}
 
+\ifull
+\begin{frame}[fragile,c]{Lineare Suche}
+    \Task{Die bineare Suche}
+    \begin{exercise}<2->[Lineare Suche \Time{4}]
+        \pause{}Schreiben Sie eine Methode \bjava{int linearSearch(int[], int)}, die ein Array mit der linearen Suche nach einem gegebene Schlüssel durchsucht und den (ersten) Index des Schlüssels zurückliefert.
+        Wird der Schlüssel nicht gefunden, so soll die Methode einen negativen Wert zurückliefern.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Lineare Suche -- Lösung}
+    \begin{solve}<2->[Lineare Suche]
+\begin{plainjava}
+!*\onslide<3->*!int linearSearch(int[] sequence, int key){
+!*\onslide<4->*!    for(int i = 0; i < sequence.length; i++)
+!*\onslide<5->*!        if(sequence[i] == key)
+!*\onslide<5->*!            return i;
+!*\onslide<6->*!    return -1; // Magic Number für "not found"
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+\else
 \begin{frame}[fragile,c]{Klassische Suchverfahren}
 \begin{plainjava}
 !*\onslide<2->*!int linearSearch(int[] sequence, int key){
@@ -52,6 +74,7 @@
 !*\onslide<2->*!}
 \end{plainjava}
 \end{frame}
+\fi
 
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
@@ -93,23 +116,57 @@
     \end{itemize}
 \end{frame}
 
+\ifull
+\begin{frame}[fragile,c]{Binäre Suche}
+    \Task{Die binäre Suche}
+    \begin{exercise}<2->[Binäre Suche \Time{6}]
+        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits sortiertes Array mit der binarySearch Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
+        Wird der Schlüssel nicht gefunden, so soll die Methode einen negativen Wert zurückliefern.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Binäre Suche -- Lösung}
+    \begin{solve}<2->[Binäre Suche]
+\lstfs{10}\begin{plainjava}
+!*\onslide<3->*!int binarySearch(int[] sequence, int key){
+!*\onslide<4->*!    int min = 0; // Suche von min
+!*\onslide<4->*!    int max = sequence.length - 1; // Suche bis max
+!*\onslide<5->*!    while(min <= max) { // Solange [min, max] nicht ungültig ist.
+!*\onslide<6->*!        int middle = (min + max)/2; // Mitte
+!*\onslide<7->*!        if(sequence[middle] == key) // gefunden
+!*\onslide<7->*!            return middle;
+!*\onslide<8->*!        else if(key < sequence[middle]) // Suche links [min, middle-1]
+!*\onslide<8->*!            max = middle - 1;
+!*\onslide<9->*!        else // Suche rechts [middle+1, max]
+!*\onslide<9->*!            min = middle + 1;
+!*\onslide<5->*!    }
+!*\onslide<10->*!    return -1; // Magic Number für "not found"
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+\else
 \begin{frame}[fragile,c]{Klassische Suchverfahren}
+    \lstfs{10}%
     \begin{plainjava}
 !*\onslide<2->*!int binarySearch(int[] sequence, int key){
-!*\onslide<3->*!    int min = 0, max = sequence.length - 1;
-!*\onslide<4->*!    while(min <= max) {
+!*\onslide<3->*!    int min = 0; // Suche von min
+!*\onslide<3->*!    int max = sequence.length - 1; // Suche bis max
+!*\onslide<4->*!    while(min <= max) { // Solange [min, max] nicht ungültig ist.
 !*\onslide<5->*!        int middle = (min + max)/2; // Mitte
 !*\onslide<6->*!        if(sequence[middle] == key) // gefunden
 !*\onslide<6->*!            return middle;
-!*\onslide<7->*!        else if(key < sequence[middle]) // links
+!*\onslide<7->*!        else if(key < sequence[middle]) // Suche links [min, middle-1]
 !*\onslide<7->*!            max = middle - 1;
-!*\onslide<8->*!        else // rechts
+!*\onslide<8->*!        else // Suche rechts [middle+1, max]
 !*\onslide<8->*!            min = middle + 1;
 !*\onslide<4->*!    }
 !*\onslide<9->*!    return -1; // Magic Number für "not found"
 !*\onslide<2->*!}
 \end{plainjava}
 \end{frame}
+\fi
+
 
 \subsection{Sortierverfahren}
 
