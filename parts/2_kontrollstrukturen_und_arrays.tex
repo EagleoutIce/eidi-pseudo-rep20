@@ -242,6 +242,43 @@ for(int i : a) {
     \end{itemize}
 \end{frame}
 
+
+\ifull
+\begin{frame}[c,fragile]{Übungsaufgabe}
+\Task{Arrays halbieren}
+\begin{exercise}<2->[Arrays halbieren \Time{3}]
+    Gegeben ein Array \bjava{int[] arr} \emph{variabler} Länge. Schreiben Sie Java-Code, der ein neues Array \bjava{int[] newArr} erstellt und so befüllt, dass es nur noch die Elemente mit geradem Index aus \bjava{arr} enthält.\par\pause{}
+    Beispiele:\pause
+\begin{plainjava}
+{7, 23, 15, 8, 10, 2} !*$\Rightarrow$*! {7, 15, 10}
+{1, 2, 3} !*$\Rightarrow$*! {1, 2}
+{31} !*$\Rightarrow$*! {31}
+\end{plainjava}
+\end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Arrays halbieren]
+    Zunächst müssen wir die Größe des neuen Arrays berechnen:
+\begin{plainjava}
+int[] newArr = new int[(arr.length + 1)/2];
+\end{plainjava}
+    Sauberer (aber nicht gefordert) wäre:
+\begin{plainjava}
+int[] newArr = new int[(int) Math.ceil(arr.length/2.0)];
+\end{plainjava}
+    Nun den Übertrag der Elemente:
+\begin{plainjava}
+for(int i = 0; i < arr.length; i += 2) {
+    newArr[i/2] = arr[i];
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\fi
+
+
 \subsection{Mehrdimensionale Konzepte}%Array und Schleifenkonzepte}
 
 \begin{frame}[fragile]{Mehrdimensionale Arrays}
