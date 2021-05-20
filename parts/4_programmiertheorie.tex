@@ -411,7 +411,7 @@ static int methode(int n) {
 \begin{frame}[fragile,c]{Funktion zu Rekursion}
     \Task{Schleife zu Rekursion}
     \begin{exercise}<2->[Schleife zu Rekursion \Time{4}]
-        Wandle folgenden Code in einen rekursiven Algorithmus um:\pause{}
+        Wandeln Sie folgenden Code in einen rekursiven Algorithmus um:\pause{}
         \begin{plainjava}
 !*\onslide<3->*!public int ggT(int a, int b){
 !*\onslide<4->*!    while(b != 0){
@@ -439,12 +439,12 @@ public int ggT(int a, int b){
 \begin{frame}[fragile,c]{Rekursiver Konverter}
     \Task{Rekursion zur Konvertierung}
     \begin{exercise}<2->[Rekursion zur Konvertierung \Time{4}]
-        \pause{}Schreibe einen rekursiven Algorithmus, der einen positiven Integer in seine Binärdarstellung (als \bjava{String}) verwandelt.\pause{}
+        \pause{}Schreiben Sie einen rekursiven Java-Algorithmus, der einen positiven Integer in seine Binärdarstellung (als \bjava{String}) verwandelt.\pause{}
         Beispiel:\pause{}
 \begin{plainjava}
 |plain|int2bin|plain|(42) // :yields: 101010
 \end{plainjava}
-    \pause{}Hinweis: um eine Zahl in einen String zu konvertieren kann Konkatenation,\pause{} sowie \bjava{String.valueOf(int)} verwendet werden.
+    \pause{}Hinweis: um eine Zahl in einen String zu konvertieren kann Konkatenation,\pause{} sowie \bjava{Integer.toString(int)} verwendet werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -452,8 +452,8 @@ public int ggT(int a, int b){
     \begin{solve}<2->[Schleife zu Rekursion]
 \begin{plainjava}
 !*\onslide<3->*!public String |plain|int2bin|plain|(int num){
-!*\onslide<4->*!    if(num < 2) return String.valueOf(num);
-!*\onslide<5->*!    return |plain|int2bin|plain|(num / 2) + String.valueOf(num % 2);
+!*\onslide<4->*!    if(num < 2) return Integer.toString(num);
+!*\onslide<5->*!    return |plain|int2bin|plain|(num / 2) + Integer.toString(num % 2);
 !*\onslide<3->*!}
 \end{plainjava}
     \end{solve}
