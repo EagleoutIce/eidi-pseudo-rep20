@@ -60,7 +60,7 @@
   \tikz[#1]{%
     \pgfpathrectangle{\pgfpoint{1pt}{0pt}}{\pgfpoint{\wd #2}{\ht #2}}%
     \pgfusepath{use as bounding box}%
-    \node[anchor=base west, outer sep=0pt,inner xsep=1pt, inner ysep=-1.105pt, rounded corners=1.65pt, minimum height=\ht\strutbox+1pt,#1]{\raisebox{1pt}{\strut}\strut\usebox{#2}};
+    \node[anchor=base west, outer sep=\z@,inner xsep=1pt, inner ysep=-1.105pt, rounded corners=1.65pt, minimum height=\ht\strutbox+1pt,#1]{\raisebox\p@{\strut}\strut\usebox{#2}};
   }%
 }
 
@@ -130,15 +130,15 @@
 %% -----------------------------------------------------------------------------
 
 \tikzset{
-    block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=0pt,minimum height=\baselineskip,execute at begin node={\strut}},
+    block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
     block/.default=solidF,
     iblock/.style={block=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
     ball/.style={circle,draw,#1,font=\color{btcd@color@black}},
     iball/.style={ball=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
     oball/.style={ball=btcd@color@alerted,fill=btcd@color@alerted!21!btcd@color@white},
-    ball/.default=solidF,
-    link/.style={-Kite},
-    enode/.style={inner sep=0pt}%
+    ball/.default=solidF, link/.style={-Kite},
+    enode/.style={inner sep=\z@},%
+    every picture/.append style={line join=round,line cap=round}%
 }
 
 %% -----------------------------------------------------------------------------
