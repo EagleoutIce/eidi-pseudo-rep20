@@ -4,10 +4,10 @@
 \subsection{Rekursion}
 \begin{frame}[fragile]{Rekursive und iterative Programmierung}
     \begin{definition}<2->[Rekursive Methode]
-        \pause{}Eine Methode oder Funktion bezeichnen wir als \emph{rekursiv}, wenn sie sich:\pause{} \begin{description}[indirekt]
-            \item[direkt] selbst aufruft, sich also selbst referenziert.\pause{}
-            \item[indirekt] selbst aufruft, also eine andere Methode aufruft, die (über irgendwelche Umwege) wieder die Methode referenziert.
-        \end{description}
+        \pause{}Eine Methode oder Funktion bezeichnen wir als \emph{rekursiv}, wenn sie sich:\pause{} \begin{itemize}
+            \item \emph{direkt} selbst aufruft, sich also selbst referenziert.\pause{}
+            \item \emph{indirekt} selbst aufruft, also eine andere Methode verwendet, die (über irgendwelche Umwege) wieder die Methode aufruft.
+        \end{itemize}
     \end{definition}
     \begin{itemize}[<+(1)->]
         \widei
@@ -21,9 +21,9 @@
 \begin{frame}[fragile]{Arten von Rekursion}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Es gibt zwei Positionen, an denen ein rekursiver Aufruf erfolgen kann.\begin{description}
+        \item Wir unterscheiden zwei Positionen für einen rekursiven Aufruf: \begin{description}
             \item[Head] Hier erfolgt der rekursive Aufruf zu Beginn der Rekursion (also vor der Datenverarbeitung).
-            \item[Tail] Hier erfolgt der rekursive Aufruf zu Ende der Rekursion.\pause{} Ein solcher Abstieg lässt sich (und wird) in der Regel einfach in eine Iteration transformieren.
+            \item[Tail] Hier erfolgt der rekursive Aufruf zu Ende der Rekursion.\pause{} Ein solcher Abstieg kann in der Regel einfach in eine Iteration transformiert werden (dies kann z.B. der Compiler automatisch übernehmen).
         \end{description}
     \end{itemize}
 \begin{center}\scriptsize%
@@ -60,7 +60,7 @@
         \widei
         \item Eine Methode kann sich auch mehrfach (auch indirekt) selbst referenzieren.
         \item In diesem Fall entsteht kein \say{linearer} Abstieg,\pause{} sondern vielmehr eine Baum-/Kaskadenartige Verzweigung.
-        \item Beliebte Beispiele: Fibonacci, Binomialkoeffizient.
+        \item Beliebte Beispiele: die Fibonaccifolge und der Binomialkoeffizient.
     \end{itemize}
     \onslide<6->{%
 \vfill\hbox{}
@@ -168,7 +168,7 @@ static int methode(int n) {
 
 \begin{frame}[fragile]{Erfassen der Komplexität}
     \begin{itemize}[<+(1)->]
-        \item Bei der Berechnung helfen die gängigen mathematischen Gesetze\pause{} (Logarithmus,~\ldots)
+        \item Bei der Berechnung helfen gängige mathematische Gesetze\pause{} (Logarithmus,~\ldots)
         \item Die wichtigste Rechenregel:\pause{} \(\O(f(n) + g(n)) = \O(\max\{f(n), g(n)\})\)
         \item Neben der \(\O\) Notation, existieren noch weitere Notationen,\pause{} wie \(\Omega(n)\), welches analog die untere Grenze darstellt.
         \item In der Regel reichen die folgenden wichtigsten Komplexitätsklassen:\vskip2em\pause{}
