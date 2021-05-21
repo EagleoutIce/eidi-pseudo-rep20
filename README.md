@@ -6,6 +6,8 @@ Quelldateien für den Foliensatz meines inoffiziellen Eidi-Repetitoriums.
 
 ## Der Foliensatz
 
+[<img src="https://github.com/EagleoutIce/eidi-pseudo-rep20/blob/gh-pages/preview-001.png?raw=true" width="600"/>](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/slides-eidi-rep.pdf.pdf)
+
 Der Foliensatz (ohne Animation) sollte sich [hier](https://media.githubusercontent.com/media/EagleoutIce/eidi-pseudo-rep20/gh-pages/slides-eidi-rep.pdf) und [hier](https://github.com/EagleoutIce/eidi-pseudo-rep/blob/gh-pages/slides-eidi-rep.pdf) befinden.
 
 ## Weitere Varianten
