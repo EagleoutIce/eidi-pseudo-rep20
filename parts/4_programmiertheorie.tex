@@ -2,7 +2,7 @@
 \section{Programmiertheorie}
 
 \subsection{Rekursion}
-\begin{frame}[fragile]{Rekursive und iterative Programmierung}
+\begin{frame}{Rekursive und iterative Programmierung}
     \begin{definition}<2->[Rekursive Methode]
         \pause{}Eine Methode oder Funktion bezeichnen wir als \emph{rekursiv}, wenn sie sich:\pause{} \begin{itemize}
             \item \emph{direkt} selbst aufruft, sich also selbst referenziert.\pause{}
@@ -86,7 +86,7 @@
 \end{frame}
 
 
-\begin{frame}[fragile]{Verschränkte und geschachtelte Rekursion}
+\begin{frame}{Verschränkte und geschachtelte Rekursion}
     \begin{itemize}[<+(1)->]
         \widei
         \item Es existieren weitere Varianten der Rekursion: \begin{description}[geschachtelt]
@@ -166,7 +166,7 @@ static int methode(int n) {
     \end{definition}
 \end{frame}
 
-\begin{frame}[fragile]{Erfassen der Komplexität}
+\begin{frame}{Erfassen der Komplexität}
     \begin{itemize}[<+(1)->]
         \item Bei der Berechnung helfen gängige mathematische Gesetze\pause{} (Logarithmus,~\ldots)
         \item Die wichtigste Rechenregel:\pause{} \(\O(f(n) + g(n)) = \O(\max\{f(n), g(n)\})\)
@@ -534,7 +534,7 @@ int getDistance(String a, String b){
     \end{exercise}\onslide<1->
 \end{frame}
 
-\begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
+\begin{frame}[c]{Übungsaufgabe -- Lösung}
     \begin{solve}<2->[Komplexitätsklassen ordnen]
         \pause{}Es ergibt sich: \begin{enumerate}[<+(1)->]
             \item \(\O(14n+12) = \O(n)\)

@@ -871,14 +871,14 @@ static int partition(int[] arr, int l, int r) {
 \end{frame}
 
 \begin{frame}[c]{Übungsaufgabe}
-    \Task{Sortieralgorithmen zeichnen}
-    \begin{exercise}<2->[Sortieralgorithmen zeichnen \Time{5}]
-        \pause{}Veranschaulichen Sie den Sortierprozess der Zahlenfolge \(5,7,2,5,3,-19,6\) unter der Verwendung von \emph{Mergesort} grafisch. Geben Sie jeden Schritt an.
+    \Task{Sortieralgorithmen zeichnen (Mergesort)}
+    \begin{exercise}<2->[Sortieralgorithmen zeichnen, I \Time{5}]
+        \pause{}Veranschaulichen Sie den Sortierprozess der Zahlenfolge \(5,7,2,5,3,-19,6\) unter der Verwendung von \emph{Mergesort} grafisch. Geben Sie jeden Schritt an und sortieren Sie aufsteigend.
     \end{exercise}
 \end{frame}
 
 \begin{frame}[c]{Lösung}
-    \begin{solve}<2->[Sortieralgorithmen zeichnen]
+    \begin{solve}<2->[Sortieralgorithmen zeichnen, I]
         \pause{}Hier sind Split- und Mergephase wieder aufgespalten:\pause{}
 \begin{center}
     \tikzset{block/.append style={sharp corners,rounded rectangle}}%
@@ -892,6 +892,49 @@ static int partition(int[] arr, int l, int r) {
             [{\(-19,2,3,5,5,6,7\)},iblock[{\(-19,3,6\)}[6][{\(3,-19\)}[-19][3]]][{\(2,5,5,7\)}[{\(2,5\)}[5][2]][{\(5,7\)}[7][5]]]]
         \end{forest}}
 \end{center}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Sortieralgorithmen zeichnen (Quicksort)}
+    \begin{exercise}<2->[Sortieralgorithmen zeichnen, II \Time{5}]
+        \pause{}Veranschaulichen Sie den Sortierprozess der Zahlenfolge \(3, -5, -4, 2, 6\) unter der Verwendung von \emph{Quicksort} grafisch. Nutzen Sie das in-place Verfahren durch Vertauschung aus der Vorlesung und sortieren Sie aufsteigend.\pause{} Geben Sie den Zustand der Folge nach jeder Partitionierung aus und markieren Sie die Partitionen.
+    \end{exercise}
+\end{frame}
+
+\def\QsList#1#2{
+\foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
+    \ifnum\i=#2
+        \node[inner sep=4pt,draw,thick,rounded rectangle,minimum width=3em,outer sep=2pt] (\i) at(3.5em*\i,0) {\strut\bfseries\n};
+    \else
+        \node[inner sep=4pt,draw,rounded rectangle,minimum width=3em,outer sep=2pt] (\i) at(3.5em*\i,0) {\strut\n};
+    \fi
+    \ifnum\i>1
+        \draw (\li.east) -- (\i.west);
+    \fi
+}}
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Sortieralgorithmen zeichnen, II]
+        \onslide<3->{Ich führe hier zusätzlich auf, das mit den \bjava{l}- und \bjava{r}-Markern bei der Partitionierung geschieht.}
+        \begin{enumerate}
+            \item<4-> \onslide<8->{\color{gray}}\begin{tikzpicture}[scale=0.6,gray,every node/.style={transform shape},baseline=-0.6ex]
+                \QsList{3, -5, -4, 2, 6}{1}
+            \end{tikzpicture}\onslide<5->{\quad Tausch ans Ende:\quad\begin{tikzpicture}[scale=0.6,gray,every node/.style={transform shape},baseline=-0.6ex]
+                \QsList{6, -5, -4, 2, 3}{5}
+            \end{tikzpicture}\medskip\par
+            \onslide<6->{\begin{tikzpicture}[scale=0.6,gray,every node/.style={transform shape},baseline=-0.6ex]
+                \QsList{6, -5, -4, 2, 3}{5}
+                \node[below] at(1.south) {l};
+                \node[below] at(4.south) {r};
+                \draw[Kite-Kite] (1.north) to[bend left=10] (4.north);
+            \end{tikzpicture}:\quad\begin{tikzpicture}[scale=0.6,gray,every node/.style={transform shape},baseline=-0.6ex]
+                \QsList{2, -5, -4, 6, 3}{5}
+                \node[below] at(4.south) {l,r};
+            \end{tikzpicture}}}\medskip\par
+            \onslide<8->{\color{black}}\onslide<7->{Tausche \(l\) und Pivot:\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+                \QsList{2, -5, -4, 3, 6}{4}
+            \end{tikzpicture}}
+        \end{enumerate}
     \end{solve}
 \end{frame}
 \fi

@@ -134,7 +134,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Besondere Methoden}
+\begin{frame}{Besondere Methoden}
 \begin{itemize}[<+(1)->]
     \item Eine Klasse in Java übernimmt Methoden der \bjava{Object}-Klasse.
     \item Auf diese Weise gibt es einige wichtige Methoden,\pause{} die im Kontext von Java eine besondere Bedeutung haben\pause{} (aber dafür natürlich, wie \bjava{equals} überschrieben werden müssen).
@@ -341,7 +341,7 @@ public static String wohinGehtEs(Richtung ziel){
 \end{heap-n-stack}
 \end{tikzpicture}}}%
 }
-\begin{frame}[fragile,c]{Eine leichte Aufgabe als Einstieg -- Lösung}
+\begin{frame}[c]{Eine leichte Aufgabe als Einstieg -- Lösung}
     \begin{solve}<2->[Was liefert dieser Code?]
         \pause{}Der Code liefert \(21\) und \(42\). Ersterer Wert, da wir das Array ja so zuweisen,\pause{} den zweiten, weil durch die Übergabe des Arrays mittels \emph{call-by-reference} auch das Ursprungsarray verändert wird.
         \begin{center}
@@ -372,7 +372,7 @@ public static String wohinGehtEs(Richtung ziel){
 \end{frame}
 
 
-\begin{frame}[fragile,c]{Eine leichte Aufgabe als Einstieg -- Lösung}
+\begin{frame}[c]{Eine leichte Aufgabe als Einstieg -- Lösung}
     \addtocounter{solve}{-1}%
     \begin{solve}<1->[Was liefert dieser Code?\hfill{}(Fortsetzung)]
         \pause{}\begin{center}
@@ -404,7 +404,7 @@ public static String wohinGehtEs(Richtung ziel){
 \end{frame}
 \fi
 
-\begin{frame}[fragile]{Der nette Bruder: call-by-value}
+\begin{frame}{Der nette Bruder: call-by-value}
     \begin{itemize}[<+(1)->]
         \widei
         \item \hypertarget<1>{mrk:call-by-val}{Bei} Klassen und Arrays wird nun also nicht das Element selbst,\pause{} sondern nur die Referenz übergeben.
@@ -451,7 +451,7 @@ class Laenge {
 \end{frame}
 
 
-\begin{frame}[c,fragile]{Lösung}
+\begin{frame}[c]{Lösung}
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Fehler finden, IV\hfill{}(Fortsetzung)]
     \begin{enumerate}[<+(1)->]
@@ -462,7 +462,7 @@ class Laenge {
     \end{solve}
 \end{frame}
 
-\begin{frame}[c,fragile]{Übungsaufgabe}
+\begin{frame}[c]{Übungsaufgabe}
     \Task{Eine Kreisklasse}
     \begin{exercise}<2->[Kreisklasse \Time{4}]
         \pause{}Schreiben Sie eine Klasse \bjava{Circle}, die einen Kreis repräsentiert. Ein Kreis besitzt eine \(x\) und eine \(y\) Koordinate im Fließkommabereich, sowie einen Radius.\medskip\par\pause{}
@@ -490,7 +490,7 @@ class Laenge {
 \end{frame}
 
 
-\begin{frame}[c,fragile]{Übungsaufgabe}
+\begin{frame}[c]{Übungsaufgabe}
     \Task{Ein Schienennetz}
     \begin{exercise}<2->[Schienennetz \Time{4}]
         \onslide<3->{Ein Feld in einem gitterartigen Schienennetz kann entweder \onslide<4->{frei (\(\widehat{=}\) keine Schiene) oder von einer Schiene, von einem Waggon oder einer Lokomotive \say{belegt} sein.}}
@@ -517,7 +517,7 @@ class Laenge {
     \end{solve}
 \end{frame}
 
-\begin{frame}[c,fragile]{Übungsaufgabe}
+\begin{frame}[c]{Übungsaufgabe}
     \Task{Ein Kamera-Singleton erstellen.}
     \begin{exercise}<2->[Kamera \Time{5}]
         \onslide<3->{Schreiben Sie eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)) \onslide<5->{und zwei für den jeweiligen Drehwinkel \(r_x, r_z\). \onslide<6->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen.\medskip\par \onslide<7->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}}
