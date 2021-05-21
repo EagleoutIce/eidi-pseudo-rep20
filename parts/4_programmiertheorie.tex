@@ -196,7 +196,7 @@ static int methode(int n) {
         \item Im Kontext der Vorlesung gilt es drei Typen kurz zu skizzieren: \begin{description}[Sequenzdiagramme]
             \item[Klassendiagramme] modellieren die Beziehungen und Eigenschaften der beteiligten Klassen.
             \item[Objektdiagramme] modellieren die Beziehungen und Ausprägungen (spezifischer) Objekte.
-            \item[Sequenzdiagramme] modellieren den Nachrichtenaustausch in einem Programm.\pause{} Ist ereignisbasiert.
+            \item[Sequenzdiagramme] modellieren den Nachrichtenaustausch in einem Programm.\pause{} Sie sind ereignisbasiert.
         \end{description}
         \item UML wird hier (wie in der Vorlesung auch) nur oberflächlich betrachtet.
     \end{itemize}
@@ -353,9 +353,9 @@ static int methode(int n) {
 
 \begin{frame}{Darstellung ganzer Zahlen}
 \begin{itemize}[<+(1)->]
-    \item Die wichtigsten Basen für uns sind:\pause{} \(b = 2\) (dual/binär),\pause{} \(b = 8\) (Oktal)\pause{} und \(b = 16\) (Hexadezimal)
+    \item Die wichtigsten Basen für uns sind:\pause{} \(b = 2\) (dual/\allowbreak binär),\pause{} \(b = 8\) (Oktal)\pause{} und \(b = 16\) (Hexadezimal)
     \item Im Hexadezimalsystem werden die Ziffern \(\geq 10\) durch die Buchstaben \(A\,\widehat{=}\,10\) bis \(F\,\widehat{=}\,15\) dargestellt.
-    \item Wir können eine Zahl aus dem Dezimalsystem in jedes andere konvertieren,\pause{} indem wir sukzessiv die Ziffern durch \say{\({}\bmod b\)} generieren\pause{} und die Zahl dann (ohne Rest) durch \(b\) dividieren.
+    \item Wir können eine Zahl aus dem Dezimalsystem in jedes andere konvertieren,\pause{} indem wir sukzessiv die Ziffern durch \say{\({}\bmod b\)} generieren\pause{} und die Zahl dann (ohne Rest) durch \(b\) teilen.
     \item Beispiel: \(z = 10\) soll ins Dualsystem konvertiert werden:\pause{} \begin{alignat*}{3}
         \onslide<+->{10 & \div 2 = 5 \qquad&10 \bmod 2 &= 0 \;(\leftarrow LSB) \\}
         \onslide<+->{5 & \div 2 = 2 \qquad&5 \bmod 2 &= 1 \\}
@@ -369,7 +369,7 @@ static int methode(int n) {
 \begin{frame}[fragile]{Darstellung ganzer Zahlen}
 \begin{itemize}[<+(1)->]
     \item Dies ergibt: \(1010_{(2)}\).
-    \item Hinweis: es existieren weitere (schnelle) Konvertierungsverfahren,\pause{} die es zum Beispiel das Hexadezimalsystem direkt ins Dualsystem zu konvertieren.\pause{} Da hier jede Ziffer im Hexadezimalsystem \(4\) Bits einnimmt, geht die Konvertierung schneller:\pause{} \[
+    \item Hinweis: es existieren weitere (schnelle) Konvertierungsverfahren,\pause{} die es zum Beispiel erlauben, das Hexadezimalsystem direkt ins Dualsystem zu konvertieren.\pause{} Da jede Ziffer im Hexadezimalsystem vier Bits einnimmt, geht die Konvertierung schneller:\pause{} \[
         AFFE_{(16)} = \overbrace{1010}^{A}\;\overbrace{1111}^{F}\;\overbrace{1111}^{F}\;\overbrace{1110}^{E}\;{}_{(2)}\vspace*{-0.4cm}
     \]
 \end{itemize}
@@ -382,7 +382,7 @@ static int methode(int n) {
 \ifull
 \begin{frame}[c]{Übungsaufgabe -- Lösung}
 \begin{solve}<2->[Zahlen konvertieren]
-    \pause{}Konvertieren wir die Zahl zuerst ins Binärsystem (schnelle Konvertierung mit je \(3\) Bits),\pause{} dann von dort aus ins Hexadezimalsystem,\pause{} nun ins Dezimalsystem (nicht gefordert) und dann in \(b = 3\):\pause{} \begin{description}[b = 16]
+    \pause{}Konvertieren wir die Zahl zuerst ins Binärsystem (schnelle Konvertierung mit je drei Bits),\pause{} dann von dort aus ins Hexadezimalsystem,\pause{} nun ins Dezimalsystem (nicht gefordert) und dann in \(b = 3\):\pause{} \begin{description}[b = 16]
         \item[b = 2] \(42_{(8)} = \overbrace{100}^{4}\overbrace{010}^{2}\;{}_{(2)}\)
         \item[b = 16] \(100010_{(2)} = \overbrace{2}^{10}\overbrace{2}^{0010}\;{}_{(16)}\) (wir füllen also links mit Nullen auf, wenn die Bits kein Vielfaches von vier sind)
         \item[b = 10] \(4 \cdot 8^1 + 2 \cdot 8^0 = 32 + 2 = 34_{(10)}\)
