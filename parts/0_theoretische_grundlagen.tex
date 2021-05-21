@@ -189,8 +189,8 @@
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Algorithmus beschreiben}
     \begin{exercise}<2->[Algorithmus beschreiben \Time{2}]
-        Beschreibe einen Algorithmus, der das maximale Element einer Datenmenge bestimmt.\pause{}
-        \textit{Hinweis: Auf den Elementen muss keine numerische Ordnung definiert sein.}
+        Beschreiben Sie einen Algorithmus, der das maximale Element einer Datenmenge bestimmt.\pause{}
+        \textit{Hinweis: Auf den Elementen muss keine \say{numerische} Ordnung definiert sein.}
     \end{exercise}
 \end{frame}
 
@@ -233,22 +233,22 @@ public static int simpleMod(int a, int b){
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Korrektheitsbeweis}
     \begin{exercise}<2->[Korrektheitsbeweis \Time{4}]
-        Zeigen Sie die totale Korrektheit für den folgenden Algorithmus:\smallskip\par
+        Zeigen Sie die totale Korrektheit des folgenden Algorithmus:\smallskip\par
 \onslide<3->{%
 \begin{algorithm}[H]
     \PreCode
         \KwIn{$a, b, c \in \mathbb{N}$}
-        \KwOut{Maximum of $a, b, c$}
+        \KwOut{Minimum of $a, b, c$}
     \StartCode
         $elems := (a, b, c)$\;
-        $max := a$\;\label{alg:ex-max1}
+        $min := a$\;\label{alg:ex-min1}
         \ForEach{elem \textbf{in} elems}{\label{alg:ex-fe1}%
-            \lIf{$elem > max$}{
-                $max := elem$
+            \lIf{$elem < min$}{
+                $min := elem$
             }
         }
-        \KwRet{max}\;
-    \caption{Finden des Maximum}
+        \KwRet{min}\;
+    \caption{Finden des Minimum}
 \end{algorithm}}
     \end{exercise}
 \end{frame}
@@ -258,9 +258,9 @@ public static int simpleMod(int a, int b){
        \pause{}Wir zeigen die Termination und die partielle Korrektheit getrennt: \begin{itemize}[<+(1)->]
            \item Das for-each aus Zeile~\ref{alg:ex-fe1} endet sicher nach drei Durchläufen. Es gibt keine weiteren Sprünge (wie Rekursion,~\ldots): der Algorithmus \emph{terminiert} für alle \(a, b, c \in \mathbb{N}\).
            \item Hier kann man alle Fälle \(a = b = c\), \(a > b = c\),~\ldots einzeln prüfen. Sonst: \begin{itemize}
-             \item \(a = \max\{a, b, c\}\) so initialisiert Zeile~\ref{alg:ex-max1} \(max\) schon korrekt, \(b \leq a\) und \(c \leq a\).
-             \item \(b = \max\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(max\) für \(b\), da \(b \geq a\) und \(c \leq b\).
-             \item \(c = \max\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(max\) für \(c\), da \(c \geq a\) und \(b \leq c\).
+             \item \(a = \min\{a, b, c\}\) so initialisiert Zeile~\ref{alg:ex-min1} \(min\) schon korrekt, \(b \geq a\) und \(c \geq a\).
+             \item \(b = \min\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(min\) für \(b\), da \(b \leq a\) und \(c \geq b\).
+             \item \(c = \min\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(min\) für \(c\), da \(c \leq a\) und \(b \geq c\).
            \end{itemize}
        \end{itemize}
     \end{solve}
