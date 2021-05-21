@@ -85,7 +85,7 @@ do {
 \Task{While vs. Do-While, I}
 \begin{exercise}<2->[While vs. Do-While, I \Time{3}]
     Erzeugen die Schleifen für \(i = 0\) die selbe Ausgabe?\pause{}
-    Gilt dies auch für \(i = 42\)?\pause
+    Was ändert sich, wenn \(i = 42\) anstelle von \(i = 0\)?\pause
 \begin{plainjava}[multicols=2,aboveskip=0pt]
 int i = ?; /* a) 0, b) 42 */
 do {
@@ -315,7 +315,7 @@ int x = b[2][3]; // x :yields: 5
 \ifull
     \Task{Zählschleife in Iterationsschleife umwandeln}
     \begin{exercise}<8->[Iteration mit for-each \Time{4}]
-        Schreibe diese Methode so um, dass sie den for-each Mechanismus verwendet.
+        Schreiben Sie diese Java-Methode so um, dass sie den for-each Mechanismus verwendet.
     \end{exercise}
 \fi
 \end{frame}
@@ -342,7 +342,7 @@ int x = b[2][3]; // x :yields: 5
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche Kompilier- und Laufzeitfehler, III}
     \begin{exercise}<2->[Fehler finden, III \Time{4}]
-        \pause{}Finde und korrigiere alle Kompilier- und Laufzeitfehler:\pause{}
+        \pause{}Finden und korrigieren Sie alle Kompilier- und Laufzeitfehler:\pause{}
         \begin{plainvoid}
 int[][][] x = {{}, {{1,2},{2},{5}}, {{3}}};
 foreach (int[][] 'ex' : x) {
@@ -351,7 +351,7 @@ foreach (int[][] 'ex' : x) {
         System.out.print(eex[i] + " ");
 }
         \end{plainvoid}
-        \pause{}Wie lautet die Ausgabe des korrigierten Codes?
+        Wie lautet die Ausgabe Ihres korrigierten Codes?
     \end{exercise}
 \end{frame}
 
@@ -395,7 +395,7 @@ for (int[][] ex : x) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Begriffserklärungen}
     \begin{exercise}<2->[Begriffserklärungen \Time{4}]
-        \pause{}Erkläre jeweils in ein bis zwei Sätzen: \begin{enumerate}[<+(1)->]
+        \pause{}Erklären Sie bitte jeweils in ein bis zwei Sätzen: \begin{enumerate}[<+(1)->]
             \item[i)] Was ist ein Deadlock (und wann tritt er auf)?
             \item[ii)] Was veranschaulicht ein Histogramm?
             \item[iii)] Was versteht man unter einem deterministischen Algorithmus?
@@ -416,7 +416,7 @@ for (int[][] ex : x) {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Programmieren eines Häufigkeitszähler}
     \begin{exercise}<2->[Programmieren eines Häufigkeitszähler \Time{5}]
-        \pause{}Schreibe eine Routine \bjava{countChars(String)}, welche ein Array \bjava{int[26]} zurückliefert,\pause{} das von \(0 \;\widehat{=}\; \T{a}\)\pause{} bis \(25 \;\widehat{=}\; z\) die Häufigkeit der Buchstaben angibt.\pause{} Groß-, Kleinschreibung sowie andere Zeichen sollen ignoriert werden.
+        \pause{}Schreiben Sie eine Java-Routine \bjava{countChars(String)}, welche ein Array \bjava{int[26]} zurückliefert,\pause{} das von \(0 \;\widehat{=}\; \T{a}\)\pause{} bis \(25 \;\widehat{=}\; z\) die Häufigkeit der Buchstaben angibt.\pause{} Groß-, Kleinschreibung sowie andere Zeichen sollen ignoriert werden.
     \end{exercise}
 \end{frame}
 
@@ -439,8 +439,8 @@ for (int[][] ex : x) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Programmieren: Turtlewalk}
     \begin{exercise}<2->[Programmieren: Turtlewalk \Time{6}]
-        \pause{}Das Array \bjava{static boolean[][] field} repräsentiere ein rechteckiges Gitter (welches mindestens \(1\) Feld umfasst).\pause{} Für jedes Feld \bjava{field[i][j]} gibt der Wert an, ob es passierbar (\bjava{true}) oder blockiert (\bjava{false}) ist.\pause{} Die Variablen \bjava{static int turtleX, turtleY;}\pause{} repräsentieren eine Schildkröte an Position \bjava{field[turtleY][turtleX]}.
-        \pause{}Schreibe eine Funktion \bjava{moveTurtle(int,int)} die versucht die Schildkröte relativ um \(x\) und \(y\) zu bewegen.\pause{} Eine Bewegung gelingt nur, wenn das Zielfeld frei ist.\pause{} In diesem Fall gilt es \bjava{turtleX} und \bjava{turtleY} zu modifizieren und \bjava{true} zurück zu liefern.\pause{} Andernfalls sollen die Koordinaten unverändert bleiben, sowie ein \bjava{false} zurückgegeben werden.
+        \pause{}Das Array \bjava{static boolean[][] field} repräsentiere ein rechteckiges Gitter (welches mindestens \(1\) Feld umfasst).\pause{} Für jedes Feld \bjava{field[i][j]} gibt der Wert an, ob es passierbar (\bjava{true}) oder blockiert (\bjava{false}) ist.\pause{} Die Variablen \bjava{static int turtleX, turtleY;}\pause{} repräsentieren eine Schildkröte an Position \bjava{field[turtleY][turtleX]}.\medskip\par
+        \pause{}Schreiben Sie eine Funktion \bjava{moveTurtle(int,int)}, die versucht die Schildkröte relativ um \(x\) und \(y\) zu bewegen.\medskip\par\pause{} Eine Bewegung gelingt nur, wenn das Zielfeld frei ist.\pause{} In diesem Fall gilt es, \bjava{turtleX} und \bjava{turtleY} zu modifizieren und \bjava{true} zurück zu liefern.\pause{} Andernfalls sollen die Koordinaten unverändert bleiben, sowie ein \bjava{false} zurückgegeben werden.
     \end{exercise}
 \end{frame}
 
@@ -468,7 +468,7 @@ for (int[][] ex : x) {
 \begin{plainjava}
 static final int UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3;
 \end{plainjava}
-    \pause{}Schreibe eine Methode \bjava{moveTurtle(int)} die die relative Bewegung um \emph{so viele Felder wie möglich} vornimmt.\pause{} Die Methode soll die Anzahl der gegangenen zurückgeben.\pause{} Hinweis: Oben definieren wir als eine Erhöhung der \(y\)-Koordinate.
+    \pause{}Schreiben Sie eine Methode \bjava{moveTurtle(int)}, welche die relative Bewegung um \emph{so viele Felder wie möglich} vornimmt.\pause{} Die Methode soll die Anzahl der passierten Felder zurückgeben.\pause{}\medskip\par Dabei sei \say{Oben} als eine Erhöhung der \(y\)-Koordinate definiert.
     \end{exercise}
 \end{frame}
 

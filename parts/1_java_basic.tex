@@ -372,7 +372,7 @@ class Skyrim extends Banana {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche syntaktischer Fehler, I}
     \begin{exercise}<2->[Fehler finden, I \Time{3}]
-        \pause{}Finde und korrigiere alle (syntaktischen) Fehler:\pause{}
+        \pause{}Finden und korrigieren Sie alle (syntaktischen) Fehler:\pause{}
         \begin{plainvoid}
 public void main(String[] hihi) {
     private final int X = 12;
@@ -403,7 +403,7 @@ public static void main(String[] hihi) {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche syntaktischer Fehler, II}
     \begin{exercise}<2->[Fehler finden, II \Time{3}]
-        \pause{}Finde und korrigiere alle (syntaktischen) Fehler:\pause{}
+        \pause{}Finden und korrigieren Sie alle (syntaktischen) Fehler:\pause{}
         \begin{plainvoid}
 public int double(int x) { return (2*)x; }
 
@@ -435,7 +435,7 @@ public static void main(String[] args) {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Methodensignaturen}
     \begin{exercise}<2->[Signaturen \Time{2}]
-        \pause{}Gib die Signaturen folgender Funktionen an.\pause{} Sollte eine Signatur ungültig sein, begründe wieso:\pause{}
+        \pause{}Geben Sie die Signaturen folgender Funktionen an.\pause{} Sind die Java-Funktionen ungültig, geben Sie bitte eine kurze Begründung an:\pause{}
         \begin{plainvoid}
 String a(int a1, double a2) { /* ... */ }
 int b(String[] b1, int b2, double[] b3) { /* ... */ }
@@ -448,7 +448,7 @@ double d(int d1, double... d2) { /* ... */ }
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Signaturen]
         \begin{enumerate}[<+(1)->]
-            \item \bjava{String a(int a1, double a2)} hat die Signatur \bjava{a(int,double)}
+            \item \bjava{String a(int a1, double a2)} hat die Signatur \bjava{a(int, double)}
             \item \bjava{int b(String[] b1, int b2, double[] b3)} hat die Signatur \bjava{b(String[], int, double[])}
             \item \bjava{double c(String... c1, char c2)} ist nicht möglich,\pause{} da nach \emph{varargs} keine verpflichtenden Argumente mehr kommen dürfen.
             \item \bjava{double d(int d1, double... d2)} hat die Signatur \bjava{d(int,double...)}
@@ -460,19 +460,19 @@ double d(int d1, double... d2) { /* ... */ }
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Konkatenation}
     \begin{exercise}<2->[Konkatenation \Time{2}]
-        \pause{}Was geben die folgenden Zeilen aus? (wenn \bjava{println} einfach nur ein \bjava{System.out.println} ist):\pause{}
+        \pause{}Welche Ausgabe erzeugen die folgenden Zeilen (jeweils)?\pause{}\lstfs{10}
         \begin{plainjava}
-println("2 + 3 = " + 2 + 3);
-println(-'=' + 2 * 3 + '=' + " 2*3");
-println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10));
-println("c - a - 1 = " + ('c' - 1 - 'a'));
+System.out.println("2 + 3 = " + 2 + 3);
+System.out.println(-'=' + 2 * 3 + '=' + " 2*3");
+System.out.println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10));
+System.out.println("c - a - 1 = " + ('c' - 1 - 'a'));
         \end{plainjava}
     \end{exercise}
 \end{frame}
 
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Konkatenation]
-\pause{}
+        \pause{}Hinweis: ich schreibe \bjava{println} kurz für \bjava{System.out.println}. \pause{}
 \begin{plainjava}
 println("2 + 3 = " + 2 + 3); // :yields: '2 + 3 = 23'
 \end{plainjava}
@@ -480,7 +480,7 @@ println("2 + 3 = " + 2 + 3); // :yields: '2 + 3 = 23'
 \begin{plainjava}
 println(-'=' + 2 * 3 + '=' + " 2*3"); // :yields: '6 2*3'
 \end{plainjava}
-    \pause{}Da die \bjava{char}s einfach in ihren Integerwert konvertiert werden,\pause{} findet erst beim letzten Plus eine Konkatenation statt.
+    \pause{}Da die \bjava{char}s einfach zu ihrem Integerwert konvertiert werden,\pause{} findet erst beim letzten Plus eine Konkatenation statt.
     \end{solve}
 \end{frame}
 \begin{frame}[c,fragile]{Lösung}

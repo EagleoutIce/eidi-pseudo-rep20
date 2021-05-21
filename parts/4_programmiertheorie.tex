@@ -211,11 +211,11 @@ static int methode(int n) {
     \onslide<4->{\node[] (b2) at (0,-1) {Verhaltensdiagramme};}
     \onslide<5->{\node (b3) at (5,-1) {Weitere Diagramme};}
     \begin{scope}[every node/.append style={text width=3.25cm,font=\scriptsize\sffamily}]
-        \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (c2) at (-4,-2) {Klassendiagramm};}
-        \onslide<7->{\node[iblock,font=\scriptsize\sffamily] (c3) at (1,-2) {Sequenzdiagramm};}
+        \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (c2) at (-4,-2) {\hyperlink{uml:class}{Klassendiagramm}};}
+        \onslide<7->{\node[iblock,font=\scriptsize\sffamily] (c3) at (1,-2) {\hyperlink{uml:sequence}{Sequenzdiagramm}};}
         \onslide<8->{\node (c4) at (6,-2) {Kommunikations\-struktur-Diagr.};}
 
-        \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (left1) at (-4,-3) {Objektdiagramm};
+        \onslide<6->{\node[iblock,font=\scriptsize\sffamily] (left1) at (-4,-3) {\hyperlink{uml:object}{Objektdiagramm}};
         \node[] (left2) at (-4,-4) {Paketdiagramm};}
 
         \onslide<7->{\node[] (middle1) at (1,-3) {Anwendungsfalldiagr.};
@@ -242,7 +242,7 @@ static int methode(int n) {
 \end{frame}
 
 \begin{frame}[c]{UML, Klassendiagramme}
-    \begin{center}
+    \hypertarget<1>{uml:class}{}\begin{center}
         \onslide<2->{%
 \begin{tikzpicture}[scale=0.65, every node/.style={transform shape}]
     \tikzumlset{fill class=white, fill note=white!20} % , font=\small\LILLYxlstTypeWriter
@@ -288,7 +288,7 @@ static int methode(int n) {
 \end{frame}
 
 \begin{frame}{UML, Objektdiagramme}
-    \begin{itemize}[<+(1)->]
+    \hypertarget<1>{uml:object}{}\begin{itemize}[<+(1)->]
         \item Objektdiagramme ähneln Klassendiagrammen.
         \item Allerdings handelt es sich immer um explizite Ausprägungen einer Klasse\pause{} (\(\Rightarrow\) keine Methoden).
         \item Sie werden eher selten verwendet.
@@ -307,7 +307,7 @@ static int methode(int n) {
 \end{frame}
 
 \begin{frame}{UML, Sequenzdiagramme}
-    \begin{itemize}[<+(1)->]
+    \hypertarget<1>{uml:sequence}{}\begin{itemize}[<+(1)->]
         \item Bilden den Nachrichtenaustausch ab.\pause{} Das Senden und Empfangen wird auf Basis von Ereignissen ausgelöst,\pause{} diese rufen wiederrum Reaktionen hervor.
         \item Die Nachrichten können jeweils synchron (durchgezogene Linie) oder asynchron (gestrichelte Linie) ausgetauscht werden.
         \item Nachrichten selbst können Methodenaufrufe,\pause{} Rückgabewerte\pause{} oder externe Ereignisse sein (wie Zeitereignisse).
