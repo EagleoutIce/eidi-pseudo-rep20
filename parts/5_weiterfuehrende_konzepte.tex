@@ -1,5 +1,4 @@
 \section{Weiterführende Konzepte}
-
 \subsection{Suchverfahren}
 
 \begin{frame}{Suchverfahren formal}
@@ -44,7 +43,7 @@
 \end{frame}
 
 \ifull
-\begin{frame}[fragile,c]{Lineare Suche}
+\begin{frame}[c]{Lineare Suche}
     \Task{Die bineare Suche}
     \begin{exercise}<2->[Lineare Suche \Time{4}]
         \pause{}Schreiben Sie eine Methode \bjava{int linearSearch(int[], int)}, die ein Array mit der linearen Suche nach einem gegebene Schlüssel durchsucht und den (ersten) Index des Schlüssels zurückliefert.
@@ -117,7 +116,7 @@
 \end{frame}
 
 \ifull
-\begin{frame}[fragile,c]{Binäre Suche}
+\begin{frame}[c]{Binäre Suche}
     \Task{Die binäre Suche}
     \begin{exercise}<2->[Binäre Suche \Time{6}]
         \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits aufsteigend sortiertes Array mit der binarySearch Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
@@ -242,7 +241,7 @@
 
 
 \ifull
-\begin{frame}[fragile,c]{Selectionsort implementieren}
+\begin{frame}[c]{Selectionsort implementieren}
     \Task{Selectionsort implementieren}
     \begin{exercise}<2->[Selectionsort implementieren \Time{6}]
         \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
@@ -472,7 +471,7 @@ public static void bubbleSort(int[] arr) {
 }}
 \begin{frame}[c]{Shakersort visualisieren}
     \Task{Shakersort visualisieren}
-    \begin{exercise}<2->[Shakersort visualisieren \Time{4}]
+    \begin{exercise}<2->[Shakersort visualisieren \Time{5}]
         \pause{}Gegeben Sei das folgende Tupel: \begin{equation*}
             (13, -15, 9, 8, 23, 8, 0)
         \end{equation*}
@@ -598,6 +597,72 @@ public static void bubbleSort(int[] arr) {
         \end{forest}}}
     \end{center}
 \end{frame}
+
+
+\ifull
+\begin{frame}[c]{Mergesort Pseudocode}
+    \Task{Mergesort Pseudocode}
+    \begin{exercise}<2->[Mergesort Pseudocode \Time{6}]
+        \pause{}Formulieren Sie Pseudocode, welcher ein gegebene Liste \(l\) mit Elementen \(l_i \in \mathbb{R}\) und Länge \(n\) durch den Mergesort Algorithmus aufsteigend sortiert.\pause{}\medskip\par
+        Sie dürfen weitere Routinen formulieren. Es sei eine korrekt implementierte Routine \T{cut(l, i, j)} mit folgendem Vertrag gegeben:\RestyleAlgo{tworuled}
+\begin{algorithm}[H]
+    \PreCode
+        \KwIn{Liste \(t = (t_1, \ldots, t_n)\), \(i, j \in \{1, \ldots, n\}\)}
+        \KwOut{Teilliste \((t_i, \ldots, t_j)\), falls \(i \leq j\). Sonst (wenn \(i > j\)) eine leere Liste.}
+    \StartCode
+\end{algorithm}
+        \medskip\par
+        Weiter dürfen Sie mit \(x_i\) direkt auf das Listenelement an Stelle \(i\) in \(x\) zugreifen (sofern \(1 \leq i \leq n_x\) mit Länge \(n_x\)). Der Ausdruck \say{\T{x + l\textsubscript{i}}} erzeugt eine \emph{neue} Liste \((x_1, \ldots, x_n, l_i)\). Ebenso \say{\T{x + l}} mit \((x_1, \ldots, x_n, l_1, \ldots, l_n)\).
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[c]{Mergesort Pseudocode -- Lösung}
+    \begin{solve}<2->[Mergesort Pseudocode]
+        \pause{}\small\begin{algorithm}[H]
+        \PreCode
+            \KwIn{Liste \(l = (l_1, \ldots, l_n)\)}
+            \KwOut{Aufsteigend sortierte Liste \(l\).}
+        \StartCode
+            \Comment{Ein- oder Nullelementig, bereits sortiert:}
+            \lIf{\(n \leq 1\)}{\KwRet{l}}
+            \(left := \text{\T{cut}}(l, 1, \lfloor\sfrac{n}{2}\rfloor)\)\;
+            \(right := \text{\T{cut}}(l, \lfloor\sfrac{n}{2}\rfloor, n)\)\;
+            \Comment{Rekursion}
+            \(left := \text{\T{mergesort}}(left)\)\;
+            \(right := \text{\T{mergesort}}(right)\)\;
+            \KwRet \(\text{\T{merge}}(left, right)\)\Comment*[l]{Auf der nächsten Folie}
+            \caption{mergesort(t)}
+    \end{algorithm}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Mergesort Pseudocode -- Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<2->[Mergesort Pseudocode\hfill(Fortsetzung)]
+        \pause{}\small\begin{algorithm}[H]
+        \PreCode
+            \KwIn{Aufsteigend sortierte Listen \(left\) und \(right\) (Längen \(n_{left}\), \(n_{right}\))}
+            \KwOut{Aufsteigend sortierte Liste aus \(left\) und \(right\)}
+        \StartCode
+            \(res := ()\)\Comment*[l]{Initialisiere leere merge-Liste}
+            \While(\Comment*[h]{Beide Listen enthalten noch Elemente}){%
+                $left \neq ()$ \KwAnd $right \neq ()$%
+            }{%
+                \eIf{$left_1 \leq right_1$}{
+                    \(res := res + left_1\);
+                    \(left = \text{\T{cut}}(left, 2, n_{left})\)\;
+                }{
+                    \(res := res + right_1\);
+                    \(right = \text{\T{cut}}(right, 2, n_{right})\)\;
+                }
+            }
+            \(res := (res + left) + right\)\Comment*[l]{Es gilt $left = () \lor right = ()$}
+            \KwRet{res}\;
+        \caption{merge(left, right)}
+    \end{algorithm}
+    \end{solve}
+\end{frame}
+\fi
 
 \TikzList{4,2,1,3}{4}{\dotA}
 \TikzList{1,2}{2}{\dotB}

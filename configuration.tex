@@ -1,7 +1,6 @@
 %% -----------------------------------------------------------------------------
 %% Basic Packages
 %% -----------------------------------------------------------------------------
-
 % center stuff and maybe add bibliography? :D
 
 % encoding:
@@ -89,8 +88,7 @@
 %% General
 %% -----------------------------------------------------------------------------
 
-\usepackage{lecture-algorithms}
-\usepackage{lilly-dir}
+\usepackage{lecture-algorithms,lilly-dir,xfrac}
 \SetFolderFileSameIndent
 
 \setcounter{tocdepth}{4}
@@ -113,10 +111,10 @@
 
 \newcommand\twosplit[3][t]{%
 \begin{columns}[#1]
-\begin{column}{0.475\linewidth}
+\begin{column}{.475\linewidth}
     #2
 \end{column}\hfill
-\begin{column}{0.475\linewidth}
+\begin{column}{.475\linewidth}
     #3
 \end{column}
 \end{columns}
@@ -157,7 +155,6 @@
 \lhns@minborderheight=4.75cm
 \lhns@borderbuff=1.33em
 \tikzset{lhns@impstyle/.style={}}%
-
 
 %% -----------------------------------------------------------------------------
 %% Different Versions
