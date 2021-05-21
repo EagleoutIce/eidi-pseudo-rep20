@@ -209,29 +209,29 @@
     \begin{definition}<2->[Selectionsort \hfill{}(iterativ)]
         \onslide<3->{Prinzip: Wahl des kleinsten Elements im unsortierten Teil, \onslide<4->{Anfügen des Elements als größtes Element des sortierten Teils.}}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Kann auch von oben nach unten implementiert werden.
-        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
-        \item Ist das kleinste Element an erster Stelle des unsortierten Teils wird dennoch getauscht (nach Vorlesung).
+    \begin{itemize}
+        \item<5-> Kann auch von oben nach unten implementiert werden.
+        \item<6-> Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item<7-> Ist das kleinste Element an erster Stelle des unsortierten Teils wird dennoch getauscht (nach Vorlesung).
     \end{itemize}
     \vfill
-    \begin{center}\pause{}
+    \begin{center}
 \begin{minipage}{0.9\linewidth}
 \begin{multicols}{2}
-    \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+    \begin{enumerate}
+        \item<8-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{4,2,1,3}{0}
             \draw[Kite-Kite] (1.north) to[bend left] (3.north);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<9-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,4,3}{1}
             \draw[Kite-Kite] (2) to[loop above] (2);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<10-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,4,3}{2}
             \draw[Kite-Kite] (3.north) to[bend left] (4.north);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<11-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,3,4}{4}
         \end{tikzpicture}
     \end{enumerate}
@@ -245,7 +245,7 @@
 \begin{frame}[fragile,c]{Selectionsort implementieren}
     \Task{Selectionsort implementieren}
     \begin{exercise}<2->[Selectionsort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)} die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert.\pause{} Das übergebene Array darf nicht verändert werden.
+        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)} die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -292,33 +292,33 @@
     \begin{definition}<2->[Insertionsort \hfill{}(iterativ)]
         \onslide<3->{Prinzip: Wahl des ersten Elements im unsortierten Teil, \onslide<4->{Sortieren des Elements in den bereits sortierten Teil.}}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
-        \item Das Tauschen erfolgt durch durchgehende Vertauschungen.
-        \item Ist das Element schon an der richtigen Position wird dennoch getauscht.
+    \begin{itemize}
+        \item<5-> Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item<6-> Das Tauschen erfolgt durch durchgehende Vertauschungen.
+        \item<7-> Ist das Element schon an der richtigen Position wird dennoch getauscht.
     \end{itemize}
     \vfill
     \begin{center}\pause
 \begin{minipage}{0.9\linewidth}
 \begin{multicols}{2}
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<8-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{4,2,1,3}{1}
             \draw[-Kite] (1) to (2);
             \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (2.north);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<9-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{2,4,1,3}{2}
             \draw[-Kite] (1) to (2);
             \draw[-Kite] (2) to (3);
             \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (3.north);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<10-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,4,3}{3}
             \draw[-Kite] (3) to (4);
             \draw[Kite-Kite] ([xshift=-15pt]3.north) to[bend left] (4.north);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<11-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,3,4}{4}
         \end{tikzpicture}
     \end{enumerate}
@@ -388,27 +388,27 @@
     \begin{definition}<2->[Bubblesort \hfill{}(iterativ)]
         \onslide<3->{Prinzip: Vertausche benachbarte Elemente wenn sie nicht in Sortierungsreihenfolge sind.}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
-        \item Mit jedem Durchgang über das Array wird (mindestens) ein Element an die richtige Position getauscht.
-        \item Verbesserung: Shaker-Sort, schiebt abwechselnd das maximale und minimale Element an die (Ziel-)Position.
+    \begin{itemize}
+        \item<4-> Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item<5-> Mit jedem Durchgang über das Array wird (mindestens) ein Element an die richtige Position getauscht.
+        \item<6-> Verbesserung: Shaker-Sort, schiebt abwechselnd das maximale und minimale Element an die (Ziel-)Position.
     \end{itemize}
     \vfill
     \begin{center}\pause
 \begin{minipage}{0.9\linewidth}
     \begin{multicols}{2}
         \begin{enumerate}[<+(1)->]
-            \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \item<7-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
                 \List{4,2,1,3}{5}
                 \draw[Kite-Kite] (1.north) to[bend left] (2.north);
                 \draw[Kite-Kite] (2.north) to[bend left] (3.north);
                 \draw[Kite-Kite] (3.north) to[bend left] (4.north);
             \end{tikzpicture}
-            \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \item<8-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
                 \List{2,1,3,4}{4}
                 \draw[Kite-Kite] (1.north) to[bend left] (2.north);
             \end{tikzpicture}
-            \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \item<9-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
                 \List{1,2,3,4}{0}
             \end{tikzpicture}
             \item<1->[]
@@ -462,13 +462,13 @@ public static void bubbleSort(int[] arr) {
     \begin{definition}<2->[Mergesort \hfill{}(rekursiv)]
         \onslide<3->{Prinzip: Aufteilen der Elemente in einelementige, sortierte Teilfolgen. \onslide<4->{Zusammenfügen sortierter Teilefolgen.}}
     \end{definition}
-    \begin{itemize}[<+(1)->]
+    \begin{itemize}
         % \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
-        \item Verfolgt \emph{easy split}, \emph{hard join}. Das Aufteilen ist leicht (trivial), das Zusammenfügen aufwändig, da hier die Sortierung erfolgen muss.
-        \item Teilt sich auf in: \emph{Split} (aufteilen) und \emph{Merge} (verschmelzen).
+        \item<5-> Verfolgt \emph{easy split}, \emph{hard join}. Das Aufteilen ist leicht (trivial), das Zusammenfügen aufwändig, da hier die Sortierung erfolgen muss.
+        \item<6-> Teilt sich auf in: \emph{Split} (aufteilen) und \emph{Merge} (verschmelzen).
     \end{itemize}
     \vfill
-    \begin{center}\pause
+    \begin{center}\onslide<7->{
         \scalebox{0.58}{\begin{forest}
             for tree={}
             [\usebox{\dotA},[{\usebox{\dotB}}[{\usebox{\dotD}}][{\usebox{\dotE}}]][{\usebox{\dotC}}[{\usebox{\dotF}}][{\usebox{\dotG}}]]]
@@ -485,7 +485,7 @@ public static void bubbleSort(int[] arr) {
             for tree={grow=north}
             [\usebox{\dotA},[{\usebox{\dotC}}[{\usebox{\dotG}}][{\usebox{\dotF}}]][{\usebox{\dotB}}[{\usebox{\dotE}}][{\usebox{\dotD}}]]]
             \node at(0,3.75) {Merge};
-        \end{forest}}
+        \end{forest}}}
     \end{center}
 \end{frame}
 
@@ -502,12 +502,12 @@ public static void bubbleSort(int[] arr) {
         \onslide<3->{Prinzip: Wahl eines Pivotelements (nach Vorlesung: das Letzte).
         \onslide<4->{Aufteilen der Liste in Teil größer und kleiner des Pivotelements. \onslide<5->{Wenn Teillisten nach gleichem Prinzip sortiert: zusammenfügen aus \emph{Links + Pivot + Rechts}.}}}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
-        \item Verfolgt \emph{hard split}, \emph{easy join}. Das Aufteilen ist aufwändig (sortieren), das Zusammenfügen trivial.
+    \begin{itemize}
+        \item<6-> Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item<7-> Verfolgt \emph{hard split}, \emph{easy join}. Das Aufteilen ist aufwändig (sortieren), das Zusammenfügen trivial.
     \end{itemize}
     \vfill
-    \begin{center}\pause
+    \begin{center}\onslide<8->{
         \scalebox{0.58}{\begin{forest}
             for tree={}
             [{\usebox{\dotA}},[{\usebox{\dotB}}[{\usebox{\dotF}}][,phantom]][{{\usebox{\dotD}}}[,phantom][,phantom]]]
@@ -525,7 +525,7 @@ public static void bubbleSort(int[] arr) {
             [{\usebox{\dotA}},[{{\usebox{\dotD}}}[,phantom][,phantom]][{\usebox{\dotB}}[,phantom][{\usebox{\dotF}}]]]
             %[{\(1,2,\mathbf{3},4\)},iblock[{\(4\)}[,phantom][,phantom]][{\(1,\mathbf{2}\)}[,phantom][\(1\)]]]
             \node at(0,3.75) {Merge};
-        \end{forest}}
+        \end{forest}}}
     \end{center}
 \end{frame}
 
@@ -533,12 +533,12 @@ public static void bubbleSort(int[] arr) {
     \begin{definition}<2->[Heapsort \hfill{}(rekursiv)]
         \onslide<3->{Prinzip: Verwenden eines (Min-)Heaps zur Speicherung der Elemente. \onslide<4->{Sukzessives Entfernen des Wurzelelements (aktuelles Minimum), wiederherstellung der Heap-Eigenschaft.}}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
-        \item Die genaue Funktionsweise eines Heaps veranschaulichen wir gleich separat
+    \begin{itemize}
+        \item<5-> Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
+        \item<6-> Die genaue Funktionsweise eines Heaps veranschaulichen wir gleich separat
     \end{itemize}
     \vfill
-    \begin{center}\pause
+    \begin{center}\onslide<7->{%
         \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1,iball[3[4][,phantom]][2]]
@@ -551,7 +551,7 @@ public static void bubbleSort(int[] arr) {
         \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,iball]
-        \end{forest}}}
+        \end{forest}}}}
     \end{center}
 \end{frame}
 
@@ -560,13 +560,13 @@ public static void bubbleSort(int[] arr) {
     \begin{definition}<2->[Heap]
         \onslide<3->{Binärbaum, bei dem gilt: \(\text{Vaterknoten} < \text{Kindknoten}\).}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Neue Elemente werden von Unten an als neues Kind hinzugefügt. \pause{}Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist.
-        \item Beim Entfernen eines Elements wird das Blatt vor der aktuellen Einfügeposition als neue Wurzel getauscht.
-        \item Beispiel: Einfügen der Elemente \(4,2,1,3\).
+    \begin{itemize}
+        \item<4-> Neue Elemente werden von Unten an als neues Kind hinzugefügt. \onslide<5->{Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist.}
+        \item<6-> Beim Entfernen eines Elements wird das Blatt vor der aktuellen Einfügeposition als neue Wurzel getauscht.
+        \item<7-> Beispiel: Einfügen der Elemente \(4,2,1,3\).
     \end{itemize}
     \vfill
-    \begin{center}\pause
+    \begin{center}\onslide<8->{%
         \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4[,fill=white][,phantom]]
@@ -584,12 +584,12 @@ public static void bubbleSort(int[] arr) {
         \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[3[4][,phantom]][2]]
-        \end{forest}}}
+        \end{forest}}}}
     \end{center}
 \end{frame}
 
 \begin{frame}[c]{Sortierverfahren: Zusammenfassung}
-    \begin{table}[H]
+    \pause\begin{table}[H]
         \renewcommand\arraystretch{1.35}
         \begin{tabular}{p{0.2\linewidth}p{0.195\linewidth}p{0.195\linewidth}p{0.13\linewidth}p{0.13\linewidth}}
         \toprule
@@ -610,9 +610,9 @@ public static void bubbleSort(int[] arr) {
     \begin{definition}<2->[Stabiles Sortierverfahren]
         \onslide<3->{Ein Sortierverfahren heißt stabil, wenn es die Reihenfolge (aus Sicht des Verfahrens) gleicher Element nicht ändert.}
     \end{definition}
-    \begin{itemize}[<+(1)->]
-        \item Beispiel: Eine bereits alphabetisch nach Nachnamen sortierte Liste an Personen wird nun nach Alter sortiert.\pause{} Bei einem stabilen Sortierverfahren bleibt die alphabetische Sortierung bei Personen des selben Alters erhalten.
-        \item Stabile Sortierverfahren (nach Implementation der Vorlesung):\pause{} \linksort{Insertionsort}, \linksort{Quicksort} und \linksort{Mergesort}.
+    \begin{itemize}
+        \item<4-> Beispiel: Eine bereits alphabetisch nach Nachnamen sortierte Liste an Personen wird nun nach Alter sortiert. \onslide<5->{Bei einem stabilen Sortierverfahren bleibt die alphabetische Sortierung bei Personen des selben Alters erhalten.}
+        \item<6-> Stabile Sortierverfahren (nach Implementation der Vorlesung): \onslide<7->{\linksort{Insertionsort}, \linksort{Quicksort} und \linksort{Mergesort}.}
     \end{itemize}
 \end{frame}
 
@@ -649,7 +649,7 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Sortieralgorithmen zeichnen}
     \begin{exercise}<2->[Sortieralgorithmen zeichnen \Time{5}]
-        \pause{}Veranschauliche den Sortierprozess der Zahlenfolge \(5,7,2,5,3,-19,6\) unter der Verwendung von \emph{Mergesort} grafisch.\pause{} Gib jeden Schritt aus.
+        \pause{}Veranschaulichen Sie den Sortierprozess der Zahlenfolge \(5,7,2,5,3,-19,6\) unter der Verwendung von \emph{Mergesort} grafisch. Geben Sie jeden Schritt an.
     \end{exercise}
 \end{frame}
 
@@ -657,7 +657,7 @@ public static void bubbleSort(int[] arr) {
     \begin{solve}<2->[Sortieralgorithmen zeichnen]
         \pause{}Hier sind Split- und Mergephase wieder aufgespalten:\pause{}
 \begin{center}
-    \tikzset{block/.append style={rounded rectangle}}%
+    \tikzset{block/.append style={sharp corners,rounded rectangle}}%
     \scalebox{0.75}{
     \begin{forest}
         for tree={inner sep=4pt,block,outer sep=1pt,execute at begin node={\strut}}
