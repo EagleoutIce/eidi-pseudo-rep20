@@ -244,7 +244,7 @@
 \begin{frame}[c]{Selectionsort implementieren}
     \Task{Selectionsort implementieren}
     \begin{exercise}<2->[Selectionsort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
+        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])}, die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -330,7 +330,7 @@
 \begin{frame}[fragile,c]{Insertionsort implementieren}
     \Task{Insertionsort implementieren}
     \begin{exercise}<2->[Insertionsort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void insertionSort(int[])} die das übergebene Array mittels Insertionsort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void insertionSort(int[])}, die das übergebene Array mittels Insertionsort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -436,7 +436,7 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Shakersort implementieren}
     \Task{Shakersort implementieren}
     \begin{exercise}<2->[Shakersort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void shakerSort(int[])} die das übergebene Array mittels Shakersort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.\medskip\par
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void shakerSort(int[])}, die das übergebene Array mittels Shakersort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.\medskip\par
         Ausgehend von Bubblesort, geht Shakersort abwechselnd von links nach rechts und von rechts nach links durch das Array. In beiden Richtungen werden Vertauschungen nach Bubblesort durchgeführt.
     \end{exercise}\onslide<1->
 \end{frame}
@@ -637,7 +637,7 @@ public static void bubbleSort(int[] arr) {
 \end{frame}
 
 \begin{frame}[c]{Mergesort Pseudocode -- Lösung}
-    \addtocounter{solve}{-1}
+    \addtocounter{solve}{-1}%
     \begin{solve}<2->[Mergesort Pseudocode\hfill(Fortsetzung)]
         \pause{}\small\begin{algorithm}[H]
         \PreCode
@@ -703,6 +703,55 @@ public static void bubbleSort(int[] arr) {
         \end{forest}}}
     \end{center}
 \end{frame}
+
+\ifull
+\begin{frame}[fragile,c]{Quicksort implementieren}
+    \Task{Quicksort implementieren}
+    \begin{exercise}<2->[Quicksort implementieren \Time{6}]
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void quickSort(int[])}, die das übergebene Array mittels Quicksort aufsteigend sortiert. Als Pivot-Element soll stets das erste Element gewählt werden.\medskip\par\pause{}\textit{Tipp:} Arbeiten Sie mit einer Hilfsmethode \bjava{void quicksort(int[] arr, int l, int r)}, welche das Quicksort-Verfahren auf den Array-Ausschnitt \([l, r]\) ausführt.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Quicksort implementieren -- Lösung}
+    \begin{solve}<2->[Quicksort implementieren]
+\lstfs{10}\begin{plainjava}
+!*\onslide<2->*!public static void quickSort(int[] arr) {
+!*\onslide<3->*!    quickSort(arr, 0, arr.length - 1);
+!*\onslide<2->*!}
+!*\onslide<2->*!
+!*\onslide<4->*!static void quickSort(int[] arr, int l, int r) {
+!*\onslide<5->*!    if(l >= r) return;
+!*\onslide<6->*!    int div = partition(arr, l, r); // Nächste Folie
+!*\onslide<7->*!    quickSort(arr, l, div - 1);
+!*\onslide<7->*!    quickSort(arr, div + 1, r);
+!*\onslide<4->*!}
+    \end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Quicksort implementieren -- Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Quicksort implementieren\hfill(Fortsetzung)]
+\lstfs{10}\begin{plainjava}
+static int partition(int[] arr, int l, int r) {
+    int end = r;
+    swap(arr, l, end); // Einfach: Pivotelement ans Ende tauschen
+    int pivot = arr[end];
+    l -= 1;
+
+    while (l < r) {
+        do { l++; } while (arr[l] < pivot);
+        do { r--; } while (arr[r] >= pivot && l < r);
+        if (l < r) swap(arr, l, r);
+    }
+    swap(arr, l, end); // Tausche Pivot zu marker
+    return l;
+}
+    \end{plainjava}
+    \end{solve}
+\end{frame}
+
+\fi
 
 \begin{frame}{Sortierverfahren: Heapsort}\alglabel{Heapsort}
     \begin{definition}<2->[Heapsort \hfill{}(rekursiv)]
