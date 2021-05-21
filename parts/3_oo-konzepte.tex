@@ -347,22 +347,22 @@ public static String wohinGehtEs(Richtung ziel){
         \begin{center}
 \PresentHS<4->{1}{%
 \istack{main}
-\stack{arr:}
+\stack{\strut arr:}
 \renderstack
 
 \iheap{Globales}
-\heap{\T{\{ 21 \}}}
+\heap{\strut \T{\{ 21 \}}}
 \renderheap
 \draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west);
 }\qquad\PresentHS<5->{2}{%
 \istack{main}
-\stack{arr:}
+\stack{\strut arr:}
 \istack{multBy2}
-\stack{x:\phantom{rr}}
+\stack{\strut x:\phantom{rr}}
 \renderstack
 
 \iheap{Globales}
-\heap{\T{\{ 21 \}}}
+\heap{\strut \T{\{ 21 \}}}
 \renderheap
 \draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
 \draw[lhns] (stack-3) -- ++(1.25,0) -- ([xshift=-0.75cm]r1) -- (r1);
@@ -378,23 +378,23 @@ public static String wohinGehtEs(Richtung ziel){
         \pause{}\begin{center}
 \PresentHS<2->{3}{%
 \istack{main}
-\stack{arr:}
+\stack{\strut arr:}
 \istack{multBy2}
-\stack{x:\phantom{rr}}
+\stack{\strut x:\phantom{rr}}
 \renderstack
 
 \iheap{Globales}
-\heap{\T{\{ 42 \}}}
+\heap{\strut \T{\{ 42 \}}}
 \renderheap
 \draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
 \draw[lhns] (stack-3) -- ++(1.25,0) -- ([xshift=-0.75cm]r1) -- (r1);
 }\qquad\PresentHS<3->{4}{%
 \istack{main}
-\stack{arr:}
+\stack{\strut arr:}
 \renderstack
 
 \iheap{Globales}
-\heap{\T{\{ 42 \}}}
+\heap{\strut\T{\{ 42 \}}}
 \renderheap
 \draw[lhns] (stack-1) -- (stack-1-|heap-1-box.west) coordinate (r1);
 }
@@ -465,8 +465,8 @@ class Laenge {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Eine Kreisklasse}
     \begin{exercise}<2->[Kreisklasse \Time{4}]
-        \pause{}Schreibe eine Klasse \bjava{Circle} die einen Kreis repräsentiert. Ein Kreis besitzt eine \(x\) und eine \(y\) Koordinate im Fließkommabereich, sowie einen Radius.\pause{}
-        Es soll möglich sein Umfang sowie Fläche des Kreises berechnen zu lassen.\pause{}
+        \pause{}Schreiben Sie eine Klasse \bjava{Circle}, die einen Kreis repräsentiert. Ein Kreis besitzt eine \(x\) und eine \(y\) Koordinate im Fließkommabereich, sowie einen Radius.\medskip\par\pause{}
+        Es soll möglich sein, den Umfang sowie die Fläche des Kreises berechnen zu lassen.\pause{}
         Auf Datenkapselung muss hierbei keine Rücksicht genommen werden,\pause{} allerdings muss es möglich sein den Kreis unter der Angabe aller Attribute zu konstruieren.\pause{} (\(U = 2\cdot r\cdot\pi \), \(A = r^2\cdot\pi\))
     \end{exercise}
 \end{frame}
@@ -493,8 +493,9 @@ class Laenge {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Ein Schienennetz}
     \begin{exercise}<2->[Schienennetz \Time{4}]
-        \onslide<3->{Ein Feld in einem gitterartigen Schienennetz kann entweder \onslide<4->{frei (\(\widehat{=}\) keine Schiene), von einer Schiene besetzt, von einem Waggon oder einer Lokomotive belegt sein.\par{}}}
-        \onslide<5->{Schreibe eine Enumeration die einen Feldzustand darstellt,\onslide<6->{ jede Konstante soll gleich mitspeichern, ob das Feld von einer Lok befahrbar ist, \onslide<7->{wobei dies nur für \say{Schienenfelder} der Fall ist.}}}
+        \onslide<3->{Ein Feld in einem gitterartigen Schienennetz kann entweder \onslide<4->{frei (\(\widehat{=}\) keine Schiene) oder von einer Schiene, von einem Waggon oder einer Lokomotive \say{belegt} sein.}}
+        \medskip\par{}
+        \onslide<5->{Schreiben Sie eine Enumeration, die einen Feldzustand darstellt. \onslide<6->{Jede Konstante soll dabei gleich mitspeichern, ob das Feld von einer Lok befahrbar ist (\onslide<7->{dies nur für \say{Schienenfelder} der Fall).}}}
     \end{exercise}
 \end{frame}
 
@@ -519,7 +520,7 @@ class Laenge {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Ein Kamera-Singleton erstellen.}
     \begin{exercise}<2->[Kamera \Time{5}]
-        \onslide<3->{Schreibe eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)) \onslide<5->{und zwei für den jeweiligen Drehwinkel \(r_x, r_z\). \onslide<6->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen. \onslide<7->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}}
+        \onslide<3->{Schreiben Sie eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)) \onslide<5->{und zwei für den jeweiligen Drehwinkel \(r_x, r_z\). \onslide<6->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen.\medskip\par \onslide<7->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}}
     \end{exercise}
 \end{frame}
 
