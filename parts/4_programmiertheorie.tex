@@ -375,7 +375,7 @@ static int methode(int n) {
 \end{itemize}
 \ifull\Task{Zahlen konvertieren}%
 \begin{exercise}<+->[Zahlen konvertieren \Time{3}]
-    \onslide<+->{Konvertiere \(42_{(8)}\) zur Basis \(b = 16\), \(b = 3\) und ins Binärsystem.}
+    \onslide<+->{Konvertieren Sie \(42_{(8)}\) zur Basis \(b = 16\), \(b = 3\) und ins Binärsystem.}
 \end{exercise}\fi
 \end{frame}
 
@@ -463,7 +463,7 @@ public int ggT(int a, int b){
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{Rechenaufwand berechnen}
     \begin{exercise}<2->[Rechenaufwand berechnen \Time{6}]
-        \pause{}Wie viele Rechenschritte benötigt das folgende Verfahren einmal im \emph{worst-} und im \emph{best-case}? Gib jeweils auch die \O-Notation an: \pause{}
+        \pause{}Wie viele Rechenschritte benötigt das folgende Verfahren einmal im \emph{worst-} und im \emph{best-case}? Geben Sie jeweils auch die \O-Notation an: \pause{}
 \begin{plainjava}
 int getDistance(String a, String b){
     if(a == null || b == null) return -1;
@@ -505,7 +505,7 @@ int getDistance(String a, String b){
 \begin{frame}[c]{Übungsaufgabe -- Lösung}
     \addtocounter{solve}{-1}%
     \begin{solve}<1->[Rechenaufwand berechnen\hfill{}(Fortsetzung)]
-        \pause{}Sei die Länge von \bjava{a} durch \(n\) notiert (\bjava{a.length()}\(\widehat{=} n\))
+        \pause{}Sei die Länge von \bjava{a} durch \(n\) notiert (\bjava{a.length()}\(\,\widehat{=}\, n\))
 \begin{multicols}{2}
     \begin{enumerate}[<+(1)->]
         \item \bjava[language=xJava]{|zws|Zuweisungen|zws|}\,: \(2\)
@@ -521,7 +521,7 @@ int getDistance(String a, String b){
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{Komplexitätsklassen ordnen}
     \begin{exercise}<2->[Komplexitätsklassen ordnen \Time{4}]
-        \pause{}Ordne die folgenden Komplexitätsklassen ohne Beweis, von der am geringsten skalierenden zur am stärksten skalierenden.\pause{}
+        \pause{}Ordnen Sie die folgenden Komplexitätsklassen (ohne Beweis), von der am geringsten skalierenden zur am stärksten skalierenden.\pause{}
         \begin{multicols}{3}
             \begin{enumerate}[<+(1)->]\widei
                 \item \(\O(n \cdot \log(n^2))\)
@@ -543,7 +543,7 @@ int getDistance(String a, String b){
             \item \(\O(4^n) - \O(2^n) = \O(4^n - 2^n) = \O(4^n)\)
             \item \(\O(\frac{n!}{n}) = \O((n-1)!) = \O(n!)\)
         \end{enumerate}
-        \pause{}Eine derartige Kategorisierung kann auch genauer präzisiert werden.
+        \pause{}Eine derartige Kategorisierung kann auch (noch) genauer präzisiert werden.
     \end{solve}
 \end{frame}
 \fi

@@ -245,7 +245,7 @@
 \begin{frame}[fragile,c]{Selectionsort implementieren}
     \Task{Selectionsort implementieren}
     \begin{exercise}<2->[Selectionsort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)} die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
+        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])} die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -331,7 +331,7 @@
 \begin{frame}[fragile,c]{Insertionsort implementieren}
     \Task{Insertionsort implementieren}
     \begin{exercise}<2->[Insertionsort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)} die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void insertionSort(int[])} die das übergebene Array mittels Insertionsort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void insertionSort(int[])} die das übergebene Array mittels Insertionsort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -370,7 +370,6 @@
 
 % \fi
 
-
 \def\List#1#2{
 \foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
     \ifnum\i<#2
@@ -381,8 +380,7 @@
     \ifnum\i>1
         \draw (\li.east) -- (\i.west);
     \fi
-}
-}
+}}
 
 \begin{frame}{Sortierverfahren: Bubblesort}\alglabel{Bubblesort}
     \begin{definition}<2->[Bubblesort \hfill{}(iterativ)]
@@ -391,7 +389,7 @@
     \begin{itemize}
         \item<4-> Wir arbeiten \emph{in-place}, das heißt wir tauschen die Elemente im Array.
         \item<5-> Mit jedem Durchgang über das Array wird (mindestens) ein Element an die richtige Position getauscht.
-        \item<6-> Verbesserung: Shaker-Sort, schiebt abwechselnd das maximale und minimale Element an die (Ziel-)Position.
+        \item<6-> (Geringfügige) Verbesserung: Shaker-Sort, schiebt abwechselnd das maximale und minimale Element an die (Ziel-)Position.
     \end{itemize}
     \vfill
     \begin{center}\pause
@@ -434,7 +432,119 @@ public static void bubbleSort(int[] arr) {
     \end{plainjava}
 \end{frame}
 
-\newsavebox{\dotA} \newsavebox{\dotB} \newsavebox{\dotC} \newsavebox{\dotD} \newsavebox{\dotE} \newsavebox{\dotF} \newsavebox{\dotG}
+
+\ifull
+\begin{frame}[c]{Shakersort implementieren}
+    \Task{Shakersort implementieren}
+    \begin{exercise}<2->[Shakersort implementieren \Time{6}]
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void shakerSort(int[])} die das übergebene Array mittels Shakersort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.\medskip\par
+        Ausgehend von Bubblesort, geht Shakersort abwechselnd von links nach rechts und von rechts nach links durch das Array. In beiden Richtungen werden Vertauschungen nach Bubblesort durchgeführt.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Shakersort implementieren -- Lösung}
+    \begin{solve}<2->[Shakersort implementieren]
+        \pause{}Den noch zu sortierenden Bereich grenzen wir mit \bjava{l} und \bjava{r} ein:
+\lstfs{10}\begin{plainjava}
+!*\onslide<3->*!public static void shakerSort(int[] arr) {
+!*\onslide<4->*!    int l = 0, r = arr.length - 1;
+!*\onslide<5->*!    while(l < r) {
+!*\onslide<6->*!        for(int i = l; i < r; i++) { // aufwärts
+!*\onslide<7->*!            if(arr[i] > arr[i + 1]) swap(arr, i, i + 1);
+!*\onslide<6->*!        }
+!*\onslide<8->*!        r -= 1;
+!*\onslide<9->*!        for(int i = r - 1; i >= l; i--) { // abwärts
+!*\onslide<10->*!            if(arr[i] > arr[i + 1]) swap(arr, i, i + 1);
+!*\onslide<9->*!        }
+!*\onslide<11->*!        l += 1;
+!*\onslide<5->*!    }
+!*\onslide<3->*!}
+    \end{plainjava}
+    \end{solve}
+\end{frame}
+
+\def\XList#1{
+\foreach[count=\i,remember=\i as \li(initially 0)] \n in {#1}{
+    \node[inner sep=4pt,draw,rounded rectangle,minimum width=3.5em,outer sep=2pt] (\i) at(4em*\i,0) {\strut\n};
+    \ifnum\i>1
+        \draw (\li.east) -- (\i.west);
+    \fi
+}}
+\begin{frame}[c]{Shakersort visualisieren}
+    \Task{Shakersort visualisieren}
+    \begin{exercise}<2->[Shakersort visualisieren \Time{4}]
+        \pause{}Gegeben Sei das folgende Tupel: \begin{equation*}
+            (13, -15, 9, 8, 23, 8, 0)
+        \end{equation*}
+        Visualisieren Sie die einzelnen Durchläufe des Shaker-Sort, indem Sie für jeden Auf- und für jeden Absteigenden Durchlauf nacheinander alle getätigten Vertauschungen und den (aus Sicht des Algorithmus) noch unsortierten Teil des Tupels angeben.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[c]{Shakersort visualisieren -- Lösung}
+    \begin{solve}<2->[Shakersort visualisieren]
+    \begin{enumerate}[<+(1)->]
+        \widei
+        \setcounter{enumi}{-1}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{13, -15, 9, 8, 23, 8, 0}
+        \end{tikzpicture}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 9, 8, 13, 8, 0, 23}
+            \draw[thick] ([yshift=1mm]1.north west) -- ([yshift=1mm]6.north east);
+            \draw[Kite-Kite] (1.south) to[bend right] (2.south);
+            \draw[Kite-Kite] (2.south) to[bend right] (3.south);
+            \draw[Kite-Kite] (3.south) to[bend right] (4.south);
+            \draw[Kite-Kite] (5.south) to[bend right] (6.south);
+            \draw[Kite-Kite] (6.south) to[bend right] (7.south);
+        \end{tikzpicture} (up)
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 0, 9, 8, 13, 8, 23}
+            \draw[thick] ([yshift=1mm]2.north west) -- ([yshift=1mm]6.north east);
+            \draw[Kite-Kite] (6.south) to[bend left] (5.south);
+            \draw[Kite-Kite] (5.south) to[bend left] (4.south);
+            \draw[Kite-Kite] (4.south) to[bend left] (3.south);
+            \draw[Kite-Kite] (3.south) to[bend left] (2.south);
+        \end{tikzpicture} (down)
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 0, 8, 9, 8, 13, 23}
+            \draw[thick] ([yshift=1mm]2.north west) -- ([yshift=1mm]5.north east);
+            \draw[Kite-Kite] (3.south) to[bend right] (4.south);
+            \draw[Kite-Kite] (5.south) to[bend right] (6.south);
+        \end{tikzpicture} (up)
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 0, 8, 8, 9, 13, 23}
+            \draw[thick] ([yshift=1mm]3.north west) -- ([yshift=1mm]5.north east);
+            \draw[Kite-Kite] (5.south) to[bend left] (4.south);
+        \end{tikzpicture} (down)
+    \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Shakersort visualisieren -- Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<2->[Shakersort visualisieren\hfill(Fortsetzung)]
+    \begin{enumerate}[<+(1)->]
+        \widei
+        \setcounter{enumi}{3}
+        \item \begin{tikzpicture}[gray, scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 0, 8, 8, 9, 13, 23}
+            \draw[thick] ([yshift=1mm]3.north west) -- ([yshift=1mm]5.north east);
+            \draw[Kite-Kite] (5.south) to[bend left] (4.south);
+        \end{tikzpicture} \textcolor{gray}{(down)}
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 0, 8, 8, 9, 13, 23}
+            \draw[thick] ([yshift=1mm]3.north west) -- ([yshift=1mm]4.north east);
+        \end{tikzpicture} (up)
+        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \XList{-15, 0, 8, 8, 9, 13, 23}
+            \draw[thick] ([yshift=1mm]4.north west) -- ([yshift=1mm]4.north east);
+        \end{tikzpicture} (down)
+    \end{enumerate}
+    \end{solve}
+\end{frame}
+\fi
+
+\newsavebox\dotA \newsavebox\dotB \newsavebox\dotC \newsavebox\dotD \newsavebox\dotE \newsavebox\dotF \newsavebox\dotG
 
 \def\TikzList#1#2#3{%
 \savebox{#3}{\begin{tikzpicture}
