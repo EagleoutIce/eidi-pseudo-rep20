@@ -29,6 +29,7 @@
 
 \begin{frame}{Programmkontext}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Das Verhalten von Klassen wird oft auch als ein Botschaft- beziehungsweise Nachrichtsystem betrachtet.
         \item Hier bezeichnet das senden einer Botschaft\pause{} mit Inhalt das Aufrufen der Methode mit entsprechendem Inhalt.
         \item Aus Sicht der Objektorientierung ist ein \emph{Programm}\pause{} nicht mehr als das (wechselseitige) Aufrufen eben dieser Methoden.
@@ -57,8 +58,9 @@
 
 \subsection{Klassen}
 \begin{frame}[c]{Vom Klassenkonzept zum Javacode}
-    \begin{minipage}{0.65\linewidth}
+    \begin{minipage}{0.725\linewidth}
         \begin{itemize}[<+(1)->]
+            \widei
             \item Es gelte eine Klasse \solGet{keywordC}{Punkt2D} zu kreieren.
             \item Ein solcher Punkt \((x,y)\) benötigt zwei Attribute: \begin{description}[y-Koordinate]
                 \item[x-Koordinate] die x-Komponente (Fließ\-kom\-ma\-zahl).
@@ -70,24 +72,24 @@
                 \item Den Punkt auf einen anderen Punkt setzen.
             \end{itemize}
         \end{itemize}
-    \end{minipage}~\quad~\begin{minipage}{0.35\linewidth}
-        \centering\resizebox{0.95\linewidth}{!}{\begin{tikzpicture}
+    \end{minipage}\hfill\begin{minipage}{0.2\linewidth}
+        \centering\resizebox{\linewidth}{!}{\begin{tikzpicture}
                 \umlclass[x=0,y=0]{Point2D}{
-                    \bjava{private} x : \bjava{double} \\
-                    \bjava{private} y : \bjava{double} \\
+                    - x : \bjava{double} \\
+                    - y : \bjava{double} \\
                 }{
-                    \bjava{public} distance(\solGet{keywordC}{Point2D}) : \bjava{double} \\
-                    \bjava{public} shift(\bjava{double},\bjava{double}) : \bjava{void} \\
-                    \bjava{public} copy(\solGet{keywordC}{Point2D}) : \bjava{void}
+                    + distance(\solGet{keywordC}{Point2D}) : \bjava{double} \\
+                    + shift(\bjava{double},\bjava{double}) : \bjava{void} \\
+                    + copy(\solGet{keywordC}{Point2D}) : \bjava{void}
                 }
-            \end{tikzpicture}}
-    \end{minipage}
+            \end{tikzpicture}}%
+    \end{minipage}%
 \end{frame}
 
 \begin{frame}{Implementation in Java}
     \begin{itemize}[<+(1)->]
         \item Die Implementation einer Klasse erfolgt mit der Schlüsselwort \bjava{class}.
-        \item Diesem folgt der Name der Klasse,\pause{} der dem Dateinamen entsprechen \emph{muss}.\pause{} Es wird auf groß-Kleinschreibung geachtet.
+        \item Diesem folgt der Name der Klasse,\pause{} der dem Dateinamen entsprechen \emph{muss}.\pause{} Es wird auf groß-Kleinschreibung (\Laughey) geachtet.
         \item Innerhalb einer Klasse referenziert \bjava{this} auf das jeweilige Objekt.
         \item Bei der Implementation müssen wir den Konstruktor beachten:
     \end{itemize}
@@ -135,8 +137,10 @@
 \end{frame}
 
 \begin{frame}{Besondere Methoden}
+\setbeamertemplate{description item}[default]%
 \begin{itemize}[<+(1)->]
-    \item Eine Klasse in Java übernimmt Methoden der \bjava{Object}-Klasse.
+    \widei
+    \item Jede Java-Klasse übernimmt Methoden der \bjava{Object}-Klasse.
     \item Auf diese Weise gibt es einige wichtige Methoden,\pause{} die im Kontext von Java eine besondere Bedeutung haben\pause{} (aber dafür natürlich, wie \bjava{equals} überschrieben werden müssen).
     \item Hier sind die wichtigsten: \begin{description}[toString]
         \item[equals] die Methode \bjava{equals(Object)} prüft das Objekt mit dem Übergebenen auf \say{Gleichheit}.\pause{} So können die hierfür relevanten Attribute genau festgelegt werden.
@@ -177,9 +181,9 @@
     \item<1-> Eine ausführliche Erklärung liegt hier: \attachPdfTextDesc{data/static.pdf}{static.pdf}{PDF-Dokument welches den Umgang mit statischen Funktionen und Methoden (in Java) genauer erklärt.}.
     \item Alle Methoden die wir so definieren sind an ein Objekt gebunden.
     \item Manche Methoden sind aber nur logisch an eine Klasse gebunden\pause{} und nicht von den Ausprägungen eines Objekts.
-    \item So zum Beispiel die Mathe-Funktionen wie \bjava{Math.random()}, \bjava{Math.floor(double)}.
+    \item So die Mathe-Funktionen wie \bjava{Math.random()}, \bjava{Math.floor(double)}.
     \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch eine \bjava{distance(Point2D, Point2D)} für zwei Punkte machen.
-    \item Auch Variablen die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.\pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte.
+    \item Auch Variablen, die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.\pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte.
 \end{itemize}
 \end{frame}
 
@@ -240,7 +244,6 @@ enum Richtung {
 
 \begin{frame}[fragile]{Enumerationen verwenden}
     \begin{itemize}[<+(1)->]
-        \widei
         \item Betrachten wir ein Beispiel mit \bjava{Richtung} und \bjava{switch-case}:\pause{}
 \begin{plainjava}
 !*\onslide<3->*!public static String wohinGehtEs(Richtung ziel){

@@ -3,7 +3,7 @@
 \begin{frame}{Was ist ein Algorithmus?}
     \pause{}
     \begin{definition}[Algorithmus]
-        \pause{}Ein \emph{Algorithmus} ist eine \emph{eindeutige Handlungsvorschrift} zur Lösung eines Problems.
+        \pause{}Eine \emph{eindeutige Handlungsvorschrift} zur Lösung eines Problems.
     \end{definition}
     \begin{itemize}[<+(1)->]
         \widei
@@ -20,12 +20,12 @@
 \begin{frame}{Algorithmuseigenschaften}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Zu Beginn gilt es einige Begriffe zu klären: \begin{description}[Elementaroperation]
+        \item Zu Beginn gilt es einige \emph{Begriffe} zu klären: \begin{description}[Elementaroperation]
             \item[Prozess] Die Ausführung der Schritte eines Algorithmus
             \item[Prozessor] Der Ausführende (Mensch, Computer,~\ldots)
             \item[Elementaroperation] Eine einzelne, eindeutige Handlung.
         \end{description}
-        \item Ein Algorithmus besitzt einige Eigenschaften: \begin{description}[Ausführbarkeit]
+        \item Ein Algorithmus besitzt einige \emph{Eigenschaften}: \begin{description}[Ausführbarkeit]
             \item[Ausführbarkeit] Die Anleitung muss ausführ- und reproduzierbar sein.
             \item[Endlichkeit] Der gesamte Algorithmus muss mit endlich viel Text beschrieben werden können.
             \item[Termination] Der Algorithmus muss nach endlich vielen Schritten zum Ende kommen.
@@ -55,7 +55,7 @@
 \begin{frame}{Eigenschaften für die Analyse}
     \twosplit{%
     \begin{block}<2->{Determinismus}
-        \onslide<3->{Der Ablauf des Algorithmus ist \emph{eindeutig}. Für jede Anweisung folgt bei gleichen Vorraussetzungen dieselbe.}
+        \onslide<3->{Der Ablauf ist \emph{eindeutig}. Jeder Anweisung folgt (bei gleichen Vorraussetzungen) dieselbe.}
     \end{block}
     }{%
     \begin{block}<4->{Determiniertheit}
@@ -64,9 +64,9 @@
     }\bigskip
     \begin{itemize}
         \item<6-> Die Begriffe sind zu unterscheiden!
-        \item<7-> So können bei einem Algorithmus verschiedene Wege zum selben Ziel führen.
-        \item<8-> (Sinnfreies) Beispiel: \onslide<9->{Der Algorithmus kann jedes Element eines Arrays quadrieren. \onslide<10->{Die Reihenfolge wählt er zufällig aus!}}
-        \item<11-> Dieser Algorithmus \emph{determiniert}, \onslide<12->{ist aber \emph{nicht-deterministisch}!}
+        \item<7-> Es können verschiedene Wege zum selben Ziel führen.
+        \item<8-> (Sinnfreies) Beispiel: \onslide<9->{Der Algorithmus kann jedes Element eines Arrays quadrieren. \onslide<10->{Die Reihenfolge wählt er zufällig aus!}}\smallskip\par
+        \onslide<11->{\faAngleRight~Dieser Algorithmus \emph{determiniert}, \onslide<12->{ist aber \emph{nicht-deterministisch}!}}
     \end{itemize}
 \end{frame}
 
@@ -83,10 +83,10 @@
     \end{figure}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein Algorithmus benötigt (formal) eine: \begin{description}[iV]
-            \item[V] Vorbedingung (wie \say{positive ganze Zahl})
-            \item[N] Nachbedingung (wie \say{negative Fließkommazahl})
-        \end{description}
+        \item Ein Algorithmus benötigt (formal) eine: \begin{itemize}
+            \item Vorbedingung (wie \say{positive ganze Zahl})
+            \item Nachbedingung (wie \say{negative Fließkommazahl})
+        \end{itemize}
         \item Algorithmen fundieren auf einem \emph{Problem} der realen Welt und werden durch Abstraktion formuliert.
         \item (Java-)Programme sind eine Darstellung von Algorithmen,\pause{} die von Maschinen interpretiert und realisiert werden.
      \end{itemize}
@@ -142,10 +142,10 @@
 \begin{frame}{Wie ein Programm entsteht}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein Programm selbst fällt nicht einfach aus dem Wolken (leider).
+        \item Ein Programm fällt nicht einfach aus dem Wolken (leider).
         \item Grundlegend gliedert man (im Softwareengineering) die Konstruktion in sechs Phasen.
         \item Die sechste Phase (Dokumentation) unterscheidet sich in sofern,\pause{} als dass sie Parallel zu den anderen stets aktiv ist.
-        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code, zu verschiedenen Lösungsansätzen,\pause{} sowie dem Ablauf selbst mit ein!
+        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code (zu verschiedenen Lösungsansätzen)\pause{} sowie dem Ablauf selbst mit ein!
     \end{itemize}
 \end{frame}
 

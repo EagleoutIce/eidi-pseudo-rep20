@@ -63,10 +63,10 @@
     \end{center}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Java ist eine \emph{streng typisierte} Sprache.\pause{} Jede Variable kann nur Daten \emph{eines (bestimmten) Typs speichern}.
-        \item Wir unterscheiden zwischen \emph{primitiven} und \emph{komplexen} Datentypen. \begin{description}[Primitive]
-            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean} (Hinweis: \emph{\hyperlink{mrk:call-by-val}{call-by-value}})
-            \item[Komplexe] \bjava{String}, \bjava{Random},~\ldots (Hinweis: \emph{\hyperlink{mrk:call-by-ref}{call-by-reference}})
+        \item Java ist eine \emph{streng typisierte} Sprache.\pause{} Jede Variable kann nur Daten eines (bestimmten) Typs speichern.
+        \item Wir unterscheiden zwischen \emph{primitiven} und \emph{komplexen} Datentypen. \begin{description}[iiPrimitive:]
+            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean}\par Hinweis: \emph{\hyperlink{mrk:call-by-val}{call-by-value}}
+            \item[Komplexe] \bjava{String}, \bjava{Random},~\ldots\par Hinweis: \emph{\hyperlink{mrk:call-by-ref}{call-by-reference}}
         \end{description}
     \end{itemize}
 \end{frame}
@@ -74,7 +74,7 @@
 \begin{frame}{Konvertierung primitiver Datentypen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Java kann manche Datentypen ineinander Umwandeln.\pause{} Es gilt:\pause{}
+        \item Java kann manche Datentypen implizit Umwandeln.\pause{} Es gilt:\pause{}
         \begin{center}
             \bjava{byte} \mprec{} \bjava{short} \mprec{} \bjava{int} \mprec{} \bjava{long} \mprec{} \bjava{float} \mprec{} \bjava{double}
         \end{center}
@@ -84,7 +84,7 @@
         \end{center}
         \item So kann Java einen \bjava{char} implizit in einen \bjava{int} umwandeln\pause{} (da der Wertebereich größer ist).\pause{} Umgekehrt allerdings nicht.
         \item \imp{Floats und Doubles unterliegen einem Rundungsproblem.}
-        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung erfolgen.
+        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.
     \end{itemize}
 \end{frame}
 
@@ -194,15 +194,16 @@ Random rnd = new Random();
 \end{frame}
 
 \begin{frame}{Strings}
+    \setbeamertemplate{description item}[default]%
     \begin{itemize}[<+(1)->]
         \widei
         \item Jede Variable/jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
-        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{s1.substring(a,b)}]
-            \item[{s1.equals(s2)}] prüft ob die Zeichenketten gleich sind.
-            \item[{s1.length()}] liefert die Länge einer Zeichenkette.
-            \item[{s1.charAt(k)}] liefert das \T{k}-te Zeichen.
-            \item[{s1.substring(a,b)}] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
-            \item[{s1.toUpperCase()}] liefert die Zeichenkette in Großbuchstaben.
+        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a,b):}]
+            \item[{s1.equals(s2)}:] prüft ob die Zeichenketten gleich sind.
+            \item[{s1.length()}:] liefert die Länge einer Zeichenkette.
+            \item[{s1.charAt(k)}:] liefert das \T{k}-te Zeichen.
+            \item[{s1.substring(a,b)}:] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
+            \item[{s1.toUpperCase()}:] liefert die Zeichenkette in Großbuchstaben.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -247,11 +248,12 @@ private static String generateWelcomeMessage(String name, int age,
 
 \begin{frame}{private und public}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{description}[protected]
             \item[private] Zugriff ist nur innerhalb der Klasse erlaubt.
-            \item[\say{default}] gibt man nichts an, so kann die Variable von Überall im Paket (\say{selber Ordner}) erreicht werden.
             \item[protected] ist sichtbar im gesamten Paket sowie in allen Unterklassen (\hyperlink{mrk:Vererbung}{Vererbung}).
             \item[public] ist überall sichtbar (auch über Pakete hinweg).
+            \item[\say{default}] gibt man nichts an, so kann die Variable von Überall im Paket (\say{selber Ordner}) erreicht werden.
         \end{description}
         \item Hinweis (Vorgriff):\pause{} Objekte einer Klasse können auch auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
     \end{itemize}
