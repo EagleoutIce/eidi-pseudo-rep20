@@ -289,9 +289,10 @@ static int methode(int n) {
 
 \begin{frame}{UML, Objektdiagramme}
     \hypertarget<1>{uml:object}{}\begin{itemize}[<+(1)->]
+        \widei
         \item Objektdiagramme ähneln Klassendiagrammen.
         \item Allerdings handelt es sich immer um explizite Ausprägungen einer Klasse\pause{} (\(\Rightarrow\) keine Methoden).
-        \item Sie werden eher selten verwendet.
+        % \item Sie werden eher selten verwendet.
     \end{itemize}
     \vfill\pause{}
     \begin{center}
@@ -307,7 +308,7 @@ static int methode(int n) {
 \end{frame}
 
 \begin{frame}{UML, Sequenzdiagramme}
-    \hypertarget<1>{uml:sequence}{}\begin{itemize}[<+(1)->]
+    \hypertarget<1>{uml:sequence}{}\begin{itemize}[<+(1)->]\widei
         \item Bilden den Nachrichtenaustausch ab.\pause{} Das Senden und Empfangen wird auf Basis von Ereignissen ausgelöst,\pause{} diese rufen wiederrum Reaktionen hervor.
         \item Die Nachrichten können jeweils synchron (durchgezogene Linie) oder asynchron (gestrichelte Linie) ausgetauscht werden.
         \item Nachrichten selbst können Methodenaufrufe,\pause{} Rückgabewerte\pause{} oder externe Ereignisse sein (wie Zeitereignisse).
@@ -317,7 +318,7 @@ static int methode(int n) {
 
 \begin{frame}[c]{UML, Sequenzdiagramme - ein Beispiel}
     \begin{center}
-\resizebox{0.6\linewidth}{!}{\begin{tikzpicture}
+\resizebox{.6\linewidth}{!}{\begin{tikzpicture}
     \begin{umlseqdiag}
         \umlactor[class=Player]{playerA}
         \umlcontrol[class=Server,x=6]{mainServer}
@@ -341,6 +342,7 @@ static int methode(int n) {
 
 \begin{frame}{Darstellung ganzer Zahlen}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Um Zahlen darzustellen verwenden wir ein \emph{Stellenwertsystem}.
         \item Das bedeutet der Wert einer Ziffer ergibt sich nicht nur über die Basis\pause{} sondern auch über die Stelle.
     \end{itemize}
@@ -544,6 +546,45 @@ int getDistance(String a, String b){
             \item \(\O(\frac{n!}{n}) = \O((n-1)!) = \O(n!)\)
         \end{enumerate}
         \pause{}Eine derartige Kategorisierung kann auch (noch) genauer präzisiert werden.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Von Pseudocode zu Java}
+    \begin{exercise}<2->[Von Pseudocode zu Java \Time{6}]
+        \pause{}Übersetzen Sie den Pseudocode in eine Java-Methode \say{\bjava{int magic(int)}}. Behalten Sie die Vorgehensweise bei. \(\mathbb{N}\) darf durch einen Integer eingegrenzt, ungültige Eingaben müssen nicht abgefangen werden.\medskip\par\pause Beschreiben Sie auch kurz, was der Algorithmus berechnet:\RestyleAlgo{tworuled}\par\pause
+\SetKwInput{KwIn}{Eingabe}%
+\SetKwFor{While}{Solange}{tue}{}%
+\SetKw{KwRet}{Gebe zurück:}%
+\SetAlgoVlined%
+\begin{algorithm}[H]
+\PreCode
+\KwIn{\(n \in \mathbb{N}\) \((n \geq 0)\)}
+\StartCode
+    \(wert := 0\)\;
+    \While{\(n > 0\)}{
+        \(wert := wert + (n \bmod 10)\)\;
+        \(n := \lfloor n / 10 \rfloor\)\;
+    }
+    \KwRet{\(wert\)}\;
+\end{algorithm}
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
+    \begin{solve}<2->[Von Pseudocode zu Java]
+        \pause{}Der Pseudocode lässt sich glücklicherweise fast direkt übernehmen:
+\begin{plainjava}
+int magic(int n) {
+    int wert = 0;
+    while(wert > 0) {
+        wert = wert + (n % 10);
+        n = n / 10; // Ganzzahlige Division
+    }
+    return wert;
+}
+\end{plainjava}
+        \pause{}Die Methode berechnet die Quersumme der Eingabe.
     \end{solve}
 \end{frame}
 \fi
