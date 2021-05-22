@@ -9,7 +9,7 @@
         \item Für eine Implementation: Betrachte das \href{https://github.com/EagleoutIce/eidi-weihnachttsblatt-19_20}{Weihnachtsblatt}.
         \item Eine ArrayList ist die einfachste Implementation einer Liste.
         \item Wir halten intern ein Array, welches wir dynamisch vergrößern oder Verkleinern.
-        \item Das Problem: Einfüge und Löschoperationen bedeuten einen großen Aufwand (kopieren der Elemente).
+        \item Das Problem: Einfüge und Löschoperationen bedeuten einen großen Aufwand (durch das Kopieren der Elemente).
         \item Der Vorteil: Der Zugriff auf ein bestimmtes Element erfolgt (da ein Array zugrunde liegt) in \(\O(1)\).
     \end{itemize}
 \end{frame}
@@ -267,10 +267,17 @@ class Element {
 \begin{frame}{Datenstruktur: Stack}
     \hypertarget<1>{mrk:Stack}{}%
     \begin{itemize}[<+(1)->]
+        \widei
         \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).\pause{} Es ist nur möglich Elemente oben auf den Stapel zu legen, oder das oberste zu nehmen.
-        \item Stacks lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulässt.
         \item Stacks können bei der Auswertung arithmetischer Funktionien verwendet werden (siehe GdRa).
-        \item Die Verwaltung rekursiver Methoden erfolgt über den Stack, so \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
+        \item Die Verwaltung rekursiver Methoden erfolgt über den Stack. So \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur: Stack}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Stacks lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulässt.
         \item Auf Stacks sind zwei wichtige Operationen definiert: \begin{description}[push]
             \item[push] Legt das Element oben auf dem Stack ab.
             \item[pop] Entfernt das oberste Element und liefert es zurück.
@@ -280,16 +287,24 @@ class Element {
 
 \begin{frame}{Datenstruktur: Queue}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Eine Warteschlange ist eine Datenstruktur, nach dem FIFO-Prinzip (First-In, First-Out).\pause{} Es ist nur möglich Elemente hinten in der Schlange einzureihen und vorne von der Schlange zu entfernen.
-        \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendFirst(Element)} und \bjava{removeLast(Element)} zulässt.
         \item Queues können zum Puffern verwendet werden (analog zum Schalter).
+        \item Es existieren Derivate, wie die \emph{double-ended queue} (ein- und ausreihen auf beiden Seiten) oder die \emph{priority queue} (Elemente mit höherer Prioritöt werden bei \T{enqueue} zuerst aus der Schlange genommen).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur: Queue}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendFirst(Element)} und \bjava{removeLast(Element)} zulässt.
         \item Auf Queues sind zwei wichtige Operationen definiert: \begin{description}[dequeue]
             \item[enqueue] Reiht ein Element (hinten) in die Schlange ein.
             \item[dequeue] Nimmt ein Element (vorne) aus der Schlange.
         \end{description}
-        \item Es existieren Derivate, wie die \emph{double-ended queue} (ein- und ausreihen auf beiden Seiten) oder die \emph{priority queue} (Elemente mit höherer Prioritöt werden bei \T{enqueue} zuerst aus der Schlange genommen).
     \end{itemize}
 \end{frame}
+
 
 \begin{frame}[c]{Vergleich: Stack und Queue}
     \begin{center}
@@ -336,6 +351,7 @@ class Element {
 
 \begin{frame}{Bäume: Formal}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Im Gegensatz zu Listen halten Bäume Referenzen auf mehrere Nachfolger.
         \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}
@@ -359,6 +375,7 @@ Ein Baum \(B\) ist ein Tupel (azyklischer Graph) \(T = (V,E)\) mit einer endlich
 
 \begin{frame}{Bäume: Mathematisch}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Die Höhe des Baumes ist die tiefste Ebene auf der ein Knoten existiert.
         \item Die Verzweigung eines Knotens bezeichnet die Anzahl seiner Kinder.
         \item Binärbäume, bei denen alle Knoten einen Verzweigungsgrad von maximal zwei haben,\pause{} sind von einer besonderen Bedeutung für die Informatik.\pause{} (Sie lassen sich übrigens auch in einem Array repräsentieren.)
@@ -384,6 +401,7 @@ class Node {
 \end{forest}}
 \end{minipage}\vfill
     \begin{itemize}[<+(1)->]
+        \widei
         \item Wie bei einer einfach verketteten Liste können wir nun den Baum in eine Richtung traversieren.
         \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
     \end{itemize}
@@ -411,6 +429,7 @@ class Node {
 \end{forest}}
 \end{minipage}\vfill
     \begin{itemize}[<+(1)->]
+        \widei
         \item Wie bei einer einfach verketteten Liste können wir nun den Baum in eine Richtung traversieren.
         \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
     \end{itemize}
@@ -633,7 +652,7 @@ class Node {
 
 \begin{frame}{Arithmetische Bäume}
     \begin{itemize}[<+(1)->]
-        \item Binärbäume helfen uns arithmetische Operationen darzustellen.
+        \item Binärbäume helfen uns, arithmetische Operationen darzustellen.
     \end{itemize}
     \pause{}
     \begin{center}
@@ -675,6 +694,7 @@ class Node {
 \begin{frame}{Begriffe in einem Graphen}
     \pause{}
     \begin{description}[Zusammenhang]
+        \widei
         \item[Zusammenhang] Ein Graph heißt zusammenhängend, wenn man jeden Knoten von jedem anderen aus (über die Kanten) erreichen kann.\pause{}
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.\pause{}
