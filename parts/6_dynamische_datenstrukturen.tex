@@ -897,7 +897,7 @@ public class LinkedList {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[LinkedList - toString()]
-        \pause{} % TODO: comma at end
+        \pause{}%
 \begin{plainjava}
 !*\onslide<3->*!public String toString() {
 !*\onslide<4->*!    Element current = head;
@@ -912,6 +912,230 @@ public class LinkedList {
         \pause{}Ist kein Komma am Ende erwünscht, so genügt ein Check der Form \bjava{if(current.next != null)} für das Anfügen des Kommas.
     \end{solve}
 \end{frame}
+
+\def\Element#1{{\renewcommand{\arraystretch}{1.4}%
+\begin{tabular}{|>{\centering}p{1em}|p{1em}|}
+    \hline
+        \strut#1 & \\
+    \hline
+\end{tabular}%
+}}%
+\def\EndElement{{\renewcommand{\arraystretch}{1.5}%
+\begin{tabular}{|>{\centering\arraybackslash}p{1em}|}
+    \hline
+        \strut/\\
+    \hline
+\end{tabular}
+}}%
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Eine Liste umdrehen}
+    \begin{exercise}<2->[Eine Liste umdrehen \Time{6}]
+        \pause{}Gegeben sei folgender Code:
+{\footnotesize
+\begin{plainjava}
+public class Element {
+    public int value;
+    public Element next;
+    public Element(int _v, Element _n) {
+        value = _v; next = _n;
+    }
+}
+\end{plainjava}
+}\pause{} Schreiben Sie eine Methode \bjava{Element reverse(Element head)}, welche die übergebene Liste umkehrt und den neuen Kopf zurück gibt. Gehen Sie auch mit Randfällen wie einer leeren Liste um.
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \begin{solve}<2->[Eine Liste umdrehen]
+        \pause{}%
+\begin{plainjava}
+Element reverse(Element head) {
+    Element reversedHead = null;
+    Element current = head;
+    while (current != null) {
+        Element next = current.next;
+        current.next = reversedHead;
+        reversedHead = current;
+        current = next;
+    }
+    return reversedHead;
+}
+\end{plainjava}
+    \pause{}Doch was passiert hier?\pause{} Betrachten wir dies im Detail\ldots
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Eine Liste umdrehen\hfill(Fortsetzung)]
+        \onslide<3->{Betrachten wir die Vorgehensweise für die Liste \(4 \to 5 \to 6\).}\smallskip\par
+\hfill\onslide<4->{\begin{tikzpicture}[baseline,scale=.6,every node/.append style={transform shape}]
+    \node[enode] (a) at (0,0) {\Element{4}};
+    \node[enode] (b) at (2.25,0) {\Element{5}};
+    \node[enode] (c) at (4.5,0) {\Element{6}};
+
+    \foreach[remember=\i as \li (initially a)] \i in {b,c}{
+        \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
+        \fill ($(\li.east)+(-1em,0)$) circle (2pt);
+    }
+
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {head}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
+    \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]a.north west) to[edge node={node[above=5pt] {current}}] ([xshift=3.75pt,yshift=4pt]a.north east);
+\end{tikzpicture}}\hfill\begingroup\lstfs{7}%
+\begin{minipage}{.4\linewidth}
+\begin{plainjava}
+Element reversedHead = null;
+Element current = head;
+while (current != null) {
+    Element next = current.next;
+    current.next = reversedHead;
+    reversedHead = current;
+    current = next;
+}
+\end{plainjava}
+\end{minipage}\endgroup\hfill\par
+    \begin{enumerate}
+        \item<5-> Da \bjava{reversedHead = null}:\smallskip\par \begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{5}};
+            \node[enode] (c) at (4.5,0) {\Element{6}};
+
+            \draw[-Kite] ($(b.east)+(-1em,0)$) -- (c.west);
+
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]a.north west) to[edge node={node[above=5pt] {current}}] ([xshift=3.75pt,yshift=4pt]a.north east);
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]b.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]b.north east);
+        \end{tikzpicture}\qquad\begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{5}};
+            \node[enode] (c) at (4.5,0) {\Element{6}};
+
+            \draw[-Kite] ($(b.east)+(-1em,0)$) -- (c.west);
+
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]a.north west) to[edge node={node[above=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=4pt]a.north east);
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]b.north west) to[edge node={node[above=5pt] {current}}] ([xshift=3.75pt,yshift=4pt]b.north east);
+        \end{tikzpicture}
+    \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Eine Liste umdrehen\hfill(Fortsetzung)]
+        Betrachten wir die Vorgehensweise für die Liste \(4 \to 5 \to 6\).\smallskip\par
+\hfill\onslide<3->{\quad\begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+    \node[enode] (a) at (0,0) {\Element{4}};
+    \node[enode] (b) at (2.25,0) {\Element{5}};
+    \node[enode] (c) at (4.5,0) {\Element{6}};
+
+    \draw[-Kite] ($(b.east)+(-1em,0)$) -- (c.west);
+
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
+\end{tikzpicture}}\hfill\begingroup\lstfs{7}%
+\begin{minipage}{.4\linewidth}
+\begin{plainjava}
+Element reversedHead = null;
+Element current = head;
+while (current != null) {
+    Element next = current.next;
+    current.next = reversedHead;
+    reversedHead = current;
+    current = next;
+}
+\end{plainjava}
+\end{minipage}\endgroup\hfill\par
+    \begin{enumerate}
+        \setcounter{enumi}{1}
+        \item<4-> Nun zeigt \bjava{current.next} auf das vorherige Element:\smallskip\par \begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{5}};
+            \node[enode] (c) at (4.5,0) {\Element{6}};
+
+            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]c.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]c.north east);
+
+        \end{tikzpicture}\qquad\begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{5}};
+            \node[enode] (c) at (4.5,0) {\Element{6}};
+
+            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]c.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]c.north east);
+
+        \end{tikzpicture}
+    \end{enumerate}
+    \end{solve}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Eine Liste umdrehen\hfill(Fortsetzung)]
+        Betrachten wir die Vorgehensweise für die Liste \(4 \to 5 \to 6\).\smallskip\par
+\hfill\onslide<3->{\quad\begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+    \node[enode] (a) at (0,0) {\Element{4}};
+    \node[enode] (b) at (2.25,0) {\Element{5}};
+    \node[enode] (c) at (4.5,0) {\Element{6}};
+
+    \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
+    \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
+    \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]c.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]c.north east);
+\end{tikzpicture}}\hfill\begingroup\lstfs{7}%
+\begin{minipage}{.4\linewidth}
+\begin{plainjava}
+Element reversedHead = null;
+Element current = head;
+while (current != null) {
+    Element next = current.next;
+    current.next = reversedHead;
+    reversedHead = current;
+    current = next;
+}
+\end{plainjava}
+\end{minipage}\endgroup\hfill\par
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item<4-> \T{reversedHead} und \T{current} wandern durch die Liste:\smallskip\par
+        \begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{5}};
+            \node[enode] (c) at (4.5,0) {\Element{6}};
+            \node[enode] (d) at (6.75,0) {\EndElement};
+
+            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+            \draw[-Kite] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
+
+
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]d.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]d.north east);
+        \end{tikzpicture}\qquad
+        \begin{tikzpicture}[scale=.6,every node/.append style={transform shape},baseline]
+            \node[enode] (a) at (0,0) {\Element{4}};
+            \node[enode] (b) at (2.25,0) {\Element{5}};
+            \node[enode] (c) at (4.5,0) {\Element{6}};
+            \node[enode] (d) at (6.75,0) {\EndElement};
+
+            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+            \draw[-Kite] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
+
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
+            \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]d.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]d.south east);
+            \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]d.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]d.north east);
+        \end{tikzpicture}
+    \end{enumerate}
+    \end{solve}
+\end{frame}
+
 
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Theorie: Stack und Queue}
