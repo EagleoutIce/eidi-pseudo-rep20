@@ -183,13 +183,13 @@ System.out.println(x); // :yields: 9
     \begin{itemize}[<+(1)->]
         \widei
         \item Java erlaubt es mit Klassen komplexe Datentypen zu konstruieren.
-        \item Der wichtigste ist \bjava{String},\pause{} welcher von Java eine Sonderbehandlung erfährt.
+        \item Ein wichtiger ist \bjava{String},\pause{} welcher von Java eine Sonderbehandlung erfährt.
         \item Bei der Deklaration eines komplexen Datentyps:\pause{}
 \begin{plainjava}
 Random rnd = new Random();
 \end{plainjava}
         \pause{}speichert Java für \bjava{rnd} die Adresse,\pause{} an der sich die eigentlichen Daten des Objekts befinden.
-        \item Deswegen sollen Strings mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen\pause{} und damit ob die Zeichenketten identisch sind.
+        \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen\pause{} und damit ob die Objekte identisch sind.
     \end{itemize}
 \end{frame}
 
