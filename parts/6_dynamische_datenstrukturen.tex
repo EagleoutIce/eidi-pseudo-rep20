@@ -948,7 +948,7 @@ public class Element {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Eine Liste umdrehen]
-        \pause{}%
+        \pause{}\pause{}%
 \begin{plainjava}
 Element reverse(Element head) {
     Element reversedHead = null;
@@ -1140,7 +1140,7 @@ while (current != null) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Theorie: Stack und Queue}
     \begin{exercise}<2->[Theorie zu Stapel und Warteschlange \Time{5}]
-        Bewerte (wahr/falsch) und Begründe jeweils: \begin{enumerate}[<+(1)->]
+        \pause{}Bewerten (wahr/falsch) und Begründen Sie jeweils: \begin{enumerate}[<+(1)->]
             \item Eine Warteschlange lässt sich auch dann implementieren, wenn nur die Datenstruktur \emph{Stack} existiert.
             \item Stacks folgen dem FIFO-Prinzip.
             \item Der Java-(Objekt-)Heap bezeichnet sich nach der Datenstruktur Heap.
@@ -1150,7 +1150,7 @@ while (current != null) {
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Theorie zu Stapel und Warteschlange]
-        \begin{enumerate}[<+(1)->]
+        \pause{}\begin{enumerate}[<+(1)->]
             \item Queue durch Stack:\pause{} Dies ist wahr. Hierzu benötigt man zwei Stacks, \(A\) und \(B\).\pause{} Neue Elemente werden auf \(A\) abgelegt und von \(B\) genommen.\pause{} Ist \(B\) leer, so werden alle Elemente von \(A\) genommen und auf \(B\) abgelegt (und damit umgedreht).
             \item Stacks sind FIFO:\pause{} Dies ist falsch.\pause{} Stacks folgen dem LIFO (Last-In, First-Out) Prinzip (siehe: \hyperlink{mrk:Stack}{Stack}).
             \item Java-Heap ist Heap:\pause{} Dies ist falsch, der Heap auf dem (komplexe) Daten abgelegt werden,\pause{} hat nur den selben Namen.\pause{} (Siehe: \url{https://stackoverflow.com/questions/756861/whats-the-relationship-between-a-heap-and-the-heap}.)
@@ -1161,7 +1161,7 @@ while (current != null) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Traversierung eines Baumes}
     \begin{exercise}<2->[Traversierung eines Baumes \Time{4}]
-        Gegeben sei der folgende Binärbaum. Gib sowohl die Besuchsreihenfolge des Breitendurchlaufs als auch des In- und Post-Order Durchlaufs an.\pause{}
+        \pause{}Gegeben sei der folgende Binärbaum. Gib sowohl die Besuchsreihenfolge des Breitendurchlaufs als auch des In- und Post-Order Durchlaufs an.\pause{}
         \begin{center}
             \scalebox{0.6}{\begin{forest}
                 for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,execute at begin node={\strut},minimum width=1.2cm}
@@ -1206,7 +1206,7 @@ public class Node {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Traversierung eines Baumes - Java]
-\begin{plainjava}
+\pause{}\begin{plainjava}
 void inorder(Node n)  {
     if (n == null) return;
 
