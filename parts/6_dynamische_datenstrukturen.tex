@@ -706,7 +706,7 @@ class Node {
 \begin{frame}{Varianten von Graphen}
     \begin{itemize}[<+(1)->]
         \item Ein gewichteter Graph weißt den Kanten durch eine Abbildung \(w: E \to M\) einen Wert zu.
-        \item Wir können einen Graphen durch eine \emph{Adjazenzmatrix} beschreiben.\pause{} Hierbei entsprechen die jeweiligen Zellen \(m_{i,j}\), dass eine Verbindung vom Knoten \(i\) zum Knoten \(j\) besteht.
+        \item Wir können einen Graphen durch eine \emph{Adjazenzmatrix} beschreiben.\pause{} Hierbei geben die jeweiligen Zellen \(m_{i,j}\), ob eine Verbindung vom Knoten \(i\) zum Knoten \(j\) besteht (\(m_{i, j} > 0\) für eine Kante).
     \end{itemize}
     \vfill\pause{}
     \begin{minipage}{0.45\linewidth}
@@ -1214,6 +1214,124 @@ void inorder(Node n)  {
     System.out.println(n.value);
     inorder(n.right);
 }
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Breitensuche in Adjazenzmatrix - Pseudocode}
+    \begin{exercise}<2->[Breitensuche - Pseudocode \Time{6}]
+        \label{task:bfs-pseudo}Schreiben Sie Pseudocode, der den folgenden Vertrag durch eine Breitensuche erfüllt:
+\RestyleAlgo{tworuled}\medskip\par\pause
+\SetKwInput{KwIn}{In}%
+\SetKwInput{KwOut}{Out}%
+\SetAlgoVlined%
+\begin{algorithm}[H]
+\PreCode
+\KwIn{Ajazenzmatrix \(a\) für \(n \in \mathbb{N}\) Knoten mit \(n > 0\).}
+\KwIn{Startknoten \(s \in \{0, \ldots, n - 1\}\) und gesuchter Knoten \(g \in \{0, \ldots, n - 1\}\)}
+\KwOut{\say{Ja}, wenn \(g\) von \(s\) aus in \(a\) erreichbar ist. Sonst \say{Nein}.}
+\end{algorithm}
+        Sie können Mengen, sowie Warteschlangen verwenden: \begin{itemize}
+            \item \T{Queue.create()} erzeugt eine neue Warteschlange. \item \T{enqueue(<Wert>)} fügt einen Wert hinten an.
+            \item \T{dequeue()} entfernt einen Wert vorne.
+            \item \T{size()} liefert Ihnen die Größe der Warteschlange.
+        \end{itemize}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Breitensuche - Pseudocode]
+\pause{}\footnotesize\RestyleAlgo{tworuled}\SetAlgoVlined%
+\begin{algorithm}[H]
+\PreCode\StartCode
+\(queue \leftarrow \T{Queue.create()}\)\;
+\(queue.\T{enqueue}(s)\)\Comment*[r]{Startknoten hinzufügen}
+\(visited \leftarrow \{s\}\)\Comment*[r]{Menge markiert bereits beachtete}
+\While(\Comment*[f]{Es gibt noch besuchbare Punkte}){\(queue.\T{size}() > 0\)}{
+    \(current \leftarrow queue.\T{dequeue}()\)\Comment*[r]{Betrachte nächsten Knoten}
+    \lIf(\Comment*[f]{Ist er das Ziel?}){\(current = g\)}{\KwRet\say{Ja}}
+    \Comment{Durchsuche Adjazenzmatrix nach allen erreichbaren Knoten}
+    \For{i = 0 \KwTo n - 1}{
+        \If(\Comment*[f]{Es gibt eine Kante von \(current\) nach \(i\)}){\(a_{current, i} > 0\)} {
+            \If(\Comment*[f]{Noch nicht besucht}){\(i \not\in visited\)}{
+                \(queue.\T{enqueue}(i)\)\;
+                \(visited \leftarrow visited \cup \{i\}\)\Comment*[r]{Füge zu besuchten hinzu.}
+            }
+        }
+    }
+}
+\KwRet\say{Nein}\;
+\end{algorithm}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Breitensuche in Adjazenzmatrix - Java}
+    \begin{exercise}<2->[Breitensuche - Java \Time{6}]
+        \pause{}Übersetzen Sie den Pseudocode (frei nach Aufgabe~\ref{task:bfs-pseudo}) in Java Code.
+\RestyleAlgo{tworuled}\par\pause
+\SetKwFor{While}{Solange}{tue:}{}%
+\SetKwFor{For}{Für}{tue:}{}%
+\SetKwIF{If}{ElseIf}{Else}{Wenn}{dann:}{sonst wenn}{sonst}{}%
+\SetKw{KwTo}{bis}%
+\SetKw{KwAnd}{\&}
+\SetKw{KwRet}{Rückgabe:}%
+\begin{minipage}{.5\linewidth}\scriptsize\RestyleAlgo{tworuled}\SetAlgoVlined%
+\begin{algorithm}[H]
+\PreCode\StartCode
+\(queue \leftarrow \T{Queue.create()}\)\;
+\(queue.\T{enqueue}(s)\)\;
+\(visited \leftarrow \{s\}\)\;
+\While{\(queue.\T{size}() > 0\)}{
+    \(cur \leftarrow queue.\T{dequeue}()\)\;
+    \lIf{\(cur = g\)}{\KwRet wahr}
+    \For{i = 0 \KwTo n - 1}{
+        \If{\(a_{cur, i} > 0\) \KwAnd \(i \not\in visited\)} {
+            \(queue.\T{enqueue}(i)\)\;
+            \(visited \leftarrow visited \cup \{i\}\)\;
+        }
+    }
+}
+\KwRet falsch\;
+\end{algorithm}\end{minipage}\hfill\begin{minipage}{.465\linewidth}%
+    \pause{}Gegeben seien die folgenden, korrekt implementierten Klassen:\lstfs{9}\pause
+\begin{plainjava}
+class Set {
+  void add(int value);
+  boolean contains(int value);
+}
+class Queue {
+  void enqueue(int value);
+  int dequeue();
+  int size();
+}
+\end{plainjava}
+\end{minipage}\par
+Schreiben Sie eine Java-Methode \bjava{boolean bfs(int[][] a, int s, int g)}. Sie dürfen annehmen, dass \(a\) korrekt ist und \(s\) sowie \(g\) gültig sind.
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \begin{solve}<2->[Breitensuche - Java]
+\lstfs{9}\begin{plainjava}[morekeywords={[4]{enqueue,dequeue,contains,add,size}}]
+!*\onslide<3->*!boolean bfs(int[][] a, int s, int g) {
+!*\onslide<4->*!    Queue queue = new Queue();
+!*\onslide<4->*!    queue.enqueue(s);
+!*\onslide<5->*!    Set visited = new Set();
+!*\onslide<6->*!    while(queue.size() > 0) {
+!*\onslide<7->*!        int cur = queue.dequeue();
+!*\onslide<8->*!        if(cur == g) return true;
+!*\onslide<9->*!        for(int i = 0; i < a.length; i++) { // oder i <= a.length - 1
+!*\onslide<10->*!            if(a[cur][i] > 0 && !visited.contains(i)) {
+!*\onslide<11->*!                queue.enqueue(i);
+!*\onslide<12->*!                visited.add(i);
+!*\onslide<10->*!            }
+!*\onslide<9->*!        }
+!*\onslide<6->*!    }
+!*\onslide<13->*!    return false;
+!*\onslide<3->*!}
 \end{plainjava}
     \end{solve}
 \end{frame}
