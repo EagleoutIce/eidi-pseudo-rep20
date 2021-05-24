@@ -9,7 +9,7 @@
         \item Eine Klasse die von einer anderen Klasse erbt, übernimmt all ihre Eigenschaften und kann diese verändern oder modifizieren.
         \item Die Subklasse kann hier sowohl als Spezialisierung aufgefasst werden (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert).
         \item In Java/in der Objektorientierung wird das Konzept der Erweiterung verfolgt.
-        \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe),\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), \emph{Dozent} (zugeteilte Vorlesung),~\ldots
+        \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe) und\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), sowie \emph{Dozent} (zugeteilte Vorlesung),~\ldots
         \item Zwischen vererbenden Klassen gilt eine \emph{is-a} Relation.\pause{} So gilt Beispielsweise \emph{Student is-a Mensch is-a Lebewesen}.
     \end{itemize}
 \end{frame}
@@ -122,7 +122,7 @@ herbert instanceof Dozent // :yields: false
         \widei
         \item Das Prinzip der Vererbung ist integral für die Objektorientierung und unglaublich mächtig.
         \item Methoden der Superklasse lassen sich überladen (gleicher Name, andere Signatur),\pause{} als auch überschreiben (gleiche Signatur)
-        \item Vererbung sollte nur dann verwendet werden,\pause{} wenn es sich wirklich um eine Erweiterung handelt und nicht wenn die Klasse nur die Eigenschaften (logisch) besitzt.\pause{} Beispiel: \solGet{keywordC}{Auto} sollte nicht von \solGet{keywordC}{Motor} erben, da es zwar einen besitzt, aber kein Motor ist.
+        \item Vererbung sollte nur dann verwendet werden,\pause{} wenn es sich wirklich um eine Erweiterung handelt und nicht wenn die Klasse \say{nur} die Eigenschaften (logisch) besitzt.\pause{} \medskip\par Beispiel: \solGet{keywordC}{Auto} sollte nicht von \solGet{keywordC}{Motor} erben, da es zwar einen besitzt, aber kein Motor ist.
     \end{itemize}
 \end{frame}
 
@@ -146,7 +146,6 @@ herbert instanceof Dozent // :yields: false
 !*\onslide<5->*!    int size() {
 !*\onslide<5->*!        // ...
 !*\onslide<5->*!    }
-!*\onslide<2->*!
 !*\onslide<6->*!    // ...
 !*\onslide<2->*!}
 \end{plainjava}
@@ -166,7 +165,6 @@ herbert instanceof Dozent // :yields: false
 !*\onslide<7->*!    public void add(Element e) {
 !*\onslide<8->*!        // ...
 !*\onslide<7->*!    }
-!*\onslide<2->*!
 !*\onslide<9->*!    // ...
 !*\onslide<2->*!}
 \end{plainjava}
@@ -213,9 +211,9 @@ herbert instanceof Dozent // :yields: false
 
 % Wichtige Interfaces
 
-% TODO: 'default', warum keine Attribute
 \begin{frame}{Wenn Vererbung nicht reicht}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Java erlaubt \emph{keine} Mehrfachvererbung.\pause{}\par \textcolor{gray}{Allerdings können Klassen mehrere \say{Eigenschaften} erfüllen.}
         \item So können wir über unsere Listen iterieren,\pause{} über Bäume aber auch.
         \item Eine Java Klasse kann (beliebig viele) Schnittstellen mittels \bjava{implements} implementieren.
