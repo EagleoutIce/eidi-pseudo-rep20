@@ -27,7 +27,7 @@
 
 \begin{frame}[fragile]{Ein Beispiel in Java}
     \begin{itemize}[<+(1)->]
-        \item Hinweis: Die Attribute sind lediglich exemplarisch und nicht wertend gemeint.
+        \item \textcolor{gray}{Die Attribute sind lediglich exemplarisch und nicht wertend gemeint.}
     \end{itemize}
     \pause{}\begin{center}
         \scriptsize%
@@ -63,7 +63,7 @@ class Mensch extends Lebewesen {
 
 \begin{frame}[fragile]{Ein Beispiel in Java}
     \begin{itemize}[<+(1)->]
-        \item<1-> Hinweis: Die Attribute sind lediglich exemplarisch und nicht wertend gemeint.
+        \item<1-> \textcolor{gray}{Die Attribute sind lediglich exemplarisch und nicht wertend gemeint.}
     \end{itemize}
     \pause{}\begin{center}
         \scriptsize%
@@ -100,12 +100,13 @@ class Dozent extends Mensch {
 
 \begin{frame}[fragile]{instanceof und getClass()}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Das Prinzip erlaubt uns Polymorphie.\pause{} So ist folgender Code valide:\pause{}
 \begin{plainjava}
 Mensch herbert = new Student(19, 184.12f, "herbert", 12345);
 \end{plainjava}
         \pause{}da die Klasse \bjava{Student} von \bjava{Mensch} \emph{erbt}.\pause{} Wir können allerdings nicht auf die Zusatzfunktionalitäten von \bjava{Student} zugreifen.
-        \item Ob \bjava{herbert} auch wirklich ein Student ist,\pause{} können wir mit \bjava{instanceof} prüfen:\pause{}
+        \item Ob \bjava{herbert} wirklich ein Student ist,\pause{} kann man mit \bjava{instanceof} prüfen:\pause{}
 \begin{plainjava}
 herbert instanceof Student // :yields: true
 herbert instanceof Mensch // :yields: true
@@ -215,10 +216,10 @@ herbert instanceof Dozent // :yields: false
 % TODO: 'default', warum keine Attribute
 \begin{frame}{Wenn Vererbung nicht reicht}
     \begin{itemize}[<+(1)->]
-        \item Java erlaubt keine Mehrfachvererbung.\pause{} Allerdings gibt es Klassen die mehrere \say{Eigenschaften} erfüllen.
+        \item Java erlaubt \emph{keine} Mehrfachvererbung.\pause{}\par \textcolor{gray}{Allerdings können Klassen mehrere \say{Eigenschaften} erfüllen.}
         \item So können wir über unsere Listen iterieren,\pause{} über Bäume aber auch.
-        \item Deswegen kann eine Java Klasse (beliebig viele) Schnittstellen mittels \bjava{implements} implementieren.
-        \item Ein solches \bjava{interface} kann von einer Klasse die es implementieren will Methoden fordern.
+        \item Eine Java Klasse kann (beliebig viele) Schnittstellen mittels \bjava{implements} implementieren.
+        \item Ein solches \bjava{interface} fordert gewisse Methoden vom Implementor.
         \item Weiter kann ein \bjava{interface} seit Java \(8\) durch \bjava{default} Standardimplementationen für die Methoden liefern.
         \item Ein \bjava{interface} kann \emph{keine} Attribute definieren, diese werden automatisch zu Konstanten.
     \end{itemize}
@@ -226,6 +227,7 @@ herbert instanceof Dozent // :yields: false
 
 \begin{frame}[fragile]{Wenn Vererbung nicht reicht}
     \begin{itemize}[<+(1)->]
+        \widei
         \item So gibt es zum Beispiel das Java-Interface \bjava{Iterable} welches anzeigt, dass man über den Datentyp (mittels for-each) iterieren kann.
         \item Da \emph{Generics} kein Teil der Vorlesung sind, wurde das Interface \emph{Sortable} definiert:\pause{}
 \begin{plainjava}
@@ -275,7 +277,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
         \end{description}
         \item Wie schwer ein Fehler ist, hängt von der Situation ab.
         \item Die Behandlung eines Fehlers erfolgt in der Regel durch die aufrufende Methode.
-        \item Ein Fehlerobjekt wird nur dann erzeugt,\pause{} wenn die Methode scheitert.
+        % \item Ein Fehlerobjekt wird nur dann erzeugt,\pause{} wenn die Methode scheitert.
         \item Fehlerobjekte sind in Java Objekte von Klasse,\pause{} die von der \bjava{Exception} Klasse erben.
     \end{itemize}
 \end{frame}
@@ -290,7 +292,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
 throw new IndexOutOfBoundsException();
 \end{plainjava}
         \item Wird eine Ausnahme nicht behandelt,\pause{} bricht das Programm ab.
-        \item Java-Errors wie \bjava{InternalError}  lassen sich nicht sinnvoll behandeln!
+        \item Java-Errors, wie ein \bjava{InternalError} lassen sich nicht sinnvoll behandeln!
     \end{itemize}
 \end{frame}
 
@@ -309,7 +311,7 @@ try {
     // Anweisungen die immer ausgeführt werden.
 }
 \end{plainjava}
-        \item Das \bjava{finally} ist optional, auch kann nur ein \bjava{catch}-Block auftreten.
+        \item Das \bjava{finally} ist optional, ebenso kann nur ein \bjava{catch}-Block auftreten.
     \end{itemize}
 \end{frame}
 

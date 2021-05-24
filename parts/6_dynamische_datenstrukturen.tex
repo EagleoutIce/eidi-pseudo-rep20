@@ -878,22 +878,20 @@ class Node {
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{LinkedList - toString()}
     \begin{exercise}<2->[LinkedList - toString() \Time{4}]
-        Gegeben sei folgender Code.\pause{} Es darf davon ausgegangen werden, dass \bjava{get(int)} korrekt implementiert ist.\pause{} Schreibe eine Methode \bjava{toString()} die die Elemente in korrekter Reihenfolge setzt.\pause{}
+        Gegeben sei folgender Code.\pause{} Es darf davon ausgegangen werden, dass \bjava{get(int)} korrekt implementiert ist.\pause{} Schreiben Sie eine Methode \bjava{toString()}, die die Elemente in korrekter Reihenfolge ausgibt.\pause{}
 {\footnotesize
 \begin{plainjava}
 public class LinkedList {
     public static class Element {
         int value; Element next;
-        public Element(int _v, Element _n) {
-            value = _v; next = _n;
-        }
+        public Element(int _v, Element _n) { value = _v; next = _n; }
     }
     Element head;
     public LinkedList() { /* ... */ }
     public Element get(int index) { /* ... */ }
 }
 \end{plainjava}
-}
+}\pause{} Beispiel: \bjava{13, 12, -4, 9,}
     \end{exercise}
 \end{frame}
 
