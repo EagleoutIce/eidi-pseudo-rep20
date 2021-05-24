@@ -343,15 +343,16 @@ try {
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Statische/Dynamische Bindung]
-        Die \emph{statische} Bindung verwendet Java bei Attributen. Sie wird zur Kompilierzeit aufgelöst und sorgt dafür, dass in Subklassen überschriebene Variablen stets die Klasse der Variable, die auf das Objekt zeigt bestimmt, welche Ausprägung des Attributs verwendet wird.\medskip\newline%
-        \pause{}Die \emph{dynamische} Bindung verwendet Java bei Methoden. Sie wird zur Laufzeit aufgelöst und bedeutet, dass im Falle des Überschreibens von Methoden einer Subklasse die Klasse des Objekts entscheidet welche verwendet wird und nicht die der Variable die darauf zeigt.
+        Die \emph{statische} Bindung verwendet Java bei Attributen. Sie wird zur Kompilierzeit aufgelöst und sorgt dafür, dass in Subklassen überschriebene Variablen stets der verwendeten Klasse zugeordnet sind. In \bjava{A a = new B();} würde sich \bjava{a.x} also auf das \T{x} der Klasse \bjava{A} beziehen. In \bjava{B a = new B();} auf das der Klasse \bjava{B}.\medskip\par
+        \pause{}Die \emph{dynamische} Bindung verwendet Java bei Methoden. Sie wird zur Laufzeit aufgelöst und bedeutet, dass im Falle des Überschreibens von Methoden einer Subklasse die Klasse des Objekts entscheidet welche verwendet wird und nicht die der Variable die darauf zeigt.\pause\medskip\par
+        Hier hilft auch Aufgabe~\ref{tsk:java-bindings-result}.
     \end{solve}
 \end{frame}
 
 
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Bindungen Praktisch}
-    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]\lstfs{9}
+    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]\label{tsk:java-bindings-result}\lstfs{9}
 \begin{plainjava}[morekeywords={[3]{A,B}},aboveskip=0pt,belowskip=0pt]
 public class A {
     int a = 0;
