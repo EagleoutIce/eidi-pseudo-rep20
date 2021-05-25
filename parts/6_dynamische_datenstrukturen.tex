@@ -312,7 +312,7 @@ class Element {
             \pause{}
             \begin{column}{.45\textwidth}
 \centering\begin{tikzpicture}[scale=0.85,every node/.style={transform shape}]
-    \draw (0,0) |- ++(3,-4) -- ++(0,4);
+    \draw[rounded corners=2pt] (0,0) |- ++(3,-4) -- ++(0,4);
     \node at(1.5,-3.5) {42};
     \node at(1.5,-2.5) {13};
     \draw (0,-3) -- ++(3,0);
@@ -320,8 +320,8 @@ class Element {
 
     \draw[Kite-] (3,-2.5) -- ++(1,0) node[right] {top};
 
-    \draw[-Kite] (-0.5,0.25) node[left] {push} -| ++(1.75,-0.75);
-    \draw[Kite-] (3.5,0.25) node[right] {pop} -| ++(-1.75,-0.75);
+    \draw[-Kite,rounded corners=2pt] (-0.5,0.25) node[left] {push} -| ++(1.75,-0.75);
+    \draw[Kite-,rounded corners=2pt] (3.5,0.25) node[right] {pop} -| ++(-1.75,-0.75);
 
 \end{tikzpicture}
             \end{column}
@@ -338,8 +338,8 @@ class Element {
     \draw[Kite-] (3,-2.5) -- ++(1,0) node[right] {head};
     \draw[Kite-] (3,-1.5) -- ++(1,0) node[right] {tail};
 
-    \draw[-Kite] (-0.5,0.25) node[left] {enqueue} -| ++(1.75,-0.75);
-    \draw[Kite-,overlay] (3.5,-4.25) node[right] {dequeue} -| ++(-1.75,0.75);
+    \draw[-Kite,rounded corners=2pt] (-0.5,0.25) node[left] {enqueue} -| ++(1.75,-0.75);
+    \draw[Kite-,overlay,rounded corners=2pt] (3.5,-4.25) node[right] {dequeue} -| ++(-1.75,0.75);
 
 \end{tikzpicture}
             \end{column}
