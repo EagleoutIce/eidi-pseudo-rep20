@@ -364,9 +364,10 @@ class Element {
 
 \begin{frame}{Bäume: Mathematisch}
     \begin{definition}[Baum]
-Ein Baum \(B\) ist ein Tupel (azyklischer Graph) \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und einer Mente an Kanten \(E = V \times V\).\pause{} Die Kanten sind gerichtet und zwischen zwei Knoten darf nur eine Kante in eine Richtung existieren.\pause{} Weiter darf die Anzahl der eingehenden Kanten für jeden Knoten nur maximal \(1\) sein und kein Zyklus vorkommen.
+Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und Kanten \(E = V \times V\).\pause{} Die Anzahl der eingehenden Kanten darf für jeden Knoten nur maximal \(1\) sein.
     \end{definition}
     \begin{itemize}[<+(1)->]
+        \item Die Kanten können ungerichtet oder gerichtet (\say{gewurzelter Baum}) sein.
         \item Ein Baum lässt sich auch als rekursive Datenstruktur auffassen.
         \item Hier ist jeder Knoten gleichzeitig die \say{Wurzel} eines Teilbaumes\pause{} der entweder leer sein (\(\widehat{=}\) Blatt)\pause{} oder noch weitere Knoten enthalten kann (\(\widehat{=}\) innerer Knoten).
         \item Jedem Knoten ordnen wir eine \emph{Ebene} zu. \pause{}Sie entspricht der Länge des Pfades von der Wurzel zum Knoten.\pause{} Der Wurzelknoten hat die Ebene \(1\).
@@ -438,8 +439,8 @@ class Node {
 % burn this -.-
 \begin{frame}[c]{Traversierungsverfahren}
     \begin{center}\pause{}
-    \begin{tikzpicture}[fakeblock/.style={rectangle,draw=btcd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
-        \draw[fakeblock] (0,0) rectangle ++ (3.5,0.65) node[fakesource] {Breitendurchlauf};
+    \begin{tikzpicture}[rounded corners=2pt, fakeblock/.style={rectangle,draw=btcd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
+        \draw[fakeblock] (-1.5,0) rectangle ++ (3.5,0.65) node[fakesource] {Breitendurchlauf};
     \draw[fakeblock] (4,0) rectangle ++ (3.5,0.65) node[fakesource] {Tiefendurchlauf};
     \draw[fakeblock] (1.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Pre-Order};
     \draw[fakeblock] (4.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {In-Order};
@@ -451,10 +452,10 @@ class Node {
     \draw[fakeblock] (4.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
     \draw[fakeblock] (7.5+0.25,-1.5) |- ++(2,-0.5) -- ++(0,0.5);
 
-    \draw[fakeblock] (0+0.75,0) |- ++(2,-0.5) -- ++(0,0.5);
-    \node at(0.1 + 1.65, -0.25) {\tiny Ebenen};
+    \draw[fakeblock] (0+0.75-1.5,0) |- ++(2,-0.5) -- ++(0,0.5);
+    \node at(0.1 + 1.65-1.5, -0.25) {\tiny Ebenen};
 
-    \node at(0.1 + 1.65, 0.75) [above] { \begin{tikzpicture}[
+    \node at(0.1 + 1.65-1.5, 0.75) [above] { \begin{tikzpicture}[
         scale=0.425, every node/.style={transform shape},
         ring/.style={
             ball,%
@@ -483,9 +484,7 @@ class Node {
             \draw[-Kite,scale=0.5,transform shape] (sev) -- (fiv);
             \draw[-Kite] (fiv) -- (for);
         \end{scope}
-
     \end{tikzpicture}};
-
 
     \node at(1.6 + 1.15, -1.75) {\tiny root, left, right};
     \node at(1.6 + 1.15, -2.15) [below] { \begin{tikzpicture}[
