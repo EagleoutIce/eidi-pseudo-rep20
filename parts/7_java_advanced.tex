@@ -6,11 +6,11 @@
 \begin{frame}{Das Konzept der Vererbung}
     \hypertarget<1>{mrk:Vererbung}{}%
     \begin{itemize}[<+(1)->]
-        \item Eine Klasse die von einer anderen Klasse erbt, übernimmt all ihre Eigenschaften und kann diese verändern oder modifizieren.
-        \item Die Subklasse kann hier sowohl als Spezialisierung aufgefasst werden (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert).
-        \item In Java/in der Objektorientierung wird das Konzept der Erweiterung verfolgt.
+        \item Eine erbende Klasse (\say{Subklasse}) übernimmt alle Eigenschaften und kann diese verändern.
+        \item Die Subklasse kann hier sowohl als Spezialisierung (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert) aufgefasst werden.
+        \item Häufig wird das Konzept der \emph{Erweiterung} verfolgt.
         \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe) und\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), sowie \emph{Dozent} (zugeteilte Vorlesung),~\ldots
-        \item Zwischen vererbenden Klassen gilt eine \emph{is-a} Relation.\pause{} So gilt Beispielsweise \emph{Student is-a Mensch is-a Lebewesen}.
+        \item Zwischen vererbenden Klassen gilt eine \say{is-a} Relation.\pause{} So gilt beispielsweise \say{Student \emph{is-a} Mensch \emph{is-a} Lebewesen}.
     \end{itemize}
 \end{frame}
 
@@ -18,11 +18,49 @@
     \begin{itemize}[<+(1)->]
         \widei
         \item Vererbung wird in Java durch den Schlüsselbegriff \bjava{extends} realisiert.
+        \item Java verwendet Vererbung zur \emph{Erweiterung}.
         \item In Java kann eine Klasse nur von maximal einer anderen Erben.
         \item Auf Attribute der Mutterklasse die \bjava{private} sind,\pause{} können wir in erbenden Kindklassen nicht zugreifen.
         \item Der Konstruktor sowie Methoden der Superklasse können (soweit Sichtbar) durch \bjava{super} erreicht werden.
     \end{itemize}
 \end{frame}
+
+\ifull
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Fehlerfinden - Vererbungs special}
+    \begin{exercise}<2->[Fehler finden - Vererbung \Time{4}]
+        \pause{}Erklären Sie alle Java-Kompilierzeit-Fehler. Die Klassen befinden sich jeweils in Dateien mit dem korrekten Namen und in dem \emph{selben} Verzeichnis:\pause{}
+\lstfs{9}
+\begin{plainjava}
+public class A {
+    A(int foo) { System.out.println("Called with " + foo); }
+    public static int have() { return 42; }
+    protected boolean fun() { return true; }
+    private String at() { return "Fridays"; }
+    public String at(String place) { return place; }
+}
+public class B extends A {
+    public static int have() { return 0; }
+    private boolean fun() { return false; }
+    public String at() { return "my place"; }
+    protected String at(String place) { return super.at(); }
+}
+\end{plainjava}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Fehler finden - Vererbung]
+        \begin{enumerate}[<+(1)->]
+            \item \bjava{B} benötigt einen Konstruktor, da es für die Superklasse nur \bjava{A(int)} gibt.
+            \item \bjava{B::fun()} ist illegal, es schränkt die Sichtbarkeit von \bjava{A::fun()} von \bjava{protected} auf \bjava{private} ein. Dies widerspricht dem Erweiterungskonzept.
+            \item \bjava{B::at(String)} ist aus dem selben Grund illegal. Es schränkt die Sichtbarkeit von \bjava{public} auf \bjava{protected} ein!
+            \item Ebenso darf \bjava{B::at(String)} die Methode \bjava{super.at();} gar nicht aufrufen, da \bjava{A::at()} die Sichtbarkeit \bjava{private} besitzt.
+        \end{enumerate}
+        Hinweis: \bjava{B::at()} ist kein Problem, da es die Sichtbarkeit von \bjava{private} auf \bjava{public} erhöht (\say{erweitert}).
+    \end{solve}
+\end{frame}
+\fi
 
 
 \begin{frame}[fragile]{Ein Beispiel in Java}
@@ -390,7 +428,7 @@ public class A {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche syntaktischer Fehler, V}
     \begin{exercise}<2->[Fehler finden, V \Time{4}]
-        \pause{}Finde und korrigiere alle (syntaktischen und semantischen) Fehler:\pause{}
+        \pause{}Finden und korrigieren Sie alle (syntaktischen und semantischen) Fehler:\pause{}
 {\footnotesize
         \begin{plainvoid}
 public class A {
