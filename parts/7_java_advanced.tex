@@ -29,7 +29,7 @@
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Fehlerfinden - Vererbungs special}
     \begin{exercise}<2->[Fehler finden - Vererbung \Time{4}]
-        \pause{}Erklären Sie alle Java-Kompilierzeit-Fehler. Die Klassen befinden sich jeweils in Dateien mit dem korrekten Namen und in dem \emph{selben} Verzeichnis:\pause{}
+        \pause{}Erklären Sie alle Kompilierzeit-Fehler. Die Klassen befinden sich jeweils in Dateien mit dem korrekten Namen und in dem \emph{selben} Verzeichnis:\pause{}
 \lstfs{9}
 \begin{plainjava}
 public class A {
@@ -372,6 +372,50 @@ try {
 
 \fullsubsection{Übungsaufgaben}
 \ifull
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Fehlerfinden - Exception special}
+    \begin{exercise}<2->[Fehler finden - Exceptions \Time{5}]
+        \pause{}Erklären Sie alle Verletzungen der Java-Syntax (nehmen Sie an, dass die Import korrekt sind).\pause{}
+\lstfs{9}
+\begin{plainvoid}
+public class A {
+  public static void main(String[] args) throws FileNotFoundException {
+    try { doStuff(); } catch (Exception ex) {}
+    try { doElse(); } catch (RuntimeException ex) {}
+    throw new IOException("ABC");
+    try {
+      throw new ArithmeticException();
+    } catch(IOException ignored) {}
+  }
+  public static void doStuff() { throw new FileNotFoundException(); }
+  public static void doElse() { throw RuntimeException; }
+}
+\end{plainvoid}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Fehler finden - Exceptions]
+        \begin{enumerate}[<+(1)->]
+            \item \bjava{throw RuntimeException} liefert einen Symbolfehler: es muss ein Objekt geworfen werden.\pause\par \textcolor{gray}{Korrekt wäre \bjava{throw new RuntimeException();}}
+            \item \bjava{catch(IOException ignored)} für das dritte try-catch ist illegal: Der try-Block wirft keine \bjava{IOException}.\pause\par \textcolor{gray}{Korrekt, wenn auch unsinnig, wäre das Abfangen der \bjava{ArithmeticException}.}
+            \item Der Code nach der \say{ABC}-\solGet{keywordC}{IOException} ist illegal, die Anweisungen werden nie ausgeführt.\pause\par \textcolor{gray}{Dafür müsste der Fehler abgefangen werden.}
+        \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<2->[Fehler finden - Exceptions\hfill(Fortsetzung)]
+        \begin{enumerate}[<+(1)->]
+            \setcounter{enumi}{3}
+            \item Die \solGet{keywordC}{IOException}, die in der \T{main} geworfen wird, muss markiert oder abgefangen werden.
+            \item In \bjava{doStuff()} muss die \solGet{keywordC}{FileNotFoundException} entweder markiert werden (mittels \bjava{throws}) oder abgefangen (mittels \bjava{try}).\pause\par \textcolor{gray}{Dies gilt für alle Exceptions, bei denen es sich nicht um Runtime-Exceptions handelt.}
+        \end{enumerate}
+        Hinweis: Mit \bjava{throws} lassen sich auch mehr Exceptions markieren. Für Java ist \bjava[morekeywords={[3]{FileNotFoundException}}]{throws FileNotFoundException} kein Fehler.
+    \end{solve}
+\end{frame}
+
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Statische/Dynamische Bindung}
     \begin{exercise}<2->[Statische/Dynamische Bindung \Time{4}]
