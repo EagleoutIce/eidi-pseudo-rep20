@@ -679,14 +679,14 @@ class Node {
     \end{itemize}
     \pause{}
     \begin{definition}[Ungerichter Graph]
-        Ist ein Tupel \(G = (V,E)\) aus Knoten \(V\) und Kanten \(E \subset \binom{V}{2}\).
+        Ist ein Tupel \(G = (V,E)\) aus Knoten \(V\) und Kanten \(E \subseteq \binom{V}{2}\).
     \end{definition}
     \begin{itemize}[<+(1)->]
         \item Die Definitionen von Graphen sind bereits aus FG bekannt. Sie werden hier dennoch zusammengefasst.
     \end{itemize}
     \pause{}
     \begin{definition}[Gerichteter Graph]
-        Ein gerichteter Graph definiert sich grundlegend identisch zum ungerichteten, unterscheidet sich aber in sofern, als dass die Kanten nicht durch Mengen sondern durch Tupel dargestellt, also gerichtet sind.
+        Ein gerichteter Graph definiert sich ähnlich zum ungerichteten, definiert die Kanten aber nicht als Mengen sondern als Tupel \(E \subseteq V \times V\).
     \end{definition}
 \end{frame}
 
@@ -704,6 +704,7 @@ class Node {
 
 \begin{frame}{Varianten von Graphen}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Ein gewichteter Graph weißt den Kanten durch eine Abbildung \(w: E \to M\) einen Wert zu.
         \item Wir können einen Graphen durch eine \emph{Adjazenzmatrix} beschreiben.\pause{} Hierbei geben die jeweiligen Zellen \(m_{i,j}\), ob eine Verbindung vom Knoten \(i\) zum Knoten \(j\) besteht (\(m_{i, j} > 0\) für eine Kante).
     \end{itemize}
@@ -729,6 +730,7 @@ class Node {
 
 \begin{frame}{Adjazenzlisten}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Adjazenzlisten sind eine andere Variante Graphen zu repräsentieren.
         \item Hier hält jeder Knoten eine (verkettete) Liste an seinen benachbarten Knoten.
     \end{itemize}
@@ -764,6 +766,7 @@ class Node {
 
 \begin{frame}{Graphen durchsuchen: Tiefensuche}
     \begin{itemize}[<+(1)->]
+        \widei
         \item In der Tiefensuche besucht man von einem Startknoten aus die anderen benachbarten Knoten und markiert diese.
         \item Dies wird solange vollzogen bis man auf einen bereits beobachteten Knoten trifft.
         \item In diesem Fall wird eine andere Kante besucht. Existiert keine mehr, so geht man zum letzten Knoten zuvor zurück und probiert die Ansätze dort erneut.
@@ -818,6 +821,7 @@ class Node {
 
 \begin{frame}{Graphen durchsuchen: Breitensuche}
     \begin{itemize}[<+(1)->]
+        \widei
         \item In der Breitensuche besucht man von einem Startknoten aus erst alle benachbarten Knoten.
         \item In diesem Zuge merkt man sich die Nachbarn dieser Knoten uns besucht anschließend diese.
         \item Der Vorteil:\pause{} Wenn alle Kanten gleich Gewichtet sind lässt sich so direkt der kürzeste Weg identifizieren.
@@ -1152,7 +1156,7 @@ while (current != null) {
         \pause{}\begin{enumerate}[<+(1)->]
             \item Queue durch Stack:\pause{} Dies ist wahr. Hierzu benötigt man zwei Stacks, \(A\) und \(B\).\pause{} Neue Elemente werden auf \(A\) abgelegt und von \(B\) genommen.\pause{} Ist \(B\) leer, so werden alle Elemente von \(A\) genommen und auf \(B\) abgelegt (und damit umgedreht).
             \item Stacks sind FIFO:\pause{} Dies ist falsch.\pause{} Stacks folgen dem LIFO (Last-In, First-Out) Prinzip (siehe: \hyperlink{mrk:Stack}{Stack}).
-            \item Java-Heap ist Heap:\pause{} Dies ist falsch, der Heap auf dem (komplexe) Daten abgelegt werden,\pause{} hat nur den selben Namen.\pause{} (Siehe: \url{https://stackoverflow.com/questions/756861/whats-the-relationship-between-a-heap-and-the-heap}.)
+            \item Java-Heap ist Heap:\pause{} Dies ist falsch, der Heap auf dem (komplexe) Daten abgelegt werden,\pause{} hat nur den selben Namen\pause{} (siehe: \T{\href{https://stackoverflow.com/questions/756861/whats-the-relationship-between-a-heap-and-the-heap}{stackoverflow}}).
         \end{enumerate}
     \end{solve}
 \end{frame}
