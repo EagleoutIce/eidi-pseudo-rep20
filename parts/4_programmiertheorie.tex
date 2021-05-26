@@ -668,15 +668,6 @@ int magic(int n) {
 \end{frame}
 
 \makeatletter
-\begin{frame}[c]{Übungsaufgabe}
-    \Task{Das \(n\)-Türme Problem}
-\emSetFieldSize{4cm}{4cm}%
-\emSetTileSize{.65cm}{.65cm}%
-\emSetPlayerSize{.5cm}{.5cm}%
-\emSetTileOffset{.65cm}{.65cm}%
-\colorlet{chessfieldblack}{black!75!white}%
-\colorlet{chessblack}{btcd@color@secondary}%
-\colorlet{chesswhite}{btcd@color@alerted}%
 \newsavebox\pengu@rook@A
 \sbox\pengu@rook@A{\begin{tikzpicture}%
     \pingu[eyes shiny,rook];%
@@ -687,6 +678,15 @@ int magic(int n) {
 \end{tikzpicture}}%
 \def\@em@extension@chess@figures@rookA{\resizebox{.45cm}{!}{\usebox\pengu@rook@A}}%
 \def\@em@extension@chess@figures@rookB{\resizebox{.45cm}{!}{\usebox\pengu@rook@B}}%
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Das \(n\)-Türme Problem}
+\emSetFieldSize{4cm}{4cm}%
+\emSetTileSize{.65cm}{.65cm}%
+\emSetPlayerSize{.5cm}{.5cm}%
+\emSetTileOffset{.65cm}{.65cm}%
+\colorlet{chessfieldblack}{black!75!white}%
+\colorlet{chessblack}{btcd@color@secondary}%
+\colorlet{chesswhite}{btcd@color@alerted}%
 \emSetField{0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W}%
     \begin{exercise}<2->[Das \(n\)-Türme Problem \Time{7}]%
         \smallskip\par\parbox[b]{.735\linewidth}{\onslide<3->{Ein Turm kann einen anderen auf einer vertikalen und horizontalen Linie schlagen. Im rechten \(5\times 5\) Feld, zum Beispiel der rote Turm den am roten Punkt.}\smallskip
