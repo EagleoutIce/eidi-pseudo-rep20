@@ -674,28 +674,40 @@ int magic(int n) {
 \emSetTileSize{.65cm}{.65cm}%
 \emSetPlayerSize{.5cm}{.5cm}%
 \emSetTileOffset{.65cm}{.65cm}%
-\colorlet{chessfieldblack}{black!85!white}%
-\colorlet{chessblack}{btcd@color@secondary}
-\colorlet{chesswhite}{btcd@color@alerted}
+\colorlet{chessfieldblack}{black!75!white}%
+\colorlet{chessblack}{btcd@color@secondary}%
+\colorlet{chesswhite}{btcd@color@alerted}%
+\newsavebox\pengu@rook@A
+\sbox\pengu@rook@A{\begin{tikzpicture}%
+    \pingu[eyes shiny,rook];%
+\end{tikzpicture}}%
+\newsavebox\pengu@rook@B
+\sbox\pengu@rook@B{\begin{tikzpicture}%
+    \pingu[eyes shiny,rook=btcd@color@alerted];%
+\end{tikzpicture}}%
+\def\@em@extension@chess@figures@rookA{\resizebox{.45cm}{!}{\usebox\pengu@rook@A}}%
+\def\@em@extension@chess@figures@rookB{\resizebox{.45cm}{!}{\usebox\pengu@rook@B}}%
 \emSetField{0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W}%
     \begin{exercise}<2->[Das \(n\)-Türme Problem \Time{7}]%
         \smallskip\par\parbox[b]{.735\linewidth}{\onslide<3->{Ein Turm kann einen anderen auf einer vertikalen und horizontalen Linie schlagen. Im rechten \(5\times 5\) Feld, zum Beispiel der rote Turm den am roten Punkt.}\smallskip
 
         \onslide<4->{Schreiben Sie eine Methode, welche ein quadratisches Array erhält und
         genau dann \bjava{true} zurückliefert, wenn mindestens ein Turm einen anderen schlagen kann: \bjava{boolean check (boolean[][] arr)}.} \onslide<5->{Ist \bjava{arr[i][j]} \bjava{true},}}\hfill%
-\onslide<3->{\begin{eagle-map*}%
+\onslide<3->{\pgfsetlayers{background,main,middle,foreground}\begin{eagle-map*}%
 \fill[rounded corners=3pt,lightgray,fill opacity=.25] ([xshift=-1ex,yshift=-1ex]emline16) rectangle ([xshift=1ex,yshift=1ex]emline20);
 \fill[rounded corners=3pt,lightgray,fill opacity=.25] ([xshift=-1ex,yshift=-1ex]emline22) rectangle ([xshift=1ex,yshift=1ex]emline2);
-\foreach \i in {16,18,19,20,7,12,22} {
-    \fill[btcd@color@primary] (emline\i) circle [radius=2pt];
-}
-\fill[btcd@color@alerted] (emline2) circle [radius=2pt];
 \emChessSetBoard{%
-    {,black:rookB,,,,,,black:rookB},
-    {,,,,,,black:rookB,,white:rookB},
+    {,black:rookA,,,,,,black:rookA},
+    {,,,,,,black:rookA,,black:rookB},
     {},
     {}%
 }%
+\pgfonlayer{foreground}
+\foreach \i in {16,18,19,20,7,12,22} {
+    \fill[btcd@color@primary] (emline\i) circle [radius=2pt];
+}
+\fill[btcd@color@alerted] ([yshift=-1mm]emline2) circle [radius=2pt];
+\endpgfonlayer
 \end{eagle-map*}}\par%
  \onslide<5->{so markiert dies einen Turm in der \(i\)-ten Zeile und \(j\)-ten Spalte.}\smallskip\par
 \onslide<6->{Es ist Ihnen für diese Aufgabe {\sbfamily nicht} gestattet, Schleifen zu verwenden. Verwenden Sie \emph{ausschließlich} Fallunterscheidungen und Methodenaufrufe für den Kontrollfluss.} \onslide<7->{Nehmen Sie an, dass \T{arr} wirklich quadratisch und mindestens ein Feld groß ist. Hilfsmethoden sind gestattet.}
