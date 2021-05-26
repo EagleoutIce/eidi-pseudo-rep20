@@ -109,14 +109,14 @@
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Da die Länge, die ein Programm (in Sekunden) benötigt,\pause{} von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme,~\ldots) abhängig ist,\pause{} betrachten wir die Skalierung eines Algorithmus für umfangreiche Eingaben.
+        \item Da die Ausführungszeit eines Programms\pause{} von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme,~\ldots) abhängig ist,\pause{} betrachten wir nur dessen Skalierung für Klassen von Eingaben.
     \end{itemize}
     \begin{definition}<6->[Effizienz]
         \pause{}Die Effizienz eines Programms wird durch seinen \emph{Speicheraufwand} sowie seiner \emph{Laufzeit} bestimmt.
     \end{definition}
     \begin{itemize}[<+(1)->]
         \widei
-        \item<8-> Letztere werden wir genauer betrachten. \onslide<9->{Genauer, in welcher Komplexitätsklasse liegt der Algorithmus?}
+        \item<8-> Letztere werden wir genauer betrachten. \onslide<9->{Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?}
     \end{itemize}
 \end{frame}
 
@@ -126,8 +126,9 @@
         \item Diese Laufzeitkomplexität betrachten wir für drei Fälle: \begin{description}[average-case]
             \item[worst-case] die Laufzeitkomplexität im schlechtesten Fall für den (spezifischen) Algorithmus.
             \item[best-case] die Laufzeitkomplexität im günstigsten Fall für den (spezifischen) Algorithmus.
-            \item[average-case] die Laufzeitkomplexität im durchschnittlichen Fall für den (spezifischen) Algorithmus.\pause{} Dies ist in der Regel das Verhalten bei einer gleichverteilten Eingabe.
+            \item[average-case] die Laufzeitkomplexität im durchschnittlichen Fall für den (spezifischen) Algorithmus.\pause{} Dies bezeichnet in der Regel gleichverteilt zufällige Eingaben.
         \end{description}
+        \item Im Rahmen der Vorlesung konzentrieren wir uns auf den \emph{worst-case} Fall.
     \end{itemize}
 \end{frame}
 
@@ -169,12 +170,13 @@ static int methode(int n) {
 
 \begin{frame}{Erfassen der Komplexität}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Bei der Berechnung helfen gängige mathematische Gesetze\pause{} (Logarithmus,~\ldots)
         \item Die wichtigste Rechenregel:\pause{} \(\O(f(n) + g(n)) = \O(\max\{f(n), g(n)\})\)
         \item Neben der \(\O\) Notation, existieren noch weitere Notationen,\pause{} wie \(\Omega(n)\), welches analog die untere Grenze darstellt.
         \item In der Regel reichen die folgenden wichtigsten Komplexitätsklassen:\vskip2em\pause{}
 \begin{center}%
-\resizebox{0.975\linewidth}{!}{%
+\resizebox{\linewidth}{!}{%
 \setlength{\aboverulesep}{0pt}%
 \setlength{\belowrulesep}{0pt}%
 \setlength{\extrarowheight}{.45ex}%
@@ -281,9 +283,15 @@ static int methode(int n) {
 
 \begin{frame}{UML, Klassendiagramme}
     \begin{itemize}[<+(1)->]
+        \widei
         \item Es gibt noch weitere Assoziationen.
-        \item So kann diese gerichtet sein (Pfeil am Ende) um eine Leserichtung vorzuschreiben,\pause{} oder ein gefülltes (Komposition) oder leeres (Aggregation) Rechteck haben um Teile eines Ganzen zu modellieren.
-        \item Abhängigkeiten werden gestrichelt, Vererbungen durch einen nicht augefüllten Pfeil gekennzeichnet.
+        \item So gibt es: \begin{itemize}
+            \item gerichtete Assoziationen (A\;\tikz[baseline=-.75ex]{\draw[-{Computer Modern Rightarrow[width=6pt,length=5pt]}] (0,0) -- (1,0);}\;B).
+            \item Abhängigkeiten (A\;\tikz[baseline=-.75ex]{\draw[densely dashed] (0,0) -- (1,0);}\;B).
+            \item Vererbungen (A\;\tikz[baseline=-.75ex]{\draw[-{Latex[round,open,length=8pt,width=6pt]}] (0,0) -- (1,0);}\;B).
+            \item Aggregationen (A\;\tikz[baseline=-.75ex]{\draw[{Turned Square[open,length=8pt,width=6pt]}-] (0,0) -- (1,0)}\;B).\pause{} \textcolor{gray}{Markiert meist \say{Besitz}: \say{A besitzt ein B}.}
+            \item Kompositionen (A\;\tikz[baseline=-.75ex]{\draw[{Turned Square[length=8pt,width=6pt]}-] (0,0) -- (1,0)}\;B).\pause{} \textcolor{gray}{Markiert meist \say{ist ein Teil von, mit gleicher Lebenszeit}: \say{A besteht aus B}}.
+        \end{itemize}
         \item Pakete werden durch einen extra Kasten gekennzeichnet.
         \item \textit{Wichtig:} Attribute deren Typ eine andere Klasse ist werden durch eine Assoziation gekennzeichnet,\pause{} dies gilt auch, wenn eine Klasse sich selbst referenziert\pause{} (LinkedList,~\ldots).
     \end{itemize}
