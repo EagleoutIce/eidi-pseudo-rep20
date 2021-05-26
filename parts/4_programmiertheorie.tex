@@ -636,18 +636,18 @@ int magic(int n) {
 \begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
     \begin{solve}<2->[Das \(n\)-Türme Problem]
 \begin{plainjava}
-boolean check(boolean[][] arr) {
-    return check(arr, 0, 0); // Start left upper corner
-}
-
-boolean check(boolean[][] arr, int y, int x) {
-    if(y >= arr.length) { return false; } // done
-    // Next line
-    if(x >= arr.length) { return check(arr, y + 1, 0); }
-
-    if(arr[y][x] && canBeatOtherRook(arr, y, x)) return true;
-    return check(arr, y, x + 1);
-}
+!*\onslide<3->*!boolean check(boolean[][] arr) {
+!*\onslide<4->*!    return check(arr, 0, 0); // Start left upper corner
+!*\onslide<3->*!}
+!*\onslide<3->*!
+!*\onslide<5->*!boolean check(boolean[][] arr, int y, int x) {
+!*\onslide<6->*!    if(y >= arr.length) { return false; } // done
+!*\onslide<7->*!    // Next line
+!*\onslide<7->*!    if(x >= arr.length) { return check(arr, y + 1, 0); }
+!*\onslide<8->*!    if(arr[y][x] && canBeatOtherRook(arr, y, x)) return true;
+!*\onslide<3->*!
+!*\onslide<9->*!    return check(arr, y, x + 1);
+!*\onslide<5->*!}
 \end{plainjava}
     \end{solve}
 \end{frame}
@@ -656,18 +656,18 @@ boolean check(boolean[][] arr, int y, int x) {
     \addtocounter{solve}{-1}%
     \begin{solve}<2->[Das \(n\)-Türme Problem\hfill(Fortsetzung)]
 \begin{plainjava}
-boolean canBeatOtherRook(boolean[][] arr, int y, int x) {
-    return canBeatOtherRook(arr, y, x, 0);
-}
-
-boolean canBeatOtherRook(boolean[][] arr, int y, int x, int i) {
-    if(i == arr.length) // checked all vertical and horizontal
-        return false;
-    if(x != i && y != i) // different position
-        if(arr[y][i] || arr[i][x]) // rook in line or column
-            return true;
-    return canBeatOtherRook(arr, y, x, i + 1);
-}
+!*\onslide<3->*!boolean canBeatOtherRook(boolean[][] arr, int y, int x) {
+!*\onslide<4->*!    return canBeatOtherRook(arr, y, x, 0);
+!*\onslide<3->*!}
+!*\onslide<3->*!
+!*\onslide<5->*!boolean canBeatOtherRook(boolean[][] arr, int y, int x, int i) {
+!*\onslide<6->*!    if(i == arr.length) // checked all vertical and horizontal
+!*\onslide<6->*!        return false;
+!*\onslide<7->*!    if(x != i && y != i) // different position
+!*\onslide<8->*!        if(arr[y][i] || arr[i][x]) // rook in line or column
+!*\onslide<9->*!            return true;
+!*\onslide<10->*!    return canBeatOtherRook(arr, y, x, i + 1);
+!*\onslide<5->*!}
 \end{plainjava}
     \end{solve}
 \end{frame}
