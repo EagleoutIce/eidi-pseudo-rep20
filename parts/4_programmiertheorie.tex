@@ -97,6 +97,76 @@
     \end{itemize}
 \end{frame}
 
+
+\ifull
+\begingroup
+\def\f(#1,#2,#3){f(#1,\;#2,\;#3)}%
+\begin{frame}[c]{etwas Rekursion}
+    \Task{Formel zu Rekursion}%
+    \begin{exercise}<2->[Formel zu Rekursion \Time{4}]
+        Implementieren Sie eine rekursive Java-Methode, welche die folgende Funktion berechnet (\(a, b, c \in \mathbb{N}\)).
+\begin{equation*}
+    \f(a, b, c) = \begin{cases}
+        \max(a,b) & \text{ wenn } c = 0 \\
+        \f(a + b, b - 1, c) & \text{ wenn } b \geq 0 \\
+        \f(a - 1, b - 1, |c - 1|) & \text{ sonst.}
+    \end{cases}
+\end{equation*}
+    Approximieren Sie die natürlichen Zahlen durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} Java Funktionen zur Hilfe benutzen.
+
+    Welchen Wert liefert die Berechnung von \(f(12, 9, -2)\).
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Formel zu Rekursion]
+\begin{plainjava}
+!*\onslide<3->*!public long f(long a, long b, long c) {
+!*\onslide<4->*!    if(c == 0)
+!*\onslide<4->*!        return a > b ? a : b;
+!*\onslide<5->*!    if(b >= 0)
+!*\onslide<5->*!        return f(a + b, b - 1, c);
+!*\onslide<6->*!    return f(a - 1, b - 1 , c > 0 ? (c - 1) : -(c - 1));
+!*\onslide<3->*!}
+\end{plainjava}
+    \onslide<7->{Weiter gilt \(\f(12, 3, -2) = 14\).}
+    \onslide<8->{\textcolor{gray}{Warum?}}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Formel zu Rekursion\hfill(Fortsetzung)]
+        \pause{}\pause{}Für \(\f(12, 3, -2)\) gilt mit \(c = -2 \neq 0\) und \(b = 3 \geq 0\) die Berechnung: \(\f(a + b, b - 1, c)\). Damit erhalten wir:\pause{}
+\begin{equation*}
+    \f(12 + 3, 3 - 1, -2) = \f(15, 2, -2)
+\end{equation*}
+        \pause{}Damit ist wieder  \(c = -2 \neq 0\) und \(b = 2 \geq 0\). Daraus ergibt sich:\pause{}
+\begin{align*}
+    \f(15 + 2, 2 - 1, -2) & = \f(17, 1, -2)\\
+    \f(17 + 1, 1 - 1, -2) &= \f(18, 0, -2)\\
+    \f(18 + 0, 0 - 1, -2) &= \f(18, -1, -2)
+\end{align*}
+        \pause{}Mit \(b = -1 \not\geq 0\) betreten wir nun den \say{sonst}-Teil.
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Formel zu Rekursion\hfill(Fortsetzung)]
+        \pause{}\pause{}Nun bei \(\f(18, -1, -2)\) berechnen wir \(\f(a - 1, b -1, |c - 1|)\):\pause{}
+\begin{align*}
+    \f(18 - 1, -1 - 1, |-2 - 1 |) &= \f(17, -2, 3) \\
+    \f(17 - 1, -2 - 1, |3 - 1 |) &= \f(16, -3, 2) \\
+    \f(16 - 1, -3 - 1, |2 - 1 |) &= \f(15, -4, 1) \\
+    \f(15 - 1, -4 - 1, |1 - 1 |) &= \f(14, -5, 0)
+\end{align*}
+    \pause{}Mit \(c = 0\) terminiert die Funktion für \(\max(14, -5) = 14\).
+    \end{solve}
+\end{frame}
+\endgroup
+\fi
+
 \begin{frame}{Das Paradigma: Divide and Conquer}
     \begin{itemize}[<+(1)->]
         \widei
