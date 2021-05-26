@@ -641,9 +641,9 @@ int magic(int n) {
 !*\onslide<3->*!}
 !*\onslide<3->*!
 !*\onslide<5->*!boolean check(boolean[][] arr, int y, int x) {
-!*\onslide<6->*!    if(y >= arr.length) { return false; } // done
+!*\onslide<6->*!    if(y >= arr.length) return false; // done
 !*\onslide<7->*!    // Next line
-!*\onslide<7->*!    if(x >= arr.length) { return check(arr, y + 1, 0); }
+!*\onslide<7->*!    if(x >= arr.length) return check(arr, y + 1, 0);
 !*\onslide<8->*!    if(arr[y][x] && canBeatOtherRook(arr, y, x)) return true;
 !*\onslide<3->*!
 !*\onslide<9->*!    return check(arr, y, x + 1);
@@ -661,7 +661,7 @@ int magic(int n) {
 !*\onslide<3->*!}
 !*\onslide<3->*!
 !*\onslide<5->*!boolean canBeatOtherRook(boolean[][] arr, int y, int x, int i) {
-!*\onslide<6->*!    if(i == arr.length) // checked all vertical and horizontal
+!*\onslide<6->*!    if(i >= arr.length) // checked all vertical and horizontal
 !*\onslide<6->*!        return false;
 !*\onslide<7->*!    if(x != i && y != i) // different position
 !*\onslide<8->*!        if(arr[y][i] || arr[i][x]) // rook in line or column
