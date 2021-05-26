@@ -485,6 +485,7 @@ println(-'=' + 2 * 3 + '=' + " 2*3"); // :yields: '6 2*3'
     \pause{}Da die \bjava{char}s einfach zu ihrem Integerwert konvertiert werden,\pause{} findet erst beim letzten Plus eine Konkatenation statt.
     \end{solve}
 \end{frame}
+
 \begin{frame}[c,fragile]{Lösung}
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Konkatenation\hfill(Fortsetzung)]
@@ -508,6 +509,68 @@ println("c - a - 1 = " + ('c' - 1 - 'a'));
 \end{plainjava}
     \pause{}Java berechnet zuerst die Operationen in der Klammer und wandelt die Zeichen in ihre ASCII-Werte um.\pause{} Diese muss man hierfür nicht kennen,\pause{} da es genügt zu Wissen, dass zwischen \T{a} und \T{c} ein Abstand von \(2\) vorliegt der um eins verringert wird.\pause{}
     Wir berechnen also in der Klammer den wert \(1\).\pause{} Dieser wir nun normal zum String konkateniert, was die Ausgabe erzeugt.
+    \end{solve}
+\end{frame}
+
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Javas' Typkonvertierung}
+    \begin{exercise}<2->[Javas' Typkonvertierung \Time{5}]
+        \pause{}\pause{}Bitte geben Sie für jeden Ausdruck den Typ des resultierenden Wertes oder Objekts an und erklären Sie kurz\pause{} (Tipp: Alle Ausdrücke sind korrekt):\pause
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item \bjava{2 + 3}
+        \item \bjava{7 - 2.0}
+        \item \bjava{'x' * (byte) 4}
+        \item \bjava{5L/(char) 2}
+        \item \bjava{(short)3 + (byte)-3.1415}
+        \item \bjava{(float)0b1001 + (long)0x42)}
+        \item \bjava{new Scanner(System.in)}
+        \item \bjava{\"x\" + 3}
+    \end{enumerate}
+\end{multicols}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Javas' Typkonvertierung]
+\pause\begin{enumerate}[<+(1)->]
+    \widei
+    \item \say{\bjava{2 + 3}}: \bjava{int} \textcolor{gray}{(5)}\pause\par Die Addition zweier Integer liefert wieder einen Integer.
+    \item \say{\bjava{7 - 2.0}}: \bjava{double} \textcolor{gray}{(5.0)}\pause\par Die Integer und Double können nicht subtrahiert werden. Deswegen konvertiert Java \bjava{7} implizit zu einem \bjava{double} und die Differenz liefert wieder ein Double.
+    \item \say{\bjava{'x' * (byte) 4}}: \bjava{int} \textcolor{gray}{(480)}\pause\par
+    Ein Character kann nicht mit einem Byte multipliziert werden. Deswegen konvertiert Java \bjava{'x'} zu einem Integer (zugehöriger UTF16-Wert) und anschließend das Byte ebenfalls zu einem Integer.
+\end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Javas' Typkonvertierung\hfill{Fortsetzung}]
+\pause\begin{enumerate}[<+(1)->]
+    \widei
+    \setcounter{enumi}{3}
+    \item \say{\bjava{5L/(char) 2}}: \bjava{long} \textcolor{gray}{(2)}\pause\par
+    \bjava{5L} besitzt den Typ \bjava{long}, damit wird auch der Character mit UTF16-Wert \(2\) in ein \bjava{long} konvertiert. Das Ergebnis der Division aus \bjava{long} und \bjava{long} ergibt wieder \bjava{long}
+    \item \say{\bjava{(short)3 + (byte)-3.1415}}: \bjava{int} \textcolor{gray}{(0)}\pause\par
+    Java konvertiert die Summe aus einem Short und einem Byte implizit zu einem Integer.
+    \item \say{\bjava{(float)0b1001 + (long)0x42)}}: \bjava{float} \textcolor{gray}{(75.0)}\pause\par
+    Java konvertiert die Summe aus einem Float und einem Long zu einem Float (da Float die Werte von Long inkludiert).
+\end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<2->[Javas' Typkonvertierung\hfill{Fortsetzung}]
+\pause\begin{enumerate}[<+(1)->]
+    \widei
+    \setcounter{enumi}{6}
+    \item \say{\bjava{new Scanner(System.in)}}: \bjava{Scanner} \textcolor{gray}{(oder voll: \T{java.util.Scanner})}\pause\par
+    Mit \bjava{new} wird ein neues Objekt der angegeben Klasse erstellt.
+    \item \say{\bjava{\"x\" + 3}}: \bjava{String} \textcolor{gray}{(x3)}\pause\par
+    Analog zur Aufgabe zur String-Konkatenation wird hier \bjava{3} in eine Zeichenkette konvertiert.
+\end{enumerate}
     \end{solve}
 \end{frame}
 \fi
