@@ -52,7 +52,7 @@ public class B extends A {
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Fehler finden - Vererbung]
         \begin{enumerate}[<+(1)->]
-            \item \bjava{B} benötigt einen Konstruktor, da es für die Superklasse nur \bjava{A(int)} gibt.
+            \item \bjava{B} benötigt einen Konstruktor, da es für die Superklasse nur \bjava{A(int)} gibt.\pause{} \textcolor{gray}{Zum Beispiel: \say{\bjava{B() \{ super(0); \}}}.}
             \item \bjava{B::fun()} ist illegal, es schränkt die Sichtbarkeit von \bjava{A::fun()} von \bjava{protected} auf \bjava{private} ein. Dies widerspricht dem Erweiterungskonzept.
             \item \bjava{B::at(String)} ist aus dem selben Grund illegal. Es schränkt die Sichtbarkeit von \bjava{public} auf \bjava{protected} ein!
             \item Ebenso darf \bjava{B::at(String)} die Methode \bjava{super.at();} gar nicht aufrufen, da \bjava{A::at()} die Sichtbarkeit \bjava{private} besitzt.
@@ -89,7 +89,7 @@ class Mensch extends Lebewesen {
     String name;
 
     Mensch(int a, float g, String n) {
-        super(a,g);
+        super(a, g);
         name = n;
     }
 }
@@ -113,7 +113,7 @@ class Student extends Mensch {
 
     Student(int a, float g, String n,
             long m) {
-        super(a,g,n);
+        super(a, g, n);
         matrikelnummer = m:
     }
 }
@@ -126,7 +126,7 @@ class Dozent extends Mensch {
 
     Dozent(int a, float g, String n,
            String v) {
-        super(a,g,n);
+        super(a, g, n);
         vorlesung = v:
     }
 }
