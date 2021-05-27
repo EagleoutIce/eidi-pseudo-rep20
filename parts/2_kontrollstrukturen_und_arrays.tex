@@ -66,19 +66,19 @@ while (:lan:Bedingung:ran:) {
     :lan:Anweisung(en):ran:
 }
         \end{plainjava}
-        \pause{} die Schleife wird so lange ausgeführt, wie die \bjava{Bedingung} \emph{wahr} ist.
+        \pause{}Die Schleife wird so lange ausgeführt, wie die \bjava{Bedingung} \emph{wahr} ist.
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{while und do-while}
     \begin{itemize}[<+(1)->]
-        \item Im Gegensatz zur \bjava{while}-Schleife gibt es die \bjava{do-while}-Schleife,\pause{} die die Prüfung am Ende des Durchlaufs durchführt.\pause{} Sie wird also mindestens einmal durchgeführt,\pause{} auch wenn die Bedingung von Beginn an \emph{falsch} ist:
+        \item Im Gegensatz zur \bjava{while}-Schleife führt die \bjava{do-while}-Schleife die Prüfung am Ende des Durchlaufs durch.\pause{} Sie wird also mindestens einmal durchgeführt,\pause{} auch wenn die Bedingung von Beginn an \emph{falsch} ist:
         \begin{plainjava}
 do {
     :lan:Anweisung(en):ran:
 } while (:lan:Bedingung:ran:)|bhl|;|bhl| // <- Semikolon!
         \end{plainjava}
-        \item Wichtig ist das Semikolon am Ende der \bjava{do-while}-Anweisung. Es wird gern vergessen
+        \item Wichtig ist das Semikolon am Ende der \bjava{do-while}-Anweisung.\par \textcolor{gray}{Es wird gern vergessen}
     \end{itemize}
 \end{frame}
 
@@ -141,7 +141,7 @@ while(i++ < 7) {
 \begin{frame}[fragile]{Zählschleifen mit for}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Die \bjava{for}-Schleife in Java besteht aus drei optionalen Komponenten,\pause{} die auch alle weggelassen werden können.
+        \item Die \bjava{for}-Schleife in Java besteht aus drei optionalen Komponenten,\pause{} die alle leer sein können.
         \begin{plainjava}
 for(:lan:Start:ran:; :lan:Schleifenbedingung:ran:; :lan:Nach:ran:) {
     :lan:Anweisung(en):ran:
@@ -152,7 +152,7 @@ for(:lan:Start:ran:; :lan:Schleifenbedingung:ran:; :lan:Nach:ran:) {
 for(int i = 0, k = 1; i < 20; i++, k *= 2)
     System.out.println(i + ": " + k);
 \end{plainjava}
-    \pause{}diese Schleife liefert im \T{i}-ten Durchlauf \(k = 2^i\),\pause{} bis zu \(i = 19\).
+    \pause{}Diese Schleife liefert im \T{i}-ten Durchlauf \(k = 2^i\),\pause{} bis zu \(i = 19\).
         \item Hinweis: \bjava{for(;;) \{ /* ... */:ws:\}} ist eine Endlosschleife.
     \end{itemize}
 \end{frame}
@@ -181,7 +181,7 @@ for(:lan:Variable-Deklaration:ran: : :lan:Iterierbare Variable:ran:) {
     // Etwas mit der Variable machen
 }
 \end{plainjava}
-        \pause{}\textit{Hinweis: Ohne Wissen über Interfaces ist es schwer zu \say{erfassen}, welche Datentypen erlaubt sind.\pause{} Darunter: Arrays, Listen,~\ldots}
+        \pause{}\textit{Hinweis: Ohne Wissen über \hyperref[mrk:int-iterable]{Interfaces} ist es schwer zu \say{erfassen}, welche Datentypen erlaubt sind.\pause{} Darunter: Arrays, Listen,~\ldots}
         \item Ein Beispiel:\pause{}
 \begin{plainjava}
 int[] dinge = new int[] {42, 21, 12, -4};
@@ -198,13 +198,13 @@ for(int ding : dinge){
         \widei
         \item Arrays sind eine komplexe Datenstruktur,\pause{} die aus mehreren Elementen des gleichen Typs aufgebaut ist.
         \item Der Index eines Arrays beginnt bei \(0\).
-        \item Die Länge eines Arrays ist \emph{fest}\pause{} und kann auf mehrere Arten definiert werden:\pause{}
+        \item Die Länge eines Arrays ist \emph{fest}:\pause{}
 \begin{plainjava}
 double[] a = new double[42]; // 42 Elemente, alle: 0.0d
 int[] b = {2, 4, 6, 8, 10}; // 5 Elemente
 char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente
 \end{plainjava}
-        \item Die Länge erhalten wir durch \bjava{:lan:array:ran:.length}.\pause{} Dies ist \emph{keine} Methode (im Gegensatz zu \bjava{:lan:string:ran:.length()})!
+        \item Die Länge erhalten wir durch \bjava{:lan:array:ran:.length}.\pause{} Dies ist (im Gegensatz zu \bjava{:lan:string:ran:.length()}) \emph{keine} Methode!
     \end{itemize}
 \end{frame}
 
@@ -213,11 +213,11 @@ char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente
         \widei
         \item Arrays werden in Java als ein Block gespeichert.\pause{} Das bedeutet, ein Array aus \(12\) \bjava{int}-Elementen nimmt einen Speicherblock von \(12 \cdot 32\,\text{bit}\) ein.
         \item Greift man auf einen nicht erlaubten Index zu,\pause{} so wird eine \bjava{ArrayIndexOutOfBoundsException} geworfen.
-        \item Da Arrays eine komplexe Datenstruktur sind, wird bei der Erstellung in der Variable selbst nur die Speicheradressen abgelegt.\pause{} In:\pause{}
+        \item Da Arrays eine komplexe Datenstruktur sind, wird bei der Erstellung in der Variable selbst nur die Speicheradressen abgelegt.\pause{}
 \begin{plainjava}
 int[] a = {2, 4, 6, 8, 10}, b = a;
 \end{plainjava}
-        \pause{}verweisen beide Variablen auf den selben Datensatz:\pause{}
+        \pause{}Hier verweisen beide Variablen auf den selben Datensatz:\pause{}
 \begin{plainjava}
 a[4] = 42; b[2] = 7;
 for(int i = 0; i < a.length; i++)
@@ -229,7 +229,7 @@ for(int i = 0; i < a.length; i++)
 \begin{frame}[fragile]{Über Arrays iterieren}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Wir können,\pause{} wie eben gezeigt,\pause{} mit einer for-Schleife über ein Array iterieren:\pause{}
+        \item Wir können,\pause{} mit einer for-Schleife über ein Array iterieren:\pause{}
 \begin{plainjava}
 for(int i = 0; i < a.length; i++) {
     System.out.print(a[i] + " "); // :yields: 2 4 7 8 42
@@ -491,6 +491,4 @@ public static int moveTurtle(int dir){
         \end{plainjava}
     \end{solve}
 \end{frame}
-
-% Aufgabe: for in while Schleife umschreiben
 \fi

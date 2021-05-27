@@ -237,11 +237,12 @@ private static String generateWelcomeMessage(String name, int age,
 
 \begin{frame}{Signatur \& Überladung}
     \begin{itemize}[<+(1)->]
-        \item Die Signatur einer Methode/Funktion besteht aus dem Namen sowie den Datentypen der Parameter.\pause{} Der Rückgabetyp ist \emph{kein} Teil der Signatur.
-        \item Beispiel: \bjava{generateWelcomeMessage(String, int, boolean)}.
-        \item Java erlaubt keine zwei Funktionen mit gleicher Signatur im selben Gültigkeitsbereich.
-        \item Man kann allerdings Funktionen mit gleichem Namen,\par{} aber verschiedener Parameterliste erstellen.\pause{} Dieses Prinzip wird \emph{Überladen} (Overloading) genannt.
-        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)},~\ldots).\pause{} Entscheidet Java welche Methode aufgerufen werden soll\pause{} (es nimmt die,\pause{} die am \say{nächsten} dran ist).
+        \widei
+        \item Die Signatur einer Methode besteht aus dem Namen sowie den Datentypen der Parameter.\pause{} Der Rückgabetyp ist \emph{kein} Teil!\par
+         \faAngleRight~Beispiel: \bjava{generateWelcomeMessage(String, int, boolean)}.
+        \item Java verbietet zwei Funktionen mit gleicher Signatur im selben Gültigkeitsbereich.
+        \item Gestattet sind Funktionen mit gleichem Namen, aber verschiedener Parameterliste.\pause{} Dieses Prinzip wird \emph{Überladen} (Overloading) genannt.
+        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)},~\ldots),\pause{} entscheidet Java welche Methode aufgerufen werden soll.\pause{} Es nimmt die \say{nächste}.
     \end{itemize}
 \end{frame}
 
