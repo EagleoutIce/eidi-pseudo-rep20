@@ -4,13 +4,14 @@
 \subsection{Das Paradigma}
 \begin{frame}{Paradigma: Objektorientierung}
     \begin{itemize}[<+(1)->]
-        \item Klassen erlauben es uns Objekte der realen Welt abzubilden.
-        \item Eine Klasse wie zum Beispiel \solGet{keywordC}{Person} besteht aus zwei Komponenten: \begin{description}[Funktionen]
-            \item[Daten] diese, wie der Name, das Alter oder die Größe der Person,\pause{} werden als Variablen an die Klasse gebunden. Sie sind die \imp{Attribute} der Klasse und definieren den Zustand.
-            \item[Funktionen] diese definieren, was eine \solGet{keywordC}{Person} kann.\pause{} Also \bjava{gehen()}, \bjava{tanzen()}, \bjava{reden()},~\ldots.\pause{} Dies sind die \imp{Methoden} der Klasse, sie definieren das Verhalten.
+        \widei
+        \item Klassen erlauben es, Objekte der realen Welt abzubilden.
+        \item Eine Klasse wie \say{\solGet{keywordC}{Person}} besteht aus zwei Komponenten: \begin{description}[Funktionen]
+            \item[Daten] diese, wie der Name, das Alter oder die Größe der Person,\pause{} werden als Variablen an die Klasse gebunden. Sie sind die {\sbfamily Attribute} der Klasse und definieren den \emph{Zustand}.
+            \item[Funktionen] diese definieren, was eine \solGet{keywordC}{Person} kann.\pause{} Also \bjava{gehen()}, \bjava{tanzen()}, \bjava{reden()},~\ldots.\pause{} Dies sind die {\sbfamily Methoden} der Klasse, sie definieren das \emph{Verhalten}.
         \end{description}
-        \item Information:\pause{} Wir nennen eine Funktion (in Java) \emph{Methode}, wenn sie an eine Objekt gebunden ist.
-        \item Klassen bieten uns die Möglichkeit komplexe Probleme zu abstrahieren und Funktionalität zu kapseln.
+        \item Eine Funktion nennen wir \emph{Methode}, wenn sie an eine Objekt gebunden ist. \textcolor{gray}{(Zumindest in Java)}
+        \item Klassen erlauben es, komplexe Probleme zu abstrahieren und Funktionalität zu kapseln.
     \end{itemize}
 \end{frame}
 
@@ -19,11 +20,12 @@
         Ein Objekt bezeichnet eine spezifische Ausprägung (eine sogenannte \emph{Instanz}) einer Klasse. \begin{description}[Objekt-Verhalten]
             \item[Objektzustand] wird durch die ihm zugehörigen Attribute definiert.
             \item[Objektverhalten] bezeichnet die Reaktion des Objekts auf das Aufrufen von Methoden.
-            \item[Objektidentität] ermöglicht eindeutige Identifikation (in Java: Speicheradresse).
+            \item[Objektidentität] ermöglicht die eindeutige Identifikation.\par
+            \textcolor{gray}{In Java: die Speicheradresse}.
         \end{description}
     \end{definition}
     \begin{itemize}[<+(1)->]
-        \item Hinweis:\pause{} Legt man die Objektorientierung streng aus,\pause{} so darf ein Objekt keinen direkten Zugriff auf seinen Zustand gestatten.\pause{} (\(\Rightarrow\) Getter \& Setter).
+        \item Legt man die Objektorientierung streng aus,\pause{} so darf ein Objekt keinen direkten Zugriff auf seinen Zustand gestatten. (\(\Rightarrow\) Getter \& Setter).
     \end{itemize}
 \end{frame}
 
@@ -40,7 +42,7 @@
 \begin{frame}[c]{Eine Aufgabe zwischendurch}
     \Task{Vorteile der OOP}
     \begin{exercise}<2->[Vorteile der OOP \Time{2}]
-        Nennen Sie drei Vorteile der objektorientierten Programmierung,\pause{} neben der Möglichkeit die Realität zu abstrahieren.
+        Nennen Sie drei Vorteile der objektorientierten Programmierung, neben der Möglichkeit die Realität zu abstrahieren.
     \end{exercise}
 \end{frame}
 
@@ -57,8 +59,8 @@
 \fi
 
 \subsection{Klassen}
-\begin{frame}[c]{Vom Klassenkonzept zum Javacode}
-    \begin{minipage}{0.725\linewidth}
+\begin{frame}{Vom Klassenkonzept zum Javacode}
+    \begin{minipage}{.725\linewidth}
         \begin{itemize}[<+(1)->]
             \widei
             \item Es gelte eine Klasse \solGet{keywordC}{Punkt2D} zu kreieren.
@@ -108,7 +110,7 @@
 !*\onslide<3->*!    private double x, y;
 !*\onslide<2->*!
 !*\onslide<4->*!    // Leerer Konstruktor
-!*\onslide<4->*!    public Point2D() { this(0.0,0.0); }
+!*\onslide<4->*!    public Point2D() { this(0.0, 0.0); }
 !*\onslide<2->*!
 !*\onslide<5->*!    // Initialisiere mit Punkt
 !*\onslide<5->*!    public Point2D(double x, double y) {
