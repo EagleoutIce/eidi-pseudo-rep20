@@ -92,49 +92,38 @@
      \end{itemize}
 \end{frame}
 
-\begin{frame}{Schema eines Algorithmus}
-    \onslide<2->{
-    \begin{figure}
-\begin{tikzpicture}[
-    every node/.style={transform shape},block/.append style={minimum width={3.5cm}},
-    scale=0.75]
-    \node[block] at(0,0) (PM)  {Problem};
-    \node[block] at(0,-3) (AL)  {Algorithmus};
-    \node[block] at(0,-5) (PR)  {Programm};
-    \node[block] at(0,-7) (MA)  {Maschine};
+\begin{frame}[c]{Schema eines Algorithmus}
+    \centering\onslide<2->{%
+\scalebox{.75}{\begin{tikzpicture}[yscale=1.1,block/.append style={minimum width={3.5cm}}]
+    \node[block] at (0,0) (PM)  {Problem};
+    \node[block] at (0,-3) (AL)  {Algorithmus};
+    \node[block] at (0,-5) (PR)  {Programm};
+    \node[block] at (0,-7) (MA)  {Maschine};
     \draw[link] (PM) -- (AL);
     \draw[link] (AL) -- (PR);
     \draw[link] (PR) -- (MA);
-    \node[left=0.5cm] at (0,-1.5) {Abstraktion};
-    \node[left=0.5cm] at (0,-4) {Implementierung};
-    \node[left=0.5cm] at (0,-6) {Realisierung};
+    \node[left=.5cm] at (0,-1.5) {Abstraktion};
+    \node[left=.5cm] at (0,-4) {Implementierung};
+    \node[left=.5cm] at (0,-6) {Realisierung};
 
-    \node[right,align=left,text width=5cm] at (0.5,-1.45) {\begin{itemize}
+    \node[right,align=left,text width=5cm] at (.5,-1.45) {\begin{itemize}
         \item Problemanalyse
-        \item Funktionale\\ Spezifikation
+        \item Funktionale\par Spezifikation
         \item Algorithmenentwurf
     \end{itemize}
     };
 
-    \node[right,align=left,text width=5cm] at (0.5,-3.85) {\begin{itemize}
-             \item Darstellung in\\Programmiersprache
+    \node[right,align=left,text width=5cm] at (.5,-3.85) {\begin{itemize}
+             \item Darstellung in\par Programmiersprache
          \end{itemize}
     };
 
-    \node[right,align=left,text width=5cm] at (0.5,-5.85) {\begin{itemize}
-            \item Umsetzung in\\ Maschinenbefehle
+    \node[right,align=left,text width=5cm] at (.5,-5.85) {\begin{itemize}
+            \item Umsetzung in\par Maschinenbefehle
         \end{itemize}
     };
-    % \node[right,align=left] at (0,-4) {\begin{itemize}
-    %         \item Darstellung in\\Programmiersprache
-    %     \end{itemize}
-    %     };
-    % \node[right,align=left] at (0,-6) {\begin{itemize}
-    %         \item Umsetzung in\\ Maschinenbefehle
-    %     \end{itemize}
-    %     };
 \end{tikzpicture}
-    \end{figure}}
+}}
 \end{frame}
 
 \subsection{Konzeptionalisierung}
@@ -150,38 +139,38 @@
 \end{frame}
 
 \begin{frame}[c]{Wie ein Programm entsteht}
-    \begin{center}
-        \resizebox{0.95\linewidth}{!}{
-        \begin{tikzpicture}
-            \onslide<2->{\node[iblock,minimum width=3cm] (init) at (-5.5,0) {Problem};}
-            \foreach[count=\i,remember=\i as \li (initially init)] \l in {Analyse, Entwurf, Implementierung, Test \& Revision} {
-                \pgfmathsetmacro\ovlskip{int(\i+2)};
-                \onslide<\ovlskip->{
-                \node[block,minimum width=5cm] (\i) at(0,-1.6*\i+1.6) {\l};
-                \draw[link] (\li) -- (\i);}
-            }
-            \onslide<3->{
-                \node[above right=0.75cm,yshift=-0.5cm,align=left,font=\scriptsize,text width=4.25cm] (d1) at (1.north east) {Untersuche Problem, in der Regel in Zusammenarbeit mit Nicht-Informatikern.};
-                \draw[densely dashed] (d1.west) -- (1.east);
-            }
-            \onslide<4->{
-                \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus, kreativer Prozess (beantwortet auch Fragen wie: \say{gibt es das schon?})};
-                \draw[densely dashed] (d2.west) -- (2.east);
-            }
-            \onslide<5->{
-                \node[right=0.75cm,align=left,font=\scriptsize,text width=4.25cm] (d3) at (3.north east) {Übersetze Algorithmus in Programmiersprache};
-                \draw[densely dashed] (d3.west) -- (3.east);
-            }
-            \onslide<6->{
-                \node[left=0.75cm,yshift=0.25cm,align=right,font=\scriptsize,text width=4.25cm] (d4) at (4.north west) {Prüft das Programm auf (logische und technische) Fehler.\\[0.25em] Diese Phase kann im Allgemeinen nur die Anwesenheit und nicht die Abwesenheit von Fehlern aufzeigen.};
-                \draw[densely dashed] (d4.east) -- (4.west);
-            }
-            \onslide<7->{
-                \node[iblock,minimum width=3cm] (exit) at (5.5,-3*1.6) {Programm};
-            \draw[link] (4) -- (exit);
-            }\onslide<1->{}
-        \end{tikzpicture}}
-    \end{center}
+\begin{center}
+    \resizebox{.95\linewidth}{!}{
+    \begin{tikzpicture}
+        \onslide<2->{\node[iblock,minimum width=3cm] (init) at (-5.5,0) {Problem};}
+        \foreach[count=\i,remember=\i as \li (initially init)] \l in {Analyse, Entwurf, Implementierung, Test \& Revision} {
+            \pgfmathsetmacro\ovlskip{int(\i+2)};
+            \onslide<\ovlskip->{
+            \node[block,minimum width=5cm] (\i) at(0,-1.6*\i+1.6) {\l};
+            \draw[link] (\li) -- (\i);}
+        }
+        \onslide<3->{
+            \node[above right=0.75cm,yshift=-.5cm,align=left,font=\scriptsize,text width=4.25cm] (d1) at (1.north east) {Untersuche Problem, in der Regel in Zusammenarbeit mit Nicht-Informatikern.};
+            \draw[densely dashed] (d1.west) -- (1.east);
+        }
+        \onslide<4->{
+            \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus, kreativer Prozess (beantwortet auch Fragen wie: \say{gibt es das schon?})};
+            \draw[densely dashed] (d2.west) -- (2.east);
+        }
+        \onslide<5->{
+            \node[right=0.75cm,align=left,font=\scriptsize,text width=4.25cm] (d3) at (3.north east) {Übersetze Algorithmus in Programmiersprache};
+            \draw[densely dashed] (d3.west) -- (3.east);
+        }
+        \onslide<6->{
+            \node[left=0.75cm,yshift=.25cm,align=right,font=\scriptsize,text width=4.25cm] (d4) at (4.north west) {Prüft das Programm auf (logische und technische) Fehler.\\[0.25em] Diese Phase kann im Allgemeinen nur die Anwesenheit und nicht die Abwesenheit von Fehlern aufzeigen.};
+            \draw[densely dashed] (d4.east) -- (4.west);
+        }
+        \onslide<7->{
+            \node[iblock,minimum width=3cm] (exit) at (5.5,-3*1.6) {Programm};
+        \draw[link] (4) -- (exit);
+        }\onslide<1->{}
+    \end{tikzpicture}}
+\end{center}
 \end{frame}
 
 \fullsubsection{Übungsaufgaben}

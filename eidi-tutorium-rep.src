@@ -7,18 +7,18 @@
 \institute{Verteilte Systeme \(\circ\) Universität Ulm}
 \outro{Ulm, den \today}
 
-\SetEmblem[university Ulm]{Praktische Informatik}{\faCode}
+\SetEmblem[University Ulm]{Praktische Informatik}{\faCode}
 
 \titleimage{%
     \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
-    \node at(0,0) [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
+    \node [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
     \foreach \l [count=\xi] in {Wert\-zu\-wei\-sun\-gen,An\-weis\-ungs\-block,Operatoren,Leer,Be\-ding\-te An\-weis\-ung,Mehr\-fach\-ver\-zwei\-gung,Wdh.-An\-weis\-ung\-en} {
-        \node[minimum height=1cm] at(2.2*\xi-8*1.1,-2) [rounded corners = 6pt,rectangle, draw, text width=1.8cm,align=center,font=\scriptsize\sffamily] (\xi) {\l};
-        \draw[-Kite] (0) to[out=270- 3*7 +\xi*5,in=90] (\xi);
+        \node[minimum height=1cm] at(2.2*\xi-8*1.1,-2) [rounded corners=6pt,rectangle, draw, text width=1.8cm,align=center,font=\scriptsize\sffamily] (\xi) {\l};
+        \draw[-Kite] (0) to[out=270-3*7 +\xi*5,in=90] (\xi);
     }
 
     \foreach \l/\t [count=\xi] in {\<A\>=\<B\>/t,\{Anwe.\ldots\}/t,Präzedenz/{},;/t,if(\<a\>)\{\ldots\}/t,switch-case/{},Schleifen/{}} {
-        \node at(2.2*\xi-8*1.1,-3.5) [below,rounded corners = 6pt,rectangle, draw, minimum width=1.8cm, minimum height=0.75cm,\t,align=center] (a\xi) {\scriptsize\T{\l}};
+        \node at(2.2*\xi-8*1.1,-3.5) [below,rounded corners = 6pt,rectangle, draw, minimum width=1.8cm, minimum height=.75cm,\t,align=center] (a\xi) {\scriptsize\T{\l}};
         \draw [-Kite] (\xi) -- (a\xi);
     }
     \end{tikzpicture}%
@@ -46,13 +46,13 @@
     {\centering\usebeamerfont{title}\MakeUppercase{Disclaimer}\par}
     \vfill
     \begin{center}
-        \footnotesize\begin{minipage}{0.95\linewidth}
+        \footnotesize\begin{minipage}{.95\linewidth}
 Der folgende Dokumentsatz hat keinen Anspruch auf vollständige Richtigkeit.
 Er wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist eher als unverbindliche Hilfe im Kontext seiner Natur als Zusammenfassung zu verstehen.
 Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien, weiter wird ein Verständnis über die Themen vorrausgesetzt, so versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück -- sofern vonnöten. \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
-Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX{} und Ti\textit{k}Z erstellt, ebenso wie das hier gezeigte Beamer-Layout. Für das Syntax-Highlighting wird das Paket \emph{sopra-listings} meiner \emph{sopra-collection} (\url{https://github.com/EagleoutIce/sopra-collection}) verwendet.\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\relax
+Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit{k}Z erstellt, ebenso wie das hier gezeigte Beamer-Layout. Für das Syntax-Highlighting wird das Paket \emph{sopra-listings} meiner \emph{sopra-collection} (\url{https://github.com/EagleoutIce/sopra-collection}) verwendet.\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\relax
 \begin{center}
     \say{Viel Spaß beim Lernen!}
 \end{center}
@@ -62,7 +62,6 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX{} und Ti\texti
 \end{frame}
 
 \input{parts/0_theoretische_grundlagen}
-% TODO: Kapitel zu (Korrektheits-)beweisen und Aufwandsanalysen - noch aus dem ersten Foliensatz.
 \input{parts/1_java_basic}
 \input{parts/2_kontrollstrukturen_und_arrays}
 \input{parts/3_oo-konzepte}

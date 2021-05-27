@@ -1,31 +1,31 @@
 \section{Java-Basics}
 \subsection{Wie ein Java-Programm entsteht}
 \begin{frame}[c]{Vom Text zum Programm}
-    \begin{center}
-        \onslide<2->{
-        \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}, rec/.style={block,minimum width=3.25cm},irec/.style={iblock,minimum width=3.25cm}]
-            \draw (0,0) node[right,irec] (prg) {Programmtext};
-            \draw (2,-1) node[right,rec] (bib) {Bibliotheken};
-            \draw (2,-2) node[right,rec] (adMac) {Maschinencode};
-            \draw (6,-1.5) node[right,rec] (link) {Linker};
-            \begin{scope}[every path/.style={link}]
-                \draw (prg) -- ++(2,0) node[right,rec] (comp) {Compiler};
-                \draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};
-                \draw (bib) -| ++ (2,-0.4) -- ([yshift=0.1cm]link.west);
-                \draw (adMac) -| ++ (2,0.4) -- ([yshift=-0.1cm]link.west);
-                \draw (link) -- ++(2,0) node[right, irec] (prog) {Program};
-                \draw (mac) -- ++ (0,-0.62) -| (link.north);
-                \draw (prg)++(0,0.75) node[above] {\tiny Das machen wir} -- (prg);
-                \draw (prog)++(0,-0.75) node[below] {\tiny Das wollen wir} -- (prog);
-                \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
-                \draw (comp)++(0,0.75) node[above] {\tiny Syntax-Analyse} -- (comp);
-                \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
-                \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
-                \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches/dynmaisches Linken}\\\hphantom{statisch/dy}(Java)}} -- (link);
-            \end{scope}
-        \end{tikzpicture}
-        }
-    \end{center}
+\begin{center}
+\onslide<2->{
+\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}, rec/.style={block,minimum width=3.25cm},irec/.style={iblock,minimum width=3.25cm}]
+    \draw (0,0) node[right,irec] (prg) {Programmtext};
+    \draw (2,-1) node[right,rec] (bib) {Bibliotheken};
+    \draw (2,-2) node[right,rec] (adMac) {Maschinencode};
+    \draw (6,-1.5) node[right,rec] (link) {Linker};
+    \begin{scope}[every path/.style={link,rounded corners=1.25pt}]
+        \draw (prg) -- ++(2,0) node[right,rec] (comp) {Compiler};
+        \draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};
+        \draw (bib) -| ++ (2,-0.4) -- ([yshift=0.1cm]link.west);
+        \draw (adMac) -| ++ (2,0.4) -- ([yshift=-0.1cm]link.west);
+        \draw (link) -- ++(2,0) node[right, irec] (prog) {Program};
+        \draw (mac) -- ++ (0,-0.62) -| (link.north);
+        \draw (prg)++(0,0.75) node[above] {\tiny Das machen wir} -- (prg);
+        \draw (prog)++(0,-0.75) node[below] {\tiny Das wollen wir} -- (prog);
+        \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
+        \draw (comp)++(0,0.75) node[above] {\tiny Syntax-Analyse} -- (comp);
+        \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
+        \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
+        \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches\thinspace /\thinspace dynmaisches Linken}\\\hphantom{statisch\thinspace /\thinspace dy}(Java)}} -- (link);
+    \end{scope}
+\end{tikzpicture}
+}
+\end{center}
 \end{frame}
 
 \begin{frame}{Vom Text zum Programm}
@@ -34,6 +34,7 @@
         \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt Java die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class})
         \item Dieser Code kann vom Interpreter \bbash{java} ausgeführt werden:\pause{} \bbash{java :lan:Name:ran:}
         \item Ein paar wichtige Punkte: \begin{itemize}
+            \widei
             \item Bei den \T{.class}-Dateien handelt es sich um \emph{keine} \T{.zip}-Dateien!
             \item Die \T{.jar}-Dateien von Java sind \T{.zip}-Archive.
             \item Der Interpreter (\bbash{java}) ist sowohl im Java-Runtime-Environment (JRE) als auch im Java-Development-Kit (JDK) enthalten.
@@ -48,6 +49,7 @@
     \begin{itemize}[<+(1)->]
         \widei
         \item Java stellt folgende Regeln an Bezeichner für Variablen, Klassen,~\ldots \begin{itemize}
+            \widei
             \item Diese dürfen nur aus Buchstaben, Ziffern, dem Unterstrich (\_) und dem Dollarzeichen (\$) bestehen.
             \item Ein Bezeichner darf \emph{nicht} mit einer Ziffer angeführt werden.
             \item Schlüsselbegriffe (wie \bjava{int}, \bjava{double},~\ldots) dürfen nicht als Bezeichner verwendet werden.
