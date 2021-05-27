@@ -6,8 +6,12 @@
 \begin{frame}{Das Konzept der Vererbung}
     \hypertarget<1>{mrk:Vererbung}{}%
     \begin{itemize}[<+(1)->]
+        \widei
         \item Eine erbende Klasse (\say{Subklasse}) übernimmt alle Eigenschaften und kann diese verändern.
-        \item Die Subklasse kann hier sowohl als Spezialisierung (die Eigenschaften und Operationen des Supertyps bleiben unverändert),\pause{} als auch als Erweiterung (die Methoden werden modifiziert) aufgefasst werden.
+        \item Die Subklasse kann heir auf zwei Weisen betrachtet werden: \begin{itemize}
+            \item als Spezialisierung: die Eigenschaften und Operationen des Supertyps bleiben unverändert.
+            \item als Erweiterung: die Methoden werden modifiziert.
+        \end{itemize}
         \item Häufig wird das Konzept der \emph{Erweiterung} verfolgt.
         \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe) und\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), sowie \emph{Dozent} (zugeteilte Vorlesung),~\ldots
         \item Zwischen vererbenden Klassen gilt eine \say{is-a} Relation.\pause{} So gilt beispielsweise \say{Student \emph{is-a} Mensch \emph{is-a} Lebewesen}.
@@ -20,8 +24,8 @@
         \item Vererbung wird in Java durch den Schlüsselbegriff \bjava{extends} realisiert.
         \item Java verwendet Vererbung zur \emph{Erweiterung}.
         \item In Java kann eine Klasse nur von maximal einer anderen Erben.
-        \item Auf Attribute der Mutterklasse die \bjava{private} sind,\pause{} können wir in erbenden Kindklassen nicht zugreifen.
-        \item Der Konstruktor sowie Methoden der Superklasse können (soweit Sichtbar) durch \bjava{super} erreicht werden.
+        \item Auf Attribute der Mutterklasse die \bjava{private} sind, können wir in erbenden Kindklassen nicht zugreifen.
+        \item Der Konstruktor sowie Methoden der Superklasse können (soweit sichtbar) durch \bjava{super} erreicht werden.
     \end{itemize}
 \end{frame}
 
@@ -30,7 +34,7 @@
     \Task{Fehlerfinden - Vererbungs special}
     \begin{exercise}<2->[Fehler finden - Vererbung \Time{4}]
         \pause{}Erklären Sie alle Kompilierzeit-Fehler. Die Klassen befinden sich jeweils in Dateien mit dem korrekten Namen und in dem \emph{selben} Verzeichnis:\pause{}
-\lstfs{9}
+\lstfs{9}%
 \begin{plainjava}
 public class A {
     A(int foo) { System.out.println("Called with " + foo); }
@@ -143,7 +147,7 @@ class Dozent extends Mensch {
 \begin{plainjava}
 Mensch herbert = new Student(19, 184.12f, "herbert", 12345);
 \end{plainjava}
-        \pause{}da die Klasse \bjava{Student} von \bjava{Mensch} \emph{erbt}.\pause{} Wir können allerdings nicht auf die Zusatzfunktionalitäten von \bjava{Student} zugreifen.
+        \pause{}Die Klasse \bjava{Student} \emph{erbt} von \bjava{Mensch}.\pause{} \textcolor{gray}{Wir können allerdings nicht auf die Zusatzfunktionalitäten von \bjava{Student} zugreifen.}
         \item Ob \bjava{herbert} wirklich ein Student ist,\pause{} kann man mit \bjava{instanceof} prüfen:\pause{}
 \begin{plainjava}
 herbert instanceof Student // :yields: true
@@ -167,9 +171,11 @@ herbert instanceof Dozent // :yields: false
 \begin{frame}{Abstrakte Klassen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Vererbung ermöglicht uns Polymorphie erst wirklich.\pause{} So können wir eine Klasse \bjava{List} erschaffen (in Java: \bjava{AbstractList}, bereits vorhanden), die die Zugriffe definiert und entsprechend Klassen \bjava{ArrayList}, \bjava{LinkedList},~\ldots\pause{} die diese Operationen implementieren.
-        \item Wenn diese Klassen (wie bei \bjava{List}) wirklich nur Blaupausen/Vorlagen sind,\pause{} können wir sie als \bjava{abstract} bezeichnen.\pause{} Von solchen Klassen darf kein Objekt erstellt werden,\pause{} von ihnen kann aber geerbt werden.
-        \item Eine abstrakte Klasse kann weiter abstrakte Methoden (ohne Rumpf!) definieren.\pause{} Solche Methoden \emph{müssen} von einer nicht-abstrakten erbenden Klasse implementiert werden.
+        \item Vererbung ermöglicht Polymorphie (erst richtig).
+        \item So lässt sich eine Klasse \bjava{List} schaffen \textcolor{gray}{(in Java: \bjava{AbstractList}, bereits vorhanden)}, welche die Zugriffe definiert und entsprechend Klassen \bjava{ArrayList}, \bjava{LinkedList},~\ldots\pause{} die diese Operationen implementieren.
+        \item Sind diese Klassen (wie \bjava{List}) wirklich nur Blaupausen/\allowbreak Vorlagen sind,\pause{} können wir sie als \bjava{abstract} bezeichnen.
+        \item Von \bjava{abstract} Klassen darf kein Objekt erstellt werden. \textcolor{gray}{(Von ihnen kann aber geerbt werden.)}
+        \item Eine abstrakte Klasse kann abstrakte Methoden (ohne Rumpf!) definieren.\pause{} Diese \emph{müssen} von einer nicht-abstrakten erbenden Klasse implementiert werden.
     \end{itemize}
 \end{frame}
 
@@ -299,7 +305,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
         \item Auch für ein Interface wird die \emph{is-a} Relation durch \bjava{instanceof} erfüllt.
         \item Ein Interface wie \bjava{Sortable} wird in Java durch \bjava{Comparable} mit nur einer einzelnen Funktion \bjava{compareTo()} gelöst.
         \item Interfaces sollten dann verwendet werdenn wenn es um eine Funktionalität geht (wie \bjava{Drawable}, \bjava{Moveable}, \bjava{Consumeable},~\ldots)
-        \item Das Implementieren eines Interfaces wird in UML durch eine gestrichelte, das Erweitern einer Klasse durch eine durchgezogene  Linie gekennzeichnet.% Pfeil am Ende?
+        \item Das Implementieren eines Interfaces kennzeichnet UML durch eine gestrichelte, das Erweitern einer Klasse durch eine durchgezogene Linie.
     \end{itemize}
 \end{frame}
 
@@ -308,13 +314,12 @@ public class Element implements Sortable /*, interfaceB, ... */ {
     \begin{itemize}[<+(1)->]
         \widei
         \item Wir unterscheiden zwei Arten von Fehlern: \begin{description}[Schwere]
-            \item[Schwere] solche Fehler sind kritisch sollen zu einem Programmabbruch führen.
+            \item[Schwere] solche Fehler sind kritisch und führen zu einem Programmabbruch.
             \item[Leichte] solche Fehler können (zur Laufzeit) korrigiert werden.
         \end{description}
         \item Wie schwer ein Fehler ist, hängt von der Situation ab.
-        \item Die Behandlung eines Fehlers erfolgt in der Regel durch die aufrufende Methode.
-        % \item Ein Fehlerobjekt wird nur dann erzeugt,\pause{} wenn die Methode scheitert.
-        \item Fehlerobjekte sind in Java Objekte von Klasse,\pause{} die von der \bjava{Exception} Klasse erben.
+        \item Die Fehlerbehandlung erfolgt meist durch die aufrufende Methode.
+        \item Fehler sind in Java Objekte von Klasse,\pause{} die von \bjava{Exception} erben.
     \end{itemize}
 \end{frame}
 
