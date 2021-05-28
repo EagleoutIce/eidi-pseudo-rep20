@@ -1185,7 +1185,7 @@ while (current != null) {
         \end{center}
         \begin{enumerate}[<+(1)->]
             \item Breitendurchlauf:\pause{} \(A,B,E,C,F,G,D,H,I\).
-            \item In-Order:\pause{} \(B,D,C,A,F,E,H,G,I\)
+            \item In-Order:\pause{} \(B,D,C,A,F,E,H,G,I\).
             \item Post-Order:\pause{} \(D,C,B,F,H,I,G,E,A\).
         \end{enumerate}
     \end{solve}
@@ -1194,7 +1194,7 @@ while (current != null) {
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{Traversierung eines Baumes - Java}
     \begin{exercise}<2->[Traversierung eines Baumes - Java \Time{4}]
-        Es sei durch folgende Klasse ein Knoten eines Binärbaums notiert, der mit \bjava{Node root} beginnt.\pause{} Schreibe eine Funktion \bjava{inorder(Node)}, die eine In-Order Traversierung vornimmt.\pause{} Der Knoten soll (jeweils) einfach durch \bjava{System.out.println} ausgegeben werden.\pause{}
+        Es sei durch folgende Klasse ein Knoten eines Binärbaums notiert, der mit \bjava{Node root} beginnt.\pause{} Schreiben Sie eine Funktion \bjava{inorder(Node)}, die eine In-Order Traversierung vornimmt.\pause{} Der Knoten soll (jeweils) einfach durch \bjava{System.out.println} ausgegeben werden.\pause{}
 \begin{plainjava}
 public class Node {
     public int value;

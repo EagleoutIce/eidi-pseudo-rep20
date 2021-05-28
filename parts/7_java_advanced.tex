@@ -8,12 +8,11 @@
     \begin{itemize}[<+(1)->]
         \widei
         \item Eine erbende Klasse (\say{Subklasse}) übernimmt alle Eigenschaften und kann diese verändern.
-        \item Die Subklasse kann heir auf zwei Weisen betrachtet werden: \begin{itemize}
+        \item Die Subklasse kann hier auf zwei Weisen betrachtet werden: \begin{itemize}
             \item als Spezialisierung: die Eigenschaften und Operationen des Supertyps bleiben unverändert.
             \item als Erweiterung: die Methoden werden modifiziert.
         \end{itemize}
         \item Häufig wird das Konzept der \emph{Erweiterung} verfolgt.
-        \item Beispiel: Die Klasse \emph{Mensch} (Name) erbt von \emph{Lebewesen} (Alter, Größe) und\pause{} wird erweitert durch \emph{Student} (Matrikelnummer), sowie \emph{Dozent} (zugeteilte Vorlesung),~\ldots
         \item Zwischen vererbenden Klassen gilt eine \say{is-a} Relation.\pause{} So gilt beispielsweise \say{Student \emph{is-a} Mensch \emph{is-a} Lebewesen}.
     \end{itemize}
 \end{frame}
@@ -174,8 +173,8 @@ herbert instanceof Dozent // :yields: false
         \item Vererbung ermöglicht Polymorphie (erst richtig).
         \item So lässt sich eine Klasse \bjava{List} schaffen \textcolor{gray}{(in Java: \bjava{AbstractList}, bereits vorhanden)}, welche die Zugriffe definiert und entsprechend Klassen \bjava{ArrayList}, \bjava{LinkedList},~\ldots\pause{} die diese Operationen implementieren.
         \item Sind diese Klassen (wie \bjava{List}) wirklich nur Blaupausen/\allowbreak Vorlagen sind,\pause{} können wir sie als \bjava{abstract} bezeichnen.
-        \item Von \bjava{abstract} Klassen darf kein Objekt erstellt werden. \textcolor{gray}{(Von ihnen kann aber geerbt werden.)}
-        \item Eine abstrakte Klasse kann abstrakte Methoden (ohne Rumpf!) definieren.\pause{} Diese \emph{müssen} von einer nicht-abstrakten erbenden Klasse implementiert werden.
+        \item Von \bjava{abstract} Klassen darf kein Objekt erstellt werden.\par\textcolor{gray}{Von ihnen kann aber geerbt werden.}
+        \item Eine abstrakte Klasse kann abstrakte Methoden (ohne Rumpf!) definieren.\pause{} Diese \emph{müssen} von einer erbenden, nicht-abstrakten Klasse implementiert werden.
     \end{itemize}
 \end{frame}
 
@@ -198,7 +197,7 @@ herbert instanceof Dozent // :yields: false
 
 \begin{frame}[fragile,c]{Abstrakte Klassen, ein Beispiel}
 \begin{plainjava}
-!*\onslide<2->*!abstract class ArrayList extends AbstractList {
+!*\onslide<2->*!class ArrayList extends AbstractList {
 !*\onslide<3->*!    Element[] elems;
 !*\onslide<2->*!
 !*\onslide<4->*!    public ArrayList() {
@@ -424,7 +423,7 @@ public class A {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Statische/Dynamische Bindung}
     \begin{exercise}<2->[Statische/Dynamische Bindung \Time{4}]
-        Erkläre kurz den Unterschied zwischen statischer und dynamischer Bindung und wann Java was verwendet.
+        Erklären Sie kurz den Unterschied zwischen statischer und dynamischer Bindung und wann Java was verwendet.
     \end{exercise}
 \end{frame}
 
