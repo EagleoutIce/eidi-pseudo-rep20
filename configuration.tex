@@ -1,6 +1,6 @@
-%% -----------------------------------------------------------------------------
+%% -----
 %% Basic Packages
-%% -----------------------------------------------------------------------------
+%% -----
 % center stuff and maybe add bibliography? :D
 
 % encoding:
@@ -15,12 +15,13 @@
 \RequirePackage[english,main=ngerman]{babel}
 
 \RequirePackage{microtype,csquotes}
-\RequirePackage{sopra-listings,sopra-models,sopra-attachments,array,booktabs,colortbl}
+\RequirePackage[noguardspace]{sopra-listings}
+\RequirePackage{sopra-models,sopra-attachments,array,booktabs,colortbl}
 \solLoadLanguage{bash}
 
-%% -----------------------------------------------------------------------------
+%% -----
 %% Theme
-%% -----------------------------------------------------------------------------
+%% -----
 \usepackage[emblem,theorems]{beamerthemecolorful-dream}
 
 \makeatletter
@@ -38,9 +39,9 @@
   {keywordC: \color{sol@colors@lst@keywordC}},%
 }
 
-%% -----------------------------------------------------------------------------
+%% -----
 %% Extra Defs
-%% -----------------------------------------------------------------------------
+%% -----
 
 % Taken from lilly code extensions
 \newenvironment{lillyHighlight}[1][]
@@ -84,9 +85,9 @@
 \def\mto{\ensuremath{\to}}
 \def\mprec{\ensuremath{\prec}}
 
-%% -----------------------------------------------------------------------------
+%% -----
 %% General
-%% -----------------------------------------------------------------------------
+%% -----
 \usepackage{lecture-algorithms,lilly-dir,xfrac}
 \SetFolderFileSameIndent
 
@@ -130,9 +131,9 @@
 \usepackage[chess]{eagle-maps}
 \usepackage[glows,manual-layers]{tikzpingus}
 \def\sbfamily{\fontseries{sb}\selectfont}
-%% -----------------------------------------------------------------------------
+%% -----
 %% TikZ
-%% -----------------------------------------------------------------------------
+%% -----
 
 \tikzset{
     block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
@@ -146,9 +147,9 @@
     every picture/.append style={line join=round,line cap=round}%
 }
 
-%% -----------------------------------------------------------------------------
+%% -----
 %% Heap and Stack
-%% -----------------------------------------------------------------------------
+%% -----
 
 \usepackage{lecture-heap-n-stack}
 
@@ -159,9 +160,9 @@
 \lhns@borderbuff=1.33em
 \tikzset{lhns@impstyle/.style={}}%
 
-%% -----------------------------------------------------------------------------
+%% -----
 %% Different Versions
-%% -----------------------------------------------------------------------------
+%% -----
 \usepackage{lithie-profiles}
 
 \RegisterProfile{short}{}
