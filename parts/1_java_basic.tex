@@ -11,16 +11,16 @@
     \begin{scope}[every path/.style={link,rounded corners=1.25pt}]
         \draw (prg) -- ++(2,0) node[right,rec] (comp) {Compiler};
         \draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};
-        \draw (bib) -| ++ (2,-0.4) -- ([yshift=0.1cm]link.west);
-        \draw (adMac) -| ++ (2,0.4) -- ([yshift=-0.1cm]link.west);
+        \draw (bib) -| ++ (2,-.4) -- ([yshift=0.1cm]link.west);
+        \draw (adMac) -| ++ (2,.4) -- ([yshift=-0.1cm]link.west);
         \draw (link) -- ++(2,0) node[right, irec] (prog) {Program};
-        \draw (mac) -- ++ (0,-0.62) -| (link.north);
-        \draw (prg)++(0,0.75) node[above] {\tiny Das machen wir} -- (prg);
-        \draw (prog)++(0,-0.75) node[below] {\tiny Das wollen wir} -- (prog);
+        \draw (mac) -- ++ (0,-.62) -| (link.north);
+        \draw (prg)++(0,.75) node[above] {\tiny Das machen wir} -- (prg);
+        \draw (prog)++(0,-.75) node[below] {\tiny Das wollen wir} -- (prog);
         \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
-        \draw (comp)++(0,0.75) node[above] {\tiny Syntax-Analyse} -- (comp);
-        \draw[btcd@color@alerted] (comp)--++(1,0.75) node[right] {\tiny Compile-Fehler};
-        \draw[btcd@color@alerted] (prog)--++(0,0.75) node[above] {\tiny Laufzeit-Fehler};
+        \draw (comp)++(0,.75) node[above] {\tiny Syntax-Analyse} -- (comp);
+        \draw[btcd@color@alerted] (comp)--++(1,.65) node[right] {\tiny Compile-Fehler};
+        \draw[btcd@color@alerted] (prog)--++(0,.65) node[above] {\tiny Laufzeit-Fehler};
         \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches\thinspace /\thinspace dynmaisches Linken}\\\hphantom{statisch\thinspace /\thinspace dy}(Java)}} -- (link);
     \end{scope}
 \end{tikzpicture}
@@ -32,13 +32,13 @@
     \begin{itemize}[<+(1)->]
         \widei
         \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt Java die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class})
-        \item Dieser Code kann vom Interpreter \bbash{java} ausgeführt werden:\pause{} \bbash{java :lan:Name:ran:}
+        \item Dieser Code kann vom Java-Interpreter ausgeführt werden:\pause{} \bbash{java :lan:Name:ran:}
         \item Ein paar wichtige Punkte: \begin{itemize}
             \widei
             \item Bei den \T{.class}-Dateien handelt es sich um \emph{keine} \T{.zip}-Dateien!
             \item Die \T{.jar}-Dateien von Java sind \T{.zip}-Archive.
             \item Der Interpreter (\bbash{java}) ist sowohl im Java-Runtime-Environment (JRE) als auch im Java-Development-Kit (JDK) enthalten.
-            \item Der Compiler wird nur mit der JDK ausgeliefert.
+            \item Der Compiler wird (in der Regel) nur mit der JDK ausgeliefert.
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -51,7 +51,7 @@
         \item Java stellt folgende Regeln an Bezeichner für Variablen, Klassen,~\ldots \begin{itemize}
             \widei
             \item Diese dürfen nur aus Buchstaben, Ziffern, dem Unterstrich (\_) und dem Dollarzeichen (\$) bestehen.
-            \item Ein Bezeichner darf \emph{nicht} mit einer Ziffer angeführt werden.
+            \item Ein Bezeichner darf \emph{nicht} mit einer Ziffer beginnen.
             \item Schlüsselbegriffe (wie \bjava{int}, \bjava{double},~\ldots) dürfen nicht als Bezeichner verwendet werden.
         \end{itemize}
     \end{itemize}
@@ -86,7 +86,8 @@
         \end{center}
         \item So kann Java einen \bjava{char} implizit in einen \bjava{int} umwandeln\pause{} (da der Wertebereich größer ist).\pause{} Umgekehrt allerdings nicht.
         \item \imp{Floats und Doubles unterliegen einem Rundungsproblem.}
-        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.
+        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.\par
+        \pause{}Beispiel: \bjava{(byte)42}
     \end{itemize}
 \end{frame}
 
@@ -184,14 +185,14 @@ System.out.println(x); // :yields: 9
 \begin{frame}[fragile]{Komplexe Datentypen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Java erlaubt es mit Klassen komplexe Datentypen zu konstruieren.
-        \item Ein wichtiger ist \bjava{String},\pause{} welcher von Java eine Sonderbehandlung erfährt.
+        \item Java erlaubt es, mit Klassen komplexe Datentypen zu konstruieren.
+        \item Wichtig ist \bjava{String}, der von Java eine Sonderbehandlung erfährt.
         \item Bei der Deklaration eines komplexen Datentyps:\pause{}
 \begin{plainjava}
 Random rnd = new Random();
 \end{plainjava}
-        \pause{}speichert Java für \bjava{rnd} die Adresse,\pause{} an der sich die eigentlichen Daten des Objekts befinden.
-        \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen\pause{} und damit ob die Objekte identisch sind.
+        \pause{}speichert Java für \bjava{rnd} die Adresse,\pause{} an der sich die eigentlichen Daten des Objekts befinden. \textcolor{gray}{Stichwort: Heap und Stack.}
+        \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen und damit die \emph{Identität}.
     \end{itemize}
 \end{frame}
 

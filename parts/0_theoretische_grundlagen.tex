@@ -132,9 +132,9 @@
     \begin{itemize}[<+(1)->]
         \widei
         \item Ein Programm fällt nicht einfach aus dem Wolken (leider).
-        \item Grundlegend gliedert man (im Softwareengineering) die Konstruktion in sechs Phasen.
-        \item Die sechste Phase (Dokumentation) unterscheidet sich in sofern,\pause{} als dass sie Parallel zu den anderen stets aktiv ist.
-        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code (zu verschiedenen Lösungsansätzen)\pause{} sowie dem Ablauf selbst mit ein!
+        \item Im Softwareengineering gliedert man den Prozess meist in sechs Phasen.
+        \item Die sechste Phase (Dokumentation) unterscheidet sich: sie verläuft parallel zu den anderen.
+        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code (zu verschiedenen Lösungsansätzen),\pause{} sowie dem Ablauf selbst mit ein!
     \end{itemize}
 \end{frame}
 
@@ -150,11 +150,11 @@
             \draw[link] (\li) -- (\i);}
         }
         \onslide<3->{
-            \node[above right=0.75cm,yshift=-.5cm,align=left,font=\scriptsize,text width=4.25cm] (d1) at (1.north east) {Untersuche Problem, in der Regel in Zusammenarbeit mit Nicht-Informatikern.};
+            \node[above right=0.75cm,yshift=-.5cm,align=left,font=\scriptsize,text width=4.25cm] (d1) at (1.north east) {Untersuche Problem (in der Regel in Zusammenarbeit mit Nicht-Informatikern).};
             \draw[densely dashed] (d1.west) -- (1.east);
         }
         \onslide<4->{
-            \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus, kreativer Prozess (beantwortet auch Fragen wie: \say{gibt es das schon?})};
+            \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus. Kreativer Prozess (beantwortet auch Fragen wie: \say{gibt es das schon?})};
             \draw[densely dashed] (d2.west) -- (2.east);
         }
         \onslide<5->{
@@ -186,10 +186,10 @@
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Algorithmus beschreiben]
         \pause{}Wir betrachten den textuellen Ansatz: \begin{enumerate}[<+(1)->]
-            \item Keine Eingabedaten?\pause{} Fertig.
+            \item Keine Eingabedaten? \(\to\) Fertig.
             \item Setze Maximum auf erstes Element der Eingabedaten.
             \item Tue für jedes weitere Element der Eingabedaten: \begin{enumerate}
-                \item Ist das zu betrachtende Element \say{größer} als das bisherige Maximum? \begin{description}
+                \item Ist das zu betrachtende Element \say{größer} als das bisherige Maximum? \begin{description}[iNein]
                     \item[Ja] ersetze Maximum durch dieses Element
                     \item[Nein] tue nichts
                 \end{description}
@@ -201,7 +201,7 @@
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Charakteristika eines Algorithmus}
     \begin{exercise}<2->[Charakteristika \Time{2}]
-        Ist der folgende Algorithmus (total) korrekt?\pause{}
+        Ist der folgende Algorithmus für die Berechnung des Modulo \(a \bmod b\) (total) korrekt?\pause{}
         \begin{plainjava}
 public static int simpleMod(int a, int b){
     while(a >= b)
@@ -214,8 +214,8 @@ public static int simpleMod(int a, int b){
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Charakteristika]
-       \pause{}Der Algorithmus ist nicht total korrekt.\pause{} So liefert er für ein negatives \T{b} kein korrektes Ergebnis,\pause{} da hier \T{a -= b} zu einem Überlauf führt.\pause{}\par{}
-       Ferner ist er auch nicht partiell korrekt.\pause{} So liefert er für ein negatives \T{a} bei einem positiven \T{b} einfach nur \T{a} zurück.
+       \pause{}Der Algorithmus ist nicht total korrekt.\pause{} So liefert er für ein negatives \T{b} kein korrektes Ergebnis,\pause{} da hier \T{a -= b} zu einem Überlauf führt (bis dahin ist stets \bjava{a >= b}).\medskip\par
+       \pause{}Ferner ist er auch nicht partiell korrekt.\pause{} So liefert er für ein negatives \T{a} bei einem positiven \T{b} einfach nur \T{a} zurück.
     \end{solve}
 \end{frame}
 
