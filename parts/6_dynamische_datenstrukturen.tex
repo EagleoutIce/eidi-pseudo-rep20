@@ -6,7 +6,7 @@
 \begin{frame}{Listen - Dynamische Arrays}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Für eine Implementation: Betrachte das \href{https://github.com/EagleoutIce/eidi-weihnachttsblatt-19_20}{Weihnachtsblatt}.
+        \item Für eine Implementation: Betrachte das \href{https://github.com/EagleoutIce/eidi-weihnachttsblatt-19_20}{Weihnachtsblatt.\textsuperscript{\faGlobe}}
         \item Eine ArrayList ist die einfachste Implementation einer Liste.
         \item Wir halten intern ein Array, welches wir dynamisch vergrößern oder Verkleinern.
         \item Das Problem: Einfüge und Löschoperationen bedeuten einen großen Aufwand (durch das Kopieren der Elemente).
@@ -175,8 +175,10 @@ class Element {
         Die erste Methode behandelt den Sonderfall \say{leere Liste}. Die zweite traversiert die Liste so lange,\pause{} bis wir am \emph{Foot} angekommen sind und ersetzt dann den Verweis des vorletzten:\pause{}
 \begin{plainjava}
 public void appendLast(Element root, int i) {
-    if(root == null) root = new Element(i, null);
-    else appendLastIter(root, i);
+    if(root == null)
+        root = new Element(i, null);
+    else
+        appendLastIter(root, i);
 }
 \end{plainjava}
     \end{solve}
@@ -188,9 +190,10 @@ public void appendLast(Element root, int i) {
         Wir iterieren:
 \begin{plainjava}
 public void appendLastIter(Element current, int i){
-    if(current.next == null) // found
+    if(current.next == null) // found last
         current.next = new Element(i, null);
-    else appendLastIter(current.next, i);
+    else
+        appendLastIter(current.next, i);
 }
 \end{plainjava}
     \end{solve}
@@ -269,7 +272,7 @@ class Element {
     \begin{itemize}[<+(1)->]
         \widei
         \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).\pause{} Es ist nur möglich Elemente oben auf den Stapel zu legen, oder das oberste zu nehmen.
-        \item Stacks können bei der Auswertung arithmetischer Funktionien verwendet werden (siehe GdRa).
+        \item Stacks können bei der Auswertung arithmetischer Funktionien verwendet werden \textcolor{gray}{(siehe Grundlagen der Rechnerarchitektur)}.
         \item Die Verwaltung rekursiver Methoden erfolgt über den Stack. So \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
     \end{itemize}
 \end{frame}
