@@ -716,10 +716,10 @@ public static void bubbleSort(int[] arr) {
 \end{frame}
 
 \ifull
-\begin{frame}[fragile,c]{Quicksort implementieren}
+\begin{frame}[c]{Quicksort implementieren}
     \Task{Quicksort implementieren}
     \begin{exercise}<2->[Quicksort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void quickSort(int[])}, die das übergebene Array mittels Quicksort aufsteigend sortiert. Als Pivot-Element soll stets das erste Element gewählt werden.\medskip\par\pause{}\textit{Tipp:} Arbeiten Sie mit einer Hilfsmethode \bjava{void quicksort(int[] arr, int l, int r)}, welche das Quicksort-Verfahren auf den Array-Ausschnitt \([l, r]\) ausführt.
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void quickSort(int[])}, die das übergebene Array mittels Quicksort aufsteigend sortiert. Als Pivot-Element soll stets das erste Element gewählt werden.\medskip\par\pause{}\textit{Tipp:} Arbeiten Sie mit einer Hilfsmethode \bjava{void quickSort(int[] arr, int l, int r)}, welche das Quicksort-Verfahren auf den Array-Ausschnitt \([l, r]\) anwendet.
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -859,12 +859,18 @@ static int partition(int[] arr, int l, int r) {
     \begin{itemize}[<+(1)->]
         \widei
         \item Backtracking ist eine rekursive Lösungsstrategie.
-        \item Das Problem wird von einer Teillösung aus erweitert, bis man auf die Gesamtlösung stößt,\pause{} oder in eine \say{Sackgasse} gelangt (trial and error), in diesem Fall probiert man eine andere Erweiterung.
-        \item Beispiele: \begin{itemize}
-            \item \emph{Wegfindung im Labyrinth:}\pause{} Gehe vom Startfeld aus solange einen Weg entlang, bis am Ziel angekommen.\pause{} Im Fall einer Sackgasse: springe zur letzten Position zurück, an der es noch einen anderen Weg gab.
-            \item \emph{Lösung eines Sudoku.}\pause{} Füge in erstes freies Feld eine der dort möglichen Zahlen ein.\pause{} Verfahre so, bis alle Felder gefüllt sind oder für ein Feld keine Zahl mehr möglich ist.\pause{} In diesem Fall: springe zum letzten Punkt zurück, an dem noch andere Zahlen möglich sind. Probiere weiter.
-            \item Rucksackproblem, 8-Damen Problem,~\ldots
-        \end{itemize}
+        \item Das Problem wird von einer Teillösung aus erweitert, bis man auf die Gesamtlösung stößt,\pause{} oder in eine \say{Sackgasse} gelangt (trial and error).
+        \item Im Sackgassen-Fall macht man die Entscheidungen solange Rückgängig, bis man eine andere Erweiterung wählen kann und erweitert die Teillösung dann durch diese.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Backtracking, Beispiele}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item \emph{Wegfindung im Labyrinth:}\pause{} Gehe vom Startfeld aus solange einen Weg entlang, bis am Ziel angekommen.\pause{} Im Fall einer Sackgasse: springe zur letzten Position zurück, an der es noch einen anderen Weg gab.
+        \item \emph{Lösung eines Sudoku.}\pause{} Füge in erstes freies Feld eine der dort möglichen Zahlen ein.\pause{} Verfahre so, bis alle Felder gefüllt sind oder für ein Feld keine Zahl mehr möglich ist.\pause{} In diesem Fall: springe zum letzten Punkt zurück, an dem noch andere Zahlen möglich sind. Probiere weiter.
+        \item Rucksackproblem, 8-Damen Problem,~\ldots
     \end{itemize}
 \end{frame}
 
