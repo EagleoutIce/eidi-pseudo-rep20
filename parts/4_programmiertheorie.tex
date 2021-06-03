@@ -64,20 +64,8 @@
 \vfill\null
 \hfill\scalebox{.75}{\begin{forest}
 [f(12)
-    [f(11)
-        [f(10)
-            [\ldots]
-            [\ldots]
-        ]
-        [f(9)
-            [\ldots]
-            [\ldots]
-        ]
-    ]
-    [f(10)
-        [\ldots]
-        [\ldots]
-    ]
+    [f(11) [f(10) [\ldots][\ldots]] [f(9) [\ldots][\ldots]] ]
+    [f(10) [\ldots][\ldots]]
 ]
 \end{forest}
     }}\vfill\null
@@ -95,7 +83,6 @@
     \end{itemize}
 \end{frame}
 
-
 \ifull
 \begingroup
 \def\f(#1,#2,#3){f(#1,\;#2,\;#3)}%
@@ -110,8 +97,7 @@
         \f(a - 1, b - 1, |c - 1|) & \text{ sonst.}
     \end{cases}
 \end{equation*}
-    Approximieren Sie die natürlichen Zahlen durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} Java Funktionen zur Hilfe benutzen.
-
+    Approximieren Sie die natürlichen Zahlen durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} Java Funktionen zur Hilfe benutzen.\par
     Welchen Wert liefert die Berechnung von \(f(12, 9, -2)\).
     \end{exercise}
 \end{frame}
@@ -228,7 +214,6 @@ static int methode(int n) {
 \begin{frame}{Erfassen der Komplexität}
     \begin{itemize}[<+(1)->]
         \item Insgesamt ergibt sich damit ein Aufwand von \(\frac{3n^2}{2} + \frac{5n}{2} + 3\).
-        % \item Eine genauere Betrachtung findet sich in den Folien des \(10\) Tutoriums, zu Übungsblatt \(9\).
         \item Da für große Datenmengen Konstanten und Faktoren irrelevant werden,\pause{} interessiert wie die Funktion skaliert/wächst.
     \end{itemize}
     \begin{definition}<6->[\O-Notation]
@@ -300,7 +285,6 @@ static int methode(int n) {
     \end{scope}
 
     \onslide<5->{ \draw (a) -| (b1) (a) -- (b2) (a) -| (b3);}
-    % \draw (b1.195) -- ++(0,-0.33) (b1.345) -- ++(0,-0.33);
     \onslide<9->{\draw (b2.195) |- (c3) (b3.195) |- (c4);
     \draw (b1.195) |- (c2);
     \foreach \i in {1,2} {\draw (b1.195) |- (left\i);\draw (b3.195) |- (right\i);}
@@ -327,7 +311,7 @@ static int methode(int n) {
             {+ getVorlesungen() : String[5]}\\
             {+ removeVorlesung(String name) : void }}
     \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2) -- ++(0,-1.92) node [black,midway, above,rotate=90,yshift=0.75cm] {Attribute};
-    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=0.75cm] {Methoden};
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-4,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=.75cm] {Methoden};
     \node at(0,3.25) [above] (kln) {Klassenname};
     \draw[-Kite] (kln) -- ++(0,-0.799);
     {\node [right] at (4.5,1.82-1.54/2+0.9) {\parbox{9cm}{
@@ -338,8 +322,8 @@ static int methode(int n) {
     }
     \onslide<3->{\draw [Kite-] (4.15,1.85-1.3) -- ++(3,0) node[right] {\small bis zu 5 Vorlesungen};}
     \onslide<4->{\umlclass[x=11,y=-2,name=gang]{Studiengang}{- name : String\\- prof : String}{ + Studiengang(name : String, prof : String)\\ + getName() : String\\ + getProfessor() : String};}
-    \only<5->{\umlassoc[mult1=0..3,pos1=0.965, mult2=*, pos2=0.2]{Student}{Studiengang};}
-    \onslide<6->{\draw [decorate,decoration={brace,amplitude=7pt,raise=4pt,mirror},yshift=0pt] (4.125,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-0.75cm] {\begin{minipage}{8cm}
+    \only<5->{\umlassoc[mult1=0..3,pos1=0.965, mult2=*, pos2=.2]{Student}{Studiengang};}
+    \onslide<6->{\draw [decorate,decoration={brace,amplitude=7pt,raise=4pt,mirror},yshift=0pt] (4.125,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-.75cm] {\begin{minipage}{8cm}
         \centering\scriptsize Ein Student kann bis zu 3 Studiengänge gleichzeitig besuchen, ein Studiengang kann von unendlich vielen Studenten besucht werden.
     \end{minipage}};]}
 \end{tikzpicture}}
@@ -666,17 +650,13 @@ int magic(int n) {
     \pingu[eyes shiny,rook];%
 \end{tikzpicture}}%
 \newsavebox\pengu@rook@B
-\sbox\pengu@rook@B{\begin{tikzpicture}%
-    \pingu[eyes shiny,rook=@alerted];%
-\end{tikzpicture}}%
+\sbox\pengu@rook@B{\begin{tikzpicture}\pingu[eyes shiny,rook=@alerted];\end{tikzpicture}}%
 \def\@em@extension@chess@figures@rookA{\resizebox{.45cm}{!}{\usebox\pengu@rook@A}}%
 \def\@em@extension@chess@figures@rookB{\resizebox{.45cm}{!}{\usebox\pengu@rook@B}}%
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Das \(n\)-Türme Problem}
-\emSetFieldSize{4cm}{4cm}%
-\emSetTileSize{.65cm}{.65cm}%
-\emSetPlayerSize{.5cm}{.5cm}%
-\emSetTileOffset{.65cm}{.65cm}%
+\emSetFieldSize{4cm}{4cm}\emSetTileSize{.65cm}{.65cm}%
+\emSetPlayerSize{.5cm}{.5cm}\emSetTileOffset{.65cm}{.65cm}%
 \colorlet{chessfieldblack}{black!75!white}%
 \colorlet{chessblack}{@secondary}%
 \colorlet{chesswhite}{@alerted}%
@@ -692,8 +672,7 @@ int magic(int n) {
 \emChessSetBoard{%
     {,black:rookA,,,,,,black:rookA},
     {,,,,,,black:rookA,,black:rookB},
-    {},
-    {}%
+    {},{}%
 }%
 \pgfonlayer{foreground}
 \foreach \i in {16,18,19,20,7,12,22} {
