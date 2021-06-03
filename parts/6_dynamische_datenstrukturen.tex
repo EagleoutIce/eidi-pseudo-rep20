@@ -166,7 +166,7 @@ class Element {
     }
 }
 \end{plainjava}
-        \pause{}Schreiben Sie eine Methode \bjava{appendLast(Element root, int i)},\pause{} die ein neues \bjava{Element} mit Wert \(i\) an das Ende der Liste, anhängt.\pause{} Die Liste soll durch den Kopf \bjava{root} gekennzeichnet sein.
+        \pause{}Schreiben Sie eine Methode \bjava{appendLast(Element root, int i)}, die ein neues \bjava{Element} mit Wert \(i\) an das Ende der Liste, anhängt. Die Liste soll durch den Kopf \bjava{root} gekennzeichnet sein.
     \end{exercise}
 \end{frame}
 
@@ -216,7 +216,7 @@ public void appendLastIter(Element current, int i){
     \begin{itemize}[<+(1)->]
         \widei
         \item Mit einfach verketteten Listen können wir in \say{eine Richtung iterieren}.\pause{} Einen Vorgänger kann man damit nur sehr aufwändig bestimmen.
-        \item Die doppelt verkettete Liste hält nun jeweils auch noch die Referenz auf das vorherige Element.
+        \item Die doppelt verkettete Liste hält nun jeweils auch die Referenz auf das vorherige Element.
     \end{itemize}%
     \pause{}
     \begin{minipage}{0.4\linewidth}
@@ -314,7 +314,7 @@ class Element {
         \begin{columns}
             \pause{}
             \begin{column}{.45\textwidth}
-\centering\begin{tikzpicture}[scale=0.85,every node/.style={transform shape}]
+\centering\begin{tikzpicture}[scale=.85,every node/.style={transform shape}]
     \draw[rounded corners=2pt] (0,0) |- ++(3,-4) -- ++(0,4);
     \node at(1.5,-3.5) {42};
     \node at(1.5,-2.5) {13};
@@ -330,7 +330,7 @@ class Element {
             \end{column}
             \pause{}%
             \begin{column}{.45\textwidth}
-\centering\begin{tikzpicture}[scale=0.85,every node/.style={transform shape}]
+\centering\begin{tikzpicture}[scale=.85,every node/.style={transform shape}]
     \draw (0,0) -- ++(0,-4)++(3,0) -- ++(0,4);
     \node at(1.5,-2.5) {42};
     \node at(1.5,-1.5) {13};
@@ -381,8 +381,8 @@ Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit e
     \begin{itemize}[<+(1)->]
         \widei
         \item Die Höhe des Baumes ist die tiefste Ebene auf der ein Knoten existiert.
-        \item Die Verzweigung eines Knotens bezeichnet die Anzahl seiner Kinder.
-        \item Binärbäume, bei denen alle Knoten einen Verzweigungsgrad von maximal zwei haben,\pause{} sind von einer besonderen Bedeutung für die Informatik.\pause{} (Sie lassen sich übrigens auch in einem Array repräsentieren.)
+        \item Der \textit{Verzweigungsgrad} eines Knotens bezeichnet die Anzahl seiner Kinder.
+        \item Binärbäume, bei denen alle Knoten einen Verzweigungsgrad von maximal zwei haben,\pause{} sind von einer besonderen Bedeutung für die Informatik.\pause{} \textcolor{gray}{(Sie lassen sich z.B. einfach in einem Array repräsentieren.)}
     \end{itemize}
 \end{frame}
 
