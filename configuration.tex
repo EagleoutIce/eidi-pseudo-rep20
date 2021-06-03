@@ -1,8 +1,5 @@
-%% -----
 %% Basic Packages
-%% -----
 % center stuff and maybe add bibliography? :D
-
 % encoding:
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -19,9 +16,7 @@
 \RequirePackage{sopra-models,sopra-attachments,array,booktabs,colortbl}
 \solLoadLanguage{bash}
 
-%% -----
 %% Theme
-%% -----
 \usepackage[emblem,theorems]{beamerthemecolorful-dream}
 
 \makeatletter
@@ -39,9 +34,7 @@
   {keywordC: \color{sol@colors@lst@keywordC}},%
 }
 
-%% -----
 %% Extra Defs
-%% -----
 
 % Taken from lilly code extensions
 \newenvironment{lillyHighlight}[1][]
@@ -58,9 +51,9 @@
 
 \newcommand*{\lilly@lsthighlight@box}[2][]{%
   \tikz[#1]{%
-    \pgfpathrectangle{\pgfpoint{1pt}{0pt}}{\pgfpoint{\wd #2}{\ht #2}}%
+    \pgfpathrectangle{\pgfpoint\p@\z@}{\pgfpoint{\wd #2}{\ht #2}}%
     \pgfusepath{use as bounding box}%
-    \node[anchor=base west, outer sep=\z@,inner xsep=1pt, inner ysep=-1.105pt, rounded corners=1.65pt, minimum height=\ht\strutbox+1pt,#1]{\raisebox\p@{\strut}\strut\usebox{#2}};
+    \node[anchor=base west, outer sep=\z@,inner xsep=\p@, inner ysep=-1.105\p@, rounded corners=1.65\p@, minimum height=\ht\strutbox+\p@,#1]{\raisebox\p@{\strut}\strut\usebox{#2}};
   }%
 }
 
@@ -85,14 +78,11 @@
 \def\mto{\ensuremath{\to}}
 \def\mprec{\ensuremath{\prec}}
 
-%% -----
 %% General
-%% -----
 \usepackage{lecture-algorithms,lilly-dir,xfrac}
 \SetFolderFileSameIndent
 
 \setcounter{tocdepth}{4}
-
 \newcounter{ctrtasks}
 \def\Task#1{\only<1>{\stepcounter{ctrtasks}\pdfbookmark[4]{Aufgabe \thectrtasks: #1}{id@bkmrk@eidi@\thectrtasks}}}
 \def\Time#1{\ifx!#1!\else\hbox{}\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
@@ -131,9 +121,7 @@
 \usepackage[chess]{eagle-maps}
 \usepackage[glows,manual-layers]{tikzpingus}
 \def\sbfamily{\fontseries{sb}\selectfont}
-%% -----
 %% TikZ
-%% -----
 
 \tikzset{
     block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},

@@ -693,14 +693,57 @@ class Node {
     \end{definition}
 \end{frame}
 
+\def\basegraph{%
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.25) {};
+    \node[ball,gray] (2) at (1,-1.25) {};
+    \node[ball,gray] (3) at (2.5,1.25) {};
+    \node[ball,gray] (4) at (2.5,-1.25) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+}
+
 \begin{frame}{Begriffe in einem Graphen}
     \pause{}
     \begin{description}[Zusammenhang]
         \widei
-        \item[Zusammenhang] Wenn jeder Knoten von jedem anderen aus (über die Kanten) erreicht werden kann.\pause{}
+        \item[Zusammenhang] Wenn jeder Knoten von jedem anderen aus (über die Kanten) erreicht werden kann.\pause{}\medskip % Gerichteter Graph: Unterscheidung zw. stark und schwach.
+\begin{center}
+    \begin{tikzpicture}[scale=.55,gray]
+        \basegraph
+        \onslide<3->{
+            \draw[thick] (0) -- (1) -- (2) -- (3) -- (4) -- (5);
+        }
+        \node[above left] at(current bounding box.south east) {\faCheck};
+    \end{tikzpicture}\pause\hfill\begin{tikzpicture}[scale=.55,gray]
+        \basegraph
+        \onslide<4->{
+            \foreach \i in {0, ..., 5} {
+                \foreach \j in {\i, ..., 5} {
+                    \draw[thick] (\i) -- (\j);
+                }
+            }
+        }
+        \node[above left] at(current bounding box.south east) {\faCheck};
+    \end{tikzpicture}\pause\hfill
+    \begin{tikzpicture}[scale=.55,gray]
+        \basegraph
+        \onslide<5->{
+            \draw[thick] (1) -- (0) -- (2);
+            \draw[thick] (3) -- (5) -- (4);
+        }
+        \node[above left] at(current bounding box.south east) {\faClose};
+    \end{tikzpicture}
+\end{center}\pause{}
+        \item[Grad] Die Anzahl an Knoten, die mit einem Knoten verbunden sind.\pause{} \textcolor{gray}{Ist der Graph gerichtet, so wird zwischen Eingangs- und Ausgangsgrad unterschieden.}
+    \end{description}
+\end{frame}
+
+\begin{frame}{Begriffe in einem Graphen, II}
+    \pause{}
+    \begin{description}[Pfad]
+        \widei
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.\pause{}
-        \item[Grad] Die Anzahl an Knoten, die mit einem Knoten verbunden sind.\pause{} \textcolor{gray}{Ist der Graph gerichtet, so wird zwischen Eingangs- und Ausgangsgrad unterschieden.}
     \end{description}
 \end{frame}
 
@@ -1057,7 +1100,7 @@ while (current != null) {
             \node[enode] (b) at (2.25,0) {\Element{5}};
             \node[enode] (c) at (4.5,0) {\Element{6}};
 
-            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+            \draw[-Kite,rounded corners=1pt] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
 
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
@@ -1068,12 +1111,11 @@ while (current != null) {
             \node[enode] (b) at (2.25,0) {\Element{5}};
             \node[enode] (c) at (4.5,0) {\Element{6}};
 
-            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+            \draw[-Kite,rounded corners=1pt] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
 
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
             \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]c.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]c.north east);
-
         \end{tikzpicture}
     \end{enumerate}
     \end{solve}
@@ -1089,7 +1131,7 @@ while (current != null) {
     \node[enode] (b) at (2.25,0) {\Element{5}};
     \node[enode] (c) at (4.5,0) {\Element{6}};
 
-    \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+    \draw[-Kite,rounded corners=1pt] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
 
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
@@ -1116,8 +1158,8 @@ while (current != null) {
             \node[enode] (c) at (4.5,0) {\Element{6}};
             \node[enode] (d) at (6.75,0) {\EndElement};
 
-            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
-            \draw[-Kite] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
+            \draw[-Kite,rounded corners=1pt] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+            \draw[-Kite,rounded corners=1pt] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
 
 
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
@@ -1130,8 +1172,8 @@ while (current != null) {
             \node[enode] (c) at (4.5,0) {\Element{6}};
             \node[enode] (d) at (6.75,0) {\EndElement};
 
-            \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
-            \draw[-Kite] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
+            \draw[-Kite,rounded corners=1pt] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
+            \draw[-Kite,rounded corners=1pt] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
 
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]d.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]d.south east);
