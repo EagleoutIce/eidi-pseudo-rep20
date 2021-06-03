@@ -301,19 +301,20 @@ private static String generateWelcomeMessage(String name, int age,
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \colorlet{folderbg}{btcd@color@secondary}\Task{Sichtbarkeiten in Java}
     \begin{exercise}<2->[Sichtbarkeiten \Time{6}]
-        Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Nehmen Sie an, dass die Dateien und Importe korrekt sind. \par
+        Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Nehmen Sie an, dass die Dateien und Importe korrekt sind.\medskip\par
 \begin{onlyenv}<4->
 \begin{minipage}{.7\linewidth}
 \lstfs{8}%
-\begin{plainjava}[morekeywords={[3]{Apple,Banana}},belowskip=0pt]
+\begin{plainjava}[morekeywords={[3]{Apple,Banana}},belowskip=4.5pt]
 public class Apple { void eat() { /* ... */ } }
+
 public class Banana extends Apple {
   public int lookAt(int x) { /* ... */ }
   public void eat() { /* ... */ }
   protected boolean eat(float amount) { /* ... */ }
 }
 \end{plainjava}
-\begin{plainjava}[multicols=2,morekeywords={[3]{Apple,Banana,Skyrim,Morrowind}},aboveskip=0pt]
+\begin{plainjava}[multicols=2,morekeywords={[3]{Apple,Banana,Skyrim,Morrowind}},aboveskip=4.5pt]
 class Morrowind {
   static int test() {
     new Apple().eat(); // 1
