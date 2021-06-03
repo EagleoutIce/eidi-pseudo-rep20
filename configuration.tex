@@ -20,7 +20,6 @@
 \usepackage[emblem,theorems]{beamerthemecolorful-dream}
 
 \makeatletter
-
 \lstcolorlet{keywordA}{btcd@color@primary}
 \lstcolorlet{keywordB}{btcd@color@secondary}
 \lstcolorlet{keywordC}{btcd@color@secondary}
@@ -72,11 +71,8 @@
 
 \def\linksort#1{\hyperlink{mrk:sort-#1}{#1}}
 \def\alglabel#1{\hypertarget<1>{mrk:sort-#1}{}}
-
-\def\<{\ensuremath{\langle}}
-\def\>{\ensuremath{\rangle}}
-\def\mto{\ensuremath{\to}}
-\def\mprec{\ensuremath{\prec}}
+\def\<{\ensuremath{\langle}}\def\>{\ensuremath{\rangle}}
+\def\mto{\ensuremath{\to}}\def\mprec{\ensuremath{\prec}}
 
 %% General
 \usepackage{lecture-algorithms,lilly-dir,xfrac}
@@ -96,19 +92,13 @@
 \long\def\hl#1{\textcolor{btcd@color@secondary}{#1}}
 \long\def\imp#1{\textcolor{btcd@color@alerted}{#1}}
 \let\say\enquote
-
 \def\widei{\itemsep=1em}
 
 \newcommand\twosplit[3][t]{%
 \begin{columns}[#1]
-\begin{column}{.475\linewidth}
-    #2
-\end{column}\hfill
-\begin{column}{.475\linewidth}
-    #3
-\end{column}
-\end{columns}
-}
+\begin{column}{.475\linewidth}#2\end{column}\hfill
+\begin{column}{.475\linewidth}#3\end{column}
+\end{columns}}
 
 \def\O{\ensuremath{\mathcal{O}}}
 \let\emptyset\varnothing
@@ -121,8 +111,8 @@
 \usepackage[chess]{eagle-maps}
 \usepackage[glows,manual-layers]{tikzpingus}
 \def\sbfamily{\fontseries{sb}\selectfont}
-%% TikZ
 
+%% TikZ
 \tikzset{
     block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
     block/.default=solidF,
@@ -134,13 +124,27 @@
     enode/.style={inner sep=\z@},%
     every picture/.append style={line join=round,line cap=round}%
 }
+% Externalization
+\usetikzlibrary{external}
+\tikzset{
+  @externalizing/.style={%
+    execute at end picture={%
+      \tikzifexternalizing{%
+        \ifbeamer@anotherslide\pgfexternalstorecommand{\string\global\string\beamer@anotherslidetrue}\fi
+      }{}%
+    }%
+  },
+  external/optimize=false
+}
+\let\orig@tikzsetnextfilename\tikzsetnextfilename
+\def\tikzsetnextfilename#1{\orig@tikzsetnextfilename{\jobname-#1-\the\beamer@slideinframe}}
 
-%% -----
+\tikzset{every picture/.style={@externalizing}}
+
+\tikzexternalize
+
 %% Heap and Stack
-%% -----
-
 \usepackage{lecture-heap-n-stack}
-
 \let\lhnselementformat\texttt
 \def\lhnsielementformat#1{\textbf{\vphantom{A}#1}}
 \let\lhnselementbox\pbox%
@@ -148,11 +152,8 @@
 \lhns@borderbuff=1.33em
 \tikzset{lhns@impstyle/.style={}}%
 
-%% -----
 %% Different Versions
-%% -----
 \usepackage{lithie-profiles}
-
 \RegisterProfile{short}{}
 
 \newif\ifull

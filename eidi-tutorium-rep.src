@@ -10,6 +10,7 @@
 \SetEmblem[University Ulm]{Praktische Informatik}{\faCode}
 
 \titleimage{%
+    \tikzexternaldisable
     \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
     \node [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
     \foreach \l [count=\xi] in {Wert\-zu\-wei\-sun\-gen,An\-weis\-ungs\-block,Operatoren,Leer,Be\-ding\-te An\-weis\-ung,Mehr\-fach\-ver\-zwei\-gung,Wdh.-An\-weis\-ung\-en} {
@@ -39,7 +40,6 @@
     \end{center}
 \end{frame}
 
-
 \begin{frame}{}
     \usebeamercolor{title}%
     \vskip1em
@@ -61,6 +61,7 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit
     \vfill\hbox{}
 \end{frame}
 
+\tikzexternalenable
 \input{parts/0_theoretische_grundlagen}
 \input{parts/1_java_basic}
 \input{parts/2_kontrollstrukturen_und_arrays}
@@ -82,7 +83,7 @@ Wie bereits gesagt erhebt dieses Dokument keinen Anspruch auf Vollständigkeit u
 \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
-Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{cat *.src *.tex parts/*.tex | wc -l > \jobname.cmd.tmp}\input{\jobname.cmd.tmp} Zeilen und Summa Summarum \immediate\write18{cat *.src *.tex parts/*.tex | wc -m  > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\newline\hbox{}\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
+Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{cat *.src *.tex parts/*.tex | wc -l > \jobname.cmd.tmp}\input{\jobname.cmd.tmp} Zeilen und Summa Summarum \immediate\write18{cat *.src *.tex parts/*.tex | wc -m  > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\par\hbox{}\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
 \begin{center}
     \say{Viel Spaß beim Lernen und natürlich viel Erfolg!}
 \end{center}
@@ -90,15 +91,4 @@ Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet
     \end{center}
     \vfill\hbox{}
 \end{frame}
-
-% TODO: korrektheitsbeweis?
-
-% Erkläre Begriffe wie Debugger, IDE, ... Korrektheitsbeweise
-% TODO: Foliensatz 06
-% TODO: bei Klassen enums
-% TODO: bei Übersicht: andere Programmeirsprachen
-% TODO: cofindg
-% Bei klassen und Arrays nochmalauf POinter eignehen
-% Method with final
-% TODO: For in while und umgekehrt?
 \end{document}

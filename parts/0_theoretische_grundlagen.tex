@@ -73,14 +73,15 @@
 
 \begin{frame}{Schema eines Algorithmus}
     \pause
-    \begin{figure}
+    \begin{center}
+        \tikzsetnextfilename{algo-vorb-nachb}
         \begin{tikzpicture}
             \node[block] (A) at(0,0) {Algorithmus};
             \node (V) at(-5,0) {Vorbedingung};
             \node (N) at(5,0) {Nachbedingung};
             \draw[link] (V) edge (A) (A) edge (N);
         \end{tikzpicture}
-    \end{figure}
+    \end{center}
     \begin{itemize}[<+(1)->]
         \widei
         \item Ein Algorithmus benötigt (formal) eine: \begin{itemize}
