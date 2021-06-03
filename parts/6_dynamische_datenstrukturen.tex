@@ -750,7 +750,7 @@ class Node {
     \pause{}
     \begin{description}[Pfad]
         \widei
-        \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\par\medskip\pause{}
+        \item[Weg] Eine endliche Folge an Knoten, die durch Kanten (egal welcher Richtung), verbunden sind.\par\medskip\pause{}
 \begin{center}
 \onslide<3->{\begin{tikzpicture}[scale=.5,gray]
     \node[ball,gray] (0) at (0,0) {};
@@ -760,14 +760,87 @@ class Node {
     \node[ball,gray] (4) at (2.5,-1.125) {};
     \node[ball,gray] (5) at (3.75,0) {};
     \node[ball,gray] (6) at (5.25,0) {};
-    \node[ball,gray] (7) at (6.75,0) {};
-    \draw (0) -- (1) -- (3) -- (5) -- (1) -- (2) -- (5) (0) -- (2) -- (4) -- (5) -- (6) -- (7);
+    \draw (0) -- (1) -- (3) -- (5) -- (1) -- (2) -- (5) (0) -- (2) -- (4) -- (5) -- (6);
     \onslide<4->{
         \foreach \i in {0,1,5,6} {\fill[@primary] (\i) circle [radius=4pt];}
     }
+    \node[above left] at(current bounding box.south east) {\faCheck};
+\end{tikzpicture}}\qquad\onslide<5->{\begin{tikzpicture}[scale=.5,gray]
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.125) {};
+    \node[ball,gray] (2) at (1,-1.125) {};
+    \node[ball,gray] (3) at (2.5,1.125) {};
+    \node[ball,gray] (4) at (2.5,-1.125) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+    \node[ball,gray] (6) at (5.25,0) {};
+    \graph[edges={-Kite}]{(0) -> (1) -> (2) -> (4) -> (5), (6) -> (5) -> (4), (0) -> (2) -> (5), (1) -> (3) -> (5), (1) -> (5)};
+    \onslide<6->{
+        \foreach \i in {0,1,5,6} {\fill[@primary] (\i) circle [radius=4pt];}
+    }
+    \node[above left] at(current bounding box.south east) {\faCheck};
+\end{tikzpicture}}\qquad\onslide<7->{\begin{tikzpicture}[scale=.5,gray]
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.125) {};
+    \node[ball,gray] (2) at (1,-1.125) {};
+    \node[ball,gray] (3) at (2.5,1.125) {};
+    \node[ball,gray] (4) at (2.5,-1.125) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+    \node[ball,gray] (6) at (5.25,0) {};
+    \node[ball,gray] (7) at (5.25,1.125) {};
+    \graph[edges={-Kite}]{(0) -> (1) -> (2) -> (4) -> (5), (6) -> (5) -> (4), (0) -> (2) -> (5), (1) -> (3) -> (5), (1) -> (5)};
+    \onslide<8->{
+        \foreach \i in {0,2,4,5,6} {\fill[@primary] (\i) circle [radius=4pt];}
+        \fill[@alerted] (7) circle [radius=4pt];
+    }
+    \node[above left] at(current bounding box.south east) {\faClose};
 \end{tikzpicture}}
 \end{center}
-        \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.
+        \item<9->[Pfad] Ein Weg, der die Kantenrichtung beachtet.\par\medskip\pause
+\begin{center}
+\onslide<10->{\begin{tikzpicture}[scale=.5,gray]
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.125) {};
+    \node[ball,gray] (2) at (1,-1.125) {};
+    \node[ball,gray] (3) at (2.5,1.125) {};
+    \node[ball,gray] (4) at (2.5,-1.125) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+    \node[ball,gray] (6) at (5.25,0) {};
+    \draw (0) -- (1) -- (3) -- (5) -- (1) -- (2) -- (5) (0) -- (2) -- (4) -- (5) -- (6);
+    \onslide<10->{
+        \foreach \i in {0,1,5,6} {\fill[@primary] (\i) circle [radius=4pt];}
+    }
+    \node[above left] at(current bounding box.south east) {\faCheck};
+\end{tikzpicture}}\qquad\onslide<11->{\begin{tikzpicture}[scale=.5,gray]
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.125) {};
+    \node[ball,gray] (2) at (1,-1.125) {};
+    \node[ball,gray] (3) at (2.5,1.125) {};
+    \node[ball,gray] (4) at (2.5,-1.125) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+    \node[ball,gray] (6) at (5.25,0) {};
+    \graph[edges={-Kite}]{(0) -> (1) -> (2) -> (4) -> (5), (6) -> (5) -> (4), (0) -> (2) -> (5), (1) -> (3) -> (5), (1) -> (5)};
+    \onslide<11->{
+        \foreach \i in {0,1} {\fill[@primary] (\i) circle [radius=4pt];}
+        \foreach \i in {5,6} {\fill[@alerted] (\i) circle [radius=4pt];}
+    }
+    \node[above left] at(current bounding box.south east) {\faClose};
+\end{tikzpicture}}\qquad\onslide<12->{\begin{tikzpicture}[scale=.5,gray]
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.125) {};
+    \node[ball,gray] (2) at (1,-1.125) {};
+    \node[ball,gray] (3) at (2.5,1.125) {};
+    \node[ball,gray] (4) at (2.5,-1.125) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+    \node[ball,gray] (6) at (5.25,0) {};
+    \node[ball,gray] (7) at (5.25,1.125) {};
+    \graph[edges={-Kite}]{(0) -> (1) -> (2) -> (4) -> (5), (6) -> (5) -> (4), (0) -> (2) -> (5), (1) -> (3) -> (5), (1) -> (5)};
+    \onslide<12->{
+        \foreach \i in {0,2,4,5,6} {\fill[@primary] (\i) circle [radius=4pt];}
+        \fill[@alerted] (7) circle [radius=4pt];
+    }
+    \node[above left] at(current bounding box.south east) {\faClose};
+\end{tikzpicture}}
+\end{center}
     \end{description}
 \end{frame}
 
@@ -786,7 +859,7 @@ class Node {
     \node[kreis] (d) at (0,-2) {4};
     \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-    \end{minipage}\quad\begin{minipage}{0.45\linewidth}%
+    \end{minipage}\quad\begin{minipage}{.45\linewidth}%
         \[\bordermatrix{~ & \textcolor{gray}{1} & \textcolor{gray}{2} & \textcolor{gray}{3} & \textcolor{gray}{4} \cr
         \textcolor{gray}{1} & 0 & 1 & 0 & 0\cr
         \textcolor{gray}{2} & 0 & 0 & 1 & 1\cr

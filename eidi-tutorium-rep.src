@@ -48,7 +48,7 @@
         \footnotesize\begin{minipage}{.95\linewidth}
 Der folgende Dokumentsatz hat keinen Anspruch auf vollständige Richtigkeit.
 Er wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist eher als unverbindliche Hilfe im Kontext seiner Natur als Zusammenfassung zu verstehen.
-Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien, weiter wird ein Verständnis über die Themen vorrausgesetzt, so versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück -- sofern vonnöten. \begin{center}
+Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien, weiter wird ein Verständnis über die Themen vorrausgesetzt, so versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück~-- sofern vonnöten. \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
 Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit{k}Z erstellt, ebenso wie das hier gezeigte Beamer-Layout. Für das Syntax-Highlighting wird das Paket \emph{sopra-listings} meiner \emph{sopra-collection} (\url{https://github.com/EagleoutIce/sopra-collection}) verwendet.\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\relax
@@ -76,17 +76,17 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit
     {\centering\usebeamerfont{title}\MakeUppercase{Ein Wort zum Abschluss}\par}
     \vfill
     \begin{center}
-        \footnotesize\begin{minipage}{0.95\linewidth}
+        \footnotesize\begin{minipage}{.95\linewidth}
 Wie bereits gesagt erhebt dieses Dokument keinen Anspruch auf Vollständigkeit und sieht sich vermutlich auch weiteren Aktualisierungen unterworfen. Eine aktuelle Variante sollte es hier geben: \url{https://github.com/EagleoutIce/eidi-pseudo-rep}.
 \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
-Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{cat *.src *.tex parts/*.tex | wc -l > \jobname.cmd.tmp}\input{\jobname.cmd.tmp} Zeilen und Summa Summarum \immediate\write18{cat *.src *.tex parts/*.tex | wc -m  > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\par\hbox{}\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
+Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{cat *.src *.tex parts/*.tex | wc -l > \jobname.cmd.tmp}\input{\jobname.cmd.tmp} Zeilen und Summa Summarum \immediate\write18{cat *.src *.tex parts/*.tex | wc -m  > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\par\null\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
 \begin{center}
     \say{Viel Spaß beim Lernen und natürlich viel Erfolg!}
 \end{center}
         \end{minipage}
     \end{center}
-    \vfill\hbox{}
+    \vfill\null
 \end{frame}
 \end{document}
