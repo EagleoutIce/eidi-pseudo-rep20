@@ -479,13 +479,13 @@ class Node {
             \draw (tre) -- (for);
             \draw (tre) -- (fiv);
             \end{scope}
-        \begin{scope}[every path/.style={densely dashed}]
-            \draw[-Kite] (one) -- (two);
-            \draw[-Kite] (two) -- (tre);
-            \draw[-Kite] (tre) -- (six);
-            \draw[-Kite] (six) -- (sev);
-            \draw[-Kite,scale=0.5,transform shape] (sev) -- (fiv);
-            \draw[-Kite] (fiv) -- (for);
+        \begin{scope}[every path/.style={densely dashed,-Kite}]
+            \draw (one) -- (two);
+            \draw (two) -- (tre);
+            \draw (tre) -- (six);
+            \draw (six) -- (sev);
+            \draw[,scale=.5,transform shape] (sev) -- (fiv);
+            \draw (fiv) -- (for);
         \end{scope}
     \end{tikzpicture}};
 
@@ -620,7 +620,7 @@ class Node {
 \begin{frame}{Traversierung: In-Order}
     \begin{itemize}[<+(1)->]
         \item Bei der In-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
-        \item Mit der In-Order Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} (Analog gespiegelt)
+        \item Mit dieser Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} (Analog gespiegelt)
     \end{itemize}
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
@@ -633,7 +633,7 @@ class Node {
 \begin{frame}{Traversierung: Post-Order}
     \begin{itemize}[<+(1)->]
         \item Bei der Post-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
-        \item Mit der Post-Order Strategie wird erst rekursiv der linke, dann der rechte Teilbaum und erst dann der Knoten selbst bearbeitet.\pause{} (Analog gespiegelt)
+        \item Mit der Post-Order Strategie wird erst rekursiv der linke, dann der rechte Teilbaum und erst dann der Knoten selbst bearbeitet. \textcolor{gray}{(Analog gespiegelt)}
     \end{itemize}
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
@@ -649,7 +649,7 @@ class Node {
         \item Bäume können auch nützliche Datenstrukturen sein, wenn man sie \emph{ordnet}.
         \item So existieren Suchbäume (Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) \hyperlink{mrk:binsearch}{binäre Suche})
         \item Vergleiche hierzu auch die Datenstruktur \hyperlink{mrk:Heap}{Heap}.
-        \item Die Traversierungsverfahren lassen sich auch auf Bäume mit höherem Verzweigungsgrad anwenden!
+        \item Die Verfahren lassen sich auch auf Bäume mit höherem Verzweigungsgrad anwenden!
     \end{itemize}
 \end{frame}
 
@@ -678,30 +678,29 @@ class Node {
 
 \begin{frame}{Graphen}
     \begin{itemize}[<+(1)->]
-        \item Im Gegensatz zu Bäumen können in Graphen die Knoten auch mehrere Vorgänger haben.
+        \item Im Gegensatz zu Bäumen, können Knoten in Graphen auch mehrere Vorgänger haben.
     \end{itemize}
     \pause{}
     \begin{definition}[Ungerichter Graph]
         Ist ein Tupel \(G = (V,E)\) aus Knoten \(V\) und Kanten \(E \subseteq \binom{V}{2}\).
     \end{definition}
     \begin{itemize}[<+(1)->]
-        \item Die Definitionen von Graphen sind bereits aus FG bekannt. Sie werden hier dennoch zusammengefasst.
+        \item Die Graphdefinition gleicht der aus \say{Formale Grundlagen} bekannt. Sie werden hier zusammengefasst.
     \end{itemize}
     \pause{}
     \begin{definition}[Gerichteter Graph]
-        Ein gerichteter Graph definiert sich ähnlich zum ungerichteten, definiert die Kanten aber nicht als Mengen sondern als Tupel \(E \subseteq V \times V\).
+        Ein gerichteter Graph definiert sich ähnlich zum ungerichteten, definiert die Kanten aber als Tupel \(E \subseteq V \times V\).
     \end{definition}
 \end{frame}
-
 
 \begin{frame}{Begriffe in einem Graphen}
     \pause{}
     \begin{description}[Zusammenhang]
         \widei
-        \item[Zusammenhang] Ein Graph heißt zusammenhängend, wenn man jeden Knoten von jedem anderen aus (über die Kanten) erreichen kann.\pause{}
+        \item[Zusammenhang] Wenn jeder Knoten von jedem anderen aus (über die Kanten) erreicht werden kann.\pause{}
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.\pause{}
-        \item[Grad] Bezeichnet die Anzahl an Knoten die mit einem Knoten verbunden sind.\pause{} Ist der Graph gerichtet so wird zwischen Eingangs- und Ausgangsgrad unterschieden.
+        \item[Grad] Die Anzahl an Knoten, die mit einem Knoten verbunden sind.\pause{} \textcolor{gray}{Ist der Graph gerichtet, so wird zwischen Eingangs- und Ausgangsgrad unterschieden.}
     \end{description}
 \end{frame}
 
