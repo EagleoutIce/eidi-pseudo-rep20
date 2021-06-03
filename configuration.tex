@@ -1,6 +1,5 @@
 %% Basic Packages
 % center stuff and maybe add bibliography? :D
-% encoding:
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[defaultfam,light,tabular,lining]{montserrat}
@@ -16,15 +15,20 @@
 
 %% Theme
 \usepackage[emblem,theorems]{beamerthemecolorful-dream}
+\colorlet{@primary}{btcd@color@primary}
+\colorlet{@secondary}{btcd@color@secondary}
+\colorlet{@alerted}{btcd@color@alerted}
+\colorlet{@black}{btcd@color@black}
+\colorlet{@white}{btcd@color@white}
 
 \makeatletter
-\lstcolorlet{keywordA}{btcd@color@primary}
-\lstcolorlet{keywordB}{btcd@color@secondary}
-\lstcolorlet{keywordC}{btcd@color@secondary}
-\lstcolorlet{comments}{btcd@color@primary!20!btcd@color@white!50!btcd@color@black}
-\lstcolorlet{numbers}{btcd@color@alerted!90!btcd@color@primary!50!btcd@color@black}
+\lstcolorlet{keywordA}{@primary}
+\lstcolorlet{keywordB}{@secondary}
+\lstcolorlet{keywordC}{@secondary}
+\lstcolorlet{comments}{@primary!20!@white!50!@black}
+\lstcolorlet{numbers}{@alerted!90!@primary!50!@black}
 
-\lstcolorlet{literals}{btcd@color@alerted!60!btcd@color@primary!80!btcd@color@black}
+\lstcolorlet{literals}{@alerted!60!@primary!80!@black}
 \sol@list@define@styles{%
   {keywordA: \color{sol@colors@lst@keywordA}\bfseries},%
   {keywordB: \color{sol@colors@lst@keywordB}},%
@@ -52,10 +56,10 @@
   }%
 }
 
-\def\lstHLZWS{\@lillyLstHL[fill=btcd@color@primary!24,draw=btcd@color@primary!24]}
-\def\lstHLVGL{\@lillyLstHL[fill=btcd@color@alerted!36!btcd@color@primary!36,draw=btcd@color@alerted!36!btcd@color@primary!36]}
-\def\lstHLINK{\@lillyLstHL[fill=btcd@color@alerted!24,draw=btcd@color@alerted!24]}
-\def\lstHLDEK{\@lillyLstHL[fill=btcd@color@black!12,draw=btcd@color@black!12]}
+\def\lstHLZWS{\@lillyLstHL[fill=@primary!24,draw=@primary!24]}
+\def\lstHLVGL{\@lillyLstHL[fill=@alerted!36!@primary!36,draw=@alerted!36!@primary!36]}
+\def\lstHLINK{\@lillyLstHL[fill=@alerted!24,draw=@alerted!24]}
+\def\lstHLDEK{\@lillyLstHL[fill=@black!12,draw=@black!12]}
 
 \lstdefinelanguage{xJava}{
     language=lJava,
@@ -79,14 +83,14 @@
 \def\Task#1{\only<1>{\stepcounter{ctrtasks}\pdfbookmark[4]{Aufgabe \thectrtasks: #1}{id@bkmrk@eidi@\thectrtasks}}}
 \def\Time#1{\ifx!#1!\else\hbox{}\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
 
-\colorlet{solidF}{btcd@color@primary!25!btcd@color@black}
+\colorlet{solidF}{@primary!25!@black}
 
-\colorlet{fillA}{btcd@color@primary!15!white}
-\colorlet{fillB}{btcd@color@secondary!15!white}
-\colorlet{fillC}{btcd@color@alerted!15!white}
+\colorlet{fillA}{@primary!15!white}
+\colorlet{fillB}{@secondary!15!white}
+\colorlet{fillC}{@alerted!15!white}
 
-\long\def\hl#1{\textcolor{btcd@color@secondary}{#1}}
-\long\def\imp#1{\textcolor{btcd@color@alerted}{#1}}
+\long\def\hl#1{\textcolor{@secondary}{#1}}
+\long\def\imp#1{\textcolor{@alerted}{#1}}
 \let\say\enquote
 \def\widei{\itemsep=1em}
 
@@ -100,8 +104,8 @@
 \let\emptyset\varnothing
 
 \AtBeginDocument{%
-    \tikzumlset{fill class=btcd@color@white,font=\small\ttfamily,fill object=btcd@color@white}%
-    \attachfilesetup{color=btcd@color@secondary,author={Florian Sihler}}%
+    \tikzumlset{fill class=@white,font=\small\ttfamily,fill object=@white}%
+    \attachfilesetup{color=@secondary,author={Florian Sihler}}%
 }
 
 \usepackage[chess]{eagle-maps}
@@ -110,16 +114,17 @@
 
 %% TikZ
 \tikzset{
-    block/.style={rectangle,draw,#1,font=\@declaredcolor{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
+    block/.style={rectangle,draw,#1,font=\@declaredcolor{@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
     block/.default=solidF,
-    iblock/.style={block=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
-    ball/.style={circle,draw,#1,font=\@declaredcolor{btcd@color@black}},
-    iball/.style={ball=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
-    oball/.style={ball=btcd@color@alerted,fill=btcd@color@alerted!21!btcd@color@white},
+    iblock/.style={block=@primary,fill=@primary!21!@white},
+    ball/.style={circle,draw,#1,font=\@declaredcolor{@black}},
+    iball/.style={ball=@primary,fill=@primary!21!@white},
+    oball/.style={ball=@alerted,fill=@alerted!21!@white},
     ball/.default=solidF, link/.style={-Kite},
     enode/.style={inner sep=\z@},%
     every picture/.append style={line join=round,line cap=round}%
 }
+
 
 %% Heap and Stack
 \usepackage{lecture-heap-n-stack}

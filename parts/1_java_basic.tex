@@ -19,8 +19,8 @@
         \draw (prog)++(0,-.75) node[below] {\tiny Das wollen wir} -- (prog);
         \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
         \draw (comp)++(0,.75) node[above] {\tiny Syntax-Analyse} -- (comp);
-        \draw[btcd@color@alerted] (comp)--++(1,.65) node[right] {\tiny Compile-Fehler};
-        \draw[btcd@color@alerted] (prog)--++(0,.65) node[above] {\tiny Laufzeit-Fehler};
+        \draw[@alerted] (comp)--++(1,.65) node[right] {\tiny Compile-Fehler};
+        \draw[@alerted] (prog)--++(0,.65) node[above] {\tiny Laufzeit-Fehler};
         \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches\thinspace /\thinspace dynmaisches Linken}\\\hphantom{statisch\thinspace /\thinspace dy}(Java)}} -- (link);
     \end{scope}
 \end{tikzpicture}
@@ -299,7 +299,7 @@ private static String generateWelcomeMessage(String name, int age,
 
 \ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
-    \colorlet{folderbg}{btcd@color@secondary}\Task{Sichtbarkeiten in Java}
+    \colorlet{folderbg}{@secondary}\Task{Sichtbarkeiten in Java}
     \begin{exercise}<2->[Sichtbarkeiten \Time{6}]
         Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Nehmen Sie an, dass die Dateien und Importe korrekt sind.\medskip\par
 \begin{onlyenv}<4->
@@ -335,11 +335,11 @@ class Skyrim extends Banana {
 \hfill\onslide<3->{\parbox{.275\linewidth}{\begin{fancydir}
 [worlds, dir
     [fruits, dir
-        [Apple.java, cfile={btcd@color@primary}{J}]
-        [Banana.java, cfile={btcd@color@primary}{J}]
+        [Apple.java, cfile={@primary}{J}]
+        [Banana.java, cfile={@primary}{J}]
     ]
-    [Skyrim.java, cfile={btcd@color@primary}{J}]
-    [Morrowind.java, cfile={btcd@color@primary}{J}]
+    [Skyrim.java, cfile={@primary}{J}]
+    [Morrowind.java, cfile={@primary}{J}]
 ]
 \end{fancydir}}}
     \end{exercise}

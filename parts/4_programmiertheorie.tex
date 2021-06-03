@@ -250,7 +250,7 @@ static int methode(int n) {
 \setlength{\extrarowheight}{.45ex}%
 \begin{tabular}{c*{8}{c}}
     \toprule
-    & \onslide<9->{\cellcolor{btcd@color@primary!100!btcd@color@alerted!21} \(\O(1)\)} & \onslide<10->{\cellcolor{btcd@color@primary!85!btcd@color@alerted!21}\(\O(\log n)\)} & \onslide<11->{\cellcolor{btcd@color@primary!69!btcd@color@alerted!21} \(\O(n)\)} & \onslide<12->{\cellcolor{btcd@color@primary!53!btcd@color@alerted!21} \(\O(n\log n)\)} & \onslide<13->{\cellcolor{btcd@color@primary!36!btcd@color@alerted!21} \(\O(n^2)\)} & \onslide<14->{\cellcolor{btcd@color@primary!19!btcd@color@alerted!21} \(\O(n^3)\)} & \onslide<15->{\cellcolor{btcd@color@primary!14!btcd@color@alerted!21} \(\O(2^n)\)} & \onslide<16->{\cellcolor{btcd@color@primary!0!btcd@color@alerted!21} \(\O(n!)\)} \\[0.45ex]\midrule
+    & \onslide<9->{\cellcolor{@primary!100!@alerted!21} \(\O(1)\)} & \onslide<10->{\cellcolor{@primary!85!@alerted!21}\(\O(\log n)\)} & \onslide<11->{\cellcolor{@primary!69!@alerted!21} \(\O(n)\)} & \onslide<12->{\cellcolor{@primary!53!@alerted!21} \(\O(n\log n)\)} & \onslide<13->{\cellcolor{@primary!36!@alerted!21} \(\O(n^2)\)} & \onslide<14->{\cellcolor{@primary!19!@alerted!21} \(\O(n^3)\)} & \onslide<15->{\cellcolor{@primary!14!@alerted!21} \(\O(2^n)\)} & \onslide<16->{\cellcolor{@primary!0!@alerted!21} \(\O(n!)\)} \\[0.45ex]\midrule
     Bsp: & \onslide<9->{\(42\)} & \onslide<10->{\(4 \log (3n)\)} & \onslide<11->{\(4n-3\)} & \onslide<12->{\(4n\log(2n)\)} & \onslide<13->{\(n^2 + 2n - 1\)} & \onslide<14->{\(n^3 - 42n^2\)} & \onslide<15->{\(14\cdot2^n\)}& \onslide<16->{\(n! \cdot 10^{-42}\)}\\
     Bez: &\onslide<9->{\footnotesize konst.} & \onslide<10->{\footnotesize logarithm.} & \onslide<11->{\footnotesize linear} &\onslide<12->{\footnotesize linear log.} & \onslide<13->{\footnotesize quadratisch} & \onslide<14->{\footnotesize kubisch} & \onslide<15->{\footnotesize exponentiell} & \onslide<16->{\footnotesize faktoriell} \\
 \bottomrule
@@ -260,7 +260,6 @@ static int methode(int n) {
 \end{frame}
 
 \subsection{Modellierung durch UML}
-
 \begin{frame}{UML, Grundlagen}
     \begin{itemize}[<+(1)->]
         \widei
@@ -300,14 +299,12 @@ static int methode(int n) {
         \node (right2) at (6,-4) {Verteilungsdiagr.};}
     \end{scope}
 
-
     \onslide<5->{ \draw (a) -| (b1) (a) -- (b2) (a) -| (b3);}
     % \draw (b1.195) -- ++(0,-0.33) (b1.345) -- ++(0,-0.33);
     \onslide<9->{\draw (b2.195) |- (c3) (b3.195) |- (c4);
     \draw (b1.195) |- (c2);
     \foreach \i in {1,2} {\draw (b1.195) |- (left\i);\draw (b3.195) |- (right\i);}
     \foreach \i in {1,...,5} {\draw (b2.195) |- (middle\i);}}
-
 \end{tikzpicture}
     }
 \end{center}
@@ -316,7 +313,7 @@ static int methode(int n) {
 \begin{frame}[c]{UML, Klassendiagramme}
     \hypertarget<1>{uml:class}{}\begin{center}
         \onslide<2->{%
-\begin{tikzpicture}[scale=0.65, every node/.style={transform shape}]
+\begin{tikzpicture}[scale=.65, every node/.style={transform shape}]
     \tikzumlset{fill class=white, fill note=white!20} % , font=\small\LILLYxlstTypeWriter
     \umlclass[x=0,y=0,name=stud]{Student}{
         {\umlstatic{+ studierendenzahl : int}}\\
@@ -389,7 +386,7 @@ static int methode(int n) {
     \hypertarget<1>{uml:sequence}{}\begin{itemize}[<+(1)->]\widei
         \item Bilden den Nachrichtenaustausch ab.\pause{} Das Senden und Empfangen wird auf Basis von Ereignissen ausgelöst,\pause{} diese rufen wiederrum Reaktionen hervor.
         \item Die Nachrichten können jeweils synchron (durchgezogene Linie) oder asynchron (gestrichelte Linie) ausgetauscht werden.
-        \item Nachrichten selbst können Methodenaufrufe,\pause{} Rückgabewerte oder externe Ereignisse sein (wie Zeitereignisse).
+        \item Nachrichten selbst können Methodenaufrufe, Rückgabewerte oder externe Ereignisse sein (wie Zeitereignisse).
         \item Der Zeitliche Ablauf wird hierbei durch \say{Lebenslinien} gekennzeichnet.
     \end{itemize}
 \end{frame}
@@ -518,8 +515,7 @@ public int ggT(int a, int b){
 \begin{frame}[fragile,c]{Rekursiver Konverter}
     \Task{Rekursion zur Konvertierung}
     \begin{exercise}<2->[Rekursion zur Konvertierung \Time{4}]
-        \pause{}Schreiben Sie einen rekursiven Java-Algorithmus, der einen positiven Integer in seine Binärdarstellung (als \bjava{String}) verwandelt.\pause{}
-        Beispiel:\pause{}
+        \pause{}Schreiben Sie einen rekursiven Java-Algorithmus, der einen positiven Integer in seine Binärdarstellung (als \bjava{String}) verwandelt. Beispiel:\pause{}
 \begin{plainjava}
 |plain|int2bin|plain|(42) // :yields: 101010
 \end{plainjava}
@@ -671,7 +667,7 @@ int magic(int n) {
 \end{tikzpicture}}%
 \newsavebox\pengu@rook@B
 \sbox\pengu@rook@B{\begin{tikzpicture}%
-    \pingu[eyes shiny,rook=btcd@color@alerted];%
+    \pingu[eyes shiny,rook=@alerted];%
 \end{tikzpicture}}%
 \def\@em@extension@chess@figures@rookA{\resizebox{.45cm}{!}{\usebox\pengu@rook@A}}%
 \def\@em@extension@chess@figures@rookB{\resizebox{.45cm}{!}{\usebox\pengu@rook@B}}%
@@ -682,8 +678,8 @@ int magic(int n) {
 \emSetPlayerSize{.5cm}{.5cm}%
 \emSetTileOffset{.65cm}{.65cm}%
 \colorlet{chessfieldblack}{black!75!white}%
-\colorlet{chessblack}{btcd@color@secondary}%
-\colorlet{chesswhite}{btcd@color@alerted}%
+\colorlet{chessblack}{@secondary}%
+\colorlet{chesswhite}{@alerted}%
 \emSetField{0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W}%
     \begin{exercise}<2->[Das \(n\)-Türme Problem \Time{7}]%
         \smallskip\par\parbox[b]{.735\linewidth}{\onslide<3->{Ein Turm kann einen anderen auf einer vertikalen und horizontalen Linie schlagen. Im rechten \(5\times 5\) Feld, zum Beispiel der rote Turm den am roten Punkt.}\smallskip
@@ -701,9 +697,9 @@ int magic(int n) {
 }%
 \pgfonlayer{foreground}
 \foreach \i in {16,18,19,20,7,12,22} {
-    \fill[btcd@color@primary] (emline\i) circle [radius=2pt];
+    \fill[@primary] (emline\i) circle [radius=2pt];
 }
-\fill[btcd@color@alerted] ([yshift=-1mm]emline2) circle [radius=2pt];
+\fill[@alerted] ([yshift=-1mm]emline2) circle [radius=2pt];
 \endpgfonlayer
 \end{eagle-map*}}\par%
  \onslide<5->{so markiert dies einen Turm in der \(i\)-ten Zeile und \(j\)-ten Spalte.}\smallskip\par

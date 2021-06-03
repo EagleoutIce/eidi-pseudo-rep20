@@ -423,7 +423,7 @@ class Node {
 % burn this -.-
 \begin{frame}[c]{Traversierungsverfahren}
     \begin{center}\pause{}
-    \begin{tikzpicture}[rounded corners=2pt, fakeblock/.style={rectangle,draw=btcd@color@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
+    \begin{tikzpicture}[rounded corners=2pt, fakeblock/.style={rectangle,draw=@black},fakesource/.style={midway, centered,minimum height=\baselineskip,execute at begin node={\strut}}]
         \draw[fakeblock] (-1.5,0) rectangle ++ (3.5,0.65) node[fakesource] {Breitendurchlauf};
     \draw[fakeblock] (4,0) rectangle ++ (3.5,0.65) node[fakesource] {Tiefendurchlauf};
     \draw[fakeblock] (1.5,-1.5) rectangle ++ (2.5,0.65) node[fakesource] {Pre-Order};
@@ -752,16 +752,20 @@ class Node {
         \widei
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\par\medskip\pause{}
 \begin{center}
-\begin{tikzpicture}[scale=.5,gray,every node/.append style={font=\tiny}]
-    \node[ball,gray] (0) at (0,0) {0};
-    \node[ball,gray] (1) at (1,1.125) {1};
-    \node[ball,gray] (2) at (1,-1.125) {2};
-    \node[ball,gray] (3) at (2.5,1.125) {3};
-    \node[ball,gray] (4) at (2.5,-1.125) {4};
-    \node[ball,gray] (5) at (3.75,0) {5};
-    \node[ball,gray] (6) at (5.25,0) {6};
-    \node[ball,gray] (7) at (6.75,0) {7};
-\end{tikzpicture}
+\onslide<3->{\begin{tikzpicture}[scale=.5,gray]
+    \node[ball,gray] (0) at (0,0) {};
+    \node[ball,gray] (1) at (1,1.125) {};
+    \node[ball,gray] (2) at (1,-1.125) {};
+    \node[ball,gray] (3) at (2.5,1.125) {};
+    \node[ball,gray] (4) at (2.5,-1.125) {};
+    \node[ball,gray] (5) at (3.75,0) {};
+    \node[ball,gray] (6) at (5.25,0) {};
+    \node[ball,gray] (7) at (6.75,0) {};
+    \draw (0) -- (1) -- (3) -- (5) -- (1) -- (2) -- (5) (0) -- (2) -- (4) -- (5) -- (6) -- (7);
+    \onslide<4->{
+        \foreach \i in {0,1,5,6} {\fill[@primary] (\i) circle [radius=4pt];}
+    }
+\end{tikzpicture}}
 \end{center}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.
     \end{description}
@@ -774,7 +778,7 @@ class Node {
         \item Wir können einen Graphen durch eine \emph{Adjazenzmatrix} beschreiben.\pause{} Hierbei geben die jeweiligen Zellen \(m_{i,j}\), ob eine Verbindung vom Knoten \(i\) zum Knoten \(j\) besteht (\(m_{i, j} > 0\) für eine Kante).
     \end{itemize}
     \vfill\pause{}
-    \begin{minipage}{0.45\linewidth}
+    \begin{minipage}{.45\linewidth}
 \centering\begin{tikzpicture}[kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}]
     \node[kreis] (a) at (0,0) {1};
     \node[kreis] (b) at (2,0) {2};
@@ -839,14 +843,14 @@ class Node {
     \begin{multicols}{5}
         \scriptsize%
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
     \node[ikreis] (a) at (0,0) {1};
     \node[kreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
     \node[kreis] (d) at (0,-2) {4};
     \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -854,7 +858,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -862,7 +866,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -870,7 +874,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
@@ -893,7 +897,7 @@ class Node {
     \begin{multicols}{5}
         \scriptsize%
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
     \node[ikreis] (a) at (0,0) {1};
     \node[okreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
@@ -901,7 +905,7 @@ class Node {
 
     \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[okreis] (c) at (2,-2) {3};
@@ -909,7 +913,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[okreis] (c) at (2,-2) {3};
@@ -917,7 +921,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
@@ -925,7 +929,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
