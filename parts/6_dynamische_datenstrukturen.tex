@@ -708,13 +708,13 @@ class Node {
         \widei
         \item[Zusammenhang] Wenn jeder Knoten von jedem anderen aus (über die Kanten) erreicht werden kann.\pause{}\medskip % Gerichteter Graph: Unterscheidung zw. stark und schwach.
 \begin{center}
-    \begin{tikzpicture}[scale=.55,gray]
+    \begin{tikzpicture}[scale=.5,gray]
         \basegraph
         \onslide<3->{
             \draw[thick] (0) -- (1) -- (2) -- (3) -- (4) -- (5);
         }
         \node[above left] at(current bounding box.south east) {\faCheck};
-    \end{tikzpicture}\pause\hfill\begin{tikzpicture}[scale=.55,gray]
+    \end{tikzpicture}\pause\hfill\begin{tikzpicture}[scale=.5,gray]
         \basegraph
         \onslide<4->{
             \foreach \i in {0, ..., 5} {
@@ -725,7 +725,7 @@ class Node {
         }
         \node[above left] at(current bounding box.south east) {\faCheck};
     \end{tikzpicture}\pause\hfill
-    \begin{tikzpicture}[scale=.55,gray]
+    \begin{tikzpicture}[scale=.5,gray]
         \basegraph
         \onslide<5->{
             \draw[thick] (1) -- (0) -- (2);
@@ -1269,8 +1269,8 @@ void inorder(Node n)  {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Breitensuche in Adjazenzmatrix - Pseudocode}
     \begin{exercise}<2->[Breitensuche - Pseudocode \Time{6}]
-        \label{task:bfs-pseudo}Schreiben Sie Pseudocode, der den folgenden Vertrag durch eine Breitensuche erfüllt:
-\RestyleAlgo{tworuled}\medskip\par\pause
+        \pause\label{task:bfs-pseudo}Schreiben Sie Pseudocode, der den folgenden Vertrag durch eine Breitensuche erfüllt:
+\RestyleAlgo{tworuled}\smallskip\par\pause
 \SetKwInput{KwIn}{In}%
 \SetKwInput{KwOut}{Out}%
 \SetAlgoVlined%
@@ -1279,9 +1279,10 @@ void inorder(Node n)  {
 \KwIn{Ajazenzmatrix \(a\) für \(n \in \mathbb{N}\) Knoten mit \(n > 0\).}
 \KwIn{Startknoten \(s \in \{0, \ldots, n - 1\}\) und gesuchter Knoten \(g \in \{0, \ldots, n - 1\}\)}
 \KwOut{\say{Ja}, wenn \(g\) von \(s\) aus in \(a\) erreichbar ist. Sonst \say{Nein}.}
-\end{algorithm}
+\end{algorithm}\smallskip\par\pause
         Sie können Mengen, sowie Warteschlangen verwenden: \begin{itemize}
-            \item \T{Queue.create()} erzeugt eine neue Warteschlange. \item \T{enqueue(<Wert>)} fügt einen Wert hinten an.
+            \item \T{Queue.create()} erzeugt eine neue Warteschlange.
+            \item \T{enqueue(<Wert>)} fügt einen Wert hinten an.
             \item \T{dequeue()} entfernt einen Wert vorne.
             \item \T{size()} liefert Ihnen die Größe der Warteschlange.
         \end{itemize}
