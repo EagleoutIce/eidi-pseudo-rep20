@@ -101,7 +101,6 @@ class Element {
         \draw[-Kite,densely dashed] ($(b.east)+(-1em,0)$) -- (c.west);
         \fill ($(b.east)+(-1em,0)$) circle (2pt);
 
-
         \draw[-Kite] ($(b.east)+(-1em,0)$) -- ++(0.5,1) -- (e.west);
         \fill ($(b.east)+(-1em,0)$) circle (2pt);
 
@@ -318,13 +317,9 @@ class Element {
     \draw (0,0) -- ++(0,-4)++(3,0) -- ++(0,4);
     \node at(1.5,-2.5) {42};
     \node at(1.5,-1.5) {13};
-    \draw (0,-3) -- ++(3,0);
-    \draw (0,-2) -- ++(3,0);
-    \draw (0,-1) -- ++(3,0);
-
+    \draw (0,-3) -- ++(3,0); \draw (0,-2) -- ++(3,0); \draw (0,-1) -- ++(3,0);
     \draw[Kite-] (3,-2.5) -- ++(1,0) node[right] {head};
     \draw[Kite-] (3,-1.5) -- ++(1,0) node[right] {tail};
-
     \draw[-Kite,rounded corners=2pt] (-0.5,0.25) node[left] {enqueue} -| ++(1.75,-0.75);
     \draw[Kite-,overlay,rounded corners=2pt] (3.5,-4.25) node[right] {dequeue} -| ++(-1.75,0.75);
 \end{tikzpicture}
@@ -334,7 +329,6 @@ class Element {
 \end{frame}
 
 \subsection{Bäume}
-
 \begin{frame}{Bäume: Formal}
     \begin{itemize}[<+(1)->]
         \widei
@@ -579,7 +573,7 @@ class Node {
 \begin{frame}{Traversierung: In-Order}
     \begin{itemize}[<+(1)->]
         \item Bei der In-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
-        \item Mit dieser Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} (Analog gespiegelt)
+        \item Mit dieser Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} \textcolor{gray}{(Analog gespiegelt)}
     \end{itemize}
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
