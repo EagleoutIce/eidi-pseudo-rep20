@@ -32,14 +32,14 @@
 }}
 
 \begin{frame}[fragile]{Listen - Einfach verkettete Liste}
-    \renewcommand\arraystretch{1.35}%
+    \def\arraystretch{1.35}%
     \begin{itemize}[<+(1)->]
         \widei
         \item Hier ist ein Datentyp als Objekt konstruiert, das eine Referenz auf das nächste Objekt besitzt.
         \item Das erste Element, das die Liste beginnt, bezeichnen wir als \emph{Head}, das Letzte, das auf einen definierten letzten Wert (wie \bjava{null}) zeigt, nennen wir \emph{Tail}/\emph{Foot}.
     \end{itemize}%
     \pause{}
-    \begin{minipage}{0.4\linewidth}
+    \begin{minipage}{.4\linewidth}
 \small%
 \begin{plainjava}
 class Element {
@@ -75,7 +75,7 @@ class Element {
 
 \begin{frame}[fragile]{Listen - Einfach verkettete Liste}
     \begin{itemize}[<+(1)->]
-        \item Vorteil einer einfach Verketten Liste:\pause{} Das Löschen und Hinzufügen neuer Elemente ist leicht (\(\O(1)\)).\pause{} Nachteil:\pause{} Der direkte Zugriff ist nur durch ein Traversieren möglich.
+        \item Vorteil einer einfach Verketten Liste:\pause{} Das Löschen und Hinzufügen neuer Elemente ist leicht (\(\O(1)\)).\pause{} Nachteil: Der direkte Zugriff ist nur durch ein Traversieren möglich.
         \item Hinweis: Manche Operationen benötigen eine Sonderbehandlung im Falle einer leeren Liste.\pause{} So zum Beispiel das Einfügen.
         \item Betrachten wir einmal das Einfügen eines neuen Elements:
     \end{itemize}%
@@ -185,7 +185,7 @@ public void appendLast(Element root, int i) {
 \end{frame}
 
 \begin{frame}[fragile,c]{Lösung}
-    \addtocounter{solve}{-1}
+    \addtocounter{solve}{-1}%
     \begin{solve}<2->[Einfach verkettete Liste - Einfügen\hfill{}(Fortsetzung)]
         Wir iterieren:
 \begin{plainjava}
@@ -212,14 +212,14 @@ public void appendLastIter(Element current, int i){
 % Für doppelt verketteter Baum: GUI/Scene graph parent/child beziehung
 
 \begin{frame}[fragile]{Listen - Doppelt verkettete Liste}
-    \renewcommand\arraystretch{1.35}%
+    \def\arraystretch{1.35}%
     \begin{itemize}[<+(1)->]
         \widei
         \item Mit einfach verketteten Listen können wir in \say{eine Richtung iterieren}.\pause{} Einen Vorgänger kann man damit nur sehr aufwändig bestimmen.
         \item Die doppelt verkettete Liste hält nun jeweils auch die Referenz auf das vorherige Element.
     \end{itemize}%
     \pause{}
-    \begin{minipage}{0.4\linewidth}
+    \begin{minipage}{.4\linewidth}
 \small%
 \begin{plainjava}
 class Element {
@@ -262,9 +262,7 @@ class Element {
     \end{itemize}%
 \end{frame}
 
-
 % Weitere Aufgabe mit toString()?
-
 \subsection{Stacks \& Queues}
 
 \begin{frame}{Datenstruktur: Stack}
@@ -280,7 +278,7 @@ class Element {
 \begin{frame}{Datenstruktur: Stack}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Stacks lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulässt.
+        \item Stacks lassen sich als Listen implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulassen.
         \item Auf Stacks sind zwei wichtige Operationen definiert: \begin{description}[push]
             \item[push] Legt das Element oben auf dem Stack ab.
             \item[pop] Entfernt das oberste Element und liefert es zurück.
@@ -491,7 +489,7 @@ class Node {
 
     \node at(1.6 + 1.15, -1.75) {\tiny root, left, right};
     \node at(1.6 + 1.15, -2.15) [below] { \begin{tikzpicture}[
-        scale=0.425, every node/.style={transform shape},
+        scale=.425, every node/.style={transform shape},
         ring/.style={
             ball,%
             execute at begin node={\strut}%
@@ -736,11 +734,10 @@ class Node {
 \end{center}\pause{}
         \item<6->[Grad] Die Anzahl an Knoten, die mit einem Knoten verbunden sind. \onslide<7->{\textcolor{gray}{Ist der Graph gerichtet, so wird zwischen Eingangs- und Ausgangsgrad unterschieden.}}\medskip
 \begin{center}
-    \hfill\begin{tikzpicture}[scale=.5,gray]
+        \hfill\onslide<8->{\begin{tikzpicture}[scale=.5,gray]
         \basegraph
-        \onslide<7->{
             \draw[thick] (0) -- (1) -- (2) -- (3) -- (4) -- (5) -- (3);
-            \begin{pgfinterruptboundingbox}
+            \begin{pgfinterruptboundingbox}U
             \begin{scope}[every node/.append style={font=\scriptsize\sffamily}]
                 \node[left=1mm] at (0) {1};
                 \node[left=1mm] at (1) {2};
@@ -750,10 +747,8 @@ class Node {
                 \node[right=1mm] at (5) {2};
             \end{scope}
             \end{pgfinterruptboundingbox}
-        }
-    \end{tikzpicture}\pause\hfill\begin{tikzpicture}[scale=.5,gray]
+    \end{tikzpicture}}\pause\hfill\onslide<9->{\begin{tikzpicture}[scale=.5,gray]
         \basegraph
-        \onslide<8->{
             \foreach \i in {0, ..., 5} {
                 \foreach \j in {\i, ..., 5} {
                     \draw[thick] (\i) -- (\j);
@@ -769,11 +764,9 @@ class Node {
                 \node[right=1mm] at (5) {5};
             \end{scope}
             \end{pgfinterruptboundingbox}
-        }
-    \end{tikzpicture}\pause\hfill%
-    \begin{tikzpicture}[scale=.5,gray]
+    \end{tikzpicture}}\pause\hfill%
+    \onslide<10->{\begin{tikzpicture}[scale=.5,gray]
         \basegraph
-        \onslide<9->{
             \draw[thick,Kite-] (1) -- (0);
             \draw[thick,-Kite] (0) -- (2);
             \draw[thick,-Kite] (3) -- (5);
@@ -789,8 +782,7 @@ class Node {
                 \node at (current bounding box.center) {Ein/Aus};
             \end{scope}
             \end{pgfinterruptboundingbox}
-        }
-    \end{tikzpicture}\hfill\null
+    \end{tikzpicture}}\hfill\null
 \end{center}
     \end{description}
 \end{frame}
@@ -837,7 +829,7 @@ class Node {
         \item Hier hält jeder Knoten eine (verkettete) Liste an seinen benachbarten Knoten.
     \end{itemize}
     \vfill\pause{}
-    \begin{minipage}{0.45\linewidth}
+    \begin{minipage}{.45\linewidth}
 \centering\begin{tikzpicture}[kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}]
     \node[kreis] (a) at (0,0) {1};
     \node[kreis] (b) at (2,0) {2};
@@ -877,7 +869,7 @@ class Node {
     \begin{multicols}{5}
         \scriptsize%
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
     \node[ikreis] (a) at (0,0) {1};
     \node[kreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
@@ -885,7 +877,7 @@ class Node {
 
     \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -893,7 +885,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (d) edge (b) (b) edge[armark] (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -901,7 +893,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge[armark] (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[kreis] (c) at (2,-2) {3};
@@ -909,7 +901,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (d) edge (b) (b) edge (d) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
@@ -932,7 +924,7 @@ class Node {
     \begin{multicols}{5}
         \scriptsize%
     \begin{enumerate}[<+(1)->]
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
     \node[ikreis] (a) at (0,0) {1};
     \node[okreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
@@ -956,7 +948,7 @@ class Node {
 
             \draw[-Kite] (a) edge (b) (b) edge[armark] (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},okreis/.style={inner sep=4pt,oball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
             \node[ikreis] (a) at (0,0) {1};
             \node[ikreis] (b) at (2,0) {2};
             \node[ikreis] (c) at (2,-2) {3};
@@ -996,7 +988,7 @@ public class LinkedList {
     public Element get(int index) { /* ... */ }
 }
 \end{plainjava}
-}\pause{} Beispiel: \bjava{13, 12, -4, 9,}
+}\pause{}Beispiel: \bjava{13, 12, -4, 9,}
     \end{exercise}
 \end{frame}
 
@@ -1009,9 +1001,9 @@ public class LinkedList {
 !*\onslide<5->*!    String strList = "";
 !*\onslide<6->*!    while(current != null) {
 !*\onslide<7->*!        strList += current.value + ", ";
-!*\onslide<8->*!        current = current.next;
+!*\onslide<7->*!        current = current.next;
 !*\onslide<6->*!    }
-!*\onslide<9->*!    return strList;
+!*\onslide<8->*!    return strList;
 !*\onslide<3->*!}
 \end{plainjava}
         \pause{}Ist kein Komma am Ende erwünscht, so genügt ein Check der Form \bjava{if(current.next != null)} für das Anfügen des Kommas.
