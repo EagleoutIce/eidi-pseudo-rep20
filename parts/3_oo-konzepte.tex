@@ -114,8 +114,8 @@
 !*\onslide<2->*!
 !*\onslide<5->*!    // Initialisiere mit Punkt
 !*\onslide<5->*!    public Point2D(double x, double y) {
-!*\onslide<6->*!        this.x = x;
-!*\onslide<6->*!        this.y = y;
+!*\onslide<5->*!        this.x = x;
+!*\onslide<5->*!        this.y = y;
 !*\onslide<5->*!    }
 !*\onslide<2->*!}
 \end{plainjava}
@@ -124,15 +124,15 @@
 \begin{frame}[fragile]{Implementation: Methoden}
 \begin{itemize}[<+(1)->]
     \item Die Implementation der Methoden läuft wie bekannt!
-    \item Exemplarisch das relative Verschieben:\pause{}
+    \item Exemplarisch das relative Verschieben:
 \begin{plainjava}
 !*\onslide<4->*!public class Point2D {
-!*\onslide<5->*!    //...
+!*\onslide<4->*!    //...
 !*\onslide<4->*!
-!*\onslide<6->*!    public void shift(double sx, double sy) {
-!*\onslide<7->*!        this.x += sx;
-!*\onslide<7->*!        this.y += sy;
-!*\onslide<6->*!    }
+!*\onslide<5->*!    public void shift(double sx, double sy) {
+!*\onslide<6->*!        this.x += sx;
+!*\onslide<6->*!        this.y += sy;
+!*\onslide<5->*!    }
 !*\onslide<4->*!}
 \end{plainjava}
 \end{itemize}
@@ -232,7 +232,7 @@ enum :lan:Name der Enumeration:ran: {
 \begin{frame}[fragile]{Enumerationen definieren}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Der Konvention nach, werden alle Werte einer Enumeration in Großbuchstaben\pause{} und mit Unterstrichen geschrieben.
+        \item Der Konvention nach, werden alle Werte einer Enumeration in Großbuchstaben und mit Unterstrichen geschrieben.
         \item Betrachten wir ein Beispiel:\pause{}
 \begin{plainjava}
 enum Richtung {
@@ -240,7 +240,7 @@ enum Richtung {
 }
 \end{plainjava}
         \item Wir können diese Typen als Parametertypen in Methoden verwenden,\pause{} und über die Punkt-Syntax auf Elemente zugreifen.
-        \item Hinweis:\pause{} Anders als in Sprachen wie C++,\pause{} wird den Konstanten kein (Integer)-Wert zugeordnet.\pause{} (dafür gibt es \bjava{ordinal()})
+        \item \textit{Hinweis:} Anders als in Sprachen wie C++,\pause{} wird den Konstanten kein (Integer)-Wert zugeordnet.\pause{} (dafür gibt es \bjava{ordinal()})
     \end{itemize}
 \end{frame}
 
@@ -509,14 +509,14 @@ class Laenge {
         \begin{plainjava}
 !*\onslide<3->*!enum Schiene {
 !*\onslide<4->*!    FREI(false),
-!*\onslide<5->*!    SCHIENE(true),
-!*\onslide<6->*!    WAGGON(false),
-!*\onslide<7->*!    LOKOMOTIVE(false);
+!*\onslide<4->*!    SCHIENE(true),
+!*\onslide<4->*!    WAGGON(false),
+!*\onslide<4->*!    LOKOMOTIVE(false);
 !*\onslide<3->*!
-!*\onslide<8->*!    boolean befahrbar;
-!*\onslide<9->*!    Schiene(boolean befahrbar) {
-!*\onslide<9->*!        this.befahrbar = befahrbar;
-!*\onslide<9->*!    }
+!*\onslide<5->*!    boolean befahrbar;
+!*\onslide<6->*!    Schiene(boolean befahrbar) {
+!*\onslide<6->*!        this.befahrbar = befahrbar;
+!*\onslide<6->*!    }
 !*\onslide<3->*!}
         \end{plainjava}
     \end{solve}
@@ -541,7 +541,7 @@ class Laenge {
 !*\onslide<7->*!    public static Camera getInstance() {
 !*\onslide<8->*!        if(instance == null) instance = new Camera();
 !*\onslide<9->*!        return instance;
-!*\onslide<7->*!    }!*\onslide<10->*! // ...
+!*\onslide<7->*!    }
 !*\onslide<3->*!}
         \end{plainjava}
     \end{solve}

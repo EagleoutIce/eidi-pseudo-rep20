@@ -738,7 +738,7 @@ class Node {
 \begin{center}
     \hfill\begin{tikzpicture}[scale=.5,gray]
         \basegraph
-        \onslide<3->{
+        \onslide<7->{
             \draw[thick] (0) -- (1) -- (2) -- (3) -- (4) -- (5) -- (3);
             \begin{pgfinterruptboundingbox}
             \begin{scope}[every node/.append style={font=\scriptsize\sffamily}]
@@ -753,7 +753,7 @@ class Node {
         }
     \end{tikzpicture}\pause\hfill\begin{tikzpicture}[scale=.5,gray]
         \basegraph
-        \onslide<4->{
+        \onslide<8->{
             \foreach \i in {0, ..., 5} {
                 \foreach \j in {\i, ..., 5} {
                     \draw[thick] (\i) -- (\j);
@@ -773,7 +773,7 @@ class Node {
     \end{tikzpicture}\pause\hfill%
     \begin{tikzpicture}[scale=.5,gray]
         \basegraph
-        \onslide<5->{
+        \onslide<9->{
             \draw[thick,Kite-] (1) -- (0);
             \draw[thick,-Kite] (0) -- (2);
             \draw[thick,-Kite] (3) -- (5);
@@ -800,7 +800,7 @@ class Node {
     \begin{description}[Pfad]
         \widei
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
-        \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.\pause{}
+        \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.
     \end{description}
 \end{frame}
 

@@ -1,6 +1,4 @@
-
 \section{Programmiertheorie}
-
 \subsection{Rekursion}
 \begin{frame}{Rekursive und iterative Programmierung}
     \begin{definition}<2->[Rekursive Methode]
@@ -27,7 +25,7 @@
         \end{description}
     \end{itemize}
 \begin{center}\scriptsize%
-\begin{minipage}{0.45\linewidth}
+\begin{minipage}{.45\linewidth}
 \begin{plainjava}
 !*\onslide<11->*!// :yields: 1 2 3 4 5 6 :ldots:
 !*\onslide<6->*!public void headDecrement(int i){
@@ -39,9 +37,9 @@
 !*\onslide<10->*!    System.out.println(i);
 !*\onslide<6->*!}
 \end{plainjava}
-\end{minipage}\qquad\begin{minipage}{0.45\linewidth}
+\end{minipage}\qquad\begin{minipage}{.45\linewidth}
 \begin{plainjava}
-!*\onslide<12->*!// :yields: 10 9 8 7 6 :ldots:
+!*\onslide<11->*!// :yields: 10 9 8 7 6 :ldots:
 !*\onslide<6->*!public void tailDecrement(int i){
 !*\onslide<7->*!    // Abbruchbedingung
 !*\onslide<7->*!    if(i == 0) return;
@@ -64,7 +62,7 @@
     \end{itemize}
     \onslide<6->{%
 \vfill\hbox{}
-\hfill\scalebox{0.75}{\begin{forest}
+\hfill\scalebox{.75}{\begin{forest}
 [f(12)
     [f(11)
         [f(10)
@@ -186,7 +184,7 @@
     \end{definition}
     \begin{itemize}[<+(1)->]
         \widei
-        \item<8-> Letztere werden wir genauer betrachten. \onslide<9->{Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?}
+        \item<8-> Letztere werden wir genauer betrachten. Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?
     \end{itemize}
 \end{frame}
 
@@ -419,7 +417,6 @@ static int methode(int n) {
 \end{frame}
 
 \subsection{Zahlensysteme}
-
 \begin{frame}{Darstellung ganzer Zahlen}
     \begin{itemize}[<+(1)->]
         \widei
@@ -719,17 +716,17 @@ int magic(int n) {
     \begin{solve}<2->[Das \(n\)-Türme Problem]
 \begin{plainjava}
 !*\onslide<3->*!boolean check(boolean[][] arr) {
-!*\onslide<4->*!    return check(arr, 0, 0); // Start left upper corner
+!*\onslide<3->*!    return check(arr, 0, 0); // Start left upper corner
 !*\onslide<3->*!}
 !*\onslide<3->*!
-!*\onslide<5->*!boolean check(boolean[][] arr, int y, int x) {
-!*\onslide<6->*!    if(y >= arr.length) return false; // done
-!*\onslide<7->*!    // Next line
-!*\onslide<7->*!    if(x >= arr.length) return check(arr, y + 1, 0);
-!*\onslide<8->*!    if(arr[y][x] && canBeatOtherRook(arr, y, x)) return true;
+!*\onslide<4->*!boolean check(boolean[][] arr, int y, int x) {
+!*\onslide<5->*!    if(y >= arr.length) return false; // done
+!*\onslide<6->*!    // Next line
+!*\onslide<6->*!    if(x >= arr.length) return check(arr, y + 1, 0);
+!*\onslide<7->*!    if(arr[y][x] && canBeatOtherRook(arr, y, x)) return true;
 !*\onslide<3->*!
-!*\onslide<9->*!    return check(arr, y, x + 1);
-!*\onslide<5->*!}
+!*\onslide<8->*!    return check(arr, y, x + 1);
+!*\onslide<4->*!}
 \end{plainjava}
     \end{solve}
 \end{frame}

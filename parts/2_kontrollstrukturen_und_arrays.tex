@@ -47,9 +47,9 @@ return (n >= 18) ? "Volljährig" : "Nicht volljährig";
 !*\onslide<6->*!        // Code für Fall 1 & 2
 !*\onslide<6->*!        break; // Verlässt Anweisung
 !*\onslide<7->*!    case :lan:Fall |plain|3|plain|:ran::
-!*\onslide<8->*!        // Code für Fall 3
-!*\onslide<8->*!        break;
-!*\onslide<9->*!    default: // Code, wenn keiner der Fälle greift.
+!*\onslide<7->*!        // Code für Fall 3
+!*\onslide<7->*!        break;
+!*\onslide<8->*!    default: // Code, wenn keiner der Fälle greift.
 !*\onslide<3->*!}
 \end{plainjava}
     \item<10-> Dies funktioniert für: \onslide<11->{Zahlen (also auch \bjava{char}, das konvertiert werden kann), \onslide<12->{\bjava{enum}-Konstanten \onslide<13->{und (seit Java Version-7) auch für \bjava{String}s.}}}
@@ -388,7 +388,7 @@ for (int[][] ex : x) {
     \begin{enumerate}[<+(1)->]
         \item[3.] Die innere \bjava{for}-Schleife prüft weiterhin auf die Länge eines anderen Arrays als das es zugreift.
     \end{enumerate}
-    \pause{}Die Ausgabe lautet:\pause{} \bjava{\"1 2 3 \"} (Anführungszeichen nur zur Übersicht).
+    \pause{}Die Ausgabe lautet: \bjava{\"1 2 3 \"}. \textcolor{gray}{(Anführungszeichen nur zur Übersicht)}
     \end{solve}
 \end{frame}
 
@@ -415,7 +415,7 @@ for (int[][] ex : x) {
     \end{solve}
 \end{frame}
 
-\begin{frame}[c,fragile]{Übungsaufgabe}
+\begin{frame}[c]{Übungsaufgabe}
     \Task{Programmieren eines Häufigkeitszähler}
     \begin{exercise}<2->[Programmieren eines Häufigkeitszähler \Time{5}]
         \pause{}Schreiben Sie eine Java-Routine \bjava{countChars(String)}, welche ein Array \bjava{int[26]} zurückliefert,\pause{} das von \(0 \;\widehat{=}\; \T{a}\)\pause{} bis \(25 \;\widehat{=}\; \T{z}\) die Häufigkeit der Buchstaben angibt.\pause{} Groß- und Kleinschreibung, sowie andere Zeichen sollen dabei ignoriert werden.
@@ -429,9 +429,9 @@ for (int[][] ex : x) {
 !*\onslide<4->*!    int[] counts = new int[26];
 !*\onslide<5->*!    for(char c : text.toLowerCase().toCharArray()){
 !*\onslide<6->*!        if(c >= 'a' && c <= 'z')
-!*\onslide<7->*!            counts[c - 'a'] += 1;
+!*\onslide<6->*!            counts[c - 'a'] += 1;
 !*\onslide<5->*!    }
-!*\onslide<8->*!    return counts;
+!*\onslide<7->*!    return counts;
 !*\onslide<3->*!}
         \end{plainjava}
     \end{solve}
@@ -453,11 +453,11 @@ for (int[][] ex : x) {
 !*\onslide<4->*!    int nx = turtleX + tx, ny = turtleY + ty;
 !*\onslide<5->*!    if(nx >= field[0].length || nx < 0 // x-Richtung
 !*\onslide<6->*!       || ny >= field.length || ny < 0 // y-Richtung
-!*\onslide<7->*!       || !field[ny][nx]) // blockiert
-!*\onslide<8->*!            return false;
-!*\onslide<9->*!    turtleX = nx;
-!*\onslide<9->*!    turtleY = ny;
-!*\onslide<10->*!    return true;
+!*\onslide<6->*!       || !field[ny][nx]) // blockiert
+!*\onslide<7->*!            return false;
+!*\onslide<8->*!    turtleX = nx;
+!*\onslide<8->*!    turtleY = ny;
+!*\onslide<9->*!    return true;
 !*\onslide<3->*!}
         \end{plainjava}
     \end{solve}

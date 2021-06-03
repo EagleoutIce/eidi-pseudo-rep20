@@ -216,22 +216,22 @@
     \end{itemize}
     \vfill
     \begin{center}
-\begin{minipage}{0.9\linewidth}
+\begin{minipage}{.9\linewidth}
 \begin{multicols}{2}
     \begin{enumerate}
-        \item<8-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<8-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{4,2,1,3}{0}
             \draw[Kite-Kite] (1.north) to[bend left] (3.north);
         \end{tikzpicture}
-        \item<9-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<9-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,4,3}{1}
             \draw[Kite-Kite] (2) to[loop above] (2);
         \end{tikzpicture}
-        \item<10-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<10-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,4,3}{2}
             \draw[Kite-Kite] (3.north) to[bend left] (4.north);
         \end{tikzpicture}
-        \item<11-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<11-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
             \List{1,2,3,4}{4}
         \end{tikzpicture}
     \end{enumerate}
@@ -328,7 +328,7 @@
 \end{frame}
 
 \ifull
-\begin{frame}[fragile,c]{Insertionsort implementieren}
+\begin{frame}[c]{Insertionsort implementieren}
     \Task{Insertionsort implementieren}
     \begin{exercise}<2->[Insertionsort implementieren \Time{6}]
         \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void insertionSort(int[])}, die das übergebene Array mittels Insertionsort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.
@@ -393,7 +393,7 @@
     \end{itemize}
     \vfill
     \begin{center}\pause
-\begin{minipage}{0.9\linewidth}
+\begin{minipage}{.9\linewidth}
     \begin{multicols}{2}
         \begin{enumerate}[<+(1)->]
             \item<7-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]

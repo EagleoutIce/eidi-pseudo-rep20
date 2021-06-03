@@ -202,13 +202,13 @@ herbert instanceof Dozent // :yields: false
 !*\onslide<2->*!
 !*\onslide<4->*!    public ArrayList() {
 !*\onslide<5->*!        super();
-!*\onslide<6->*!        elems = new Element[0];
+!*\onslide<5->*!        elems = new Element[0];
 !*\onslide<4->*!    }
 !*\onslide<2->*!
-!*\onslide<7->*!    public void add(Element e) {
-!*\onslide<8->*!        // ...
-!*\onslide<7->*!    }
-!*\onslide<9->*!    // ...
+!*\onslide<6->*!    public void add(Element e) {
+!*\onslide<6->*!        // ...
+!*\onslide<6->*!    }
+!*\onslide<7->*!    // ...
 !*\onslide<2->*!}
 \end{plainjava}
 \end{frame}
@@ -222,12 +222,12 @@ herbert instanceof Dozent // :yields: false
         \item Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
             \item[statisch] Nehmen wir an, wir haben zwei Klassen \solGet{keywordC}{A} und \solGet{keywordC}{B}, wobei \solGet{keywordC}{B} von \solGet{keywordC}{A} erbt.\pause{} Beide deklarieren die Variable \bjava{i}, in \solGet{keywordC}{A} wird sie auf \(32\), in \solGet{keywordC}{B} auf \(42\) gesetzt.\pause{} Es ergibt sich:
 \begin{plainjava}[morekeywords={[3]{A,B}}]
-!*\onslide<+->*!A a = new A();
-!*\onslide<+->*!B b = new B();
-!*\onslide<+->*!A c = new B();
-!*\onslide<+->*!System.out.println(a.i); // :yields: 32
-!*\onslide<+->*!System.out.println(b.i); // :yields: 42
-!*\onslide<+->*!System.out.println(c.i); // :yields: 32
+!*\onslide<7->*!A a = new A();
+!*\onslide<7->*!B b = new B();
+!*\onslide<7->*!A c = new B();
+!*\onslide<8->*!System.out.println(a.i); // :yields: 32
+!*\onslide<9->*!System.out.println(b.i); // :yields: 42
+!*\onslide<10->*!System.out.println(c.i); // :yields: 32
             \end{plainjava}
         \end{description}
     \end{itemize}
@@ -237,13 +237,13 @@ herbert instanceof Dozent // :yields: false
     \begin{itemize}[<+(1)->]
         \item<1-> Attribute werden Java \emph{statisch} und Methoden \emph{dynamisch} gebunden.
         \item<1-> Doch was bedeuten diese Bindungsarten: \begin{description}[dynamisch]
-            \item[dynamisch] Angenommen die Klasse \bjava{Mensch} hat die Methode \bjava{hallo()}, die einfach \say{Hallo ich bin ein Mensch} ausgibt.\pause{} \bjava{Student} überschreibt nun \bjava{hallo()} sie gibt nun \say{Hallo ich bin ein Student} aus.\pause{} Wir erhalten:\pause{} \begin{plainjava}
-!*\onslide<+->*!Mensch a = new Mensch(/*...*/);
-!*\onslide<+->*!Student b = new Student(/*...*/);
-!*\onslide<+->*!Mensch c = new Student(/*...*/);
-!*\onslide<+->*!a.hallo(); // :yields: Hallo ich bin ein Mensch
-!*\onslide<+->*!b.hallo(); // :yields: Hallo ich bin ein Student
-!*\onslide<+->*!c.hallo(); // :yields: Hallo ich bin ein Student
+            \item[dynamisch] Angenommen die Klasse \bjava{Mensch} hat die Methode \bjava{hallo()}, die einfach \say{Hallo ich bin ein Mensch} ausgibt.\pause{} \bjava{Student} überschreibt nun \bjava{hallo()} sie gibt nun \say{Hallo ich bin ein Student} aus.\pause{} Wir erhalten: \begin{plainjava}
+!*\onslide<5->*!Mensch a = new Mensch(/*...*/);
+!*\onslide<5->*!Student b = new Student(/*...*/);
+!*\onslide<5->*!Mensch c = new Student(/*...*/);
+!*\onslide<6->*!a.hallo(); // :yields: Hallo ich bin ein Mensch
+!*\onslide<7->*!b.hallo(); // :yields: Hallo ich bin ein Student
+!*\onslide<8->*!c.hallo(); // :yields: Hallo ich bin ein Student
             \end{plainjava}
         \end{description}
     \end{itemize}
@@ -278,7 +278,7 @@ public interface Sortable {
     boolean eq(Sortable o); // '=='
 }
 \end{plainjava}
-        \item Dies zeigt auch, wie man Interface-Bezeichnet wie (abstrakte) Klassen als Typanforderung liefern kann.\pause{} (Polymorphieeee)
+        \item Dies zeigt auch, wie man Interface-Bezeichnet wie (abstrakte) Klassen als Typanforderung liefern kann. \textcolor{gray}{(Polymorphieeee)}
     \end{itemize}
 \end{frame}
 
@@ -326,12 +326,12 @@ public class Element implements Sortable /*, interfaceB, ... */ {
     \begin{itemize}[<+(1)->]
         \widei
         \item Eine \emph{explizite} Ausnahme können wir mittels \bjava{throw} werfen.
-        \item Eine \emph{implizite} Ausnahme wird von der Java Virtual Machine geworfen\pause{} (Division durch Null, Zugriff auf \bjava{null},~\ldots)
+        \item Eine \emph{implizite} Ausnahme wird von der Java Virtual Machine geworfen \textcolor{gray}{(Division durch Null, Zugriff auf \bjava{null},~\ldots)}
         \item Wir werfen eine explizite Ausnahme/einen Error (allgemein: ein \bjava{Throwable}): \pause{}
 \begin{plainjava}
 throw new IndexOutOfBoundsException();
 \end{plainjava}
-        \item Wird eine Ausnahme nicht behandelt,\pause{} bricht das Programm ab.
+        \item Wird eine Ausnahme nicht behandelt, bricht das Programm ab.
         \item Java-Errors, wie ein \bjava{InternalError} lassen sich nicht sinnvoll behandeln!
     \end{itemize}
 \end{frame}
@@ -515,7 +515,7 @@ public class A {
     \end{solve}
 \end{frame}
 
-\begin{frame}[c,fragile]{Lösung}
+\begin{frame}[c]{Lösung}
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Fehler finden, V\hfill{}(Fortsetzung)]
         \begin{enumerate}
