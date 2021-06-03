@@ -750,10 +750,17 @@ class Node {
     \pause{}
     \begin{description}[Pfad]
         \widei
-        \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\par\pause{}
+        \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\par\medskip\pause{}
 \begin{center}
 \begin{tikzpicture}[scale=.5,gray]
-    \basegraph
+    \node[ball,gray] (0) at (0,0) {0};
+    \node[ball,gray] (1) at (1,1.125) {1};
+    \node[ball,gray] (2) at (1,-1.125) {2};
+    \node[ball,gray] (3) at (2.5,1.125) {3};
+    \node[ball,gray] (4) at (2.5,-1.125) {4};
+    \node[ball,gray] (5) at (3.75,0) {5};
+    \node[ball,gray] (6) at (1.75,0) {6};
+    \node[ball,gray] (7) at (4.5,0) {7};
 \end{tikzpicture}
 \end{center}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.
