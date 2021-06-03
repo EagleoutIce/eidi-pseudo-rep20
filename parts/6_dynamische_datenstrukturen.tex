@@ -566,9 +566,9 @@ class Node {
 \begin{frame}{Traversierung: Pre-Order}
     \begin{itemize}[<+(1)->]
         \item Bei der Pre-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
-        \item Mit der Pre-Order Strategie wird der aktuelle Knoten bearbeitet, dann rekursiv der linke, dann rekursiv der rechte Teilbaum.\pause{} (Analog gespiegelt)
+        \item Mit der Pre-Order Strategie wird der aktuelle Knoten bearbeitet, dann rekursiv der linke, dann rekursiv der rechte Teilbaum.\pause{} \textcolor{gray}{(Analog gespiegelt)}
     \end{itemize}
-    \pause{}\begin{center}
+    \pause\begin{center}
         \scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
             [1[2[3[4][5]][6[7][8]]][9[10[11][12]][13[14][15]]]]
@@ -752,15 +752,15 @@ class Node {
         \widei
         \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\par\medskip\pause{}
 \begin{center}
-\begin{tikzpicture}[scale=.5,gray]
+\begin{tikzpicture}[scale=.5,gray,every node/.append style={font=\tiny}]
     \node[ball,gray] (0) at (0,0) {0};
     \node[ball,gray] (1) at (1,1.125) {1};
     \node[ball,gray] (2) at (1,-1.125) {2};
     \node[ball,gray] (3) at (2.5,1.125) {3};
     \node[ball,gray] (4) at (2.5,-1.125) {4};
     \node[ball,gray] (5) at (3.75,0) {5};
-    \node[ball,gray] (6) at (1.75,0) {6};
-    \node[ball,gray] (7) at (4.5,0) {7};
+    \node[ball,gray] (6) at (5.25,0) {6};
+    \node[ball,gray] (7) at (6.75,0) {7};
 \end{tikzpicture}
 \end{center}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.
@@ -1280,8 +1280,7 @@ void inorder(Node n)  {
     \begin{exercise}<2->[Breitensuche - Pseudocode \Time{6}]
         \pause\label{task:bfs-pseudo}Schreiben Sie Pseudocode, der den folgenden Vertrag durch eine Breitensuche erfüllt:
 \RestyleAlgo{tworuled}\smallskip\par\pause
-\SetKwInput{KwIn}{In}%
-\SetKwInput{KwOut}{Out}%
+\SetKwInput{KwIn}{In}\SetKwInput{KwOut}{Out}%
 \SetAlgoVlined%
 \begin{algorithm}[H]
 \PreCode

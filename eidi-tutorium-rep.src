@@ -10,7 +10,6 @@
 \SetEmblem[University Ulm]{Praktische Informatik}{\faCode}
 
 \titleimage{%
-    \tikzexternaldisable
     \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
     \node [rounded corners=6pt,rectangle,draw,fill=fillA] (0) {\footnotesize ~~Anweisung~~~};
     \foreach \l [count=\xi] in {Wert\-zu\-wei\-sun\-gen,An\-weis\-ungs\-block,Operatoren,Leer,Be\-ding\-te An\-weis\-ung,Mehr\-fach\-ver\-zwei\-gung,Wdh.-An\-weis\-ung\-en} {
@@ -61,7 +60,6 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit
     \vfill\hbox{}
 \end{frame}
 
-\tikzexternalenable
 \input{parts/0_theoretische_grundlagen}
 \input{parts/1_java_basic}
 \input{parts/2_kontrollstrukturen_und_arrays}

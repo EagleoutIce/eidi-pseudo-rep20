@@ -3,12 +3,10 @@
 % encoding:
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-
 \RequirePackage[defaultfam,light,tabular,lining]{montserrat}
 \RequirePackage{sfmath,tikz} % we need it anyways - will load xcolor
 
 \usetikzlibrary{calc, arrows.meta, decorations, decorations.pathreplacing}
-
 \RequirePackage[english,main=ngerman]{babel}
 
 \RequirePackage{microtype,csquotes}
@@ -34,7 +32,6 @@
 }
 
 %% Extra Defs
-
 % Taken from lilly code extensions
 \newenvironment{lillyHighlight}[1][]
 {\begingroup\tikzset{lilly@Highlight@par/.style={#1}}\begin{lrbox}{\@tempboxa}}
@@ -44,11 +41,10 @@
   \begin{lillyHighlight}[#1]\bgroup\aftergroup\lilly@lsthighlight@endenv%
 }
 \def\lilly@lsthighlight@endenv{%
-  \end{lillyHighlight}%
-  \egroup
+  \end{lillyHighlight}\egroup
 }
 
-\newcommand*{\lilly@lsthighlight@box}[2][]{%
+\newcommand*\lilly@lsthighlight@box[2][]{%
   \tikz[#1]{%
     \pgfpathrectangle{\pgfpoint\p@\z@}{\pgfpoint{\wd #2}{\ht #2}}%
     \pgfusepath{use as bounding box}%
@@ -114,34 +110,16 @@
 
 %% TikZ
 \tikzset{
-    block/.style={rectangle,draw,#1,font=\color{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
+    block/.style={rectangle,draw,#1,font=\@declaredcolor{btcd@color@black},rounded corners=\z@,minimum height=\baselineskip,execute at begin node={\strut},rounded corners=\p@},
     block/.default=solidF,
     iblock/.style={block=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
-    ball/.style={circle,draw,#1,font=\color{btcd@color@black}},
+    ball/.style={circle,draw,#1,font=\@declaredcolor{btcd@color@black}},
     iball/.style={ball=btcd@color@primary,fill=btcd@color@primary!21!btcd@color@white},
     oball/.style={ball=btcd@color@alerted,fill=btcd@color@alerted!21!btcd@color@white},
     ball/.default=solidF, link/.style={-Kite},
     enode/.style={inner sep=\z@},%
     every picture/.append style={line join=round,line cap=round}%
 }
-% Externalization
-\usetikzlibrary{external}
-\tikzset{
-  @externalizing/.style={%
-    execute at end picture={%
-      \tikzifexternalizing{%
-        \ifbeamer@anotherslide\pgfexternalstorecommand{\string\global\string\beamer@anotherslidetrue}\fi
-      }{}%
-    }%
-  },
-  external/optimize=false
-}
-\let\orig@tikzsetnextfilename\tikzsetnextfilename
-\def\tikzsetnextfilename#1{\orig@tikzsetnextfilename{\jobname-#1-\the\beamer@slideinframe}}
-
-\tikzset{every picture/.style={@externalizing}}
-
-\tikzexternalize
 
 %% Heap and Stack
 \usepackage{lecture-heap-n-stack}
@@ -158,18 +136,11 @@
 
 \newif\ifull
 \ifprofile{default}{%
-  \def\profileshorttitle{Volle Version}
-  \ulltrue
-}{
-\ifprofile{short}{%
-  \def\profileshorttitle{Kurze Version}
-  \ullfalse
-}{}%
-}
+  \def\profileshorttitle{Volle Version}\ulltrue
+}{\ifprofile{short}{%
+  \def\profileshorttitle{Kurze Version}\ullfalse
+}{}}
 % => empty übungsaufgaben (gray + no link)
-\ifull
-\let\fullsubsection\subsection
-\else
-\let\fullsubsection\fakesubsection
-\fi
+\ifull\let\fullsubsection\subsection
+\else\let\fullsubsection\fakesubsection\fi
 \makeatother
