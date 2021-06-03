@@ -1,6 +1,4 @@
-
 \section{Dynamische Datenstrukturen}
-
 \subsection{Listen}
 
 \begin{frame}{Listen - Dynamische Arrays}
@@ -17,17 +15,13 @@
 % Ugly but still, i am lazy right now
 \def\Element#1{{\renewcommand{\arraystretch}{1.4}%
     \begin{tabular}{|>{\centering}p{1em}|p{1em}|}
-        \hline
-            \strut#1 & \\
-        \hline
+        \hline\strut#1 & \\\hline
     \end{tabular}%
 }}
 
 \def\EndElement{{\renewcommand{\arraystretch}{1.5}%
     \begin{tabular}{|>{\centering\arraybackslash}p{1em}|}
-        \hline
-            \strut/\\
-        \hline
+        \hline\strut/\\\hline
     \end{tabular}
 }}
 
@@ -37,10 +31,8 @@
         \widei
         \item Hier ist ein Datentyp als Objekt konstruiert, das eine Referenz auf das nächste Objekt besitzt.
         \item Das erste Element, das die Liste beginnt, bezeichnen wir als \emph{Head}, das Letzte, das auf einen definierten letzten Wert (wie \bjava{null}) zeigt, nennen wir \emph{Tail}/\emph{Foot}.
-    \end{itemize}%
-    \pause{}
-    \begin{minipage}{.4\linewidth}
-\small%
+    \end{itemize}\pause%
+    \begin{minipage}{.4\linewidth}\small%
 \begin{plainjava}
 class Element {
     public int value;
@@ -63,7 +55,6 @@ class Element {
 
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {head}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]d.south west) to[edge node={node[below=5pt] {foot}}] ([xshift=3.75pt,yshift=-4pt]d.south east);
-
 \end{tikzpicture}
 \end{minipage}
     \begin{itemize}[<+(1)->]
@@ -71,7 +62,6 @@ class Element {
         \item Doppelt verkettete Listen verbrauchen mehr Speicher und sind komplizierter (da zwei Verweise).
     \end{itemize}%
 \end{frame}
-
 
 \begin{frame}[fragile]{Listen - Einfach verkettete Liste}
     \begin{itemize}[<+(1)->]
@@ -210,7 +200,6 @@ public void appendLastIter(Element current, int i){
 
 % NOTE: TODO: NOTE: gutes Beispiel: Undo & Redo, Vearbeitungsverlauf.
 % Für doppelt verketteter Baum: GUI/Scene graph parent/child beziehung
-
 \begin{frame}[fragile]{Listen - Doppelt verkettete Liste}
     \def\arraystretch{1.35}%
     \begin{itemize}[<+(1)->]
@@ -253,7 +242,6 @@ class Element {
 
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {head}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {foot}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
-
 \end{tikzpicture}
 \end{minipage}
     \begin{itemize}[<+(1)->]
@@ -306,7 +294,6 @@ class Element {
     \end{itemize}
 \end{frame}
 
-
 \begin{frame}[c]{Vergleich: Stack und Queue}
     \begin{center}
         \begin{columns}
@@ -323,7 +310,6 @@ class Element {
 
     \draw[-Kite,rounded corners=2pt] (-0.5,0.25) node[left] {push} -| ++(1.75,-0.75);
     \draw[Kite-,rounded corners=2pt] (3.5,0.25) node[right] {pop} -| ++(-1.75,-0.75);
-
 \end{tikzpicture}
             \end{column}
             \pause{}%
@@ -341,7 +327,6 @@ class Element {
 
     \draw[-Kite,rounded corners=2pt] (-0.5,0.25) node[left] {enqueue} -| ++(1.75,-0.75);
     \draw[Kite-,overlay,rounded corners=2pt] (3.5,-4.25) node[right] {dequeue} -| ++(-1.75,0.75);
-
 \end{tikzpicture}
             \end{column}
         \end{columns}
@@ -409,10 +394,8 @@ class Node {
     \end{itemize}
 \end{frame}
 
-
 \begin{frame}[fragile]{Bäume: Implementation, II}
-    \pause{}
-    \begin{minipage}{0.4\linewidth}
+    \pause\begin{minipage}{.4\linewidth}
 \small%
 \begin{plainjava}
 class Node {
@@ -424,8 +407,8 @@ class Node {
     // ...
 }
 \end{plainjava}
-    \end{minipage}\hfill{}\pause{}\begin{minipage}{0.55\linewidth}%
-\centering\scalebox{0.625}{\begin{forest}
+    \end{minipage}\hfill{}\pause\begin{minipage}{.55\linewidth}%
+\centering\scalebox{.625}{\begin{forest}
     for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,edge=Kite-Kite}
     [7[3[4[1][9]][,phantom]][6[1[,phantom][5]][3[,phantom][,phantom]]]]
 \end{forest}}
@@ -470,18 +453,13 @@ class Node {
         \node[ring] at (-2.75,-2) (six) {3};
         \node[ring] at (-.75,-2) (sev) {4};
         \begin{scope}[every path/.style={densely dotted, thin,black!45}]
-            \draw (one) -- (two);
-            \draw (one) -- (tre);
-            \draw (two) -- (six);
-            \draw (two) -- (sev);
-            \draw (tre) -- (for);
-            \draw (tre) -- (fiv);
+            \draw (one) -- (two); \draw (one) -- (tre);
+            \draw (two) -- (six); \draw (two) -- (sev);
+            \draw (tre) -- (for); \draw (tre) -- (fiv);
             \end{scope}
         \begin{scope}[every path/.style={densely dashed,-Kite}]
-            \draw (one) -- (two);
-            \draw (two) -- (tre);
-            \draw (tre) -- (six);
-            \draw (six) -- (sev);
+            \draw (one) -- (two); \draw (two) -- (tre);
+            \draw (tre) -- (six); \draw (six) -- (sev);
             \draw[,scale=.5,transform shape] (sev) -- (fiv);
             \draw (fiv) -- (for);
         \end{scope}
@@ -502,20 +480,15 @@ class Node {
         \node[ring] at (-2.75,-2) (six) {3};
         \node[ring] at (-.75,-2) (sev) {4};
         \begin{scope}[every path/.style={densely dotted, thin,black!45}]
-        \draw (one) -- (two);
-        \draw (one) -- (tre);
-        \draw (two) -- (six);
-        \draw (two) -- (sev);
-        \draw (tre) -- (for);
-        \draw (tre) -- (fiv);
+        \draw (one) -- (two); \draw (one) -- (tre);
+        \draw (two) -- (six); \draw (two) -- (sev);
+        \draw (tre) -- (for); \draw (tre) -- (fiv);
         \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-Kite] (one) -- (two);
-            \draw[-Kite] (two) -- (six);
+            \draw[-Kite] (one) -- (two); \draw[-Kite] (two) -- (six);
             \draw[-Kite] (six) to[bend left] (sev);
             \draw[-Kite] (sev) to[out=85,in = 185,looseness=1.15] (tre);
-            \draw[-Kite] (tre) -- (fiv);
-            \draw[-Kite] (fiv) -- (for);
+            \draw[-Kite] (tre) -- (fiv); \draw[-Kite] (fiv) -- (for);
         \end{scope}
         %%DRAW DEFAULTS DENSLEY DOTTED IN GRAY TO KEEP STYLE
     \end{tikzpicture}};
@@ -534,20 +507,15 @@ class Node {
         \node[ring] at (-2.75,-2) (six) {3};
         \node[ring] at (-.75,-2) (sev) {4};
         \begin{scope}[every path/.style={densely dotted, thin,black!45}]
-            \draw (one) -- (two);
-            \draw (one) -- (tre);
-            \draw (two) -- (six);
-            \draw (two) -- (sev);
-            \draw (tre) -- (for);
-            \draw (tre) -- (fiv);
+            \draw (one) -- (two); \draw (one) -- (tre);
+            \draw (two) -- (six); \draw (two) -- (sev);
+            \draw (tre) -- (for); \draw (tre) -- (fiv);
             \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-Kite] (six) -- (two);
-            \draw[-Kite] (two) -- (sev);
+            \draw[-Kite] (six) -- (two); \draw[-Kite] (two) -- (sev);
             \draw[-Kite] (sev) to[bend left] (one);
             \draw[-Kite] (one) to[bend left] (fiv);
-            \draw[-Kite] (fiv) -- (tre);
-            \draw[-Kite] (tre) -- (for);
+            \draw[-Kite] (fiv) -- (tre); \draw[-Kite] (tre) -- (for);
         \end{scope}
 
     \end{tikzpicture}};
@@ -566,22 +534,16 @@ class Node {
         \node[ring] at (-2.75,-2) (six) {3};
         \node[ring] at (-.75,-2) (sev) {4};
         \begin{scope}[every path/.style={densely dotted, thin,black!45}]
-            \draw (one) -- (two);
-            \draw (one) -- (tre);
-            \draw (two) -- (six);
-            \draw (two) -- (sev);
-            \draw (tre) -- (for);
-            \draw (tre) -- (fiv);
+            \draw (one) -- (two); \draw (one) -- (tre);
+            \draw (two) -- (six); \draw (two) -- (sev);
+            \draw (tre) -- (for); \draw (tre) -- (fiv);
             \end{scope}
         \begin{scope}[every path/.style={densely dashed}]
-            \draw[-Kite] (six) -- (sev);
-            \draw[-Kite] (sev) -- (two);
+            \draw[-Kite] (six) -- (sev); \draw[-Kite] (sev) -- (two);
             \draw[-Kite] (two) to[bend left] (fiv);
-            \draw[-Kite] (fiv) -- (for);
-            \draw[-Kite] (for) -- (tre);
+            \draw[-Kite] (fiv) -- (for); \draw[-Kite] (for) -- (tre);
             \draw[-Kite] (tre) -- (one);
         \end{scope}
-
     \end{tikzpicture}};
     \end{tikzpicture}
 \end{center}
@@ -613,7 +575,6 @@ class Node {
         \end{forest}}
     \end{center}
 \end{frame}
-
 
 \begin{frame}{Traversierung: In-Order}
     \begin{itemize}[<+(1)->]
@@ -671,9 +632,7 @@ class Node {
     \end{itemize}
 \end{frame}
 
-
 \subsection{Graphen}
-
 \begin{frame}{Graphen}
     \begin{itemize}[<+(1)->]
         \item Im Gegensatz zu Bäumen, können Knoten in Graphen auch mehrere Vorgänger haben.
@@ -791,7 +750,12 @@ class Node {
     \pause{}
     \begin{description}[Pfad]
         \widei
-        \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\pause{}
+        \item[Weg] Ein Weg bezeichnet eine endliche Folge an Knoten die durch Kanten (egal welcher Richtung) verbunden sind.\par\pause{}
+\begin{center}
+\begin{tikzpicture}[scale=.5,gray]
+    \basegraph
+\end{tikzpicture}
+\end{center}
         \item[Pfad] Ein Pfad ist ein Weg, der die Kantenrichtung beachtet.
     \end{description}
 \end{frame}
@@ -809,7 +773,6 @@ class Node {
     \node[kreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
     \node[kreis] (d) at (0,-2) {4};
-
     \draw[-Kite] (a) edge (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
     \end{minipage}\quad\begin{minipage}{0.45\linewidth}%
@@ -874,7 +837,6 @@ class Node {
     \node[kreis] (b) at (2,0) {2};
     \node[kreis] (c) at (2,-2) {3};
     \node[kreis] (d) at (0,-2) {4};
-
     \draw[-Kite] (a) edge[armark] (b) (b) edge (c) (c) edge (a) (b) edge (d) (d) edge (b) (c) edge (d);
 \end{tikzpicture}
         \item \begin{tikzpicture}[scale=.625,every node/.style={transform shape},kreis/.style={inner sep=4pt,ball,font=\sffamily,outer sep=1pt},ikreis/.style={inner sep=4pt,iball,font=\sffamily,outer sep=1pt},armark/.style={thick,btcd@color@alerted},baseline=-0.6ex]
@@ -971,7 +933,6 @@ class Node {
 \fullsubsection{Übungsaufgaben}
 \ifull
 % TODO: Liste aufgaben, Baum Aufgaben und eine Aufgabe für binärbäume sowie suchbäume und so.. heap and STack..
-
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{LinkedList - toString()}
     \begin{exercise}<2->[LinkedList - toString() \Time{4}]
@@ -1012,16 +973,12 @@ public class LinkedList {
 
 \def\Element#1{{\renewcommand{\arraystretch}{1.4}%
 \begin{tabular}{|>{\centering}p{1em}|p{1em}|}
-    \hline
-        \strut#1 & \\
-    \hline
+    \hline\strut#1 & \\\hline
 \end{tabular}%
 }}%
 \def\EndElement{{\renewcommand{\arraystretch}{1.5}%
 \begin{tabular}{|>{\centering\arraybackslash}p{1em}|}
-    \hline
-        \strut/\\
-    \hline
+    \hline\strut/\\\hline
 \end{tabular}
 }}%
 
@@ -1039,7 +996,7 @@ public class Element {
     }
 }
 \end{plainjava}
-}\pause{} Schreiben Sie eine Methode \bjava{Element reverse(Element head)}, welche die übergebene Liste umkehrt und den neuen Kopf zurück gibt. Gehen Sie auch mit Randfällen wie einer leeren Liste um.
+}\pause Schreiben Sie eine Methode \bjava{Element reverse(Element head)}, welche die übergebene Liste umkehrt und den neuen Kopf zurück gibt. Gehen Sie auch mit Randfällen wie einer leeren Liste um.
     \end{exercise}
 \end{frame}
 
@@ -1059,7 +1016,7 @@ Element reverse(Element head) {
     return reversedHead;
 }
 \end{plainjava}
-    \pause{}Doch was passiert hier?\pause{} Betrachten wir dies im Detail\ldots
+    \pause Doch was passiert hier?\pause{} Betrachten wir dies im Detail\ldots
     \end{solve}
 \end{frame}
 
@@ -1076,7 +1033,6 @@ Element reverse(Element head) {
         \draw[-Kite] ($(\li.east)+(-1em,0)$) -- (\i.west);
         \fill ($(\li.east)+(-1em,0)$) circle (2pt);
     }
-
     \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]a.south west) to[edge node={node[below=5pt] {head}}] ([xshift=3.75pt,yshift=-4pt]a.south east);
     \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]a.north west) to[edge node={node[above=5pt] {current}}] ([xshift=3.75pt,yshift=4pt]a.north east);
 \end{tikzpicture}}\hfill\begingroup\lstfs{7}%
@@ -1210,7 +1166,6 @@ while (current != null) {
             \draw[-Kite,rounded corners=1pt] ($(b.east)+(-1em,0)$) -- ++(0,1) -| (a.north);
             \draw[-Kite,rounded corners=1pt] ($(c.east)+(-1em,0)$) -- ++(0,.85) -| (b.north);
 
-
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]b.south west) to[edge node={node[below=5pt] {reversedHead}}] ([xshift=3.75pt,yshift=-4pt]b.south east);
             \draw[decorate,decoration={brace,mirror}] ([xshift=-4pt,yshift=-4pt]c.south west) to[edge node={node[below=5pt] {current}}] ([xshift=3.75pt,yshift=-4pt]c.south east);
             \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]d.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]d.north east);
@@ -1232,7 +1187,6 @@ while (current != null) {
     \end{solve}
 \end{frame}
 
-
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Theorie: Stack und Queue}
     \begin{exercise}<2->[Theorie zu Stapel und Warteschlange \Time{5}]
@@ -1249,7 +1203,7 @@ while (current != null) {
         \pause{}\begin{enumerate}[<+(1)->]
             \item Queue durch Stack:\pause{} Dies ist wahr. Hierzu benötigt man zwei Stacks, \(A\) und \(B\).\pause{} Neue Elemente werden auf \(A\) abgelegt und von \(B\) genommen.\pause{} Ist \(B\) leer, so werden alle Elemente von \(A\) genommen und auf \(B\) abgelegt (und damit umgedreht).
             \item Stacks sind FIFO:\pause{} Dies ist falsch.\pause{} Stacks folgen dem LIFO (Last-In, First-Out) Prinzip (siehe: \hyperlink{mrk:Stack}{Stack}).
-            \item Java-Heap ist Heap:\pause{} Dies ist falsch, der Heap auf dem (komplexe) Daten abgelegt werden,\pause{} hat nur den selben Namen\pause{} (siehe: \T{\href{https://stackoverflow.com/questions/756861/whats-the-relationship-between-a-heap-and-the-heap}{stackoverflow}}).
+            \item Java-Heap ist Heap:\pause{} Dies ist falsch, der Heap auf dem (komplexe) Daten abgelegt werden,\pause{} hat nur den selben Namen \textcolor{gray}{(siehe: \T{\href{https://stackoverflow.com/questions/756861/whats-the-relationship-between-a-heap-and-the-heap}{stackoverflow}}).}
         \end{enumerate}
     \end{solve}
 \end{frame}
@@ -1277,9 +1231,9 @@ while (current != null) {
             \end{forest}}
         \end{center}
         \begin{enumerate}[<+(1)->]
-            \item Breitendurchlauf:\pause{} \(A,B,E,C,F,G,D,H,I\).
-            \item In-Order:\pause{} \(B,D,C,A,F,E,H,G,I\).
-            \item Post-Order:\pause{} \(D,C,B,F,H,I,G,E,A\).
+            \item Breitendurchlauf: \(A,B,E,C,F,G,D,H,I\).
+            \item In-Order: \(B,D,C,A,F,E,H,G,I\).
+            \item Post-Order: \(D,C,B,F,H,I,G,E,A\).
         \end{enumerate}
     \end{solve}
 \end{frame}
@@ -1314,7 +1268,6 @@ void inorder(Node n)  {
     \end{solve}
 \end{frame}
 
-
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Breitensuche in Adjazenzmatrix - Pseudocode}
     \begin{exercise}<2->[Breitensuche - Pseudocode \Time{6}]
@@ -1340,7 +1293,7 @@ void inorder(Node n)  {
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Breitensuche - Pseudocode]
-\pause{}\footnotesize\RestyleAlgo{tworuled}\SetAlgoVlined%
+\pause\footnotesize\RestyleAlgo{tworuled}\SetAlgoVlined%
 \begin{algorithm}[H]
 \PreCode\StartCode
 \(queue \leftarrow \T{Queue.create()}\)\;
