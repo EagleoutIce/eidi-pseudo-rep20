@@ -91,6 +91,8 @@
 \long\def\imp#1{\textcolor{@alerted}{#1}}
 \let\say\enquote
 \def\widei{\itemsep1em}
+\newlength\@bdescdyn \@bdescdyn=3.5\p@ \@plus\z@ \@minus2\p@
+\appto\@@description{\itemsep=\@bdescdyn}
 
 \newcommand\twosplit[3][t]{%
 \begin{columns}[#1]

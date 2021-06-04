@@ -19,8 +19,8 @@
         \draw (prog)++(0,-.75) node[below] {\tiny Das wollen wir} -- (prog);
         \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
         \draw (comp)++(0,.75) node[above] {\tiny Syntax-Analyse} -- (comp);
-        \draw[@alerted] (comp)--++(1,.65) node[right] {\tiny Compile-Fehler};
-        \draw[@alerted] (prog)--++(0,.65) node[above] {\tiny Laufzeit-Fehler};
+        \draw[@secondary] (comp)--++(1,.65) node[right] {\tiny Compile-Fehler};
+        \draw[@secondary] (prog)--++(0,.65) node[above] {\tiny Laufzeit-Fehler};
         \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches\thinspace /\thinspace dynmaisches Linken}\\\hphantom{statisch\thinspace /\thinspace dy}(Java)}} -- (link);
     \end{scope}
 \end{tikzpicture}
