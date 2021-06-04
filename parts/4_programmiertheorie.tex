@@ -163,7 +163,7 @@
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Da die Ausführungszeit eines Programms\pause{} von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme,~\ldots) abhängig ist,\pause{} betrachten wir nur dessen Skalierung für Klassen von Eingaben.
+        \item Da die Ausführungszeit eines Programms von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme,~\ldots) abhängig ist,\pause{} betrachten wir nur dessen Skalierung für Klassen von Eingaben.
     \end{itemize}
     \begin{definition}<6->[Effizienz]
         \pause{}Die Effizienz eines Programms wird durch seinen \emph{Speicheraufwand} sowie seiner \emph{Laufzeit} bestimmt.
@@ -214,10 +214,10 @@ static int methode(int n) {
 \begin{frame}{Erfassen der Komplexität}
     \begin{itemize}[<+(1)->]
         \item Insgesamt ergibt sich damit ein Aufwand von \(\frac{3n^2}{2} + \frac{5n}{2} + 3\).
-        \item Da für große Datenmengen Konstanten und Faktoren irrelevant werden,\pause{} interessiert wie die Funktion skaliert/wächst.
+        \item Da für große Datenmengen Konstanten und Faktoren irrelevant werden, interessiert wie die Funktion skaliert/wächst.
     \end{itemize}
     \begin{definition}<6->[\O-Notation]
-        \pause{}Es gilt \(T(n) \in \O(f(n))\), wenn \(f(n)\) eine obere Schranke von \(T(n)\) ist, also:\pause{} \[T(n) \in \O(f(n))\pause{}\iff\pause{} \exists n_0 \in \mathbb{N}\:\pause{} c \in \mathbb{R}^+\:\pause{} \forall n \geq n_0:\pause{} T(n) \leq c \cdot f(n).\vspace*{-\topskip}\]
+        \pause{}Es gilt \(T(n) \in \O(f(n))\), wenn \(f(n)\) eine obere Schranke von \(T(n)\) ist, also:\pause{} \[T(n) \in \O(f(n))\pause{}\iff \exists n_0 \in \mathbb{N}\: c \in \mathbb{R}^+\: \forall n \geq n_0: T(n) \leq c \cdot f(n).\vspace*{-\topskip}\]
     \end{definition}
 \end{frame}
 

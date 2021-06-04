@@ -698,7 +698,7 @@ public static void bubbleSort(int[] arr) {
             for tree={}
             [{\usebox{\dotA}},[{\usebox{\dotB}}[{\usebox{\dotF}}][,phantom]][{{\usebox{\dotD}}}[,phantom][,phantom]]]
             \node at(0,1) {Split};
-        \end{forest}} \qquad~~\qquad%
+        \end{forest}}\qquad~~\qquad%
         \TikzList{1,2,3,4}{3}{\dotA}
         \TikzList{1,2}{2}{\dotB}
         \TikzList{1,3}{5}{\dotC}
@@ -709,7 +709,6 @@ public static void bubbleSort(int[] arr) {
         \scalebox{0.58}{\begin{forest}
             for tree={grow=north}
             [{\usebox{\dotA}},[{{\usebox{\dotD}}}[,phantom][,phantom]][{\usebox{\dotB}}[,phantom][{\usebox{\dotF}}]]]
-            %[{\(1,2,\mathbf{3},4\)},iblock[{\(4\)}[,phantom][,phantom]][{\(1,\mathbf{2}\)}[,phantom][\(1\)]]]
             \node at(0,3.75) {Merge};
         \end{forest}}}
     \end{center}
@@ -761,7 +760,6 @@ static int partition(int[] arr, int l, int r) {
     \end{plainjava}
     \end{solve}
 \end{frame}
-
 \fi
 
 \begin{frame}{Sortierverfahren: Heapsort}\alglabel{Heapsort}
@@ -825,8 +823,8 @@ static int partition(int[] arr, int l, int r) {
 
 \begin{frame}[c]{Sortierverfahren: Zusammenfassung}
     \pause\begin{table}[H]
-        \renewcommand\arraystretch{1.35}
-        \begin{tabular}{p{0.2\linewidth}p{0.195\linewidth}p{0.195\linewidth}p{0.13\linewidth}p{0.13\linewidth}}
+        \def\arraystretch{1.35}
+        \begin{tabular}{p{.2\linewidth}p{.195\linewidth}p{.195\linewidth}p{.13\linewidth}p{.13\linewidth}}
         \toprule
             Sortierverfahren & worst-case & average-case & Speicher & Ansatz \\
         \midrule
