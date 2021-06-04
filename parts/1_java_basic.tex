@@ -2,7 +2,7 @@
 \subsection{Wie ein Java-Programm entsteht}
 \begin{frame}[c]{Vom Text zum Programm}
 \begin{center}
-\onslide<2->{
+\onslide<2->{%
 \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}, rec/.style={block,minimum width=3.25cm},irec/.style={iblock,minimum width=3.25cm}]
     \draw (0,0) node[right,irec] (prg) {Programmtext};
     \draw (2,-1) node[right,rec] (bib) {Bibliotheken};
@@ -374,6 +374,7 @@ class Skyrim extends Banana {
     \end{definition}
 \end{frame}
 
+% #region Übungsaufgaben
 \fullsubsection{Übungsaufgaben}
 \ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
@@ -463,7 +464,6 @@ double d(int d1, double... d2) { /* ... */ }
     \end{solve}
 \end{frame}
 
-
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Konkatenation}
     \begin{exercise}<2->[Konkatenation \Time{2}]
@@ -516,7 +516,6 @@ println("c - a - 1 = " + ('c' - 1 - 'a'));
     Wir berechnen also in der Klammer den wert \(1\).\pause{} Dieser wir nun normal zum String konkateniert, was die Ausgabe erzeugt.
     \end{solve}
 \end{frame}
-
 
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Javas' Typkonvertierung}
@@ -579,3 +578,4 @@ println("c - a - 1 = " + ('c' - 1 - 'a'));
     \end{solve}
 \end{frame}
 \fi
+% #endregion
