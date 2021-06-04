@@ -478,17 +478,17 @@ static final int UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3;
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Programmieren: Turtlewalk, II]
         \begin{plainjava}
-public static int moveTurtle(int dir){
-    int tx = 0, ty = 0;
-    switch (dir) {
-        case UP:    ty=1; break; case DOWN: ty=-1; break;
-        case RIGHT: tx=1; break; case LEFT: tx=-1; break;
-        default: return -1; // Unterscheiden von kein Feld
-    }
-    int total = 0;
-    while(moveTurtle(tx,ty)) { total++; }
-    return total;
-}
+!*\onslide<3->*!public static int moveTurtle(int dir){
+!*\onslide<4->*!    int tx = 0, ty = 0;
+!*\onslide<5->*!    switch (dir) {
+!*\onslide<6->*!        case UP: ty = 1; break; case DOWN: ty = -1; break;
+!*\onslide<6->*!        case RIGHT: tx = 1; break; case LEFT: tx = -1; break;
+!*\onslide<6->*!        default: return -1; // Unterscheiden von kein Feld
+!*\onslide<5->*!    }
+!*\onslide<7->*!    int total = 0;
+!*\onslide<8->*!    while(moveTurtle(tx, ty)) { total++; }
+!*\onslide<9->*!    return total;
+!*\onslide<3->*!}
         \end{plainjava}
     \end{solve}
 \end{frame}
