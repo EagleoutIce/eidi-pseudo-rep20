@@ -6,7 +6,6 @@
 \date{27.01.2021}
 \institute{Verteilte Systeme \(\circ\) Universität Ulm}
 \outro{Ulm, den \today}
-
 \SetEmblem[University Ulm]{Praktische Informatik}{\faCode}
 
 \titleimage{%
@@ -25,15 +24,14 @@
 }
 
 \begin{document}
-
 \pdfbookmark[2]{Themenübersicht}{eidi@toc@mainview}
-\begin{frame}{Themenübersicht, I}
+\begin{frame}[c]{Themenübersicht, I}
     \begin{center}
         \twosplit[c]{\tableofcontents[sections={1-2}]}{\tableofcontents[sections={3-4}]}
     \end{center}
 \end{frame}
 
-\begin{frame}{Themenübersicht, II}
+\begin{frame}[c]{Themenübersicht, II}
     \begin{center}
         \twosplit[c]{\tableofcontents[sections={5-6}]}{\tableofcontents[sections={7-8}]}
     \end{center}
@@ -81,7 +79,7 @@ Wie bereits gesagt erhebt dieses Dokument keinen Anspruch auf Vollständigkeit u
 \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
-Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{cat *.src *.tex parts/*.tex | wc -l > \jobname.cmd.tmp}\input{\jobname.cmd.tmp} Zeilen und Summa Summarum \immediate\write18{cat *.src *.tex parts/*.tex | wc -m  > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\par\null\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\\
+Zum Ende dann wohl noch ein bisschen Meta-Gequatsche. Dieses Dokument ergründet sich auf Basis wundervoller \immediate\write18{cat *.src *.tex parts/*.tex | wc -l > \jobname.cmd.tmp}\input{\jobname.cmd.tmp} Zeilen und Summa Summarum \immediate\write18{cat *.src *.tex parts/*.tex | wc -m  > \jobname.cmd.tmp}\input{\jobname.cmd.tmp}Zeichen einiger Zeit und Arbeit die in es geflossen ist. Ich hoffe die war es auch wert!\par\null\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\par
 \begin{center}
     \say{Viel Spaß beim Lernen und natürlich viel Erfolg!}
 \end{center}
