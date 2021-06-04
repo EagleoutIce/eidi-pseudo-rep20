@@ -30,9 +30,9 @@
 
 \lstcolorlet{literals}{@alerted!60!@primary!80!@black}
 \sol@list@define@styles{%
-  {keywordA: \color{sol@colors@lst@keywordA}\bfseries},%
-  {keywordB: \color{sol@colors@lst@keywordB}},%
-  {keywordC: \color{sol@colors@lst@keywordC}},%
+  {keywordA: \@declaredcolor{sol@colors@lst@keywordA}\bfseries},%
+  {keywordB: \@declaredcolor{sol@colors@lst@keywordB}},%
+  {keywordC: \@declaredcolor{sol@colors@lst@keywordC}},%
 }
 
 %% Extra Defs
@@ -44,9 +44,7 @@
 \newcommand*\@lillyLstHL[1][]{%
   \begin{lillyHighlight}[#1]\bgroup\aftergroup\lilly@lsthighlight@endenv%
 }
-\def\lilly@lsthighlight@endenv{%
-  \end{lillyHighlight}\egroup
-}
+\def\lilly@lsthighlight@endenv{\end{lillyHighlight}\egroup}
 
 \newcommand*\lilly@lsthighlight@box[2][]{%
   \tikz[#1]{%
