@@ -1027,7 +1027,7 @@ public class LinkedList {
     public Element get(int index) { /* ... */ }
 }
 \end{plainjava}
-}\pause{}Beispiel: \bjava{13, 12, -4, 9,}
+}\pause{}Beispiel: \bjava{13, 12, -4, 9,} \textcolor{gray}{(Das endständige Komma ist erlaubt)}
     \end{exercise}
 \end{frame}
 
@@ -1290,7 +1290,7 @@ while (current != null) {
     \begin{exercise}<2->[Traversierung eines Baumes \Time{4}]
         \pause{}Gegeben sei der folgende Binärbaum. Geben Sie sowohl die Besuchsreihenfolge des Breitendurchlaufs, als auch des In- und des Post-Order Durchlaufs an.\pause{}
         \begin{center}
-            \scalebox{0.6}{\begin{forest}
+            \scalebox{.55}{\begin{forest}
                 for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,execute at begin node={\strut},minimum width=1.2cm}
                 [A[B[,phantom][C[D][,phantom]]][E[F[,phantom][,phantom]][G[H][I]]]]
             \end{forest}}
