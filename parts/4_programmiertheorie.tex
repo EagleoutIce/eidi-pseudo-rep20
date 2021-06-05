@@ -443,8 +443,8 @@ static int methode(int n) {
 \begin{frame}[c]{Übungsaufgabe -- Lösung}
 \begin{solve}<2->[Zahlen konvertieren]
     \pause{}Konvertieren wir die Zahl zuerst ins Binärsystem (schnelle Konvertierung mit je drei Bits),\pause{} dann von dort aus ins Hexadezimalsystem,\pause{} nun ins Dezimalsystem (nicht gefordert) und dann in \(b = 3\):\pause{} \begin{description}[b = 16]
-        \item[b = 2] \(42_{(8)} = \overbrace{100}^{4}\overbrace{010}^{2}\;{}_{(2)}\)
-        \item[b = 16] \(100010_{(2)} = \overbrace{2}^{10}\overbrace{2}^{0010}\;{}_{(16)}\) (wir füllen also links mit Nullen auf, wenn die Bits kein Vielfaches von vier sind)
+        \item[b = 2] \(42_{(8)} = \overbrace{100}^{4}\overbrace{010}^{2}\;{}_{(2)}\)\medskip
+        \item[b = 16] \(100010_{(2)} = \overbrace{2}^{0010}\overbrace{2}^{0010}\;{}_{(16)}\) (wir füllen also links mit Nullen auf, wenn die Bits kein Vielfaches von vier sind)\medskip
         \item[b = 10] \(4 \cdot 8^1 + 2 \cdot 8^0 = 32 + 2 = 34_{(10)}\)
     \end{description}
 \end{solve}
@@ -663,7 +663,7 @@ int magic(int n) {
 \colorlet{chesswhite}{@alerted}%
 \emSetField{0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W,0/\em@B\em@W\em@B\em@W\em@B,0/\em@W\em@B\em@W\em@B\em@W}%
     \begin{exercise}<2->[Das \(n\)-Türme Problem \Time{7}]%
-        \smallskip\par\parbox[b]{.735\linewidth}{\onslide<3->{Ein Turm kann einen anderen auf einer vertikalen und horizontalen Linie schlagen. Im rechten \(5\times 5\) Feld, zum Beispiel der rote Turm den am roten Punkt.}\smallskip
+        \smallskip\par\parbox[b]{.735\linewidth}{\onslide<3->{Ein Turm kann einen anderen auf einer vertikalen und horizontalen Linie schlagen. Im rechten \(5\times 5\) Feld, zum Beispiel der blaue Turm den am blauen Punkt.}\smallskip
 
         \onslide<4->{Schreiben Sie eine Methode, welche ein quadratisches Array erhält und
         genau dann \bjava{true} zurückliefert, wenn mindestens ein Turm einen anderen schlagen kann: \bjava{boolean check (boolean[][] arr)}.} \onslide<5->{Ist \bjava{arr[i][j]} \bjava{true},}}\hfill%
