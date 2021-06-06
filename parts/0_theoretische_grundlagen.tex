@@ -112,35 +112,37 @@ Sonst soll (3) B durchgeführt werden.}}\quad
 \begin{frame}[c]{Schema eines Algorithmus, II}
     \centering\onslide<2->{%
 \scalebox{.75}{\begin{tikzpicture}[yscale=1.1,block/.append style={minimum width={3.5cm}}]
-    \node[block] at (0,0) (PM)  {Problem};
-    \node[block] at (0,-3) (AL)  {Algorithmus};
-    \node[block] at (0,-5) (PR)  {Programm};
-    \node[block] at (0,-7) (MA)  {Maschine};
-    \draw[link] (PM) -- (AL);
-    \draw[link] (AL) -- (PR);
-    \draw[link] (PR) -- (MA);
-    \node[left=.5cm] at (0,-1.5) {Abstraktion};
-    \node[left=.5cm] at (0,-4) {Implementierung};
-    \node[left=.5cm] at (0,-6) {Realisierung};
-
-    \node[right,align=left,text width=5cm] at (.5,-1.45) {\begin{itemize}
-        \item Problemanalyse
-        \item Funktionale\par Spezifikation
-        \item Algorithmenentwurf
-    \end{itemize}
-    };
-
-    \node[right,align=left,text width=5cm] at (.5,-3.85) {\begin{itemize}
-             \item Darstellung in\par Programmiersprache
-         \end{itemize}
-    };
-
-    \node[right,align=left,text width=5cm] at (.5,-5.85) {\begin{itemize}
+    \onslide<2->{\node[block] at (0,0) (PM)  {Problem};}
+    \onslide<3->{\node[block] at (0,-3) (AL)  {Algorithmus};}
+    \onslide<4->{\node[block] at (0,-5) (PR)  {Programm};}
+    \onslide<5->{\node[block] at (0,-7) (MA)  {Maschine};}
+    \onslide<3->{
+        \draw[link] (PM) -- (AL);
+        \node[left=.5cm] at (0,-1.5) {Abstraktion};
+        \node[right,align=left,text width=5cm] at (.5,-1.45) {\begin{itemize}
+            \item Problemanalyse
+            \item Funktionale\par Spezifikation
+            \item Algorithmenentwurf
+        \end{itemize}
+        };
+    }
+    \onslide<4->{
+        \draw[link] (AL) -- (PR);
+        \node[left=.5cm] at (0,-4) {Implementierung};
+        \node[right,align=left,text width=5cm] at (.5,-3.85) {\begin{itemize}
+            \item Darstellung in\par Programmiersprache
+        \end{itemize}
+        };
+    }
+    \onslide<5->{
+        \draw[link] (PR) -- (MA);
+        \node[left=.5cm] at (0,-6) {Realisierung};
+        \node[right,align=left,text width=5cm] at (.5,-5.85) {\begin{itemize}
             \item Umsetzung in\par Maschinenbefehle
         \end{itemize}
-    };
-\end{tikzpicture}
-}}
+        };
+    }
+\end{tikzpicture}}}
 \end{frame}
 
 \subsection{Konzeptionalisierung}
