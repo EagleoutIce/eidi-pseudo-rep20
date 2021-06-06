@@ -245,7 +245,7 @@ static int methode(int n) {
 \end{frame}
 
 \subsection{Modellierung durch UML}
-\begin{frame}{UML, Grundlagen}
+\begin{frame}{UML -- Grundlagen}
     \begin{itemize}[<+(1)->]
         \widei
         \item Die Unified Modeling Language (UML) ist eine Kollektion an UML-Diagrammarten,\pause{} die es erlaubt ein Problem\thinspace /\thinspace Programm\thinspace /\thinspace Projekt aus verschiedenen Blickwinkeln zu betrachten.
@@ -258,7 +258,7 @@ static int methode(int n) {
     \end{itemize}
 \end{frame}
 
-\begin{frame}[c]{UML, Ein Überblick}
+\begin{frame}[c]{UML -- Ein Überblick}
 \begin{center}
     \resizebox{0.95\linewidth}{!}{
 \begin{tikzpicture}[every node/.append style={text width=4.5cm, align=center, execute at begin node={\strut},block,font=\small\sffamily}]
@@ -294,11 +294,11 @@ static int methode(int n) {
 \end{center}
 \end{frame}
 
-\begin{frame}[c]{UML, Klassendiagramme}
+\begin{frame}[c]{UML -- Klassendiagramme}
     \hypertarget<1>{uml:class}{}\begin{center}
         \onslide<2->{%
 \begin{tikzpicture}[scale=.65, every node/.style={transform shape}]
-    \tikzumlset{fill class=white, fill note=white!20} % , font=\small\LILLYxlstTypeWriter
+    \tikzumlset{fill class=white, fill note=white!20}
     \umlclass[x=0,y=0,name=stud]{Student}{
         {\umlstatic{+ studierendenzahl : int}}\\
         {- name : String}\\
@@ -325,12 +325,12 @@ static int methode(int n) {
     \only<5->{\umlassoc[mult1=0..3,pos1=0.965, mult2=*, pos2=.2]{Student}{Studiengang};}
     \onslide<6->{\draw [decorate,decoration={brace,amplitude=7pt,raise=4pt,mirror},yshift=0pt] (4.125,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-.75cm] {\begin{minipage}{8cm}
         \centering\scriptsize Ein Student kann bis zu 3 Studiengänge gleichzeitig besuchen, ein Studiengang kann von unendlich vielen Studenten besucht werden.
-    \end{minipage}};]}
+    \end{minipage}};}
 \end{tikzpicture}}
     \end{center}
 \end{frame}
 
-\begin{frame}{UML, Klassendiagramme}
+\begin{frame}{UML -- Klassendiagramme, II}
     \begin{itemize}[<+(1)->]
         \widei
         \item Es gibt noch weitere Assoziationen.
@@ -346,12 +346,11 @@ static int methode(int n) {
     \end{itemize}
 \end{frame}
 
-\begin{frame}{UML, Objektdiagramme}
+\begin{frame}{UML -- Objektdiagramme}
     \hypertarget<1>{uml:object}{}\begin{itemize}[<+(1)->]
         \widei
         \item Objektdiagramme ähneln Klassendiagrammen.
         \item Allerdings handelt es sich immer um explizite Ausprägungen einer Klasse\pause{} (\(\Rightarrow\) keine Methoden).
-        % \item Sie werden eher selten verwendet.
     \end{itemize}
     \vfill\pause{}
     \begin{center}
@@ -366,7 +365,7 @@ static int methode(int n) {
     \end{center}\vfill\null
 \end{frame}
 
-\begin{frame}{UML, Sequenzdiagramme}
+\begin{frame}{UML -- Sequenzdiagramme}
     \hypertarget<1>{uml:sequence}{}\begin{itemize}[<+(1)->]\widei
         \item Bilden den Nachrichtenaustausch ab.\pause{} Das Senden und Empfangen wird auf Basis von Ereignissen ausgelöst,\pause{} diese rufen wiederrum Reaktionen hervor.
         \item Die Nachrichten können jeweils synchron (durchgezogene Linie) oder asynchron (gestrichelte Linie) ausgetauscht werden.
@@ -375,7 +374,7 @@ static int methode(int n) {
     \end{itemize}
 \end{frame}
 
-\begin{frame}[c]{UML, Sequenzdiagramme - ein Beispiel}
+\begin{frame}[c]{UML -- Sequenzdiagramme, ein Beispiel}
     \begin{center}
 \resizebox{.6\linewidth}{!}{\begin{tikzpicture}
     \begin{umlseqdiag}
@@ -411,7 +410,7 @@ static int methode(int n) {
     \vfill\hbox{}
 \end{frame}
 
-\begin{frame}{Darstellung ganzer Zahlen}
+\begin{frame}{Darstellung ganzer Zahlen, II}
 \begin{itemize}[<+(1)->]
     \item Die wichtigsten Basen für uns sind:\pause{} \(b = 2\) (dual/\allowbreak binär),\pause{} \(b = 8\) (Oktal)\pause{} und \(b = 16\) (Hexadezimal)
     \item Im Hexadezimalsystem werden die Ziffern \(\geq 10\) durch die Buchstaben \(A\,\widehat{=}\,10\) bis \(F\,\widehat{=}\,15\) dargestellt.
@@ -426,7 +425,7 @@ static int methode(int n) {
 \end{frame}
 
 
-\begin{frame}[fragile]{Darstellung ganzer Zahlen}
+\begin{frame}[fragile]{Darstellung ganzer Zahlen, III}
 \begin{itemize}[<+(1)->]
     \item Dies ergibt: \(1010_{(2)}\).
     \item Hinweis: es existieren weitere (schnelle) Konvertierungsverfahren,\pause{} die es zum Beispiel erlauben, das Hexadezimalsystem direkt ins Dualsystem zu konvertieren.\pause{} Da jede Ziffer im Hexadezimalsystem vier Bits einnimmt, geht die Konvertierung schneller:\pause{} \[

@@ -191,7 +191,7 @@ System.out.println(x); // :yields: 9
 \begin{plainjava}
 Random rnd = new Random();
 \end{plainjava}
-        \pause{}speichert Java für \bjava{rnd} die Adresse,\pause{} an der sich die eigentlichen Daten des Objekts befinden. \textcolor{gray}{Stichwort: Heap und Stack.}
+        \pause{}speichert Java für \bjava{rnd} die Referenz,\pause{} an der sich die eigentlichen Daten des Objekts befinden. \textcolor{gray}{Stichwort: Heap und Stack.}
         \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen und damit die \emph{Identität}.
     \end{itemize}
 \end{frame}
@@ -200,9 +200,9 @@ Random rnd = new Random();
     \setbeamertemplate{description item}[default]%
     \begin{itemize}[<+(1)->]
         \widei
-        \item Jede Variable/jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
+        \item Jede Variable\thinspace /\thinspace jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
         \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a,b):}]
-            \item[{s1.equals(s2)}:] prüft ob die Zeichenketten gleich sind.
+            \item[{s1.equals(s2)}:] prüft, ob die Zeichenketten gleich sind.
             \item[{s1.length()}:] liefert die Länge einer Zeichenkette.
             \item[{s1.charAt(k)}:] liefert das \T{k}-te Zeichen.
             \item[{s1.substring(a,b)}:] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
@@ -227,7 +227,7 @@ Random rnd = new Random();
 {\footnotesize
 \begin{plainjava}
 private static String generateWelcomeMessage(String name, int age,
-        boolean married) {
+        boolean happy) {
     return "Welcome, " + name /* ... */ ;
 }
 \end{plainjava}
@@ -265,12 +265,12 @@ private static String generateWelcomeMessage(String name, int age,
 
 \begin{frame}[fragile]{Gültigkeitsbereiche -- Scopes}
     \begin{itemize}[<+(1)->]
-        \item Es gibt vier \emph{Geltungsbereiche} (\textit{engl.} scopes) für Variablen.
+        \item Es gibt vier Geltungsbereiche (\textit{engl.} scopes) für Variablen.
 \begin{plainjava}[language=xJava]
-!*\onslide<3->*!|inc|public|inc| class Pinguin { // !*\solGet{comments}{\textbf{1.}}*! global
-!*\onslide<4->*!    !**!|inc|private|inc| int sozialversicherungsnummer; // !*\solGet{comments}{\textbf{2.}}*! Klasse
-!*\onslide<5->*!    !**!|inc|protected|inc| int watschelIndex; // !*\solGet{comments}{\textbf{3.}}*! geschützt
-!*\onslide<6->*!    !**!|inc|public|inc| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*! (erneut: global)
+!*\onslide<3->*!|zws|public|zws| class Pinguin { // !*\solGet{comments}{\textbf{1.}}*! global
+!*\onslide<4->*!    !**!|zws|private|zws| int sozialversicherungsnummer; // !*\solGet{comments}{\textbf{2.}}*! Klasse
+!*\onslide<5->*!    !**!|zws|protected|zws| int watschelIndex; // !*\solGet{comments}{\textbf{3.}}*! geschützt
+!*\onslide<6->*!    !**!|zws|public|zws| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*! (erneut: global)
 !*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: package
 !*\onslide<3->*!}
 \end{plainjava}
@@ -370,7 +370,7 @@ class Skyrim extends Banana {
 
 \begin{frame}[c]{Es gilt festzuhalten\ldots}
     \begin{definition}[Subroutinen]
-        Eine Subroutine/Funktion ist ein \emph{Unterprogramm},\pause{} das von anderen Programm(teilen) aufgerufen und so wiederverwendet werden kann.\pause{}\medskip\newline Sie wird durch ihre \emph{Signatur} eindeutig identifiziert,\pause{} die in Java aus einem Bezeichner sowie einer Liste an Datentypen der Parameter besteht. Ein Unterprogramm ist in der Lage Daten an den aufrufenden Teil zurückzuliefern.
+        Eine Subroutine\thinspace /\thinspace Funktion ist ein \emph{Unterprogramm},\pause{} das von anderen Programm(teilen) aufgerufen und so wiederverwendet werden kann.\pause{}\medskip\newline Sie wird durch ihre \emph{Signatur} eindeutig identifiziert,\pause{} die in Java aus einem Bezeichner sowie einer Liste an Datentypen der Parameter besteht. Ein Unterprogramm ist in der Lage Daten an den aufrufenden Teil zurückzuliefern.
     \end{definition}
 \end{frame}
 
