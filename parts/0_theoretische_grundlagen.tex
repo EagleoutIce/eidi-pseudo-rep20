@@ -6,13 +6,13 @@
     \end{definition}
     \begin{itemize}
         \widei
-        \item<4-> Es existieren verschiedene Darstellungsformen:
+        \item<4-> Es existieren verschiedene Darstellungsformen:\medskip
 \begin{center}
 \color{gray}\SetKwIF{If}{ElseIf}{Else}{Ist}{tue:}{}{sonst:}{}%
 \RestyleAlgo{tworuled}%
 \onslide<5->{\parbox[5em]{.29\linewidth}{\footnotesize
 (1) Wenn der \textit{Wert} 42 übersteigt, (2) soll A ausgeführt werden.
-Sonst soll (3) B durchgeführt werden.}\quad
+Sonst soll (3) B durchgeführt werden.}}\quad
 \onslide<6->{\parbox[5em]{.29\linewidth}{\centering\footnotesize
 \scalebox{.825}{\begin{tikzpicture}[rounded corners=1pt,yscale=.8]
     \node[iblock] (0) at(0,0) {Wert > 42};
@@ -28,7 +28,7 @@ Sonst soll (3) B durchgeführt werden.}\quad
     \eIf{Wert > 42}{Mache A\;}{Mache B\;}
 \end{algorithm}}}\medskip\par
 \color{black}\parbox{.29\linewidth}{\centering Textuell\par}\quad\parbox{.29\linewidth}{\centering Grafisch\par}\quad\parbox{.29\linewidth}{\centering Pseudocode\par}
-\end{center}
+\end{center}\medskip
         \item<8-> Klassische Alltagsbeispiele: (Koch-)Rezepte, Gebrauchsanleitungen, \ldots
     \end{itemize}
 \end{frame}
@@ -37,16 +37,16 @@ Sonst soll (3) B durchgeführt werden.}\quad
 \begin{frame}{Algorithmuseigenschaften}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Zu Beginn gilt es einige \emph{Begriffe} zu klären: \begin{description}[Elementaroperation]
+        \item Zu Beginn gilt es einige \imp{Begriffe} zu klären: \begin{description}[Elementaroperation]
             \item[Prozess] Die Ausführung der Schritte eines Algorithmus
             \item[Prozessor] Der Ausführende (Mensch, Computer,~\ldots)
             \item[Elementaroperation] Eine einzelne, eindeutige Handlung.
         \end{description}
-        \item Ein Algorithmus besitzt einige \emph{Eigenschaften}: \begin{description}[Ausführbarkeit]
+        \item Ein Algorithmus besitzt einige grundlegende \imp{Eigenschaften}: \begin{description}[Ausführbarkeit]
             \item[Ausführbarkeit] Die Anleitung muss ausführ- und reproduzierbar sein.
-            \item[Endlichkeit] Der gesamte Algorithmus muss mit endlich viel Text beschrieben werden können.
-            \item[Termination] Der Algorithmus muss nach endlich vielen Schritten zum Ende kommen.
-            \item[Verarbeitung] Ein Algorithmus erhält Eingabeobjekte \(E\),\pause{} hält lokale Daten \(D\)\pause{} und erzeugt Ausgabedaten \(A\).
+            \item[Endlichkeit] Er muss mit endlich viel Text beschreibbar sein.
+            \item[Termination] Er kommt nach endlich vielen Schritten zum Ende.
+            \item[Verarbeitung] Ein Algorithmus erhält Eingabedaten \(E\),\pause{} hält lokale Daten \(D\)\pause{} und erzeugt Ausgabedaten \(A\).
         \end{description}
     \end{itemize}
 \end{frame}
@@ -60,7 +60,7 @@ Sonst soll (3) B durchgeführt werden.}\quad
         \onslide<7->{Wenn der Algorithmus terminiert, ist er korrekt.}
     \end{block}
     }{%
-    \begin{block}<4->{Robust}
+    \begin{block}<4->{Robustheit}
         \onslide<5->{Ein Algorithmus ist (maximal) robust, wenn er falsche Eingabe erkennen und abfangen kann.}
     \end{block}\bigskip
     \begin{block}<8->{Totale Korrektheit}
