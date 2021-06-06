@@ -82,13 +82,13 @@
 \def\Task#1{\only<1>{\stepcounter{ctrtasks}\pdfbookmark[4]{Aufgabe \thectrtasks: #1}{id@bkmrk@e@\thectrtasks}}}
 \def\Time#1{\ifx!#1!\else\null\hfill(#1\;\ifnum#1=1\relax Minute\else Minuten\fi)\fi}
 
-\colorlet{solidF}{@primary!25!@black}
+\colorlet{solidF}{@primary}
 \colorlet{fillA}{@primary!15!white}
 \colorlet{fillB}{@secondary!15!white}
 \colorlet{fillC}{@alerted!15!white}
 
 \long\def\hl#1{\textcolor{@secondary}{#1}}
-\long\def\imp#1{\textcolor{@alerted}{#1}}
+\long\def\imp#1{{\sbfamily#1}}
 \let\say\enquote
 \def\widei{\itemsep1em}
 \newlength\@bdescdyn \@bdescdyn=3.5\p@ \@plus\z@ \@minus2\p@
