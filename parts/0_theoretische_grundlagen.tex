@@ -27,7 +27,7 @@ Sonst soll (3) B durchgeführt werden.}}\quad
     \StartCode
     \eIf{Wert > 42}{Mache A\;}{Mache B\;}
 \end{algorithm}}}\medskip\par
-\color{black}\parbox{.29\linewidth}{\centering Textuell\par}\quad\parbox{.29\linewidth}{\centering Grafisch\par}\quad\parbox{.29\linewidth}{\centering Pseudocode\par}
+\color{black}\onslide<5->{\parbox{.29\linewidth}{\centering Textuell\par}}\quad\onslide<6->{\parbox{.29\linewidth}{\centering Grafisch\par}}\quad\onslide<7->{\parbox{.29\linewidth}{\centering Pseudocode\par}}
 \end{center}\medskip
         \item<8-> Klassische Alltagsbeispiele: (Koch-)Rezepte, Gebrauchsanleitungen, \ldots
     \end{itemize}
@@ -46,7 +46,7 @@ Sonst soll (3) B durchgeführt werden.}}\quad
             \item[Ausführbarkeit] Die Anleitung muss ausführ- und reproduzierbar sein.
             \item[Endlichkeit] Er muss mit endlich viel Text beschreibbar sein.
             \item[Termination] Er kommt nach endlich vielen Schritten zum Ende.
-            \item[Verarbeitung] Ein Algorithmus erhält Eingabedaten \(E\),\pause{} hält lokale Daten \(D\)\pause{} und erzeugt Ausgabedaten \(A\).
+            \item[Verarbeitung] Ein Algorithmus erhält Eingabedaten \(E\), hält lokale Daten \(D\) und erzeugt Ausgabedaten \(A\).
         \end{description}
     \end{itemize}
 \end{frame}
@@ -109,7 +109,7 @@ Sonst soll (3) B durchgeführt werden.}}\quad
      \end{itemize}
 \end{frame}
 
-\begin{frame}[c]{Schema eines Algorithmus}
+\begin{frame}[c]{Schema eines Algorithmus, II}
     \centering\onslide<2->{%
 \scalebox{.75}{\begin{tikzpicture}[yscale=1.1,block/.append style={minimum width={3.5cm}}]
     \node[block] at (0,0) (PM)  {Problem};
@@ -154,15 +154,16 @@ Sonst soll (3) B durchgeführt werden.}}\quad
     \end{itemize}
 \end{frame}
 
-\begin{frame}[c]{Wie ein Programm entsteht}
+\begin{frame}[c]{Wie ein Programm entsteht, II}
 \begin{center}
-    \resizebox{.95\linewidth}{!}{
+    \resizebox{.95\linewidth}{!}{%
     \begin{tikzpicture}
         \onslide<2->{\node[iblock,minimum width=3cm] (init) at (-5.5,0) {Problem};}
         \foreach[count=\i,remember=\i as \li (initially init)] \l in {Analyse, Entwurf, Implementierung, Test \& Revision} {
             \pgfmathsetmacro\ovlskip{int(\i+2)};
             \onslide<\ovlskip->{
             \node[block,minimum width=5cm] (\i) at(0,-1.6*\i+1.6) {\l};
+            \node[right,gray] at (\i.west) {\i.};
             \draw[link] (\li) -- (\i);}
         }
         \onslide<3->{
@@ -182,6 +183,10 @@ Sonst soll (3) B durchgeführt werden.}}\quad
             \draw[densely dashed] (d4.east) -- (4.west);
         }
         \onslide<7->{
+            \node[block,minimum width=5cm] (7) at(0,1.6) {Dokumentation};
+            \node[right,gray] at (7.west) {6.};
+        }
+        \onslide<8->{
             \node[iblock,minimum width=3cm] (exit) at (5.5,-3*1.6) {Programm};
         \draw[link] (4) -- (exit);
         }\onslide<1->{}
