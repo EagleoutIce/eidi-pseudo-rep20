@@ -4,34 +4,34 @@
 \begin{center}
 \onslide<2->{%
 \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}, rec/.style={block,minimum width=3.25cm},irec/.style={iblock,minimum width=3.25cm}]
-    \draw (0,0) node[right,irec] (prg) {Programmtext};
-    \draw (2,-1) node[right,rec] (bib) {Bibliotheken};
-    \draw (2,-2) node[right,rec] (adMac) {Maschinencode};
-    \draw (6,-1.5) node[right,rec] (link) {Linker};
+    \onslide<2->{\draw (0,0) node[right,irec] (prg) {Programmtext};}
+    \onslide<6->{\draw (2,-1) node[right,rec] (bib) {Bibliotheken};
+    \draw (2,-2) node[right,rec] (adMac) {Maschinencode};}
+    \onslide<5->{\draw (6,-1.5) node[right,rec] (link) {Linker};}
     \begin{scope}[every path/.style={link,rounded corners=1.25pt}]
-        \draw (prg) -- ++(2,0) node[right,rec] (comp) {Compiler};
-        \draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};
-        \draw (bib) -| ++ (2,-.4) -- ([yshift=0.1cm]link.west);
-        \draw (adMac) -| ++ (2,.4) -- ([yshift=-0.1cm]link.west);
-        \draw (link) -- ++(2,0) node[right, irec] (prog) {Program};
-        \draw (mac) -- ++ (0,-.62) -| (link.north);
-        \draw (prg)++(0,.75) node[above] {\tiny Das machen wir} -- (prg);
-        \draw (prog)++(0,-.75) node[below] {\tiny Das wollen wir} -- (prog);
-        \draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
-        \draw (comp)++(0,.75) node[above] {\tiny Syntax-Analyse} -- (comp);
-        \draw[@secondary] (comp)--++(1,.65) node[right] {\tiny Compile-Fehler};
-        \draw[@secondary] (prog)--++(0,.65) node[above] {\tiny Laufzeit-Fehler};
-        \draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch/dynamisch\index{Java!Konvertierung!statisches\thinspace /\thinspace dynmaisches Linken}\\\hphantom{statisch\thinspace /\thinspace dy}(Java)}} -- (link);
+        \onslide<3->{\draw (prg) -- ++(2,0) node[right,rec] (comp) {Compiler};}
+        \onslide<4->{\draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};}
+        \onslide<6->{\draw (bib) -| ++ (2,-.4) -- ([yshift=0.1cm]link.west);
+        \draw (adMac) -| ++ (2,.4) -- ([yshift=-0.1cm]link.west);}
+        \onslide<7->{\draw (link) -- ++(2,0) node[right, irec] (prog) {Program};}
+        \onslide<5->{\draw (mac) -- ++ (0,-.62) -| (link.north);}
+        \onslide<8->{\draw (prg)++(0,.75) node[above] {\tiny Das machen wir} -- (prg);
+        \draw (prog)++(0,-.75) node[below] {\tiny Das wollen wir} -- (prog);}
+        \onslide<9->{\draw (comp)++(-1,1) node[above] {\tiny Semantik-Analyse} -- (comp);
+        \draw (comp)++(0,.75) node[above] {\tiny Syntax-Analyse} -- (comp);}
+        \onslide<11->{\draw[@secondary] (comp)--++(1,.65) node[right] {\sbfamily\tiny Compile-Fehler};
+        \draw[@secondary] (prog)--++(0,.65) node[above] {\sbfamily\tiny Laufzeit-Fehler};}
+        \onslide<10->{\draw (link)++(0,-0.75) node[below] {\parbox{12ex}{\tiny statisch\thinspace /\thinspace dynamisch\\\hphantom{statisch\thinspace /\thinspace dy}(Java)}} -- (link);}
     \end{scope}
 \end{tikzpicture}
 }
 \end{center}
 \end{frame}
 
-\begin{frame}{Vom Text zum Programm}
+\begin{frame}{Vom Text zum Programm, II}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt Java die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class})
+        \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt der Java-Compiler die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class})
         \item Dieser Code kann vom Java-Interpreter ausgeführt werden:\pause{} \bbash{java :lan:Name:ran:}
         \item Ein paar wichtige Punkte: \begin{itemize}
             \widei
