@@ -2,16 +2,34 @@
 \subsection{Der Algorithmusbegriff}
 \begin{frame}{Was ist ein Algorithmus?}
     \begin{definition}<2->[Algorithmus]
-        \onslide<3->{Eine \emph{eindeutige Handlungsvorschrift} zur Lösung eines Problems.}
+        \onslide<3->{Eine \emph{eindeutige} Handlungsvorschrift zur Lösung eines Problems.}
     \end{definition}
     \begin{itemize}
         \widei
-        \item<4-> Es existieren verschiedene Darstellungsformen: \begin{itemize}
-            \item<5-> Textuell (1. Tue dies, 2. Tue das, 3. Falls \(X\)\ldots)
-            \item<6-> Grafisch (Instruktionsabläufe, Graphen, Grafiken,~\ldots)
-            \item<7-> Pseudocode
-        \end{itemize}
-        \item<8-> Klassische Alltagsbeispiele: \onslide<9->{(Koch-)Rezepte, Gebrauchsanleitungen, \ldots}
+        \item<4-> Es existieren verschiedene Darstellungsformen:
+\begin{center}
+\color{gray}\SetKwIF{If}{ElseIf}{Else}{Ist}{tue:}{}{sonst:}{}%
+\RestyleAlgo{tworuled}%
+\onslide<5->{\parbox[5em]{.29\linewidth}{\footnotesize
+(1) Wenn der \textit{Wert} 42 übersteigt, (2) soll A ausgeführt werden.
+Sonst soll (3) B durchgeführt werden.}\quad
+\onslide<6->{\parbox[5em]{.29\linewidth}{\centering\footnotesize
+\scalebox{.825}{\begin{tikzpicture}[rounded corners=1pt,yscale=.8]
+    \node[iblock] (0) at(0,0) {Wert > 42};
+    \node[block] (1) at(1.35,-1) {Mache A};
+    \node[block] (2) at(1.35,-2) {Mache B};
+    \draw[-Kite] (0) |- (1);
+    \draw[-Kite] (0) |- (2);
+\end{tikzpicture}}}}\quad
+\onslide<7->{\parbox[5em]{.29\linewidth}{\footnotesize
+\begin{algorithm}[H]
+    \footnotesize\PreCode
+    \StartCode
+    \eIf{Wert > 42}{Mache A\;}{Mache B\;}
+\end{algorithm}}}\medskip\par
+\color{black}\parbox{.29\linewidth}{\centering Textuell\par}\quad\parbox{.29\linewidth}{\centering Grafisch\par}\quad\parbox{.29\linewidth}{\centering Pseudocode\par}
+\end{center}
+        \item<8-> Klassische Alltagsbeispiele: (Koch-)Rezepte, Gebrauchsanleitungen, \ldots
     \end{itemize}
 \end{frame}
 
