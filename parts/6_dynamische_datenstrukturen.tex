@@ -334,17 +334,17 @@ class Element {
         \widei
         \item Im Gegensatz zu Listen, halten Bäume Referenzen auf mehrere Nachfolger.
         \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
-        \item Knoten erhalten verschiedene Bezeichner: \begin{description}
+        \item Knoten erhalten verschiedene Bezeichner: \begin{description}[Innerer]
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
             \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger.
-            \item[Innerer] Ein innerer Knoten ist jeder Knoten der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Vater.
+            \item[Innerer] Ein innerer Knoten ist jeder Knoten, der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Vater.
         \end{description}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Bäume: Mathematisch}
     \begin{definition}[Baum]
-Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und Kanten \(E = V \times V\).\pause{} Die Anzahl der eingehenden Kanten darf für jeden Knoten nur maximal \(1\) sein.
+Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und Kanten \(E = V \times V\).\pause{} Die Anzahl der eingehenden Kanten muss für jeden Knoten maximal \(1\) sein.
     \end{definition}
     \begin{itemize}[<+(1)->]
         \item Die Kanten können ungerichtet oder gerichtet (\say{gewurzelter Baum}) sein.
@@ -383,7 +383,7 @@ class Node {
 \end{minipage}\vfill
     \begin{itemize}[<+(1)->]
         \widei
-        \item Wie bei einer einfach verketteten Liste können wir nun den Baum in eine Richtung traversieren.
+        \item Wie bei einer einfach verketteten Liste können wir den Baum traversieren.
         \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
     \end{itemize}
 \end{frame}
@@ -409,8 +409,7 @@ class Node {
 \end{minipage}\vfill
     \begin{itemize}[<+(1)->]
         \widei
-        \item Wie bei einer einfach verketteten Liste können wir nun den Baum in eine Richtung traversieren.
-        \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
+        \item Diese Verkettung kann vorteilhaft sein und erspart beispielsweise die Rekursion bei der Traversierung.
     \end{itemize}
 \end{frame}
 
@@ -600,7 +599,7 @@ class Node {
     \begin{itemize}[<+(1)->]
         \widei
         \item Bäume können auch nützliche Datenstrukturen sein, wenn man sie \emph{ordnet}.
-        \item So existieren Suchbäume (Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) \hyperlink{mrk:binsearch}{binäre Suche})
+        \item So existieren Suchbäume. \textcolor{gray}{(Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) \hyperlink{mrk:binsearch}{binäre Suche}.)}
         \item Vergleiche hierzu auch die Datenstruktur \hyperlink{mrk:Heap}{Heap}.
         \item Die Verfahren lassen sich auch auf Bäume mit höherem Verzweigungsgrad anwenden!
     \end{itemize}
@@ -619,7 +618,7 @@ class Node {
     \end{center}
     \begin{itemize}[<+(1)->]
     \item Die Traversierungsverfahren entsprechen Notationsschemata: \begin{description}[Post-Order]
-        \item[In-Order] repräsentiert die geläufige Infix Notation: \((A + B) * (C - D)\) (die Klammern entsprechen der Ausführreihenfolge und sind natürlich nicht Teil)
+        \item[In-Order] repräsentiert die geläufige Infix Notation: \((A + B) * (C - D)\). \textcolor{gray}{(Die Klammern entsprechen der Ausführreihenfolge und sind kein Teil.)}
         \item[Pre-Order] entspricht der Präfix-Notation: \(* + A B - C D\).
         \item[Post-Order] entspricht der Postifx-Notation: \(A B + C D - *\).
     \end{description}
@@ -841,7 +840,7 @@ class Node {
 \begin{frame}{Varianten von Graphen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein gewichteter Graph weißt den Kanten durch eine Abbildung \(w: E \to M\) einen Wert zu.
+        \item Ein gewichteter Graph weist den Kanten durch eine Abbildung \(w: E \to M\) einen Wert aus einer Menge \(M\) zu. \textcolor{gray}{(Beispielsweise \(M = \mathbb{N}\))}
         \item Wir können einen Graphen durch eine \emph{Adjazenzmatrix} beschreiben.\pause{} Hierbei geben die jeweiligen Zellen \(m_{i,j}\), ob eine Verbindung vom Knoten \(i\) zum Knoten \(j\) besteht (\(m_{i, j} > 0\) für eine Kante).
     \end{itemize}
     \vfill\pause{}
@@ -1268,10 +1267,10 @@ while (current != null) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Theorie: Stack und Queue}
     \begin{exercise}<2->[Theorie zu Stapel und Warteschlange \Time{5}]
-        \pause{}Bewerten (wahr/falsch) und Begründen Sie jeweils: \begin{enumerate}[<+(1)->]
+        \pause{}Bewerten (wahr\thinspace /\thinspace falsch) und Begründen Sie jeweils: \begin{enumerate}[<+(1)->]
             \item Eine Warteschlange lässt sich auch dann implementieren, wenn nur die Datenstruktur \emph{Stack} existiert.
             \item Stacks folgen dem FIFO-Prinzip.
-            \item Der Java-(Objekt-)Heap bezeichnet sich nach der Datenstruktur Heap.
+            \item Der Java-(Objekt-)Heap wird auch als (Datenstruktur) \emph{Heap} verwaltet.
         \end{enumerate}
     \end{exercise}
 \end{frame}
