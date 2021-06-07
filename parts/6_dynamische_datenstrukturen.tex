@@ -28,8 +28,8 @@
     \def\arraystretch{1.35}%
     \begin{itemize}[<+(1)->]
         \widei
-        \item Hier ist ein Datentyp als Objekt konstruiert, das eine Referenz auf das nächste Objekt besitzt.
-        \item Das erste Element, das die Liste beginnt, bezeichnen wir als \emph{Head}, das Letzte, das auf einen definierten letzten Wert (wie \bjava{null}) zeigt, nennen wir \emph{Tail}\thinspace /\thinspace \emph{Foot}.
+        \item Jedes Element besitzt als Objekt eine Referenz auf das nächste.
+        \item Das erste Element bezeichnen wir als \emph{Head}. Das Letzte, welches auf einen definierten letzten Wert (wie \bjava{null}) zeigt, nennen wir \emph{Tail} oder \emph{Foot}.
     \end{itemize}\pause%
     \begin{minipage}{.4\linewidth}\small%
 \begin{plainjava}
@@ -64,7 +64,7 @@ class Element {
 
 \begin{frame}{Listen -- Einfach verkettete Liste, II}
     \begin{itemize}[<+(1)->]
-        \item Vorteil einer einfach Verketten Liste:\pause{} Das Löschen und Hinzufügen neuer Elemente ist leicht (\(\O(1)\)).\pause{} Nachteil: Der direkte Zugriff ist nur durch ein Traversieren möglich.
+        \item Vorteil einer einfach verketten Liste:\pause{} Das Löschen und Hinzufügen neuer Elemente ist leicht (\(\O(1)\)).\pause{} Nachteil: Der direkte Zugriff ist nur durch ein Traversieren möglich.
         \item Hinweis: Manche Operationen benötigen eine Sonderbehandlung im Falle einer leeren Liste.\pause{} So zum Beispiel das Einfügen.
         \item Betrachten wir einmal das Einfügen eines neuen Elements:
     \end{itemize}%
@@ -244,7 +244,7 @@ class Element {
 \end{minipage}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Den \say{Datentyp} einfach verkettete Liste gliedern wir in eine neue Klasse \bjava{LinkedList} aus, die auch die Operationen wie hinzufügen und löschen übernimmt.
+        \item Den \say{Datentyp} einfach verkettete Liste lagern wir in eine neue Klasse \bjava{LinkedList} aus, die auch die Operationen wie hinzufügen und löschen übernimmt.
     \end{itemize}%
 \end{frame}
 
@@ -255,7 +255,8 @@ class Element {
     \hypertarget<1>{mrk:Stack}{}%
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).\pause{} Es ist nur möglich Elemente oben auf den Stapel zu legen, oder das oberste zu nehmen.
+        \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).
+        \item Elemente können nur oben auf dem Stapel abgelegt und von dort entnommen werden.
         \item Stacks können bei der Auswertung arithmetischer Funktionen verwendet werden \textcolor{gray}{(siehe Grundlagen der Rechnerarchitektur)}.
         \item Die Verwaltung rekursiver Methoden erfolgt über den Stack. So \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
     \end{itemize}
@@ -265,7 +266,7 @@ class Element {
     \begin{itemize}[<+(1)->]
         \widei
         \item Stacks lassen sich als Listen implementieren,\pause{} die nur Zugriffe wie \bjava{appendLast(Element)} und \bjava{removeLast(Element)} zulassen.
-        \item Auf Stacks sind zwei wichtige Operationen definiert: \begin{description}[push]
+        \item Auf Stacks kennzeichnen wir zwei wichtige Operationen: \begin{description}[push]
             \item[push] Legt das Element oben auf dem Stack ab.
             \item[pop] Entfernt das oberste Element und liefert es zurück.
         \end{description}
@@ -285,7 +286,7 @@ class Element {
     \begin{itemize}[<+(1)->]
         \widei
         \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendFirst(Element)} und \bjava{removeLast(Element)} zulässt.
-        \item Auf Queues sind zwei wichtige Operationen definiert: \begin{description}[dequeue]
+        \item Auf Queues kennzeichnen wir zwei wichtige Operationen: \begin{description}[dequeue]
             \item[enqueue] Reiht ein Element (hinten) in die Schlange ein.
             \item[dequeue] Nimmt ein Element (vorne) aus der Schlange.
         \end{description}
@@ -331,7 +332,7 @@ class Element {
 \begin{frame}{Bäume: Formal}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Im Gegensatz zu Listen halten Bäume Referenzen auf mehrere Nachfolger.
+        \item Im Gegensatz zu Listen, halten Bäume Referenzen auf mehrere Nachfolger.
         \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
