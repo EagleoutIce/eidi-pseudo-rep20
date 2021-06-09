@@ -416,7 +416,7 @@ public static String wohinGehtEs(Richtung ziel){
         \item \hypertarget<1>{mrk:call-by-val}{Bei} Klassen und Arrays wird nun also nicht das Element selbst,\pause{} sondern nur die Referenz übergeben.
         \item Bei primitiven Datentypen hingegen wird der Wert \emph{kopiert},\pause{} man übergibt also den eigentlichen Wert der Variable.
         \item Man sagt auch, dass Methoden mit \emph{call-by-value} \say{keine} (nach bisheriger Betrachtung) Seiteneffekte hervorrufen,\pause{} da sie die übergebenen Daten \emph{nicht} modifizieren.
-        \item Wenn man auch komplexe Datentypen kopieren möchte,\pause{} so erstellt man sie in der Regel neu (\bjava{clone()}) und greift auf die \emph{call-by-value}-Charakteristik der primitiven Datentypen zurück.
+        \item Wenn man komplexe Datentypen kopieren möchte,\pause{} so erstellt man sie in der Regel neu und greift dabei auf die \emph{call-by-value}-Charakteristik der primitiven Datentypen zurück.
     \end{itemize}
 \end{frame}
 
