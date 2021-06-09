@@ -241,8 +241,8 @@ enum Richtung {
     HOCH, RUNTER, LINKS, RECHTS
 }
 \end{plainjava}
-        \item Wir können diese Typen als Parametertypen in Methoden verwenden,\pause{} und über die Punkt-Syntax auf Elemente zugreifen.
-        \item \textit{Hinweis:} Anders als in Sprachen wie C++,\pause{} wird den Konstanten kein (Integer)-Wert zugeordnet.\pause{} (dafür gibt es \bjava{ordinal()})
+        \item Wir können Enumerationen als Datentypen verwenden und über die Punkt-Syntax auf Elemente zugreifen.
+        \item \textit{Hinweis:} Anders als in Sprachen wie C++,\pause{} wird den Konstanten kein (Integer)-Wert zugeordnet.\pause{} \textcolor{gray}{(Dafür gibt es \bjava{ordinal()}.)}
     \end{itemize}
 \end{frame}
 
@@ -274,7 +274,7 @@ System.out.println(wohinGehtEs(Richtung.RECHTS));
         \item \bjava{:lan:Enum Name:ran:.valueOf(String)} liefert die Enumkonstante mit übergebenem Namen,\pause{} sofern vorhanden.
         \item Enumerationen besitzen ein wie zu erwarten funktionierendes \bjava{equals(Object)}.
         \item Analog funktioniert \bjava{toString()} wie zu erwarten.
-        \item Da es sich auch um Klassen handelt, können wir den Konstanten Datentypen zuordnen!
+        \item Da es sich auch um Klassen handelt, können wir den Konstanten auch Datentypen zuordnen!
     \end{itemize}
 \end{frame}
 
@@ -299,7 +299,7 @@ System.out.println(wohinGehtEs(Richtung.RECHTS));
 \begin{frame}[fragile]{Abschluss zu Enumerationen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Die Methode \bjava{wohinGehtEs} lässt sich nun kompakter fassen:\pause{}
+        \item Die Funktion \bjava{wohinGehtEs} lässt sich nun kompakter fassen:\pause{}
 \begin{plainjava}
 public static String wohinGehtEs(Richtung ziel){
     return ziel.getText();
@@ -315,7 +315,7 @@ public static String wohinGehtEs(Richtung ziel){
 \begin{frame}[fragile]{Klassen als Parameter: call-by-reference}
     \begin{itemize}[<+(1)->]
         \widei
-        \item \hypertarget<1>{mrk:call-by-ref}{Wenn} wir komplexe Datentypen als Parameter übergeben oder zuweisen,\pause{} wird \emph{keine} Kopie des Objekts erstellt,\pause{} sondern eine Referenz auf das Objekt übergeben.
+        \item \hypertarget<1>{mrk:call-by-ref}{Wenn} wir komplexe Datentypen als Parameter übergeben \textcolor{gray}{(oder zuweisen)},\pause{} wird \emph{keine} Kopie des Objekts erstellt,\pause{} sondern eine Referenz auf das Objekt übergeben.
         \item Dieser (Parameter-)Übergabemechanismus wird \emph{call-by-reference} genannt.
     \end{itemize}
 \end{frame}
@@ -414,8 +414,8 @@ public static String wohinGehtEs(Richtung ziel){
     \begin{itemize}[<+(1)->]
         \widei
         \item \hypertarget<1>{mrk:call-by-val}{Bei} Klassen und Arrays wird nun also nicht das Element selbst,\pause{} sondern nur die Referenz übergeben.
-        \item Bei primitiven Datentypen hingegen wird der Wert \emph{kopiert},\pause{} wan übergibt also den eigentlichen Wert der Variable.
-        \item Man sagt auch, dass Methoden mit \emph{call-by-value} \say{keine} (nach bisheriger Betrachtung) Seiteneffekte hervorrufen,\pause{} da sie die übergebenen Daten nicht modifizieren.
+        \item Bei primitiven Datentypen hingegen wird der Wert \emph{kopiert},\pause{} man übergibt also den eigentlichen Wert der Variable.
+        \item Man sagt auch, dass Methoden mit \emph{call-by-value} \say{keine} (nach bisheriger Betrachtung) Seiteneffekte hervorrufen,\pause{} da sie die übergebenen Daten \emph{nicht} modifizieren.
         \item Wenn man auch komplexe Datentypen kopieren möchte,\pause{} so erstellt man sie in der Regel neu (\bjava{clone()}) und greift auf die \emph{call-by-value}-Charakteristik der primitiven Datentypen zurück.
     \end{itemize}
 \end{frame}
