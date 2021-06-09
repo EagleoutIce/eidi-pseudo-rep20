@@ -53,7 +53,7 @@
             \item[Modularität] Eine Klasse kann unabhängig von anderen geschrieben und gehalten werden.
             \item[Informationsverdeckung] Die Implementierungsdetails des Objekts werden verborgen.
             \item[Wiederverwendbarkeit] Eine Klasse kann so geschrieben werden, dass sie auch in anderen Projekten wiederverwendet werden kann\pause{} (ein Datentyp wie ein Ringbuffer zum Beispiel).
-            \item[Komposition/Polymorphie] Eine Klasse definiert eine Schnittstelle, die sie von der Implementation abstrahiert,\pause{} so dass diese sich problemlos austauschen lässt.
+            \item[Komposition/Polymorphie] Klassen implementieren Schnittstelle, die sie von der Implementation abstrahieren,\pause{} so dass diese sich problemlos austauschen lassen.
         \end{description}
     \end{solve}
 \end{frame}
@@ -97,7 +97,7 @@
         \item Bei der Implementation müssen wir den Konstruktor beachten:
     \end{itemize}
     \begin{definition}<8->[Konstruktor]
-        \pause{}Ein Konstruktor verhält sich nur bedingt wie eine Methode\pause{} (er ist \emph{keine},\pause{} er gehört zum Klassenkonstrukt und kann nur mit \bjava{new} aufgerufen werden.\pause{} Allerdings kann man ihn überladen) und hat keinen Rückgabetyp.\medskip\newline
+        \pause{}Ein Konstruktor verhält sich nur bedingt wie eine Methode ohne Rückgabewert. Er ist \emph{keine Methode},\pause{} er gehört zum Klassenkonstrukt und kann nur mit \bjava{new} aufgerufen werden. Allerdings kann man Konstruktoren überladen.\medskip\newline
         Ein Konstruktor trägt stets den selben Namen wie die Klasse selbst und kann den Aufruf an andere Überladungen des Konstrukturs mittels \bjava{this} durchreichen.
     \end{definition}
 \end{frame}
@@ -143,11 +143,12 @@
 \setbeamertemplate{description item}[default]%
 \begin{itemize}[<+(1)->]
     \widei
-    \item Jede Java-Klasse übernimmt Methoden der \bjava{Object}-Klasse.
+    \item Jede Java-Klasse übernimmt \textcolor{gray}{(erbt)} Methoden der \bjava{Object}-Klasse.
     \item Auf diese Weise gibt es einige wichtige Methoden,\pause{} die im Kontext von Java eine besondere Bedeutung haben\pause{} (aber dafür natürlich, wie \bjava{equals} überschrieben werden müssen).
-    \item Hier sind die wichtigsten: \begin{description}[toString]
-        \item[equals] die Methode \bjava{equals(Object)} prüft das Objekt mit dem Übergebenen auf \say{Gleichheit}.\pause{} So können die hierfür relevanten Attribute genau festgelegt werden.
-        \item[toString] wird aufgerufen, um eine Repräsentation als Zeichenkette zu erhalten.
+    \item Hier sind die wichtigsten:
+    \begin{description}[toString]
+        \item[equals:] die Methode \bjava{equals(Object)} prüft das Objekt mit dem Übergebenen auf \say{Gleichheit}.\pause{} So können die hierfür relevanten Attribute genau festgelegt werden.
+        \item[toString:] wird aufgerufen, um eine Repräsentation als Zeichenkette zu erhalten.
     \end{description}
 \end{itemize}
 \end{frame}
@@ -181,21 +182,21 @@
 
 \begin{frame}[fragile]{Statische Methoden/Attribute}
 \begin{itemize}[<+(1)->]
-    \item<1-> Eine ausführliche Erklärung liegt hier: \attachPdfTextDesc{data/static.pdf}{static.pdf}{PDF-Dokument welches den Umgang mit statischen Funktionen und Methoden (in Java) genauer erklärt.}.
-    \item Alle Methoden die wir so definieren sind an ein Objekt gebunden.
-    \item Manche Methoden sind aber nur logisch an eine Klasse gebunden\pause{} und nicht von den Ausprägungen eines Objekts.
+    \item<1-> Eine ausführlichere Erklärung hier: \attachPdfTextDesc{data/static.pdf}{static.pdf}{PDF-Dokument welches den Umgang mit statischen Funktionen und Methoden (in Java) genauer erklärt.}.
+    \item Alle Methoden die wir so definieren, sind an ein Objekt gebunden.
+    \item Manche Methoden sind aber nur logisch an eine Klasse gebunden\pause{} und nicht an die Ausprägungen eines Objekts.
     \item So die Mathe-Funktionen wie \bjava{Math.random()}, \bjava{Math.floor(double)}.
-    \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch eine \bjava{distance(Point2D, Point2D)} für zwei Punkte machen.
-    \item Auch Variablen, die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.\pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte.
+    \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch \bjava{Point2d::distance(Point2D, Point2D)} für zwei Punkte statisch machen.
+    \item Auch Variablen, die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.\pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte: \bjava{static final int INSTANCES;}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Der Lebenszyklus eines Objekts}
     \begin{itemize}[<+(1)->]
-        \item Mit dem Erstellen eines Objekts,\pause{} haben wir eine Variable, die auf es zeigt.
-        \item Durch weitere Zuweisungen\pause{} oder Methodenaufrufe können wir weitere Zeiger darauf erstellen.
-        \item Überschreiben wir diese Variablen, oder verlassen ihren Gültigkeitsbereich,\pause{} verlieren wir einen Zeiger.
-        \item Wenn keine Variable mehr auf das Objekt zeigt,\pause{} gibt es (zumindest an sich) keine Möglichkeit mehr auf das Objekt zuzugreifen.
+        \item Mit dem Erstellen eines Objekts, reservieren wir Speicher auf dem Heap.
+        \item Durch weitere Zuweisungen\pause{} oder Methodenaufrufe können wir weitere Referenzen darauf erstellen.
+        \item Überschreiben wir diese Variablen (oder verlassen ihren Scope) verlieren wir eine Referenz.
+        \item Wenn keine Variable mehr auf das Objekt zeigt,\pause{} gibt es (für Java) keine Möglichkeit mehr auf das Objekt zuzugreifen.
         \item In diesem Fall wird es (irgendwann) vom Garbage-Collector aufgeräumt
     \end{itemize}
 \ifull
@@ -209,8 +210,8 @@
 \ifull
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Garbage Collector]
-        Wir können den Collector nicht direkt beeinflussen!\pause{} Allerdings können wir nicht mehr benötigte Objekte auf \bjava{null} setzen\pause{} und mittels \bjava{System.gc()} den Prozess anstoßen.\pause{}\medskip\newline
-        Information: Der GC räumt nicht nur Speicher auf sondern füllt auch Speicherlücken.\pause{} Es gibt verschiedene Varianten für einen GC (Referencecount,\pause{} Mark \& Sweep,\pause{} Stop \& Copy).\pause{} Wird ein Objekt aufgeräumt,\pause{} ruft Java die Methode \bjava{finalize()} auf.
+        Wir können den Collector nicht direkt beeinflussen!\pause{} Allerdings können wir nicht mehr benötigte Objekte auf \bjava{null} setzen\pause{} und mittels \bjava{System.gc()} den Prozess erbitten. Nach dem Abschluss dieser Methode hat Java \say{sein Bestes getan}.\pause{}\medskip\newline
+        Information: Der GC räumt nicht nur Speicher auf, sondern räumt ihn auch neu an.\pause{} Es gibt verschiedene Varianten für einen GC (Referencecount,\pause{} Mark \& Sweep,\pause{} Stop \& Copy).\pause{} Wird ein Objekt aufgeräumt,\pause{} ruft die JVM direkt davor die Methode \bjava{finalize()} auf.
     \end{solve}
 \end{frame}
 \fi
