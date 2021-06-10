@@ -460,8 +460,6 @@ public class A {
     \end{solve}
 \end{frame}
 
-
-
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Suche syntaktischer Fehler, V}
     \begin{exercise}<2->[Fehler finden, V \Time{4}]
@@ -515,5 +513,58 @@ public class A {
         \pause{}\textit{Hinweis:}\pause{} Die Dollarzeichen sind kein Fehler,\pause{} aber es ist Konvention sie nicht zu verwenden (Java verwendet sie intern für zum Beispiel generierten Code).
     \end{solve}
 \end{frame}
+
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Suche syntaktischer Fehler, VI}
+    \begin{exercise}<2->[Fehler finden, VI \Time{4}]
+        \pause{}Finden und erklären Sie alle (Kompilier-)Fehler:\pause{}
+{\footnotesize
+        \begin{plainvoid}
+public class MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A {
+    private class A {
+        public int x;
+        A(int x) { this.x = x; }
+    }
+
+    public void MyEp1cM3th0d {
+        System.out::println(5 = = 2 + + x);
+    }
+}
+        \end{plainvoid}
+}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Fehler finden, VI]
+        \pause{}\footnotesize\begin{plainjava}
+public class MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A {
+    private class A {
+        public int x;
+        A(int x) { this.x = x; }
+    }
+
+    public void MyEp1cM3th0d {
+        System.out::println(5 = = 2 + + x);
+    }
+}
+        \end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \addtocounter{solve}{-1}
+    \begin{solve}<1->[Fehler finden, VI\hfill{}(Fortsetzung)]
+        \begin{enumerate}
+            \item \bjava{MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A} ist eine Variante des zyklischen Vererbungs-Problems und in Java nicht gestattet.
+            \item Die Methode \bjava{MyEp1cM3th0d} benötigt die Klammern zur Kennzeichnung der Parameteranzahl.
+            \item Der Ausdruck \bjava{System.out::println} ist eine Methoden-Referenz. Für den Aufruf benötigen wir \bjava{System.out.println}.
+            \item \bjava[showspaces]{= =} ist kein gültiger Java-Ausdruck! Nur \bjava{==} oder \bjava{=}.
+        \end{enumerate}
+        \pause{}Dabei ist \bjava{2 + + x} kein Problem! es wird als die Addition von \bjava{2} zu \bjava{+x} (analog zu \bjava{+1}) verstanden.\smallskip\pause\par
+        Übrigens: \bjava{MyL1ttl3Cl4ss.A} statisch zu machen hilft nicht. Java Liebe!% hat natürlich Gründe :D
+    \end{solve}
+\end{frame}
+
 \fi
 % #endregion
