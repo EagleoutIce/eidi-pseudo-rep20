@@ -13,6 +13,8 @@
 \RequirePackage{sopra-models,sopra-attachments,array,booktabs,colortbl}
 \solLoadLanguage{bash}
 
+\RequirePackage[biber,style=numeric-comp]{lecture-bibliography}
+
 %% Theme
 \usepackage[emblem,theorems]{beamerthemecolorful-dream}
 \colorlet{@primary}{btcd@color@primary}
@@ -149,3 +151,6 @@
 \ifull\let\fullsubsection\subsection
 \else\let\fullsubsection\fakesubsection\fi
 \makeatother
+
+\addbibresource{data/references.bib}
+\nocite{gh:tikzpingus, gh:recursion}

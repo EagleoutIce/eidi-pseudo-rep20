@@ -5,7 +5,10 @@
 \author{Florian Sihler}
 \date{27.01.2021}
 \institute{Verteilte Systeme --- Universität Ulm}
-\outro{Ulm, den \today}
+\newsavebox\OutroPingu \savebox\OutroPingu{\begin{tikzpicture}\pingu[wings wave, eyes wink, pride flag right, halo,belly=\Large\faHeart,small]\end{tikzpicture}}
+\outro{Ulm, den \today\begin{tikzpicture}[remember picture,overlay]
+    \node[above left=.25cm,scale=.75] at (current page.south east) {\usebox\OutroPingu};
+\end{tikzpicture}}
 \SetEmblem[University Ulm]{Praktische Informatik}{\faCode}
 
 \titleimage{%
