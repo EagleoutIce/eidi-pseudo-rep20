@@ -3,9 +3,9 @@
 \title[EidI-Rep]{EidI-Repetitorium}
 \subtitle{\profileshorttitle}
 \author{Florian Sihler}
-\date{27.01.2021}
+\date{10.07.2021}
 \institute{Verteilte Systeme --- Universität Ulm}
-\newsavebox\OutroPingu \savebox\OutroPingu{\begin{tikzpicture}\pingu[wings wave, eyes wink, pride flag right, halo,belly=\Large\faHeart,small]\end{tikzpicture}}
+\newsavebox\OutroPingu \savebox\OutroPingu{\begin{tikzpicture}\pingu[right wing wave, eyes shiny, pride flag right, head band, right item angle=18, halo, halo raise=1.25mm, belly=\Large\faHeart,small,glow solid]\end{tikzpicture}}
 \outro{Ulm, den \today\begin{tikzpicture}[remember picture,overlay]
     \node[above left=.25cm,scale=.75] at (current page.south east) {\usebox\OutroPingu};
 \end{tikzpicture}}
