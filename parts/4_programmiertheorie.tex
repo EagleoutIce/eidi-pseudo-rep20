@@ -159,6 +159,15 @@
     \end{itemize}
 \end{frame}
 
+\immediate\write18{wget https://media.githubusercontent.com/media/EagleoutIce/Episode-Recursion/gh-pages/preview-01.png -O logoRecursion-\jobname.png}
+\begin{frame}[c]{Zur Vertiefung}
+\centering\vspace*{2em}\par\begin{tikzpicture}
+    \onslide<2->{\draw[thick,@primary,rounded corners=2.5pt,path picture={\node at(path picture bounding box.center) {\href{https://media.githubusercontent.com/media/EagleoutIce/Episode-Recursion/gh-pages/noanim_rekursion.pdf}{\includegraphics[width=8.5cm,height=4.788cm,keepaspectratio]{logoRecursion-\jobname.png}}};}] (0,0) rectangle (8.5cm,4.788cm);}
+    \onslide<3->{\node[below=2mm] at (current bounding box.south) {Mehr zum Thema \say{Rekursion} per Klick\ldots};}
+    \onslide<3->{\node[right=1cm,yshift=4.5mm,scale=1.125,gray] at (current bounding box.east) {\qrcode[link]{https://github.com/EagleoutIce/Episode-Recursion/tree/main}};}
+\end{tikzpicture}
+\end{frame}
+
 \subsection{Laufzeitkomplexität}
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
