@@ -53,7 +53,7 @@
             \item[Modularität] Eine Klasse kann unabhängig von anderen geschrieben und gehalten werden.
             \item[Informationsverdeckung] Die Implementierungsdetails des Objekts werden verborgen.
             \item[Wiederverwendbarkeit] Eine Klasse kann so geschrieben werden, dass sie auch in anderen Projekten wiederverwendet werden kann\pause{} (ein Datentyp wie ein Ringbuffer zum Beispiel).
-            \item[Komposition/Polymorphie] Klassen implementieren Schnittstelle, die sie von der Implementation abstrahieren,\pause{} so dass diese sich problemlos austauschen lassen.
+            \item[Komposition/Polymorphie] Klassen implementieren Schnittstellen, die sie von der Implementation abstrahieren,\pause{} so dass diese sich problemlos austauschen lassen.
         \end{description}
     \end{solve}
 \end{frame}
@@ -168,7 +168,7 @@
 !*\onslide<3->*!public boolean equals(Object obj) {
 !*\onslide<4->*!    if (this == obj) return true; // Sind identisch
 !*\onslide<5->*!    if (obj == null) return false; // Wir sind nicht null
-!*\onslide<6->*!    // ist es von der selben Klasse?
+!*\onslide<6->*!    // Ist es von der selben Klasse?
 !*\onslide<7->*!    // Oder: 'if (obj instanceof Point2D)'
 !*\onslide<7->*!    if (this.getClass() != obj.getClass())
 !*\onslide<7->*!        return false;

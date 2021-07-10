@@ -131,8 +131,8 @@ while(i++ < 7) {
     \begin{frame}[c,fragile]{Lösung}
         \begin{solve}<2->[While vs. Do-While, II]
             \begin{itemize}[<+(1)->]
-            \item Für \(i = 0\) unterscheiden sich die Ausgaben! do-while produziert hier \say{01234567} und while \say{1234567} (da die Inkremente einmal vor der Ausgabe und einmal danach stattfinden). Bis \(7\) gehen die Ausgaben, da in \bjava{i++ < 7} die Variable \bjava{i} immer erst \emph{nach} dem Vergleich inkrementiert wird.
-            \item Für \(i = 15\) unterscheiden sich die Ausgaben ebenfalls. Hier gibt do-while noch \say{15} aus, während die while Schleife wieder nicht betreten wird.
+            \item Für \(i = 0\) unterscheiden sich die Ausgaben! \bjava{do}-\bjava{while} produziert hier \say{01234567} und \bjava{while} \say{1234567} (da die Inkremente einmal vor der Ausgabe und einmal danach stattfinden). Bis \(7\) gehen die Ausgaben, da in \bjava{i++ < 7} die Variable \bjava{i} immer erst \emph{nach} dem Vergleich inkrementiert wird.
+            \item Für \(i = 15\) unterscheiden sich die Ausgaben ebenfalls. Hier gibt \bjava{do}-\bjava{while} noch \say{15} aus, während die While-Schleife wieder nicht betreten wird.
             \end{itemize}
         \end{solve}
     \end{frame}
@@ -141,7 +141,7 @@ while(i++ < 7) {
 \begin{frame}[fragile]{Zählschleifen mit for}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Die \bjava{for}-Schleife in Java besteht aus drei optionalen Komponenten,\pause{} die alle leer sein können.
+        \item Die \bjava{for}-Schleife in Java besteht aus drei optionalen Komponenten,\pause{} die alle leer sein können (\bjava{:lan:Start:ran:},  \bjava{:lan:Schleifenbedingung:ran:} und \bjava{:lan:Nach:ran:}):
         \begin{plainjava}
 for(:lan:Start:ran:; :lan:Schleifenbedingung:ran:; :lan:Nach:ran:) {
     :lan:Anweisung(en):ran:

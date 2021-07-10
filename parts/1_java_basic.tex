@@ -499,7 +499,7 @@ println(-'=' + 2 * 3 + '=' + " 2*3"); // :yields: '6 2*3'
 println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10));
     // :yields: '-10 * 2 = -20_b10'
 \end{plainjava}
-    \pause{}Die erste arithmetische Operation liefert \bjava{-10},\pause{} welches dann zum String konkateniert wird.\pause{} Anschließend greift die Präzedenzregel \say{Punkt vor Strich}\pause{} wobei das Ergebnis anschließend als String konkateniert wird.\pause{} Dann wird in der Klammer durch erneute Konkatenation \bjava{_b10} erzeugt.\pause{}\\
+    \pause{}Die erste arithmetische Operation liefert \bjava{-10},\pause{} welches dann zum String konkateniert wird.\pause{} Anschließend greift die Präzedenzregel \say{Punkt vor Strich},\pause{} wobei das Ergebnis anschließend als String konkateniert wird.\pause{} Dann wird in der Klammer durch erneute Konkatenation \bjava{_b10} erzeugt.\pause{}\\
     \textit{Hinweis: Der Unterstich bei \bjava{-10} ist in Java (zwischen Zahlen) komplett valide\pause{} und wird in der Regel zum trennen von \(1000\)er Blöcken verwendet.}
     \end{solve}
 \end{frame}
@@ -512,7 +512,7 @@ println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10))
 println("c - a - 1 = " + ('c' - 1 - 'a'));
     // :yields: 'c - a - 1 = 1'
 \end{plainjava}
-    \pause{}Java berechnet zuerst die Operationen in der Klammer und wandelt die Zeichen in ihre ASCII-Werte um.\pause{} Diese muss man hierfür nicht kennen,\pause{} da es genügt zu Wissen, dass zwischen \T{a} und \T{c} ein Abstand von \(2\) vorliegt der um eins verringert wird.\pause{}
+    \pause{}Java berechnet zuerst die Operationen in der Klammer und wandelt die Zeichen in ihre ASCII-Werte um.\pause{} Diese muss man hierfür nicht kennen,\pause{} da es genügt zu wissen, dass zwischen \T{a} und \T{c} ein Abstand von \(2\) vorliegt der um eins verringert wird.\pause{}
     Wir berechnen also in der Klammer den wert \(1\).\pause{} Dieser wir nun normal zum String konkateniert, was die Ausgabe erzeugt.
     \end{solve}
 \end{frame}
@@ -555,7 +555,7 @@ println("c - a - 1 = " + ('c' - 1 - 'a'));
     \widei
     \setcounter{enumi}{3}
     \item \say{\bjava{5L/(char) 2}}: \bjava{long} \textcolor{gray}{(2)}\pause\par
-    \bjava{5L} besitzt den Typ \bjava{long}, damit wird auch der Character mit UTF16-Wert \(2\) in ein \bjava{long} konvertiert. Das Ergebnis der Division aus \bjava{long} und \bjava{long} ergibt wieder \bjava{long}
+    \bjava{5L} besitzt den Typ \bjava{long}, damit wird auch der Character mit UTF16-Wert \(2\) in ein \bjava{long} konvertiert. Das Ergebnis der Division aus \bjava{long} und \bjava{long} ergibt wieder \bjava{long}.
     \item \say{\bjava{(short)3 + (byte)-3.1415}}: \bjava{int} \textcolor{gray}{(0)}\pause\par
     Java konvertiert die Summe aus einem Short und einem Byte implizit zu einem Integer.
     \item \say{\bjava{(float)0b1001 + (long)0x42}}: \bjava{float} \textcolor{gray}{(75.0)}\pause\par
