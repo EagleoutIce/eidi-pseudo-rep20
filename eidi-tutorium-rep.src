@@ -61,14 +61,14 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit
     \vfill\hbox{}
 \end{frame}
 
-\input{parts/0_theoretische_grundlagen}
-\input{parts/1_java_basic}
-\input{parts/2_kontrollstrukturen_und_arrays}
-\input{parts/3_oo-konzepte}
-\input{parts/4_programmiertheorie}
-\input{parts/5_weiterfuehrende_konzepte}
+% \input{parts/0_theoretische_grundlagen}
+% \input{parts/1_java_basic}
+% \input{parts/2_kontrollstrukturen_und_arrays}
+% \input{parts/3_oo-konzepte}
+% \input{parts/4_programmiertheorie}
+% \input{parts/5_weiterfuehrende_konzepte}
 \input{parts/6_dynamische_datenstrukturen}
-\input{parts/7_java_advanced}
+% \input{parts/7_java_advanced}
 
 \begin{frame}\relax
     \pdfbookmark[0]{Ein Wort zum Abschluss}{wortzumabschluss}%
