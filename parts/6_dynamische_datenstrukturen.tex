@@ -547,12 +547,13 @@ class Node {
         \item Die Knoten werden Ebene für Ebene von links nach rechts besucht.
         \item \say{Besucht} steht hier für alle möglichen Varianten der Bearbeitung.
         \item Es handelt sich um einen Breitendurchlauf (\textit{breadth-first}).
-    \end{itemize}
+    \end{itemize}\medskip
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite,s sep=3.5em-level*.65em}
             [1,name=1[2,name=2[4,name=4[8,name=8][9,name=9]][5,name=5[10,name=10][11,name=11]]][3,name=3[6,name=6[12,name=12][13,name=13]][7,name=7[14,name=14][15,name=15]]]]
             \onslide<6->{
+            \pgfinterruptboundingbox
             \scope[every path/.append style={draw,line width=3pt,lightgray!65!white,-Kite}]
                 \path (-9.25,0|-1) node[left,gray] {\textbf{0}} -- (1);
                 \path (1) -- (1-|9.25,0);
@@ -566,7 +567,8 @@ class Node {
                 \path (8) -- (9); \path (9) -- (10); \path (10) -- (11);
                 \path (11) -- (12); \path (12) -- (13); \path (13) -- (14);
                 \path (14) -- (15);
-            \endscope}
+            \endscope
+            \endpgfinterruptboundingbox}
         \end{forest}}
     \end{center}
 \end{frame}
@@ -575,11 +577,11 @@ class Node {
     \begin{itemize}[<+(1)->]
         \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
         \item Mit der Pre-Order Strategie wird erst der aktuelle Knoten und dann rekursiv beide Teilbäume besucht.\pause{}
-    \end{itemize}
+    \end{itemize}\medskip
     \pause\begin{center}
         \scalebox{0.625}{\begin{forest}
-            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
-            [1[2[3[4][5]][6[7][8]]][9[10[11][12]][13[14][15]]]]
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite,s sep=3.5em-level*.65em}
+            [1,name=1[2,name=2[3,name=3[4,name=4][5,name=5]][6,name=6[7,name=7][8,name=8]]][9,name=9[10,name=10[11,name=11][12,name=12]][13,name=13[14,name=14][15,name=15]]]]
         \end{forest}}
     \end{center}
 \end{frame}
@@ -587,12 +589,12 @@ class Node {
 \begin{frame}{Traversierung: In-Order}
     \begin{itemize}[<+(1)->]
         \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
-        \item Mit dieser Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} \textcolor{gray}{(Analog gespiegelt)}
-    \end{itemize}
+        \item Mit dieser Strategie wird erst rekursiv ein Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der andere Teilbaum.\pause{}
+    \end{itemize}\medskip
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
-            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
-            [8[4[2[1][3]][6[5][7]]][12[10[9][11]][14[13][15]]]]
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite,s sep=3.5em-level*.65em}
+            [8,name=8[4,name=4[2,name=2[1,name=1][3,name=3]][6,name=6[5,name=5][7,name=7]]][12,name=12[10,name=10[9,name=9][11,name=11]][14,name=14[13,name=13][15,name=15]]]]
         \end{forest}}
     \end{center}
 \end{frame}
@@ -600,11 +602,11 @@ class Node {
 \begin{frame}{Traversierung: Post-Order}
     \begin{itemize}[<+(1)->]
         \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
-        \item Mit der Post-Order Strategie wird erst rekursiv der linke, dann der rechte Teilbaum und erst dann der Knoten selbst bearbeitet. \textcolor{gray}{(Analog gespiegelt)}
-    \end{itemize}
+        \item Mit der Post-Order Strategie wird erst rekursiv beide Teilbäume und dann der Knoten selbst bearbeitet.
+    \end{itemize}\medskip
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
-            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite,s sep=3.5em-level*.65em}
             [15[7[3[1][2]][6[4][5]]][14[10[8][9]][13[11][12]]]]
         \end{forest}}
     \end{center}
@@ -613,7 +615,7 @@ class Node {
 \begin{frame}{Suchbäume}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Bäume können auch nützliche Datenstrukturen sein, wenn man sie \emph{ordnet}.
+        \item Bäume können auch zur Sortierung nützliche Datenstrukturen sein.
         \item So existieren Suchbäume. \textcolor{gray}{(Alle Elemente im linken Teilbaum sind kleiner oder gleich der Wurzel, alle rechten größer \(\Rightarrow\) \hyperlink{mrk:binsearch}{binäre Suche}.)}
         \item Vergleiche hierzu auch die Datenstruktur \hyperlink{mrk:Heap}{Heap}.
         \item Die Verfahren lassen sich auch auf Bäume mit höherem Verzweigungsgrad anwenden!
