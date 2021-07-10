@@ -542,24 +542,39 @@ class Node {
 \end{center}
 \end{frame}
 
-\begin{frame}{Traversierung: Breitensuche}
+\begin{frame}{Traversierung: Level-Order}
     \begin{itemize}[<+(1)->]
-        \item In der Breitensuche werden die Knoten Ebene für Ebene von links nach rechts besucht.
-        \item \say{Besucht} steht hier für alle möglichen Varianten der Bearbeitung. Dies gilt auch für alle folgenden Traversierungen.
-        \item Der folgende Baum veranschaulicht die Reihenfolge der Besuche:
+        \item Die Knoten werden Ebene für Ebene von links nach rechts besucht.
+        \item \say{Besucht} steht hier für alle möglichen Varianten der Bearbeitung.
+        \item Es handelt sich um einen Breitendurchlauf (\textit{breadth-first}).
     \end{itemize}
     \pause{}\begin{center}
         \scalebox{0.625}{\begin{forest}
-            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
-            [1[2[4[8][9]][5[10][11]]][3[6[12][13]][7[14][15]]]]
+            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite,s sep=3.5em-level*.65em}
+            [1,name=1[2,name=2[4,name=4[8,name=8][9,name=9]][5,name=5[10,name=10][11,name=11]]][3,name=3[6,name=6[12,name=12][13,name=13]][7,name=7[14,name=14][15,name=15]]]]
+            \onslide<6->{
+            \scope[every path/.append style={draw,line width=3pt,lightgray!65!white,-Kite}]
+                \path (-9.25,0|-1) node[left,gray] {\textbf{0}} -- (1);
+                \path (1) -- (1-|9.25,0);
+                \path (-9.25,0|-2) node[left,gray] {\textbf{1}} -- (2);
+                \path (2) -- (3);
+                \path (3) -- (3-|9.25,0);
+                \path (-9.25,0|-4) node[left,gray] {\textbf{2}} -- (4);
+                \path (4) -- (5); \path (5) -- (6); \path (6) -- (7);
+                \path (7) -- (7-|9.25,0);
+                \path (-9.25,0|-8) node[left,gray] {\textbf{3}} -- (8);
+                \path (8) -- (9); \path (9) -- (10); \path (10) -- (11);
+                \path (11) -- (12); \path (12) -- (13); \path (13) -- (14);
+                \path (14) -- (15);
+            \endscope}
         \end{forest}}
     \end{center}
 \end{frame}
 
 \begin{frame}{Traversierung: Pre-Order}
     \begin{itemize}[<+(1)->]
-        \item Bei der Pre-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
-        \item Mit der Pre-Order Strategie wird der aktuelle Knoten bearbeitet, dann rekursiv der linke, dann rekursiv der rechte Teilbaum.\pause{} \textcolor{gray}{(Analog gespiegelt)}
+        \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
+        \item Mit der Pre-Order Strategie wird erst der aktuelle Knoten und dann rekursiv beide Teilbäume besucht.\pause{}
     \end{itemize}
     \pause\begin{center}
         \scalebox{0.625}{\begin{forest}
@@ -571,7 +586,7 @@ class Node {
 
 \begin{frame}{Traversierung: In-Order}
     \begin{itemize}[<+(1)->]
-        \item Bei der In-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
+        \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
         \item Mit dieser Strategie wird erst rekursiv der linke Teilbaum bearbeitet, dann der Knoten selbst und dann rekursiv der rechte Teilbaum.\pause{} \textcolor{gray}{(Analog gespiegelt)}
     \end{itemize}
     \pause{}\begin{center}
@@ -584,7 +599,7 @@ class Node {
 
 \begin{frame}{Traversierung: Post-Order}
     \begin{itemize}[<+(1)->]
-        \item Bei der Post-Order Tiefensuche traversieren wir die Knoten über ihre Kinder.
+        \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
         \item Mit der Post-Order Strategie wird erst rekursiv der linke, dann der rechte Teilbaum und erst dann der Knoten selbst bearbeitet. \textcolor{gray}{(Analog gespiegelt)}
     \end{itemize}
     \pause{}\begin{center}
@@ -1288,7 +1303,7 @@ while (current != null) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Traversierung eines Baumes}
     \begin{exercise}<2->[Traversierung eines Baumes \Time{4}]
-        \pause{}Gegeben sei der folgende Binärbaum. Geben Sie sowohl die Besuchsreihenfolge des Breitendurchlaufs, als auch des In- und des Post-Order Durchlaufs an.\pause{}
+        \pause{}Gegeben sei der folgende Binärbaum. Geben Sie sowohl die Besuchsreihenfolge des Level-, als auch des In- und des Post-Order Durchlaufs an.\pause{}
         \begin{center}
             \scalebox{.55}{\begin{forest}
                 for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,execute at begin node={\strut},minimum width=1.2cm}
@@ -1318,14 +1333,11 @@ while (current != null) {
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{Traversierung eines Baumes - Java}
     \begin{exercise}<2->[Traversierung eines Baumes - Java \Time{4}]
-        Es sei durch folgende Klasse ein Knoten eines Binärbaums notiert, der mit \bjava{Node root} beginnt.\pause{} Schreiben Sie eine Funktion \bjava{inorder(Node)}, die eine In-Order Traversierung vornimmt.\pause{} Der Knoten soll (jeweils) einfach durch \bjava{System.out.println} ausgegeben werden.\pause{}
+        Es sei durch folgende Klasse ein Knoten eines Binärbaums notiert.\pause{} Schreiben Sie eine Funktion \bjava{inorder(Node)}, die eine In-Order Traversierung ab dem gegebenen Knoten vornimmt.\pause{} Der Wert des Knoten soll (jeweils) einfach durch \bjava{System.out.println} ausgegeben werden.\pause{}
 \begin{plainjava}
 public class Node {
     public int value;
     public Node left, right;
-    public Node(int _v) {
-        /* ... */
-    }
 }
 \end{plainjava}
     \end{exercise}
@@ -1361,7 +1373,7 @@ void inorder(Node n)  {
         Sie können Mengen, sowie Warteschlangen verwenden: \begin{itemize}
             \item \T{Queue.create()} erzeugt eine neue Warteschlange.
             \item \T{enqueue(<Wert>)} fügt einen Wert hinten an.
-            \item \T{dequeue()} entfernt einen Wert vorne.
+            \item \T{dequeue()} liefert und entfernt den vordersten Wert.
             \item \T{size()} liefert Ihnen die Größe der Warteschlange.
         \end{itemize}
     \end{exercise}
