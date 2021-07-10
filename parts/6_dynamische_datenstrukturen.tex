@@ -687,11 +687,13 @@ class Node {
     \end{tikzpicture}\pause\hfill\begin{tikzpicture}[scale=.5,gray]
         \basegraph
         \onslide<4->{
+            \pgfonlayer{background}
             \foreach \i in {0, ..., 5} {
                 \foreach \j in {\i, ..., 5} {
-                    \draw[thick] (\i) -- (\j);
+                    \draw[thick,gray] (\i) -- (\j);
                 }
             }
+            \endpgfonlayer
         }
         \node[above left] at(current bounding box.south east) {\faCheck};
     \end{tikzpicture}\pause\hfill
@@ -721,11 +723,13 @@ class Node {
             \end{pgfinterruptboundingbox}
     \end{tikzpicture}}\pause\hfill\onslide<9->{\begin{tikzpicture}[scale=.5,gray]
         \basegraph
+        \pgfonlayer{background}
         \foreach \i in {0, ..., 5} {
             \foreach \j in {\i, ..., 5} {
-                \draw[thick] (\i) -- (\j);
+                \draw[gray,thick] (\i) -- (\j);
             }
         }
+        \endpgfonlayer
         \begin{pgfinterruptboundingbox}
         \begin{scope}[every node/.append style={font=\scriptsize\sffamily}]
             \node[left=1mm] at (0) {5};
