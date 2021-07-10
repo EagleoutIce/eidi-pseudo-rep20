@@ -1360,6 +1360,54 @@ void inorder(Node n)  {
     \end{solve}
 \end{frame}
 
+\begin{frame}[fragile,c]{Übungsaufgabe}
+    \Task{Traversierung eines Baumes, 2 - Java}
+    \begin{exercise}<2->[Traversierung eines Baumes, 2 - Java \Time{6}]
+        \bjava{Node} definiere die Knoten eines Binärbaums, \solGet{keywordC}{Stack} sei eine korrekt implementierte Stack-Klasse (deren Konstruktor einen leeren Stack initialisiert).\pause{} Schreiben Sie eine \imp{iterative} Methode \bjava{preorderIt(Node n)}, die eine Pre-Order Traversierung ab dem Knoten \(n\) vornimmt. Diese soll dabei den linken vor dem rechten Teilbaum bearbeiten.\pause{} Der Wert des Knoten soll (jeweils) durch \bjava{System.out.println} ausgegeben werden.\pause{}
+\begin{columns}[c]
+\lstfs{9}%
+\begin{column}{.42\linewidth}
+\begin{plainjava}
+public class Node {
+    public int value;
+    public Node left;
+    public Node right;
+}
+\end{plainjava}
+\end{column}
+\begin{column}{.48\linewidth}
+    \begin{plainjava}[morekeywords={[3]{Stack}}]
+public class Stack {
+    public Stack() {/* ... */}
+    public boolean isEmpty();
+    public void push(Node n);
+    public Node pop();
+}
+\end{plainjava}
+\end{column}
+\end{columns}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile,c]{Lösung}
+    \begin{solve}<2->[Traversierung eines Baumes, 2 - Java]
+\pause{}\begin{plainjava}[morekeywords={[3]{Stack}}]
+void preorderIt(Node n) {
+    Stack s = new Stack();
+    s.push(n);
+    while(!s.isEmpty()) {
+        Node current = s.pop();
+        if(current == null)
+            continue;
+        System.out.println(current.value);
+        s.push(current.right);
+        s.push(current.left); // erst links
+    }
+}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Breitensuche in Adjazenzmatrix - Pseudocode}
     \begin{exercise}<2->[Breitensuche - Pseudocode \Time{6}]
