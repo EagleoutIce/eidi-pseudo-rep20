@@ -438,7 +438,8 @@ public static void bubbleSort(int[] arr) {
     \Task{Shakersort implementieren}
     \begin{exercise}<2->[Shakersort implementieren \Time{6}]
         \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void shakerSort(int[])}, die das übergebene Array mittels Shakersort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.\medskip\par
-        Ausgehend von Bubblesort, geht Shakersort abwechselnd von links nach rechts und von rechts nach links durch das Array. In beiden Richtungen werden Vertauschungen nach Bubblesort durchgeführt.
+        Ausgehend von Bubblesort, geht Shakersort \textit{abwechselnd} von links nach rechts und von rechts nach links durch das noch zu sortierende Array. In beiden Richtungen werden Vertauschungen nach Bubblesort durchgeführt.
+        Jede Aufwärts- und jede Abwärtsbewegung verringert dabei den noch zu sortierenden Bereich um \(1\).
     \end{exercise}\onslide<1->
 \end{frame}
 
@@ -446,7 +447,7 @@ public static void bubbleSort(int[] arr) {
     \begin{solve}<2->[Shakersort implementieren]
         \pause{}Den noch zu sortierenden Bereich grenzen wir mit \bjava{l} und \bjava{r} ein:
 \lstfs{10}\begin{plainjava}
-!*\onslide<3->*!public static void shakerSort(int[] arr) {
+!*\onslide<3->*!public void shakerSort(int[] arr) {
 !*\onslide<4->*!    int l = 0, r = arr.length - 1;
 !*\onslide<5->*!    while(l < r) {
 !*\onslide<6->*!        for(int i = l; i < r; i++) { // aufwärts
