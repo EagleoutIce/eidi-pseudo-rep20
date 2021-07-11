@@ -103,44 +103,50 @@ Sonst soll (3) B durchgeführt werden.}}\quad
             \item Vorbedingung (wie \say{positive ganze Zahl})
             \item Nachbedingung (wie \say{negative Fließkommazahl})
         \end{itemize}
-        \item Algorithmen fundieren oft auf einem Problem der realen Welt und bedienen sich Mechaniken wie der Abstraktion zur Lösung.
+        \item Algorithmen fundieren oft auf einem Problem der realen Welt und bedienen sich Mechaniken, wie der Abstraktion, zur Lösung.
         \item (Java-)Programme sind eine Darstellungsform von Algorithmen.\par\pause{}
               Diese kann von Maschinen interpretiert und ausgeführt werden.
      \end{itemize}
 \end{frame}
 
 \begin{frame}[c]{Schema eines Algorithmus, II}
-    \centering\onslide<2->{%
-\scalebox{.75}{\begin{tikzpicture}[yscale=1.1,block/.append style={minimum width={3.5cm}}]
+    \centering\smallskip\onslide<2->{%
+\scalebox{.7}{\begin{tikzpicture}[yscale=1.1,block/.append style={minimum width={3.5cm}}]
     \onslide<2->{\node[block] at (0,0) (PM)  {Problem};}
     \onslide<3->{\node[block] at (0,-3) (AL)  {Algorithmus};}
     \onslide<4->{\node[block] at (0,-5) (PR)  {Programm};}
     \onslide<5->{\node[block] at (0,-7) (MA)  {Maschine};}
     \onslide<3->{
         \draw[link] (PM) -- (AL);
+        \pgfinterruptboundingbox
         \node[left=.5cm] at (0,-1.5) {Abstraktion};
-        \node[right,align=left,text width=5cm] at (.5,-1.45) {\begin{itemize}
+        \node[right,align=left,text width=5.5cm] at (.5,-1.45) {\begin{itemize}
             \item Problemanalyse
             \item Funktionale\par Spezifikation
             \item Algorithmenentwurf
         \end{itemize}
         };
+        \endpgfinterruptboundingbox
     }
     \onslide<4->{
         \draw[link] (AL) -- (PR);
+        \pgfinterruptboundingbox
         \node[left=.5cm] at (0,-4) {Implementierung};
-        \node[right,align=left,text width=5cm] at (.5,-3.85) {\begin{itemize}
+        \node[right,align=left,text width=5.5cm] at (.5,-3.85) {\begin{itemize}
             \item Darstellung in\par Programmiersprache
         \end{itemize}
         };
+        \endpgfinterruptboundingbox
     }
     \onslide<5->{
         \draw[link] (PR) -- (MA);
+        \pgfinterruptboundingbox
         \node[left=.5cm] at (0,-6) {Realisierung};
-        \node[right,align=left,text width=5cm] at (.5,-5.85) {\begin{itemize}
+        \node[right,align=left,text width=5.5cm] at (.5,-5.85) {\begin{itemize}
             \item Umsetzung in\par Maschinenbefehle
         \end{itemize}
         };
+        \endpgfinterruptboundingbox
     }
 \end{tikzpicture}}}
 \end{frame}
