@@ -426,6 +426,42 @@ public class A {
     \end{solve}
 \end{frame}
 
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Bindungen Praktisch}
+    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]\label{tsk:java-bindings-result}\lstfs{9}
+\begin{plainjava}[morekeywords={[3]{A,B}}]
+public class A {
+    int a = 0;
+    void x(int a) { this.a = 2 - a; }
+
+    static class B extends A {
+        int a = 1;
+        void x(int a) { this.a = 2 * a; }
+    }
+
+    public static void main(String[] args) {
+        A a = new A(); a.x(4);
+        B b = new B(); b.x(4);
+        A c = new B(); c.x(4);
+        System.out.format("%d %d %d", a.a, b.a, c.a);
+    }
+}
+\end{plainjava}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Was liefert dieser Code?]
+        Er liefert \say{\bjava{-2 8 0}}. Warum?
+        \begin{description}[XX:]
+            \item[-2] Es wird \bjava[morekeywords={[3]{A,B}}]{A::x} aufgerufen, damit ist \T{a}: \(2 - 4 = -2\).
+            \item[8] Es wird \bjava[morekeywords={[3]{A,B}}]{B::x} aufgerufen, damit ist \T{a}: \(2 \cdot 4 = 8\).
+            \item[0] Da Attribute statisch gebunden werden, verändert \bjava[morekeywords={[3]{A,B}}]{B::x} \emph{nicht} das \T{a} in \bjava[morekeywords={[3]{A,B}}]{A} und dieses bleibt damit beim initialen Wert: \(0\).
+        \end{description}
+    \end{solve}
+\end{frame}
+
+
 \begin{frame}[c, fragile]{Übungsaufgabe}
 \Task{Vererbungshierarchien}
 \begin{exercise}<2->[Vererbungshierarchien \Time{6}]
@@ -528,42 +564,6 @@ public class A {
 \end{column}
 \end{columns}
 \end{solve}
-\end{frame}
-
-
-\begin{frame}[c,fragile]{Übungsaufgabe}
-    \Task{Bindungen Praktisch}
-    \begin{exercise}<2->[Was liefert dieser Code? \Time{4}]\label{tsk:java-bindings-result}\lstfs{9}
-\begin{plainjava}[morekeywords={[3]{A,B}}]
-public class A {
-    int a = 0;
-    void x(int a) { this.a = 2 - a; }
-
-    static class B extends A {
-        int a = 1;
-        void x(int a) { this.a = 2 * a; }
-    }
-
-    public static void main(String[] args) {
-        A a = new A(); a.x(4);
-        B b = new B(); b.x(4);
-        A c = new B(); c.x(4);
-        System.out.format("%d %d %d", a.a, b.a, c.a);
-    }
-}
-\end{plainjava}
-    \end{exercise}
-\end{frame}
-
-\begin{frame}[c]{Lösung}
-    \begin{solve}<2->[Was liefert dieser Code?]
-        Er liefert \say{\bjava{-2 8 0}}. Warum?
-        \begin{description}[XX:]
-            \item[-2] Es wird \bjava[morekeywords={[3]{A,B}}]{A::x} aufgerufen, damit ist \T{a}: \(2 - 4 = -2\).
-            \item[8] Es wird \bjava[morekeywords={[3]{A,B}}]{B::x} aufgerufen, damit ist \T{a}: \(2 \cdot 4 = 8\).
-            \item[0] Da Attribute statisch gebunden werden, verändert \bjava[morekeywords={[3]{A,B}}]{B::x} \emph{nicht} das \T{a} in \bjava[morekeywords={[3]{A,B}}]{A} und dieses bleibt damit beim initialen Wert: \(0\).
-        \end{description}
-    \end{solve}
 \end{frame}
 
 \begin{frame}[c,fragile]{Übungsaufgabe}
