@@ -28,8 +28,8 @@
 \ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Fehlerfinden - Vererbungs special}
-    \begin{exercise}<2->[Fehler finden - Vererbung \Time{4}]
-        \pause{}Erklären Sie alle Kompilierzeit-Fehler. Die Klassen befinden sich jeweils in Dateien mit dem korrekten Namen und in dem \emph{selben} Verzeichnis:\pause{}
+    \begin{exercise}<2->[Fehler finden - Vererbung \Time{5}]
+        \pause{}Erklären Sie drei Kompilierzeit-Fehler. Die Klassen befinden sich jeweils in Dateien mit dem korrekten Namen und in dem \emph{selben} Verzeichnis:\pause{}
 \lstfs{9}%
 \begin{plainjava}
 public class A {
@@ -51,6 +51,7 @@ public class B extends A {
 
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Fehler finden - Vererbung]
+        Dies sind alle Fehler, welche vom Java-Compiler erkannt werden:
         \begin{enumerate}[<+(1)->]
             \item \bjava{B} benötigt einen Konstruktor, da es für die Superklasse nur \bjava{A(int)} gibt.\pause{} \textcolor{gray}{Zum Beispiel: \say{\bjava{B() \{ super(0); \}}}.}
             \item \bjava{B::fun()} ist illegal, es schränkt die Sichtbarkeit von \bjava{A::fun()} von \bjava{protected} auf \bjava{private} ein. Dies widerspricht dem Erweiterungskonzept.
@@ -181,6 +182,7 @@ herbert instanceof Dozent // :yields: false
 !*\onslide<3->*!    public AbstractList() { }
 !*\onslide<2->*!
 !*\onslide<4->*!    abstract void add(Element e);
+!*\onslide<4->*!
 !*\onslide<5->*!    int size() {
 !*\onslide<5->*!        // ...
 !*\onslide<5->*!    }
