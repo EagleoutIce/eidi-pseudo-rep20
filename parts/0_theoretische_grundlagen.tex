@@ -12,7 +12,7 @@
 \RestyleAlgo{tworuled}%
 \onslide<5->{\parbox[5em]{.29\linewidth}{\footnotesize
 (1) Wenn der \textit{Wert} 42 übersteigt, (2) soll A ausgeführt werden.
-Sonst soll (3) B durchgeführt werden.}}\quad
+Ansonsten soll (3) B durchgeführt werden.}}\quad
 \onslide<6->{\parbox[5em]{.29\linewidth}{\centering\footnotesize
 \scalebox{.825}{\begin{tikzpicture}[rounded corners=1pt,yscale=.8]
     \node[iblock] (0) at(0,0) {Wert > 42};
@@ -45,7 +45,6 @@ Sonst soll (3) B durchgeführt werden.}}\quad
         \item Ein Algorithmus besitzt einige grundlegende \imp{Eigenschaften}: \begin{description}[Ausführbarkeit]
             \item[Ausführbarkeit] Die Anleitung muss ausführ- und reproduzierbar sein.
             \item[Endlichkeit] Er muss mit endlich viel Text beschreibbar sein.
-            \item[Termination] Er kommt nach endlich vielen Schritten zum Ende.
             \item[Verarbeitung] Ein Algorithmus erhält Eingabedaten \(E\), hält lokale Daten \(D\) und erzeugt Ausgabedaten \(A\).
         \end{description}
     \end{itemize}
@@ -53,11 +52,11 @@ Sonst soll (3) B durchgeführt werden.}}\quad
 
 \begin{frame}[c]{Eigenschaften für die Analyse}
     \twosplit{%
-    \begin{block}<2->{Korrektheit}
-        \onslide<3->{Ein Algorithmus ist korrekt, wenn er für jede (definierte) Eingabe, die korrekte Ausgabe erzeugt.}
+    \begin{block}<2->{Termination}
+        \onslide<3->{Ein Algorithmus terminiert, wenn er nach endlich vielen Schritten zum Ende kommt.}
     \end{block}\bigskip
     \begin{block}<6->{Partielle Korrektheit}
-        \onslide<7->{Wenn der Algorithmus terminiert, ist er korrekt.}
+        \onslide<7->{Wenn der Algorithmus für eine Eingabe terminiert, ist die erzeugte Ausgabe korrekt.}
     \end{block}
     }{%
     \begin{block}<4->{Robustheit}
@@ -72,7 +71,7 @@ Sonst soll (3) B durchgeführt werden.}}\quad
 \begin{frame}{Eigenschaften für die Analyse, II}
     \twosplit{%
     \begin{block}<2->{Determinismus}
-        \onslide<3->{Der Ablauf ist \emph{eindeutig}. Jeder Anweisung folgt (bei gleichen Vorraussetzungen) dieselbe.}
+        \onslide<3->{Der Ablauf ist \emph{eindeutig}. Jeder Anweisung folgt (bei gleichen Voraussetzungen) die selbe.}
     \end{block}
     }{%
     \begin{block}<4->{Determiniertheit}
@@ -155,7 +154,7 @@ Sonst soll (3) B durchgeführt werden.}}\quad
 \begin{frame}{Wie ein Programm entsteht}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein Programm fällt nicht aus dem Wolken (leider).
+        \item Ein Programm fällt nicht aus den Wolken (leider).
         \item Im Softwareengineering gliedert man den Prozess meist in sechs Phasen.
         \item Die sechste Phase (Dokumentation) läuft dabei parallel zu den anderen.
         \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code,\pause{} sowie zum Ablauf selbst mit ein!
@@ -179,7 +178,7 @@ Sonst soll (3) B durchgeführt werden.}}\quad
             \draw[densely dashed] (d1.west) -- (1.east);
         }
         \onslide<4->{
-            \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus. Kreativer Prozess (beantwortet auch Fragen wie: \say{gibt es das schon?})};
+            \node[above right=0.75cm,yshift=-1cm,align=left,font=\scriptsize,text width=4.25cm] (d2) at (2.north east) {Entwickle Algorithmus. Kreativer Prozess (Beantwortet auch Fragen wie: \say{Gibt es das schon?})};
             \draw[densely dashed] (d2.west) -- (2.east);
         }
         \onslide<5->{

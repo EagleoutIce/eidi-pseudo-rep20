@@ -13,7 +13,7 @@
         \onslide<4->{\draw (comp) -- ++(2,0) node[right, rec] (mac) {Maschinencode};}
         \onslide<6->{\draw (bib) -| ++ (2,-.4) -- ([yshift=0.1cm]link.west);
         \draw (adMac) -| ++ (2,.4) -- ([yshift=-0.1cm]link.west);}
-        \onslide<7->{\draw (link) -- ++(2,0) node[right, irec] (prog) {Program};}
+        \onslide<7->{\draw (link) -- ++(2,0) node[right, irec] (prog) {Programm};}
         \onslide<5->{\draw (mac) -- ++ (0,-.62) -| (link.north);}
         \onslide<8->{\draw (prg)++(0,.75) node[above] {\tiny Das machen wir} -- (prg);
         \draw (prog)++(0,-.75) node[below] {\tiny Das wollen wir} -- (prog);}
@@ -100,7 +100,7 @@ final int SUPER_ZAHL = 42;
         \end{plainjava}
         \item Schreiben wir eine Fließkommazahl wie \bjava{3.1415}, so interpretiert sie Java erstmal als \bjava{double}.\pause{} Damit sie als \bjava{float} interpretiert wird, müssen wir ein \bjava{f} anstellen.\pause{} Also: \bjava{3.1415f}.
         \item Zeichen (\bjava{char}) werden in Java im UTF-16 Format gespeichert.\pause{} Für die unteren \(7\)-Bit ist es identisch zur ASCII-Kodierung.
-        \item Der \say{Datentyp} \bjava{void} gibt bei Methoden an,\pause{} dass diese nichts zurück geben!
+        \item Der \say{Datentyp} \bjava{void} gibt bei Methoden an,\pause{} dass diese nichts zurückgeben!
     \end{itemize}
 \end{frame}
 
@@ -162,7 +162,7 @@ System.out.println(x); // :yields: 5
         \begin{plainjava}[columns={[c]fullflexible}]
 System.out.println(x++ + ++x + x++ + ++x); // :yields: 28
         \end{plainjava}
-        \pause{}Dies ist wohl die schwierigste Zeile.\pause{} Aufgeschlüsselt wird hier addiert: \(5 + 7 + 7 + 9 = 28\).\pause{} Die erste \(5\), da \bjava{x} erst nachträglich erhöht wird.\pause{} Dann wird \bjava{x}, welches jetzt \(6\) ist, direkt um eins erhöht.\pause{} \bjava{x} ist jetzt \(7\), das Spiel wiederholt sich für das Hintere \bjava{++x}.\pause{}
+        \pause{}Dies ist wohl die schwierigste Zeile.\pause{} Aufgeschlüsselt wird hier addiert: \(5 + 7 + 7 + 9 = 28\).\pause{} Zuerst ist es \(5\), da \bjava{x} erst nachträglich erhöht wird.\pause{} Dann wird \bjava{x}, welches jetzt \(6\) ist, direkt um eins erhöht.\pause{} \bjava{x} ist jetzt \(7\), das Spiel wiederholt sich für das Hintere \bjava{++x}.\pause{}
         \begin{plainjava}[columns={[c]fullflexible}]
 System.out.println(x); // :yields: 9
         \end{plainjava}
@@ -192,7 +192,7 @@ System.out.println(x); // :yields: 9
 Random rnd = new Random();
 \end{plainjava}
         \pause{}speichert Java für \bjava{rnd} die Referenz,\pause{} an der sich die eigentlichen Daten des Objekts befinden. \textcolor{gray}{Stichwort: Heap und Stack.}
-        \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \bjava{==} vergleicht die Speicheradressen und damit die \emph{Identität}.
+        \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \say{\bjava{==}} vergleicht die Speicheradressen und damit die \emph{Identität}.
     \end{itemize}
 \end{frame}
 
@@ -202,11 +202,11 @@ Random rnd = new Random();
         \widei
         \item Jede Variable\thinspace /\thinspace jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
         \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a,b):}]
-            \item[{s1.equals(s2)}:] prüft, ob die Zeichenketten gleich sind.
-            \item[{s1.length()}:] liefert die Länge einer Zeichenkette.
-            \item[{s1.charAt(k)}:] liefert das \T{k}-te Zeichen.
-            \item[{s1.substring(a,b)}:] liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
-            \item[{s1.toUpperCase()}:] liefert die Zeichenkette in Großbuchstaben.
+            \item[{s1.equals(s2)}:] Prüft, ob die Zeichenketten gleich sind.
+            \item[{s1.length()}:] Liefert die Länge einer Zeichenkette.
+            \item[{s1.charAt(k)}:] Liefert das \T{k}-te Zeichen.
+            \item[{s1.substring(a,b)}:] Liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
+            \item[{s1.toUpperCase()}:] Liefert die Zeichenkette in Großbuchstaben.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -237,13 +237,14 @@ private static String generateWelcomeMessage(String name, int age,
 \end{frame}
 
 \begin{frame}{Signatur \& Überladung}
+    \hypertarget<1>{mrk:Signatur}{}%
     \begin{itemize}[<+(1)->]
         \widei
         \item Die Signatur einer Methode besteht aus dem Namen sowie den Datentypen der Parameter.\pause{} Der Rückgabetyp ist \emph{kein} Teil!\smallskip\par
          \faAngleRight~Beispiel: \bjava{generateWelcomeMessage(String, int, boolean)}.
         \item Java verbietet zwei Funktionen mit gleicher Signatur im selben Gültigkeitsbereich.
         \item Gestattet sind Funktionen mit gleichem Namen, aber verschiedener Parameterliste.\pause{} Dieses Prinzip wird \emph{Überladen} (Overloading) genannt.
-        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)},~\ldots),\pause{} entscheidet Java welche Methode aufgerufen werden soll.\pause{} Es nimmt die \say{nächste}.
+        \item Existieren mehrere Überladungen mit gleicher Parameteranzahl\pause{} (wie \bjava{m(int,double)}, \bjava{m(char,float)},~\ldots),\pause{} entscheidet Java welche Methode aufgerufen werden soll.\pause{} Es nimmt die \say{Nächste}.
     \end{itemize}
 \end{frame}
 
@@ -255,9 +256,9 @@ private static String generateWelcomeMessage(String name, int age,
         \widei
         \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{description}[protected]
             \item[private] Zugriff ist nur innerhalb der Klasse erlaubt.
-            \item[protected] ist sichtbar im gesamten Paket sowie in allen Unterklassen (\hyperlink{mrk:Vererbung}{Vererbung}).
-            \item[public] ist überall sichtbar (auch über Pakete hinweg).
-            \item[\say{default}] gibt man nichts an, so kann die Variable von Überall im Paket (\say{selber Ordner}) erreicht werden.
+            \item[protected] Ist sichtbar im gesamten Paket sowie in allen Unterklassen (\hyperlink{mrk:Vererbung}{Vererbung}).
+            \item[public] Ist überall sichtbar (auch über Pakete hinweg).
+            \item[\say{default}] Gibt man nichts an, so kann die Variable von Überall im Paket (\say{selber Ordner}) erreicht werden.
         \end{description}
         \item Hinweis (Vorgriff):\pause{} Objekte einer Klasse können auch auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
     \end{itemize}
@@ -271,7 +272,7 @@ private static String generateWelcomeMessage(String name, int age,
 !*\onslide<4->*!    !**!|zws|private|zws| int sozialversicherungsnummer; // !*\solGet{comments}{\textbf{2.}}*! Klasse
 !*\onslide<5->*!    !**!|zws|protected|zws| int watschelIndex; // !*\solGet{comments}{\textbf{3.}}*! geschützt
 !*\onslide<6->*!    !**!|zws|public|zws| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*! (erneut: global)
-!*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: package
+!*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: Paket
 !*\onslide<3->*!}
 \end{plainjava}
     \item<8-> Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} aber sei in einem anderem Paket: \medskip\par
@@ -370,7 +371,7 @@ class Skyrim extends Banana {
 
 \begin{frame}[c]{Es gilt festzuhalten\ldots}
     \begin{definition}[Subroutinen]
-        Eine Subroutine\thinspace /\thinspace Funktion ist ein \emph{Unterprogramm},\pause{} das von anderen Programm(teilen) aufgerufen und so wiederverwendet werden kann.\pause{}\medskip\newline Sie wird durch ihre \emph{Signatur} eindeutig identifiziert,\pause{} die in Java aus einem Bezeichner sowie einer Liste an Datentypen der Parameter besteht. Ein Unterprogramm ist in der Lage Daten an den aufrufenden Teil zurückzuliefern.
+        Eine Subroutine\thinspace /\thinspace Funktion ist ein \emph{Unterprogramm},\pause{} das von anderen Programm(teilen) aufgerufen und so wiederverwendet werden kann.\pause{}\medskip\newline Sie wird durch ihre \hyperlink{mrk:Signatur}{\emph{Signatur}} eindeutig identifiziert,\pause{} die in Java aus einem Bezeichner sowie einer Liste an Datentypen der Parameter besteht. Ein Unterprogramm ist in der Lage Daten an den aufrufenden Teil zurückzuliefern.
     \end{definition}
 \end{frame}
 
@@ -404,7 +405,7 @@ public static void main(String[] hihi) {
         \item Die Funktion \bjava{printLn} heißt \bjava{println}.
         \item In der Ausgabezeile fehlt ein Semikolon!
     \end{enumerate}
-    \pause{}\textit{Hinweis: das \say{hihi} ist kein Fehler!}
+    \pause{}\textit{Hinweis: Das \say{hihi} ist kein Fehler!}
     \end{solve}
 \end{frame}
 
@@ -433,7 +434,7 @@ public static void main(String[] args) {
     \begin{enumerate}[<+(1)->]
         \item Der Bezeichner \bjava{double} ist für eine Funktion nicht erlaubt.
         \item Der Ausdruck in der Funktion ist ungültig geklammert.
-        \item Die Funktion muss \bjava{static} sein um aufgerufen werden zu können.
+        \item Die Funktion muss \bjava{static} sein, um aufgerufen werden zu können.
         \item Die \bjava{main}-Methode benötigt die Signatur \bjava{main(String[])}!
         \item \bjava{System.in} hat die Funktion \bjava{print(String)} nicht.
     \end{enumerate}
@@ -443,7 +444,7 @@ public static void main(String[] args) {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Methodensignaturen}
     \begin{exercise}<2->[Signaturen \Time{2}]
-        \pause{}Geben Sie die Signaturen folgender Funktionen an.\pause{} Sind die Java-Funktionen ungültig, geben Sie bitte eine kurze Begründung an:\pause{}
+        \pause{}Geben Sie die Signaturen folgender Funktionen an.\pause{} Sind die Java-Funktionen ungültig, so geben Sie bitte eine kurze Begründung an:\pause{}
         \begin{plainvoid}
 String a(int a1, double a2) { /* ... */ }
 int b(String[] b1, int b2, double[] b3) { /* ... */ }
@@ -479,7 +480,7 @@ System.out.println("c - a - 1 = " + ('c' - 1 - 'a'));
 
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Konkatenation]
-        \pause{}Hinweis: ich schreibe \bjava{println} kurz für \bjava{System.out.println}. \pause{}
+        \pause{}Hinweis: Ich schreibe \bjava{println} kurz für \bjava{System.out.println}. \pause{}
 \begin{plainjava}
 println("2 + 3 = " + 2 + 3); // :yields: '2 + 3 = 23'
 \end{plainjava}
@@ -512,8 +513,8 @@ println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10))
 println("c - a - 1 = " + ('c' - 1 - 'a'));
     // :yields: 'c - a - 1 = 1'
 \end{plainjava}
-    \pause{}Java berechnet zuerst die Operationen in der Klammer und wandelt die Zeichen in ihre ASCII-Werte um.\pause{} Diese muss man hierfür nicht kennen,\pause{} da es genügt zu wissen, dass zwischen \T{a} und \T{c} ein Abstand von \(2\) vorliegt der um eins verringert wird.\pause{}
-    Wir berechnen also in der Klammer den wert \(1\).\pause{} Dieser wir nun normal zum String konkateniert, was die Ausgabe erzeugt.
+    \pause{}Java berechnet zuerst die Operationen in der Klammer und wandelt die Zeichen in ihre ASCII-Werte um.\pause{} Diese muss man hierfür nicht kennen,\pause{} da es genügt zu wissen, dass zwischen \T{a} und \T{c} ein Abstand von \(2\) vorliegt, der um eins verringert wird.\pause{}
+    Wir berechnen also in der Klammer den Wert \(1\).\pause{} Dieser wird nun normal zum String konkateniert, was die Ausgabe erzeugt.
     \end{solve}
 \end{frame}
 

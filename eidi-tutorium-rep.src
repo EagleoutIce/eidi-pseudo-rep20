@@ -52,7 +52,7 @@ Er wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist 
 Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesung dort durchbrochen wurde, wo eine andere Gruppierung passender erschien. Ebenso wird ein Verständnis der Themen vorrausgesetzt. So versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück~--- sofern vonnöten. \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
-Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit{k}Z erstellt. Ebenso wie das hier gezeigte \href{https://github.com/EagleoutIce/beamer-themes}{Beamer-Layout}. Für das Syntax-Highlighting wird das Paket \href{https://github.com/EagleoutIce/sopra-collection}{sopra-listings}. Weitere Links finden sich am Ende des Dokuments.\hfill {\tiny Florian Sihler, \href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\relax
+Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit{k}Z erstellt. Ebenso wie das hier gezeigte \href{https://github.com/EagleoutIce/beamer-themes}{Beamer-Layout}. Für das Syntax-Highlighting wird das Paket \href{https://github.com/EagleoutIce/sopra-collection}{sopra-listings} verwendet. Weitere Links finden sich am Ende des Dokuments.\hfill {\tiny\href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\relax
 \begin{center}
     \say{Viel Spaß beim Lernen!}
 \end{center}
