@@ -426,6 +426,110 @@ public class A {
     \end{solve}
 \end{frame}
 
+\begin{frame}[c, fragile]{Übungsaufgabe}
+\Task{Vererbungshierarchien}
+\begin{exercise}<2->[Vererbungshierarchien \Time{6}]
+    \onslide<3->{\footnotesize Konstruieren Sie eine \textit{abstrakte} Klasse \solGet{keywordC}{Entity}, welche die gemeinsamen Eigenschaften folgender Klassen vereint und die Sichtbarkeiten und Modifikatoren bestmöglich rekreiert. \onslide<4->{Schreiben Sie diese außerdem so um, dass sie nun von \solGet{keywordC}{Entity} erben. Die Klasse \solGet{keywordC}{Point} sei gegeben.}}
+\begin{columns}[c]
+\lstfs{6}%
+\begin{column}{.4\linewidth}
+\begin{plainjava}[morekeywords={[3]{Enemy,Companion}},belowskip=0pt,aboveskip=3pt]
+!*\onslide<5->*!class Enemy {
+!*\onslide<5->*!  private final long id; private Point pos;
+!*\onslide<5->*!  protected int hp, ap;
+!*\onslide<5->*!  public Enemy(long id) { this.id = id; }
+!*\onslide<5->*!  public void move(Point target) {
+!*\onslide<5->*!    this.pos = target;
+!*\onslide<5->*!  }
+!*\onslide<5->*!  Enemy whoIsEvil() {
+!*\onslide<5->*!    System.out.println("I aaaam ("+ id +")");
+!*\onslide<5->*!    return this;
+!*\onslide<5->*!  }
+!*\onslide<5->*!}
+!*\onslide<6->*!class Companion {
+!*\onslide<6->*!  private final long id; private Point pos;
+!*\onslide<6->*!  public Companion(long id) { this.id = id; }
+!*\onslide<6->*!  public void move(Point target) {
+!*\onslide<6->*!    this.pos = target;
+!*\onslide<6->*!  }
+!*\onslide<6->*!}
+\end{plainjava}
+\end{column}
+\begin{column}{.4\linewidth}
+\begin{plainjava}[morekeywords={[3]{NPC}},belowskip=0pt,aboveskip=3pt]
+!*\onslide<7->*!class NPC {
+!*\onslide<7->*!  private final long id; private Point pos;
+!*\onslide<7->*!  public final String visibleName;
+!*\onslide<7->*!  public NPC(String name, long id) {
+!*\onslide<7->*!    this.visibleName = name; this.id = id;
+!*\onslide<7->*!  }
+!*\onslide<7->*!  public void move(Point target) {
+!*\onslide<7->*!    this.pos = target;
+!*\onslide<7->*!    annoyingInterruption();
+!*\onslide<7->*!  }
+!*\onslide<7->*!
+!*\onslide<7->*!  void annoyingInterruption() {
+!*\onslide<7->*!    System.out.println("Movin' ("+ pos +")");
+!*\onslide<7->*!  }
+!*\onslide<7->*!}
+\end{plainjava}
+\end{column}
+\end{columns}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+\begin{solve}<2->[Vererbungshierarchien]
+\lstfs{8}%
+\begin{plainjava}[morekeywords={[3]{Entity}},belowskip=0pt,aboveskip=0pt]
+!*\onslide<3->*!abstract class Entity {
+!*\onslide<3->*!    protected final long id;
+!*\onslide<3->*!    protected Point pos; // oder private mit Getter
+!*\onslide<3->*!    public Entity(long id) { this.id = id; }
+!*\onslide<3->*!    public void move(Point target) {
+!*\onslide<3->*!        this.pos = target;
+!*\onslide<3->*!    }
+!*\onslide<3->*!}
+\end{plainjava}
+\begin{columns}[c]
+\lstfs{7}%
+\begin{column}{.45\linewidth}
+\begin{plainjava}[morekeywords={[3]{Enemy,Companion,Entity}},belowskip=0pt,aboveskip=0pt]
+!*\onslide<4->*!class Enemy extends Entity {
+!*\onslide<4->*!  protected int hp, ap;
+!*\onslide<4->*!  public Enemy(long id) { super(id); }
+!*\onslide<4->*!  Enemy whoIsEvil() {
+!*\onslide<4->*!    System.out.println("I aaaam ("+ id +")");
+!*\onslide<4->*!    return this;
+!*\onslide<4->*!  }
+!*\onslide<4->*!}
+
+!*\onslide<5->*!class Companion extends Entity {
+!*\onslide<5->*!  public Companion(long id) { super(id); }
+!*\onslide<5->*!}
+\end{plainjava}
+\end{column}
+\begin{column}{.45\linewidth}
+\begin{plainjava}[morekeywords={[3]{NPC,Entity}},belowskip=0pt,aboveskip=0pt]
+!*\onslide<6->*!class NPC extends Entity {
+!*\onslide<6->*!  public final String visibleName;
+!*\onslide<6->*!  public NPC(String name, long id) {
+!*\onslide<6->*!    super(id); this.visibleName = name;
+!*\onslide<6->*!  }
+!*\onslide<6->*!  public void move(Point target) {
+!*\onslide<6->*!    super.move(target);
+!*\onslide<6->*!    annoyingInterruption();
+!*\onslide<6->*!  }
+!*\onslide<6->*!  void annoyingInterruption() {
+!*\onslide<6->*!    System.out.println("Movin' ("+ pos +")");
+!*\onslide<6->*!  }
+!*\onslide<6->*!}
+\end{plainjava}
+\end{column}
+\end{columns}
+\end{solve}
+\end{frame}
+
 
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Bindungen Praktisch}
