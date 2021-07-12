@@ -31,7 +31,7 @@
 \begin{frame}{Vom Text zum Programm, II}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt der Java-Compiler die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class})
+        \item Mit \bbash{javac :lan:Name:ran:.java} übersetzt der Java-Compiler die Datei in \emph{Java-Bytecode}\pause{} (\bbash{:lan:Name:ran:.class}).
         \item Dieser Code kann vom Java-Interpreter ausgeführt werden:\pause{} \bbash{java :lan:Name:ran:}
         \item Ein paar wichtige Punkte: \begin{itemize}
             \widei
@@ -60,7 +60,7 @@
 \begin{frame}{Variablen und Wertzuweisungen}
     \pause{}
     \begin{center}
-        \parbox{7cm}{\!\bjava{int zahl = -42, super_zahl = 4;}\\\bjava{zahl = 42;}
+        \parbox{7cm}{\!\bjava{int zahl = -42, superZahl = 4;}\\\bjava{zahl = 42;}
         }
     \end{center}
     \begin{itemize}[<+(1)->]
@@ -144,12 +144,12 @@ System.out.println(x > 41 || m > 1 && 2 != 3); // :yields: true
 \Task{Code zur Präzedenz, II}
 \begin{exercise}<2->[Was liefert dieser Code?, II \Time{2}]
     \begin{plainjava}[columns={[c]fullflexible}]
-int x = 5;
-System.out.println(x);
-System.out.println(x++ + ++x + x++ + ++x);
-System.out.println(x);
+!*\onslide<3->*!int x = 5;
+!*\onslide<3->*!System.out.println(x);
+!*\onslide<3->*!System.out.println(x++ + ++x + x++ + ++x);
+!*\onslide<3->*!System.out.println(x);
     \end{plainjava}
-    \pause{}\textit{Hinweis: Dies ist lediglich eine Bonusübung, um den Unterschied zwischen der Präfix- und der Postfixnotation klar zu machen.}
+    \onslide<4->{\textit{Hinweis:} Dies ist lediglich eine Bonusübung, um den Unterschied zwischen der Präfix- und der Postfixnotation klar zu machen.}
 \end{exercise}
 \end{frame}
 
@@ -191,7 +191,7 @@ System.out.println(x); // :yields: 9
 \begin{plainjava}
 Random rnd = new Random();
 \end{plainjava}
-        \pause{}speichert Java für \bjava{rnd} die Referenz,\pause{} an der sich die eigentlichen Daten des Objekts befinden. \textcolor{gray}{Stichwort: Heap und Stack.}
+        \pause{}speichert Java für \bjava{rnd} die Referenz,\pause{} an der sich die eigentlichen Daten des Objekts befinden. \textcolor{gray}{Stichwort: \hyperlink{mrk:heap-and-stack}{Heap und Stack}.}
         \item Deswegen sollten komplexe Datentypen mittels \bjava{.equals()} verglichen werden.\pause{} \say{\bjava{==}} vergleicht die Speicheradressen und damit die \emph{Identität}.
     \end{itemize}
 \end{frame}
@@ -200,9 +200,9 @@ Random rnd = new Random();
     \setbeamertemplate{description item}[default]%
     \begin{itemize}[<+(1)->]
         \widei
-        \item Jede Variable\thinspace /\thinspace jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden.
+        \item Jede Variable\thinspace /\thinspace jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden. \textcolor{gray}{Standard: \T{<Klassenname>@<HashCode>}.}
         \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a,b):}]
-            \item[{s1.equals(s2)}:] Prüft, ob die Zeichenketten gleich sind.
+            \item[{s1.equals(s2)}:] Prüft, ob die Zeichenketten \textit{gleich} sind.
             \item[{s1.length()}:] Liefert die Länge einer Zeichenkette.
             \item[{s1.charAt(k)}:] Liefert das \T{k}-te Zeichen.
             \item[{s1.substring(a,b)}:] Liefert einen Ausschnitt der Zeichenkette vom \(a\)-ten bis zum \(b-1\)-ten Zeichen.
@@ -232,7 +232,7 @@ private static String generateWelcomeMessage(String name, int age,
 }
 \end{plainjava}
 }
-        \item Hinweis:\pause{} Bevor wir zu Klassen an sich kommen,\pause{} machen wir alle Funktionen \bjava{static},\pause{} um sie auch von der \bjava{main}-Methode aus aufrufen zu können.
+        \item Hinweis:\pause{} Bevor wir zu Klassen an sich kommen,\pause{} machen wir alle Funktionen \bjava{static},\pause{} um sie auch von der \bjava{main}-Funktion aus aufrufen zu können.
     \end{itemize}
 \end{frame}
 

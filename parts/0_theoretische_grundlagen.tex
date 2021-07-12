@@ -99,8 +99,8 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
     \begin{itemize}[<+(1)->]
         \widei
         \item Ein Algorithmus benötigt (formal) eine: \begin{itemize}
-            \item Vorbedingung (wie \say{positive ganze Zahl})
-            \item Nachbedingung (wie \say{negative Fließkommazahl})
+            \item Vorbedingung \textcolor{gray}{(wie \say{positive ganze Zahl})}
+            \item Nachbedingung \textcolor{gray}{(wie \say{negative Fließkommazahl})}
         \end{itemize}
         \item Algorithmen fundieren oft auf einem Problem der realen Welt und bedienen sich Mechaniken, wie der Abstraktion, zur Lösung.
         \item (Java-)Programme sind eine Darstellungsform von Algorithmen.\par\pause{}
@@ -157,7 +157,7 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
         \item Ein Programm fällt nicht aus den Wolken (leider).
         \item Im Softwareengineering gliedert man den Prozess meist in sechs Phasen.
         \item Die sechste Phase (Dokumentation) läuft dabei parallel zu den anderen.
-        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen zum Code,\pause{} sowie zum Ablauf selbst mit ein!
+        \item Die Dokumentation bezeichnet nicht nur die exakte Beschreibung aller für die Umsetzung notwendiger Komponenten,\pause{} sondern schließt auch Beschreibungen des Codes,\pause{} sowie des Ablaufs selbst mit ein!
     \end{itemize}
 \end{frame}
 
@@ -208,8 +208,8 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Algorithmus beschreiben}
     \begin{exercise}<2->[Algorithmus beschreiben \Time{2}]
-        Beschreiben Sie einen Algorithmus, der das maximale Element einer Datenmenge bestimmt.\pause{}
-        \textit{Hinweis: Auf den Elementen muss keine \say{numerische} Ordnung definiert sein (Sie können aber vergleichen, ob ein Element größer als ein anderes ist).}
+        \onslide<3->{Beschreiben Sie einen Algorithmus, der das maximale Element einer Datenmenge bestimmt.}\par
+        \onslide<4->{\textit{Hinweis:} Auf den Elementen muss keine \say{numerische} Ordnung definiert sein. Sie können aber vergleichen, ob ein Element größer als ein anderes ist.}
     \end{exercise}
 \end{frame}
 
@@ -220,8 +220,8 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
             \item Setze Maximum auf erstes Element der Eingabedaten.
             \item Tue für jedes weitere Element der Eingabedaten: \begin{enumerate}
                 \item Ist das zu betrachtende Element \say{größer} als das bisherige Maximum? \begin{description}[iNein]
-                    \item[Ja] ersetze Maximum durch dieses Element
-                    \item[Nein] tue nichts
+                    \item[Ja] Ersetze Maximum durch dieses Element.
+                    \item[Nein] Tue nichts.
                 \end{description}
             \end{enumerate}
         \end{enumerate}
@@ -231,13 +231,13 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Charakteristika eines Algorithmus}
     \begin{exercise}<2->[Charakteristika \Time{2}]
-        Ist der folgende Algorithmus für die Berechnung des Modulo \(a \bmod b\) (total) korrekt?\pause{}
+        \onslide<3->{Ist der folgende Algorithmus für die Berechnung des Modulo \(a \bmod b\) (total) korrekt?}
         \begin{plainjava}
-public static int simpleMod(int a, int b){
-    while(a >= b)
-        a -= b;
-    return a;
-}
+!*\onslide<4->*!public static int simpleMod(int a, int b){
+!*\onslide<4->*!    while(a >= b)
+!*\onslide<4->*!        a -= b;
+!*\onslide<4->*!    return a;
+!*\onslide<4->*!}
         \end{plainjava}
     \end{exercise}
 \end{frame}
