@@ -75,7 +75,7 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
     \end{block}
     }{%
     \begin{block}<4->{Determiniertheit}
-        \onslide<5->{Die selben Eingabedaten erzeugen immer die selben Ausgabedaten.}
+        \onslide<5->{Dieselben Eingabedaten erzeugen immer dieselben Ausgabedaten.}
     \end{block}
     }\bigskip
     \begin{itemize}
@@ -244,7 +244,7 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Charakteristika]
-       \pause{}Der Algorithmus ist nicht total korrekt.\pause{} So liefert er für ein negatives \T{b} kein korrektes Ergebnis,\pause{} da hier \T{a -= b} zu einem Überlauf führt (bis dahin ist stets \bjava{a >= b}).\medskip\par
+       \pause{}Der Algorithmus ist nicht total korrekt.\pause{} So liefert er für ein negatives \T{b} kein korrektes Ergebnis,\pause{} da hier \T{a -= b} zu einem Überlauf führt (bis dahin ist stets \bjava{a >= b}). Weiter terminiert er nicht für ein \(b = 0\) mit einem \(a > 0\) (da dann von \(a\) immer nur \(0\) abgezogen wird, was es nicht weiter verkleinert).\medskip\par
        \pause{}Ferner ist er auch nicht partiell korrekt.\pause{} So liefert er für ein negatives \T{a} bei einem positiven \T{b} einfach nur \T{a} zurück.
     \end{solve}
 \end{frame}
