@@ -414,12 +414,15 @@ public static void main(String[] hihi) {
     \begin{exercise}<2->[Fehler finden, II \Time{3}]
         \pause{}Finden und korrigieren Sie alle (syntaktischen) Fehler:\pause{}
         \begin{plainvoid}
-public int double(int x) { return (2*)x; }
+class A {
+    public int double(int x) { return (2*)x; }
 
-public static void main() {
-    System.in.print(double(21));
+    public static void main() {
+        System.in.print(double(21));
+    }
 }
         \end{plainvoid}
+        Dabei soll das korrigierte Programm beim Start durch \bbash{java} die Ausgabe \bjava{42} erzeugen.
     \end{exercise}
 \end{frame}
 
