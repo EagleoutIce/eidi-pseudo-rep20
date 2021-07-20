@@ -201,7 +201,7 @@ Random rnd = new Random();
     \begin{itemize}[<+(1)->]
         \widei
         \item Jede Variable\thinspace /\thinspace jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden. \textcolor{gray}{Standard: \T{<Klassenname>@<HashCode>}.}
-        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a,b):}]
+        \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a, b):}]
             \item[{s1.equals(s2)}:] Prüft, ob die Zeichenketten \textit{gleich} sind.
             \item[{s1.length()}:] Liefert die Länge einer Zeichenkette.
             \item[{s1.charAt(k)}:] Liefert das \T{k}-te Zeichen.
@@ -315,7 +315,7 @@ public class Banana extends Apple {
   protected boolean eat(float amount) { /* ... */ }
 }
 \end{plainjava}
-\begin{plainjava}[multicols=2,morekeywords={[3]{Apple,Banana,Skyrim,Morrowind}},aboveskip=4.5pt]
+\begin{plainjava}[multicols=2,morekeywords={[3]{Apple,Banana,Skyrim,Morrowind}},aboveskip=4.5pt,belowskip=2pt]
 class Morrowind {
   static int test() {
     new Apple().eat(); // 1
