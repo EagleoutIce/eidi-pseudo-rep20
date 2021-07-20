@@ -351,7 +351,7 @@ class Skyrim extends Banana {
        \begin{enumerate}[<+(1)->]
             \item \emph{Ungültig}: Die Konstruktion eines \say{Apple-Objektes} funktioniert, \bjava[morekeywords={[3]{Apple}}]{Apple::eat()} ist in \bjava[morekeywords={[3]{Morrowind}}]{Morrowind} aber nicht sichtbar (package private).
             \item \emph{Gültig}: Von \bjava[morekeywords={[3]{Banana}}]{Banana} kann ein Objekt erzeugt werden, \bjava[morekeywords={[3]{Banana}}]{Banana::lookAt(int)} ist \bjava{public} sichtbar.
-            \item \emph{Gültig}: Von \bjava[morekeywords={[3]{Banana}}]{Banana} kann ein Objekt erzeugt werden, weiter erweitert \bjava[morekeywords={[3]{Banana}}]{Banana::eat()} mit dem Überschreiben die Sichtbarkeit von \bjava[morekeywords={[3]{Apple}}]{Apple::eat()} auf \bjava{public}.
+            \item \emph{Gültig}: Von \bjava[morekeywords={[3]{Banana}}]{Banana} kann ein Objekt erzeugt werden, weiter erweitert \bjava[morekeywords={[3]{Banana}}]{Banana::eat()} durch das Überschreiben die Sichtbarkeit von \bjava[morekeywords={[3]{Apple}}]{Apple::eat()} auf \bjava{public}.
        \end{enumerate}
     \end{solve}
 \end{frame}
