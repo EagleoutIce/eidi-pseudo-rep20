@@ -504,7 +504,7 @@ println(-'=' + 2 * 3 + '=' + " 2*3"); // :yields: '6 2*3'
 println(2 - 12 + " * 2 = " + -1!*\solGet{numbers}{\_}*!0 * 2 + ("_" + 'b' + 10));
     // :yields: '-10 * 2 = -20_b10'
 \end{plainjava}
-    \pause{}Die erste arithmetische Operation liefert \bjava{-10},\pause{} welches dann zum String konkateniert wird.\pause{} Anschließend greift die Präzedenzregel \say{Punkt vor Strich},\pause{} wobei das Ergebnis anschließend als String konkateniert wird.\pause{} Dann wird in der Klammer durch erneute Konkatenation \bjava{_b10} erzeugt.\pause{}\\
+    \pause{}In der Klammer wird durch erneute Konkatenation \bjava{_b10} erzeugt. Anschließend greift die Präzedenzregel \say{Punkt vor Strich},\pause{} und liefert \(-10 \cdot 2 = -20\). \pause{}Dann liefert die erste arithmetische Operation durch \(2 - 12 = -20\).\pause{} Anschließend findet die String-Konkatenation von links nach rechts statt.\pause{}\medskip\par
     \textit{Hinweis: Der Unterstich bei \bjava{-10} ist in Java (zwischen Zahlen) komplett valide\pause{} und wird in der Regel zum trennen von \(1000\)er Blöcken verwendet.}
     \end{solve}
 \end{frame}
