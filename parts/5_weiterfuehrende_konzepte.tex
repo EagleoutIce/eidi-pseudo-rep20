@@ -835,16 +835,19 @@ static int partition(int[] arr, int l, int r) {
 \begin{frame}[c]{Sortierverfahren: Zusammenfassung}
     \pause\begin{table}[H]
         \def\arraystretch{1.35}
-        \begin{tabular}{p{.2\linewidth}p{.195\linewidth}p{.195\linewidth}p{.13\linewidth}p{.13\linewidth}}
+        \begin{tabular}{l*3{l}*2{r}}
         \toprule
-            Sortierverfahren & worst-case & average-case & Speicher & Ansatz \\
+                      & \multicolumn{3}{c}{Laufzeit}  & \\
+                      \cmidrule{2-4}
+            Verfahren & best & average & worst & Speicher & Ansatz \\
         \midrule
-            \linksort{Selectionsort} & \(\O(n^2)\) & \(\O(n^2)\) & \(\O(1)\) & iterativ \\
-            \linksort{Insertionsort} & \(\O(n^2)\) & \(\O(n^2)\) & \(\O(1)\) & iterativ \\
-            \linksort{Bubblesort} & \(\O(n^2)\) & \(\O(n^2)\) & \(\O(1)\) & iterativ \\
-            \linksort{Mergesort} & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
-            \linksort{Quicksort} & \(\O(n^2)\) & \(\O(n \log n)\) & \(\O(\log n)\) & rekursiv \\
-            \linksort{Heapsort} & \(\O(n\log n)\) & \(\O(n \log n)\) & \(\O(1)\) & rekursiv \\
+            \linksort{Selectionsort} & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+            \linksort{Insertionsort} & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+            \linksort{Bubblesort}    & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+            % Quick-, merge und Heapsort können auch O(n)
+            \linksort{Mergesort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
+            \linksort{Quicksort}     & \(\O(n \log n)\) & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(\log n)\) & rekursiv \\
+            \linksort{Heapsort}      & \(\O(n \log n)\) & \(\O(n\log n)\)  & \(\O(n\log n)\)  & \(\O(1)\) & rekursiv \\
         \bottomrule
         \end{tabular}
     \end{table}
