@@ -48,12 +48,12 @@
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Vorteile der OOP]
-        Hier angegeben werden exemplarisch vier, jeweils mit kurzer Erklärung:
-        \begin{description}[XYZ]
-            \item[Modularität] Eine Klasse kann unabhängig von anderen geschrieben und gehalten werden.
-            \item[Informationsverdeckung] Die Implementierungsdetails des Objekts werden verborgen.
-            \item[Wiederverwendbarkeit] Eine Klasse kann so geschrieben werden, dass sie auch in anderen Projekten wiederverwendet werden kann\pause{} (ein Datentyp wie ein Ringbuffer zum Beispiel).
-            \item[Komposition/Polymorphie] Klassen implementieren Schnittstellen, die sie von der Implementation abstrahieren,\pause{} so dass diese sich problemlos austauschen lassen.
+        \onslide<3->{Hier angegeben werden exemplarisch vier, jeweils mit kurzer Erklärung:}
+        \begin{description}[XY]
+            \item<4->[Modularität] Eine Klasse kann unabhängig von anderen geschrieben und gehalten werden.
+            \item<5->[Informationsverdeckung] Die Implementierungsdetails des Objekts werden verborgen.
+            \item<6->[Wiederverwendbarkeit] Eine Klasse kann so geschrieben werden, dass sie auch in anderen Projekten wiederverwendet werden kann \onslide<7->{(ein Datentyp wie ein Ringbuffer zum Beispiel).}
+            \item<8->[Komposition/Polymorphie] Klassen implementieren Schnittstellen, die sie von der Implementation abstrahieren, \onslide<9->{so dass diese sich problemlos austauschen lassen.}
         \end{description}
     \end{solve}
 \end{frame}
@@ -527,7 +527,7 @@ class Laenge {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Ein Kamera-Singleton erstellen.}
     \begin{exercise}<2->[Kamera \Time{5}]
-        \onslide<3->{Schreiben Sie eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)) \onslide<5->{und zwei für den jeweiligen Drehwinkel \(r_x, r_z\). \onslide<6->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen.\medskip\par \onslide<7->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}}
+        \onslide<3->{Schreiben Sie eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)) \onslide<5->{und zwei für den jeweiligen Drehwinkel (\(r_x, r_z\)). \onslide<6->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen.\medskip\par \onslide<7->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}}
     \end{exercise}
 \end{frame}
 
