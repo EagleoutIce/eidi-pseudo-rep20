@@ -255,7 +255,7 @@ class Element {
     \hypertarget<1>{mrk:Stack}{}%
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein Stack ist eine Datenstruktur, nach dem LIFO-Prinzip (Last-In, First-Out).
+        \item Ein Stack arbeitet nach dem LIFO-Prinzip (Last-In, First-Out).
         \item Elemente können nur oben auf dem Stapel abgelegt und von dort entnommen werden.
         \item Stacks können bei der Auswertung arithmetischer Funktionen verwendet werden.
         \item Die Verwaltung rekursiver Methoden erfolgt über den Stack. So \say{überlagern} die Parameter im rekursiven Aufruf die alten, bis die Methode wieder verlassen wird.
@@ -276,7 +276,8 @@ class Element {
 \begin{frame}{Datenstruktur: Queue}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Eine Warteschlange ist eine Datenstruktur, nach dem FIFO-Prinzip (First-In, First-Out).\pause{} Es ist nur möglich Elemente hinten in der Schlange einzureihen und vorne von der Schlange zu entfernen.
+        \item Eine Warteschlange arbeitet nach dem FIFO-Prinzip (First-In, First-Out).
+        \item Elemente können nur hinten in der Schlange eingereiht und nur vorne von der Schlange entfernen werden.
         \item Queues können zum Puffern verwendet werden (analog zum Schalter).
         \item Es existieren Derivate, wie die \emph{double-ended queue} (ein- und ausreihen auf beiden Seiten) oder die \emph{priority queue} (Elemente mit höherer Prioritöt werden bei \T{enqueue} zuerst aus der Schlange genommen).
     \end{itemize}
@@ -332,8 +333,8 @@ class Element {
 \begin{frame}{Bäume: Formal}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Im Gegensatz zu Listen, halten Bäume Referenzen auf mehrere Nachfolger.
-        \item Ein Spezialfall von Bäumen sind Binärbäume, die maximal zwei Nachfolger haben können.
+        \item Im Gegensatz zu Knoten in Listen, halten Knoten in Bäumen Referenzen auf mehrere Nachfolger.
+        \item Ein Spezialfall sind Binärbäume, die maximal zwei Nachfolger haben.
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}[Innerer]
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
             \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger.
@@ -358,8 +359,8 @@ Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit e
     \begin{itemize}[<+(1)->]
         \widei
         \item Die Höhe des Baumes ist die tiefste Ebene auf der ein Knoten existiert.
-        \item Der \textit{Verzweigungsgrad} eines Knotens bezeichnet die Anzahl seiner Kinder.
-        \item Binärbäume, bei denen alle Knoten einen Verzweigungsgrad von maximal zwei haben,\pause{} sind von einer besonderen Bedeutung für die Informatik.\pause{} \textcolor{gray}{(Sie lassen sich z.B. einfach in einem Array repräsentieren.)}
+        \item Der \textit{Verzweigungsgrad} eines Knotens ist die Anzahl seiner Kinder.
+        \item Binärbäume sind von einer besonderen Bedeutung für die Informatik.\pause{} \textcolor{gray}{(Sie lassen sich z.B. einfach in einem Array repräsentieren.)}
     \end{itemize}
 \end{frame}
 
@@ -554,7 +555,7 @@ class Node {
             [1,name=1[2,name=2[4,name=4[8,name=8][9,name=9]][5,name=5[10,name=10][11,name=11]]][3,name=3[6,name=6[12,name=12][13,name=13]][7,name=7[14,name=14][15,name=15]]]]
             \onslide<6->{
             \pgfinterruptboundingbox
-            \scope[every path/.append style={draw,line width=3pt,lightgray!65!white,-Kite}]
+            \scope[every path/.append style={draw,line width=2.75pt,lightgray!65!white,-Kite}]
                 \path (-9.25,0|-1) node[left,gray] {\textbf{0}} -- (1);
                 \path (1) -- (1-|9.25,0);
                 \path (-9.25,0|-2) node[left,gray] {\textbf{1}} -- (2);
@@ -576,16 +577,15 @@ class Node {
 \begin{frame}{Traversierung: Pre-Order}
     \begin{itemize}[<+(1)->]
         \item Es handelt sich um einen Tiefendurchlauf (\textit{depth-first}).
-        \item Mit der Pre-Order Strategie wird erst der aktuelle Knoten und dann rekursiv beide Teilbäume besucht.\pause{}
+        \item Mit der Pre-Order Strategie wird erst der aktuelle Knoten und dann rekursiv beide Teilbäume besucht.
     \end{itemize}\medskip
-    \pause\begin{center}
+    \onslide<4->{\begin{center}
         \scalebox{0.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite,s sep=3.5em-level*.65em}
             [1,name=1[2,name=2[3,name=3[4,name=4][5,name=5]][6,name=6[7,name=7][8,name=8]]][9,name=9[10,name=10[11,name=11][12,name=12]][13,name=13[14,name=14][15,name=15]]]]
         \end{forest}}
-    \end{center}
+    \end{center}}
 \end{frame}
-% TODO: pre order without recursion but with stack
 
 \begin{frame}{Traversierung: In-Order}
     \begin{itemize}[<+(1)->]
