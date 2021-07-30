@@ -186,7 +186,7 @@
     \item Alle Methoden die wir so definieren, sind an ein Objekt gebunden.
     \item Manche Methoden sind aber nur logisch an eine Klasse gebunden\pause{} und nicht an die Ausprägungen eines Objekts.
     \item So die Mathe-Funktionen wie \bjava{Math.random()}, \bjava{Math.floor(double)}.
-    \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch \bjava{Point2d::distance(Point2D, Point2D)} für zwei Punkte statisch machen.
+    \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch \bjava{Point2D::distance(Point2D, Point2D)} für zwei Punkte statisch machen.
     \item Auch Variablen, die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.\pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte: \bjava{static final int INSTANCES;}
 \end{itemize}
 \end{frame}
@@ -315,7 +315,7 @@ public static String wohinGehtEs(Richtung ziel){
 \begin{frame}[fragile]{Klassen als Parameter: call-by-reference}
     \begin{itemize}[<+(1)->]
         \widei
-        \item \hypertarget<1>{mrk:call-by-ref}{Wenn} wir komplexe Datentypen als Parameter übergeben \textcolor{gray}{(oder zuweisen)},\pause{} wird \emph{keine} Kopie des Objekts erstellt,\pause{} sondern eine Referenz auf das Objekt übergeben.
+        \item \hypertarget<1>{mrk:call-by-ref}{}Wenn wir komplexe Datentypen als Parameter übergeben \textcolor{gray}{(oder zuweisen)},\pause{} wird \emph{keine} Kopie des Objekts erstellt,\pause{} sondern eine Referenz auf das Objekt übergeben.
         \item Dieser (Parameter-)Übergabemechanismus wird \emph{call-by-reference} genannt.
     \end{itemize}
 \end{frame}
