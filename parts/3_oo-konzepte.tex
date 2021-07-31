@@ -533,7 +533,7 @@ class Laenge {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Ein Kamera-Singleton erstellen.}
     \begin{exercise}<2->[Kamera \Time{5}]
-        \onslide<3->{Schreiben Sie eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)) \onslide<5->{und zwei für den jeweiligen Drehwinkel (\(r_x, r_z\)). \onslide<6->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen.\medskip\par \onslide<7->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}}
+        \onslide<3->{Schreiben Sie eine \bjava{Camera} Klasse, \onslide<4->{mit drei Fließkommazahlen für die aktuelle Position (\(x,y,z\)). \onslide<5->{Von der Klasse soll es nicht möglich sein mehr als eine Instanz zu erzeugen.\medskip\par \onslide<6->{Weitere \say{Anfragen} sollen dasselbe Objekt zurückliefern.}}}}
     \end{exercise}
 \end{frame}
 
@@ -541,10 +541,10 @@ class Laenge {
     \begin{solve}<2->[Kamera (Singleton)]
         \begin{plainjava}
 !*\onslide<3->*!public class Camera {
-!*\onslide<4->*!    double x, y, z, rx, rz;
+!*\onslide<4->*!    double x, y, z;
 !*\onslide<6->*!    private static Camera instance;
 !*\onslide<5->*!    private Camera() {
-!*\onslide<5->*!        x = y = z = rx = rz = 0.0;
+!*\onslide<5->*!        x = y = z = 0.0;
 !*\onslide<5->*!    }
 !*\onslide<7->*!    public static Camera getInstance() {
 !*\onslide<8->*!        if(instance == null) instance = new Camera();
