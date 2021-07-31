@@ -175,7 +175,7 @@ public class Point2D {
 !*\onslide<4->*!    if (this == obj) return true; // Sind identisch
 !*\onslide<5->*!    if (obj == null) return false; // Wir sind nicht null
 !*\onslide<6->*!    // Ist es von der selben Klasse?
-!*\onslide<7->*!    // Oder: 'if (obj instanceof Point2D)'
+!*\onslide<7->*!    // Oder: 'if (obj instanceof Point2D)' (erspart null-check)
 !*\onslide<7->*!    if (this.getClass() != obj.getClass())
 !*\onslide<7->*!        return false;
 !*\onslide<8->*!    Point2D p1 = (Point2D) obj; // Es ist ein Point2D
