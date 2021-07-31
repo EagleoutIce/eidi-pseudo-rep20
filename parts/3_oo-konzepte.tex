@@ -154,11 +154,17 @@
 \end{frame}
 
 \ifull
-\begin{frame}[c]{Eine Aufgabe zwischendurch}
+\begin{frame}[c,fragile]{Eine Aufgabe zwischendurch}
     \Task{Eine .equals()-Methode}
     % TODO: attribute des Punktes wiederholen
     \begin{exercise}<2->[Eine .equals()-Methode \Time{6}]
-        Schreiben Sie eine \bjava{equals(Object)}-Methode für \bjava{Point2D}.\pause{} Hinweis: Denken Sie an \bjava{instanceof} beziehungsweise \bjava{getClass()}.
+        Schreiben Sie eine \bjava{equals(Object)}-Methode für \bjava{Point2D}.\pause{} Hinweis: Denken Sie an \bjava{instanceof} beziehungsweise \bjava{getClass()}.\par
+\begin{plainjava}
+public class Point2D {
+    private double x, y;
+    // ...
+}
+\end{plainjava}
     \end{exercise}
 \end{frame}
 
