@@ -509,14 +509,14 @@ class Laenge {
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Schienennetz]
         \begin{plainjava}
-!*\onslide<3->*!enum Schiene {
+!*\onslide<3->*!enum Feld {
 !*\onslide<4->*!    FREI(false),
 !*\onslide<4->*!    SCHIENE(true),
 !*\onslide<4->*!    WAGGON(false),
 !*\onslide<4->*!    LOKOMOTIVE(false);
 !*\onslide<3->*!
 !*\onslide<5->*!    boolean befahrbar;
-!*\onslide<6->*!    Schiene(boolean befahrbar) {
+!*\onslide<6->*!    Feld(boolean befahrbar) {
 !*\onslide<6->*!        this.befahrbar = befahrbar;
 !*\onslide<6->*!    }
 !*\onslide<3->*!}
