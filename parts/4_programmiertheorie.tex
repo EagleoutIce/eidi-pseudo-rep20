@@ -9,9 +9,9 @@
     \end{definition}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Eine rekursive Methode lässt sich in zwei Komponenten gliedern, der: \begin{description}[Abbruchbedingung]
-            \item[Abbruchbedingung] Berechnet den Wert zum beenden der Rekursion.\pause{} Hier wird die Methode nicht weiter referenziert.
-            \item[Rekursiver Zweig] Enthält die rekursiv auszuführende Prozedur.\pause{} In der Regel eine naive Implementation einer rekursiv definierten Funktion.
+        \item Eine rekursive Methode lässt sich in zwei Komponenten gliedern: \begin{description}[Abbruchbedingung]
+            \item[Abbruchbedingung] Das lösbare Teilproblem. Ende der Rekursion.\pause{} Hier wird die Methode nicht weiter referenziert.
+            \item[Rekursiver Zweig] Enthält die rekursiv auszuführende Prozedur.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -75,10 +75,10 @@
 \begin{frame}{Verschränkte und geschachtelte Rekursion}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Es existieren weitere Varianten der Rekursion: \begin{description}[geschachtelt]
+        \item Es gibt weitere Arten der Rekursion: \begin{description}[geschachtelt]
             \widei
-            \item[geschachtelt] hier ist (mindestens) ein Parameter im rekursiven Aufruf selbst ein rekursiver Aufruf.\pause{} (Beispiele: Modulo, Ackermann)
-            \item[verschränkt] hier rufen sich mehrere Funktionen rekursiv gegenseitig auf.\pause{} Diese Variante lässt sich schwer bis gar nicht (direkt) in eine Schleife übersetzten.
+            \item[geschachtelt] Hier ist (mindestens) ein Parameter im rekursiven Aufruf selbst ein rekursiver Aufruf.\pause{} (Beispiele: Modulo, Ackermann)
+            \item[verschränkt] Hier rufen sich mehrere Funktionen rekursiv gegenseitig auf.\pause{} Diese Variante lässt sich schwer bis gar nicht (direkt) in eine Schleife übersetzten.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -97,7 +97,7 @@
         \f(a - 1, b - 1, |c - 1|) & \text{ sonst.}
     \end{cases}
 \end{equation*}
-    Approximieren Sie die natürlichen Zahlen durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} Java Funktionen zur Hilfe benutzen.\medskip\par
+    Approximieren Sie \(\mathbb{N}\) durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} bestehenden Java Funktionen (wie beispielsweise \bjava{Math::abs}) benutzen.\medskip\par
     Welchen Wert liefert die Berechnung von \(f(12, 9, -2)\)?
     \end{exercise}
 \end{frame}
@@ -154,8 +154,8 @@
 \begin{frame}{Das Paradigma: Divide and Conquer}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Manche Probleme, die kompliziert sind,\pause{} lassen sich durch Rekursion in immer kleinere Probleme aufspalten, die dann beherrschbarer sind.
-        \item Dieses Problem wird uns bei den Sortieralgorithmen \hyperlink{mrk:sort-Mergesort}{Merge-} und \linksort{Quicksort} wieder begegnen.
+        \item Manche komplizierte Probleme,\pause{} lassen sich durch Rekursion in immer kleinere Probleme aufspalten, die dann beherrschbarer sind.
+        \item Dies wird uns bei den Sortieralgorithmen \hyperlink{mrk:sort-Mergesort}{Merge-} und \linksort{Quicksort} wieder begegnen.
     \end{itemize}
 \end{frame}
 
