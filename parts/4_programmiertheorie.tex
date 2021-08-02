@@ -172,30 +172,30 @@
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Da die Ausführungszeit eines Programms von vielen Parametern\pause{} (Taktrate des Prozessors, andere laufende Programme,~\ldots) abhängig ist,\pause{} betrachten wir nur dessen Skalierung für Klassen von Eingaben.
+        \item Da die Ausführungszeit eines Programms von vielen Parametern\pause{} \textcolor{gray}{(Taktrate des Prozessors, andere laufende Programme,~\ldots)} abhängig ist,\pause{} betrachten wir oft nur dessen Skalierung.
     \end{itemize}
     \begin{definition}<6->[Effizienz]
-        \pause{}Die Effizienz eines Programms wird durch seinen \emph{Speicheraufwand} sowie seiner \emph{Laufzeit} bestimmt.
+        \pause{}Die Effizienz eines Programms wird durch dessen \emph{Speicher-}, sowie \emph{Laufzeitaufwand} bestimmt.
     \end{definition}
     \begin{itemize}[<+(1)->]
         \widei
-        \item<8-> Letztere werden wir genauer betrachten. Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?
+        \item<8-> Letztere werden wir ausführlicher betrachten. Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Komplexitätsbetrachtung}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Diese Laufzeitkomplexität betrachten wir für drei Fälle: \begin{description}[average-case]
-            \item[worst-case] die Laufzeitkomplexität im schlechtesten Fall für den (spezifischen) Algorithmus.
-            \item[best-case] die Laufzeitkomplexität im günstigsten Fall für den (spezifischen) Algorithmus.
-            \item[average-case] die Laufzeitkomplexität im durchschnittlichen Fall für den (spezifischen) Algorithmus.\pause{} Dies bezeichnet in der Regel gleichverteilt zufällige Eingaben.
+        \item Für die Laufzeitkomplexität unterscheidet man: \begin{description}[average-case]
+            \item[worst-case] Die Laufzeitkomplexität im schlechtesten Fall für den (spezifischen) Algorithmus.
+            \item[best-case] Die Laufzeitkomplexität im günstigsten Fall für den (spezifischen) Algorithmus.
+            \item[\color{gray}average-case] \textcolor{gray}{Die Laufzeitkomplexität im durchschnittlichen Fall für den (spezifischen) Algorithmus.\pause{} Dies bezeichnet in der Regel gleichverteilt zufällige Eingaben.}
         \end{description}
-        \item Im Rahmen der Vorlesung konzentrieren wir uns auf den \emph{worst-case} Fall.
+        \item Dabei werden wir den \textit{average-case} vernachlässigen.
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Erfassen der Komplexität}
+\begin{frame}[fragile]{Erfassen der Komplexität -- Präzise}
     \begin{itemize}[<+(1)->]
         \widei
         \item Die Erfassung der Laufzeitkomplexität erfolgt durch die Auflistung der notwendigen (Rechen-)Schritte:\pause{}
