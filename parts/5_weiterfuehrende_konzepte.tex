@@ -172,11 +172,11 @@
 
 \begin{frame}{Sortierverfahren formal}
     \begin{itemize}[<+(1)->]
-        \item Beschreibt einen Prozess bei dem Elemente aufgrund eines Ordnungskriteriums ihrer Eigenschaften in eine Reihenfolge gebracht werden.
-        \item Daten werden sortiert um die Suche zu vereinfachen.
-        \item Wir unterscheiden zwei Sortierverfahren: \begin{description}[Extern]
+        \item Beschreibt einen Prozess, bei dem Elemente aufgrund eines Ordnungskriteriums in eine Reihenfolge gebracht werden.
+        \item Daten werden sortiert um beispielsweise Suchen zu vereinfachen.
+        \item Wir unterscheiden zwei konzeptionelle Arten: \begin{description}[Extern]
             \item[Intern] Hier liegt der gesamte Datenbestand im Arbeitspeicher,\pause{} alle Elemente sind zugreifbar (Array,~\ldots)
-            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert,\pause{} für das Sortieren werden in der Regel nur die obersten Element eines Stapels betrachtet (Dateien,~\ldots).\pause{} In der Regel lassen sich durch Modifikationen und unterstützenden Methoden dieselben Verfahren wie bei der Internen Variante verwenden.
+            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert.\pause{} Für das Sortieren werden meist nur die obersten Element eines Stapels betrachtet (Dateien,~\ldots).\pause{} Oft erlauben Modifikationen und Hilfsmethoden, dieselben Verfahren wie bei der internen Variante zu verwenden.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -186,7 +186,7 @@
         \widei
         \item Bei der Vorgehensweise unterscheiden wir (im Kontext der Vorlesung) drei Ansätze: \begin{description}[Divide-and-Conquer]
             \item[Sukzessiv] Schritt für Schritt wird die Anzahl an unsortierten Elementen verringert.\pause{} In der Regel iterativ implementiert.
-            \item[Divide-and-Conquer] Daten werden aufgeteilt,\pause{} in Teilen sortiert und dann aus sortierten Teilmengen sortiert zusammengefügt.\pause{} In der Regel rekursiv implementiert.
+            \item[Divide-and-Conquer] Daten werden aufgeteilt,\pause{} in Teilen sortiert und dann aus sortierten Teilmengen zusammengefügt.\pause{} In der Regel rekursiv implementiert.
             \item[Halde] Sortieren mit dafür geeigneten Datenstrukturen wie dem \emph{Heap}.\pause{} In der Regel rekursiv implementiert.
         \end{description}
     \end{itemize}
