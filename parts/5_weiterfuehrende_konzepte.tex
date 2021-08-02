@@ -45,7 +45,7 @@
 
 \ifull
 \begin{frame}[c]{Lineare Suche}
-    \Task{Die bineare Suche}
+    \Task{Die lineare Suche}
     \begin{exercise}<2->[Lineare Suche \Time{4}]
         \pause{}Schreiben Sie eine Methode \bjava{int linearSearch(int[], int)}, die ein Array mit der linearen Suche nach einem gegebene Schlüssel durchsucht und den (ersten) Index des Schlüssels zurückliefert.
         Wird der Schlüssel nicht gefunden, so soll die Methode einen negativen Wert zurückliefern.
@@ -79,7 +79,7 @@
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
         \item[]\begin{description}[Linear]
-            \item[Binär] \hypertarget<1>{mrk:binsearch}{Die} binäre Suche benötigt eine \emph{sortierte} Folge und arbeitet sich baumartig durch diese.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Ist er größer, wird im Suchfenster rechts, ist er kleiner, wird im Suchfenster links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
+            \item[Binär] \hypertarget<1>{mrk:binsearch}{}Die binäre Suche benötigt eine \emph{sortierte} Folge und arbeitet sich baumartig durch diese.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Ist er größer, wird im Suchfenster rechts, ist er kleiner, wird im Suchfenster links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
         \end{description}
         \vspace*{1em}
 \begin{center}
