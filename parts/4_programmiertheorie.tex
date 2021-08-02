@@ -174,12 +174,12 @@
         \widei
         \item Da die Ausführungszeit eines Programms von vielen Parametern\pause{} \textcolor{gray}{(Taktrate des Prozessors, andere laufende Programme,~\ldots)} abhängig ist,\pause{} betrachten wir oft nur dessen Skalierung.
     \end{itemize}
-    \begin{definition}<6->[Effizienz]
-        \pause{}Die Effizienz eines Programms wird durch dessen \emph{Speicher-}, sowie \emph{Laufzeitaufwand} bestimmt.
+    \begin{definition}<5->[Effizienz]
+        \onslide<6->{Die Effizienz eines Programms wird durch dessen \emph{Speicher-}, sowie \emph{Laufzeitaufwand} bestimmt.}
     \end{definition}
-    \begin{itemize}[<+(1)->]
+    \begin{itemize}
         \widei
-        \item<8-> Letztere werden wir ausführlicher betrachten. Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?
+        \item<7-> Letztere werden wir ausführlicher betrachten. Genauer: In welcher Komplexitätsklasse liegt der Algorithmus?
     \end{itemize}
 \end{frame}
 
@@ -198,26 +198,73 @@
 \begin{frame}[fragile]{Erfassen der Komplexität -- Präzise}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Die Erfassung der Laufzeitkomplexität erfolgt durch die Auflistung der notwendigen (Rechen-)Schritte:\pause{}
+        \item Die Erfassung der Laufzeitkomplexität erfolgt durch die Auflistung der notwendigen (Rechen-)Schritte:
+\begin{onlyenv}<3|handout:0>
+\begin{plainjava}[language=xJava]
+static int methode(int n) {
+    int count = 2;
+    for(int i = 1; i <= n; i++) {
+        for(int j = n; j > i; j--)
+            count++;
+    }
+    return count;
+}
+\end{plainjava}
+\end{onlyenv}\begin{onlyenv}<4-5|handout:0>
 \begin{plainjava}[language=xJava]
 static int methode(int n) {
     !**!|zws|int count = 2;|zws|
-        for(|zws|int i = 1;|zws| |vgl|i <= n;|vgl| |inc|i++|inc|) {
-            for(|zws|int j = n;|zws| |vgl|j > i;|vgl| |dec|j--|dec|)
-                !**!|inc|count++;|inc|
-        }
+    for(|zws|int i = 1;|zws| i <= n; i++) {
+        for(|zws|int j = n;|zws| j > i; j--)
+            count++;
+    }
     return count;
 }
-    \end{plainjava}
+\end{plainjava}
+\end{onlyenv}\begin{onlyenv}<6-7|handout:0>
+\begin{plainjava}[language=xJava]
+static int methode(int n) {
+    !**!|zws|int count = 2;|zws|
+    for(|zws|int i = 1;|zws| |vgl|i <= n;|vgl| i++) {
+        for(|zws|int j = n;|zws| |vgl|j > i;|vgl| j--)
+            count++;
+    }
+    return count;
+}
+\end{plainjava}
+\end{onlyenv}\begin{onlyenv}<8-9|handout:0>
+\begin{plainjava}[language=xJava]
+static int methode(int n) {
+    !**!|zws|int count = 2;|zws|
+    for(|zws|int i = 1;|zws| |vgl|i <= n;|vgl| |inc|i++|inc|) {
+        for(|zws|int j = n;|zws| |vgl|j > i;|vgl| j--)
+            !**!|inc|count++;|inc|
+    }
+    return count;
+}
+\end{plainjava}
+\end{onlyenv}\begin{onlyenv}<10-11|handout:1>
+\begin{plainjava}[language=xJava]
+static int methode(int n) {
+    !**!|zws|int count = 2;|zws|
+    for(|zws|int i = 1;|zws| |vgl|i <= n;|vgl| |inc|i++|inc|) {
+        for(|zws|int j = n;|zws| |vgl|j > i;|vgl| |dec|j--|dec|)
+            !**!|inc|count++;|inc|
+    }
+    return count;
+}
+\end{plainjava}
+\end{onlyenv}
     \end{itemize}
-    \begin{multicols}{2}
-        \begin{itemize}[<+(1)->]
-            \item \bjava[language=xJava]{|zws|Zuweisungen|zws|}\,: \(2+n\)
-            \item \bjava[language=xJava]{|vgl|Vergleiche|vgl|}\,: \(n+1+\frac{n(n+1)}{2}\)
-            \item \bjava[language=xJava]{|inc|Inkrementierungen|inc|}\,: \(n+\frac{n(n-1)}{2}\)
-            \item \bjava[language=xJava]{|dec|Dekrementierungen|dec|}\,: \(\frac{n(n-1)}{2}\)
-        \end{itemize}
-    \end{multicols}
+\vspace*{-.35\baselineskip}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item<4-> \bjava[language=xJava]{|zws|Zuweisungen|zws|}\,: \onslide<5->{\(2+n\)}
+        \item<6-> \bjava[language=xJava]{|vgl|Vergleiche|vgl|}\,: \onslide<7->{\(n+1+\frac{n(n+1)}{2}\)}
+        \item<8-> \bjava[language=xJava]{|inc|Inkrementierungen|inc|}\,: \onslide<9->{\(n+\frac{n(n-1)}{2}\)}
+        \item<10-> \bjava[language=xJava]{|dec|Dekrementierungen|dec|}\,: \onslide<11->{\(\frac{n(n-1)}{2}\)}
+    \end{itemize}
+\end{multicols}
 \end{frame}
 
 \begin{frame}{Erfassen der Komplexität}
