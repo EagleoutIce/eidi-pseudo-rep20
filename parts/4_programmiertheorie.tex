@@ -256,7 +256,7 @@ static int methode(int n) {
 \end{plainjava}
 \end{onlyenv}
     \end{itemize}
-\vspace*{-.35\baselineskip}
+\vspace*{-.75\baselineskip}
 \begin{multicols}{2}
     \begin{itemize}
         \item<4-> \bjava[language=xJava]{|zws|Zuweisungen|zws|}\,: \onslide<5->{\(2+n\)}
@@ -272,8 +272,8 @@ static int methode(int n) {
         \item Insgesamt ergibt sich damit ein Aufwand von \(\frac{3n^2}{2} + \frac{5n}{2} + 3\).
         \item Da für große Datenmengen Konstanten und Faktoren irrelevant werden, interessiert wie die Funktion skaliert/wächst.
     \end{itemize}
-    \begin{definition}<6->[\O-Notation]
-        \pause{}Es gilt \(T(n) \in \O(f(n))\), wenn \(f(n)\) eine obere Schranke von \(T(n)\) ist, also:\pause{} \[T(n) \in \O(f(n))\pause{}\iff \exists n_0 \in \mathbb{N}\: c \in \mathbb{R}^+\: \forall n \geq n_0: T(n) \leq c \cdot f(n).\vspace*{-\topskip}\]
+    \begin{definition}<4->[\O-Notation]
+        \onslide<5->{Es gilt \(T(n) \in \O(f(n))\), wenn \(f(n)\) eine obere Schranke von \(T(n)\) ist, also:} \onslide<6->{\[T(n) \in \O(f(n))\pause{}\iff \exists n_0 \in \mathbb{N}\: c \in \mathbb{R}^+\: \forall n \geq n_0: T(n) \leq c \cdot f(n).\vspace*{-\topskip}\]}
     \end{definition}
 \end{frame}
 
