@@ -16,7 +16,7 @@
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Uns sind zwei Verfahren bekannt Elemente zu suchen: \begin{description}[Linear]
+        \item Uns sind zwei Verfahren bekannt, Elemente zu suchen: \begin{description}[Linear]
             \item[Linear] Die lineare/naive/sequentielle Suche beginnt am Anfang der Folge und prüft Element für Element ob es sich um das gesuchte handelt.\pause{} Die Komplexität beträgt \(\O(n)\).
         \end{description}
         \vfill
@@ -79,7 +79,7 @@
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
         \item[]\begin{description}[Linear]
-            \item[Binär] \hypertarget<1>{mrk:binsearch}{Die} binäre Suche benötigt eine (aufsteigend) \emph{sortierte} und arbeitet sich baumartig durch die Folge.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Wenn er größer ist, wird im Suchfenster rechts von der Mitte, wenn er kleiner links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
+            \item[Binär] \hypertarget<1>{mrk:binsearch}{Die} binäre Suche benötigt eine \emph{sortierte} Folge und arbeitet sich baumartig durch diese.\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Ist er größer, wird im Suchfenster rechts, ist er kleiner, wird im Suchfenster links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
         \end{description}
         \vspace*{1em}
 \begin{center}
@@ -120,8 +120,8 @@
 \begin{frame}[c]{Binäre Suche}
     \Task{Die binäre Suche}
     \begin{exercise}<2->[Binäre Suche \Time{6}]
-        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits aufsteigend sortiertes Array mit der binarySearch Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
-        Wird der Schlüssel nicht gefunden, so soll die Methode einen negativen Wert zurückliefern.
+        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits aufsteigend sortiertes Array mit der binären Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
+        Wird der Schlüssel nicht gefunden, so soll die Methode einen beliebigen negativen Wert zurückliefern.
     \end{exercise}\onslide<1->
 \end{frame}
 
