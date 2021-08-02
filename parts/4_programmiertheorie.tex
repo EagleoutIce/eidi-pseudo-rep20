@@ -2,16 +2,16 @@
 \subsection{Rekursion}
 \begin{frame}{Rekursive und iterative Programmierung}
     \begin{definition}<2->[Rekursive Methode]
-        \pause{}Eine Methode oder Funktion bezeichnen wir als \emph{rekursiv}, wenn sie sich:\pause{} \begin{itemize}
-            \item \emph{direkt} selbst aufruft, sich also selbst referenziert.\pause{}
-            \item \emph{indirekt} selbst aufruft, also eine andere Methode verwendet, die (über irgendwelche Umwege) wieder die Methode aufruft.
+        \onslide<3->{Eine Methode oder Funktion bezeichnen wir als \emph{rekursiv}, wenn sie sich:} \begin{itemize}
+            \item<4-> \emph{direkt} selbst aufruft, sich also selbst referenziert.
+            \item<5-> \emph{indirekt} selbst aufruft, also eine andere Methode verwendet, die (über irgendwelche Umwege) wieder die Methode aufruft.
         \end{itemize}
     \end{definition}
-    \begin{itemize}[<+(1)->]
+    \begin{itemize}
         \widei
-        \item Eine rekursive Methode lässt sich in zwei Komponenten gliedern: \begin{description}[Abbruchbedingung]
-            \item[Abbruchbedingung] Das lösbare Teilproblem. Ende der Rekursion.\pause{} Hier wird die Methode nicht weiter referenziert.
-            \item[Rekursiver Zweig] Enthält die rekursiv auszuführende Prozedur.
+        \item<6-> Eine rekursive Methode lässt sich in zwei Komponenten gliedern: \begin{description}[Abbruchbedingung]
+            \item<7->[Abbruchbedingung] Das lösbare Teilproblem. Ende der Rekursion. Hier wird die Methode nicht weiter referenziert.
+            \item<8->[Rekursiver Zweig] Enthält die rekursiv auszuführende Prozedur.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -89,16 +89,16 @@
 \begin{frame}[c]{etwas Rekursion}
     \Task{Formel zu Rekursion}%
     \begin{exercise}<2->[Formel zu Rekursion \Time{4}]
-        Implementieren Sie eine rekursive Java-Methode, welche die folgende Funktion berechnet (\(a, b, c \in \mathbb{N}\)).
+        \onslide<3->{Implementieren Sie eine rekursive Java-Methode, welche die folgende Funktion berechnet (\(a, b, c \in \mathbb{N}\)).
 \begin{equation*}
     \f(a, b, c) = \begin{cases}
         \max(a,b) & \text{ wenn } c = 0, \\
         \f(a + b, b - 1, c) & \text{ wenn } b \geq 0, \\
         \f(a - 1, b - 1, |c - 1|) & \text{ sonst.}
     \end{cases}
-\end{equation*}
-    Approximieren Sie \(\mathbb{N}\) durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} bestehenden Java Funktionen (wie beispielsweise \bjava{Math::abs}) benutzen.\medskip\par
-    Welchen Wert liefert die Berechnung von \(f(12, 9, -2)\)?
+\end{equation*}}
+    \onslide<4->{Approximieren Sie \(\mathbb{N}\) durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} bestehenden Java Funktionen (wie beispielsweise \bjava{Math::abs}) benutzen.\medskip\par
+    Welchen Wert liefert die Berechnung von \(f(12, 9, -2)\)?}
     \end{exercise}
 \end{frame}
 
