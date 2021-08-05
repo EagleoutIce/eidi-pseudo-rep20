@@ -276,7 +276,7 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
     \begin{solve}<2->[Korrektheitsbeweis]
        \pause{}Wir zeigen die Termination und die partielle Korrektheit getrennt: \begin{itemize}[<+(1)->]
            \item Das for-each aus Zeile~\ref{alg:ex-fe1} endet sicher nach drei Durchläufen. Es gibt keine weiteren Sprünge (wie Rekursion,~\ldots): der Algorithmus \emph{terminiert} für alle \(a, b, c \in \mathbb{N}\).
-           \item Hier kann man alle Fälle \(a = b = c\), \(a > b = c\),~\ldots einzeln prüfen. Sonst: \begin{itemize}
+           \item Hier kann man alle Fälle \(a = b = c\), \(a > b = c\),~\ldots\ einzeln prüfen. Sonst: \begin{itemize}
              \item \(a = \min\{a, b, c\}\) so initialisiert Zeile~\ref{alg:ex-min1} \(min\) schon korrekt, \(b \geq a\) und \(c \geq a\).
              \item \(b = \min\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(min\) für \(b\), da \(b \leq a\) und \(c \geq b\).
              \item \(c = \min\{a, b, c\}\) so überschreibt Zeile~\ref{alg:ex-fe1} \(min\) für \(c\), da \(c \leq a\) und \(b \geq c\).
