@@ -413,14 +413,14 @@ public class A {
 \end{frame}
 
 \begin{frame}[c]{Übungsaufgabe}
-    \Task{Statische/Dynamische Bindung}
-    \begin{exercise}<2->[Statische/Dynamische Bindung \Time{4}]
+    \Task{Statische und Dynamische Bindung}
+    \begin{exercise}<2->[Statische und Dynamische Bindung \Time{4}]
         Erklären Sie kurz den Unterschied zwischen statischer und dynamischer Bindung und wann Java was verwendet.
     \end{exercise}
 \end{frame}
 
 \begin{frame}[c]{Lösung}
-    \begin{solve}<2->[Statische/Dynamische Bindung]
+    \begin{solve}<2->[Statische und Dynamische Bindung]
         Die \emph{statische} Bindung verwendet Java bei Attributen. Sie wird zur Kompilierzeit aufgelöst und sorgt dafür, dass in Subklassen überschriebene Variablen stets der verwendeten Klasse zugeordnet sind. In \bjava{A a = new B();} würde sich \bjava{a.x} also auf das \T{x} der Klasse \bjava{A} beziehen. In \bjava{B a = new B();} auf das der Klasse \bjava{B}.\medskip\par
         \pause{}Die \emph{dynamische} Bindung verwendet Java bei Methoden. Sie wird zur Laufzeit aufgelöst und bedeutet, dass im Falle des Überschreibens von Methoden einer Subklasse die Klasse des Objekts entscheidet welche verwendet wird und nicht die der Variable die darauf zeigt.\pause\medskip\par
         Hier hilft auch Aufgabe~\ref{tsk:java-bindings-result}.
