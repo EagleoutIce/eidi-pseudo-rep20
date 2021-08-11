@@ -644,7 +644,7 @@ public class MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A {
 
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Fehler finden, VI]
-        \pause{}\footnotesize\begin{plainjava}
+        \pause{}\footnotesize\begin{plainjava}[add to literate={MyL1ttl3Cl4ss}{{\solGet{keywordC}{MyL1ttl3Cl4ss}}}{13},morekeywords={[3]{A}}]
 public class MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A {
     private class A {
         public int x;
@@ -663,7 +663,7 @@ public class MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A {
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Fehler finden, VI\hfill{}(Fortsetzung)]
         \begin{enumerate}
-            \item \bjava{MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A} ist eine Variante des zyklischen Vererbungs-Problems und in Java nicht gestattet.
+            \item \bjava[add to literate={MyL1ttl3Cl4ss}{{\solGet{keywordC}{MyL1ttl3Cl4ss}}}{13},morekeywords={[3]{A}}]{MyL1ttl3Cl4ss extends MyL1ttl3Cl4ss.A} ist eine Variante des zyklischen Vererbungs-Problems und in Java nicht gestattet.
             \item Die Methode \bjava{MyEp1cM3th0d} benötigt die Klammern zur Kennzeichnung der Parameteranzahl.
             \item Der Ausdruck \bjava{System.out::println} ist eine Methoden-Referenz. Für den Aufruf benötigen wir \bjava{System.out.println}.
             \item \bjava[showspaces]{= =} ist kein gültiger Java-Ausdruck! Nur \bjava{==} oder \bjava{=}.
