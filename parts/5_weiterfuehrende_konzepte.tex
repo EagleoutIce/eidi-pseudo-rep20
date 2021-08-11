@@ -860,7 +860,7 @@ static int partition(int[] arr, int l, int r) {
     \begin{itemize}
         \widei
         \item<4-> Beispiel: Eine alphabetisch nach Namen sortierte Liste an Personen wird nach dem Alter sortiert.\par\onslide<5->{Stabil: die alphabetische Sortierung bleibt bei selbem Alter erhalten.}\medskip
-        \begin{center}
+        \onslide<6->{\begin{center}
             \begin{tabular}{cc}
                 32 & Apfeltine \\
                 24 & {\sbfamily H}ans \\
@@ -872,14 +872,12 @@ static int partition(int[] arr, int l, int r) {
                 27 & Hansine \\
                 32 & Apfeltine
             \end{tabular}
-        \end{center}
-        \item<6-> Stabile Sortierverfahren (nach Implementation der Vorlesung): \onslide<7->{\linksort{Insertionsort}, \linksort{Quicksort} und \linksort{Mergesort}.}
+        \end{center}}
+        \item<7-> Stabile Sortierverfahren (nach Implementation der Vorlesung): \onslide<8->{\linksort{Insertionsort}, \linksort{Quicksort} und \linksort{Mergesort}.}
     \end{itemize}
 \end{frame}
 
-
 \subsection{Konzept: Backtracking}
-
 \begin{frame}{Backtracking}
     \begin{itemize}[<+(1)->]
         \widei
