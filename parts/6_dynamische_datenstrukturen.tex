@@ -338,7 +338,7 @@ class Element {
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}[Innerer]
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
             \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger.
-            \item[Innerer] Ein innerer Knoten ist jeder Knoten, der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Vater.
+            \item[Innerer] Ein innerer Knoten ist jeder Knoten, der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Elternknoten.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -385,7 +385,7 @@ class Node {
     \begin{itemize}[<+(1)->]
         \widei
         \item Wie bei einer einfach verketteten Liste können wir den Baum traversieren.
-        \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Vaterknoten.
+        \item Analog zur doppelt verketteten Liste gibt es einen Binärbaum mit Verweis auf den Elternknoten.
     \end{itemize}
 \end{frame}
 
@@ -394,7 +394,7 @@ class Node {
 \small%
 \begin{plainjava}
 class Node {
-    public Node father;
+    public Node parent;
 
     public int value;
     public Node left;
@@ -645,7 +645,7 @@ class Node {
     \end{center}
     \begin{itemize}[<+(1)->]
     \item Die Traversierungsverfahren entsprechen Notationsschemata: \begin{description}[Post-Order]
-        \item[In-Order] repräsentiert die geläufige Infix Notation: \((A + B) * (C - D)\). \textcolor{gray}{(Die Klammern entsprechen der Ausführreihenfolge und sind kein Teil.)}
+        \item[In-Order] repräsentiert die geläufige Infix-Notation: \((A + B) * (C - D)\). \textcolor{gray}{(Die Klammern entsprechen der Ausführreihenfolge und sind kein Teil.)}
         \item[Pre-Order] entspricht der Präfix-Notation: \(* + A B - C D\).
         \item[Post-Order] entspricht der Postifx-Notation: \(A B + C D - *\).
     \end{description}
