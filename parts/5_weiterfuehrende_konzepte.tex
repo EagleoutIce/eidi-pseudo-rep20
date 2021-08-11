@@ -477,7 +477,7 @@ public static void bubbleSort(int[] arr) {
         \pause{}Gegeben sei das folgende Tupel: \begin{equation*}
             (13, -15, 9, 8, 23, 8, 0)
         \end{equation*}
-        Visualisieren Sie die einzelnen Durchläufe des Shaker-Sort, indem Sie für jeden Auf- und für jeden Absteigenden Durchlauf nacheinander alle getätigten Vertauschungen und den (aus Sicht des Algorithmus) noch unsortierten Teil des Tupels angeben.\medskip\par
+        Visualisieren Sie die einzelnen Durchläufe des Shaker-Sort, indem Sie für jeden auf- und für jeden absteigenden Durchlauf nacheinander alle getätigten Vertauschungen und den (aus Sicht des Algorithmus) noch unsortierten Teil des Tupels angeben.\medskip\par
         Eine beispielhafte erste Ausgabe für das Tupel \((5, 2, 3, 7, 8, 9, 3)\):
         \begin{center}
             \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
@@ -841,12 +841,12 @@ static int partition(int[] arr, int l, int r) {
                       \cmidrule{2-4}
             Verfahren & best & average & worst & Speicher & Ansatz \\
         \midrule
-            \linksort{Selectionsort} & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+            \linksort{Selectionsort} & \(\O(n^2)\)    & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
             \linksort{Insertionsort} & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
             \linksort{Bubblesort}    & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
             % Quick-, merge und Heapsort können auch O(n)
             \linksort{Mergesort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
-            \linksort{Quicksort}     & \(\O(n \log n)\) & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(\log n)\) & rekursiv \\
+            \linksort{Quicksort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n^2)\)      & \(\O(\log n)\) & rekursiv \\
             \linksort{Heapsort}      & \(\O(n \log n)\) & \(\O(n\log n)\)  & \(\O(n\log n)\)  & \(\O(1)\) & rekursiv \\
         \bottomrule
         \end{tabular}
