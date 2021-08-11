@@ -143,7 +143,7 @@ class Dozent extends Mensch {
 \begin{plainjava}
 Mensch herbert = new Student(19, 184.12f, "herbert", 12345);
 \end{plainjava}
-        \pause{}Die Klasse \bjava{Student} \emph{erbt} von \bjava{Mensch}.\pause{} \textcolor{gray}{Wir können allerdings nicht auf die Zusatzfunktionalitäten von \bjava{Student} zugreifen.}
+        \pause{}Die Klasse \bjava{Student} \emph{erbt} von \bjava{Mensch}.\pause{} \textcolor{gray}{Wir können nicht auf zusätzliche Attribute und Funktionen von \bjava{Student} zugreifen.}
         \item Ob \bjava{herbert} wirklich ein Student ist,\pause{} kann man mit \bjava{instanceof} prüfen:\pause{}
 \begin{plainjava}
 herbert instanceof Student // :yields: true
@@ -319,7 +319,7 @@ public class Element implements Sortable /*, interfaceB, ... */ {
         \widei
         \item Eine \emph{explizite} Ausnahme können wir mittels \bjava{throw} werfen.
         \item Eine \emph{implizite} Ausnahme wird von der Java Virtual Machine geworfen \textcolor{gray}{(Division durch Null, Zugriff auf \bjava{null},~\ldots)}
-        \item Wir werfen eine explizite Ausnahme/einen Error (allgemein: ein \bjava{Throwable}): \pause{}
+        \item Wir werfen eine explizite Ausnahme (allgemein: ein \bjava{Throwable}): \pause{}
 \begin{plainjava}
 throw new IndexOutOfBoundsException();
 \end{plainjava}
