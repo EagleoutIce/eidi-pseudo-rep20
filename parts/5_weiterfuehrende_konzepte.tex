@@ -474,20 +474,20 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Shakersort visualisieren}
     \Task{Shakersort visualisieren}
     \begin{exercise}<2->[Shakersort visualisieren \Time{5}]
-        \pause{}Gegeben sei das folgende Tupel: \begin{equation*}
+        \onslide<3->{Gegeben sei das folgende Tupel: \begin{equation*}
             (13, -15, 9, 8, 23, 8, 0)
-        \end{equation*}
-        Visualisieren Sie die einzelnen Durchläufe des Shaker-Sort, indem Sie für jeden auf- und für jeden absteigenden Durchlauf nacheinander alle getätigten Vertauschungen und den (aus Sicht des Algorithmus) noch unsortierten Teil des Tupels angeben.\medskip\par
-        Eine beispielhafte erste Ausgabe für das Tupel \((5, 2, 3, 7, 8, 9, 3)\):
-        \begin{center}
-            \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \end{equation*}}%
+        \onslide<4->{Visualisieren Sie die einzelnen Durchläufe des Shaker-Sort, indem Sie für jeden auf- und für jeden absteigenden Durchlauf nacheinander alle getätigten Vertauschungen und den (aus Sicht des Algorithmus) noch unsortierten Teil des Tupels angeben.\medskip\par
+        Eine beispielhafte erste Ausgabe für das Tupel \((5, 2, 3, 7, 8, 9, 3)\):}
+        \onslide<5->{\begin{center}
+            \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
                 \XList{2, 3, 5, 7, 8, 3, 9}
                 \draw[thick] ([yshift=1mm]1.north west) -- ([yshift=1mm]6.north east);
                 \draw[Kite-Kite] (1.south) to[bend right] (2.south);
                 \draw[Kite-Kite] (2.south) to[bend right] (3.south);
                 \draw[Kite-Kite] (6.south) to[bend right] (7.south);
             \end{tikzpicture}
-        \end{center}
+        \end{center}}
     \end{exercise}\onslide<1->
 \end{frame}
 
