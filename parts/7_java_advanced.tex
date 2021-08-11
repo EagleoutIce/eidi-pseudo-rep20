@@ -592,7 +592,7 @@ public class A {
 
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Fehler finden, V]
-        \pause{}\footnotesize\begin{plainjava}
+        \pause{}\footnotesize\begin{plainjava}[morekeywords={[3]{A,B,C}}]
 public class A {
     private static class B extends A {
         public B() {
@@ -613,7 +613,7 @@ public class A {
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Fehler finden, V\hfill{}(Fortsetzung)]
         \begin{enumerate}
-            \item Das \bjava{final} ist an sich nicht falsch, dann kann aber \bjava{C} nicht mehr von \bjava{B} erben.
+            \item Das \bjava{final} ist an sich nicht falsch, dann kann aber \solGet{keywordC}{C} nicht mehr von \solGet{keywordC}{B} erben.
             \item Der Bezeichner \bjava{this} darf nicht innerhalb eines Konstruktoraufrufs verwendet werden.
             \item In der Methode \bjava{_$get$} genügt nicht die Signatur,\pause{} Java erwartet (nicht-bindende) Variablenbezeichner.
         \end{enumerate}
