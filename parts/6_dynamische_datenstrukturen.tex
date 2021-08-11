@@ -154,19 +154,21 @@ class Element {
     }
 }
 \end{plainjava}
-        \pause{}Schreiben Sie eine Methode \bjava{appendLast(Element root, int i)}, die ein neues \bjava{Element} mit Wert \(i\) an das Ende der Liste, anhängt. Die Liste soll durch den Kopf \bjava{root} gekennzeichnet sein.
+        \pause{}Schreiben Sie eine Methode \bjava{Element appendLast(Element root, int i)}, die ein neues \bjava{Element} mit Wert \(i\) an das Ende der Liste, anhängt und diese Liste zurückliefert. Die Liste soll durch den Kopf \bjava{root} gekennzeichnet sein. Sie dürfen die ursprüngliche Liste verändern.
     \end{exercise}
 \end{frame}
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Einfach verkettete Liste - Einfügen]
-        Die erste Methode behandelt den Sonderfall \say{leere Liste}. Die zweite traversiert die Liste so lange,\pause{} bis wir am \emph{Foot} angekommen sind und ersetzt dann den Verweis des vorletzten:\pause{}
+        Die erste Methode behandelt den Sonderfall \say{leere Liste}. Die zweite traversiert die Liste so lange,\pause{} bis wir am \emph{Foot} angekommen sind und ersetzt dann den Verweis des vorletzten Elements:\pause{}
 \begin{plainjava}
-public void appendLast(Element root, int i) {
-    if(root == null)
-        root = new Element(i, null);
-    else
+public Element appendLast(Element root, int i) {
+    if(root == null) {
+        return new Element(i, null);
+    } else {
         appendLastIter(root, i);
+        return root;
+    }
 }
 \end{plainjava}
     \end{solve}
@@ -175,7 +177,7 @@ public void appendLast(Element root, int i) {
 \begin{frame}[fragile,c]{Lösung}
     \addtocounter{solve}{-1}%
     \begin{solve}<2->[Einfach verkettete Liste - Einfügen\hfill{}(Fortsetzung)]
-        Wir iterieren:
+        Wir suchen das Ende der Liste:
 \begin{plainjava}
 public void appendLastIter(Element current, int i){
     if(current.next == null) // found last
