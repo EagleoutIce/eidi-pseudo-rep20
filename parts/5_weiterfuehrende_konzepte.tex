@@ -795,7 +795,7 @@ static int partition(int[] arr, int l, int r) {
         \onslide<3->{Binärbaum, bei dem gilt: \(\text{Vaterknoten} \leq \text{Kindknoten}\) (\textit{min}).}
     \end{definition}
     \begin{itemize}
-        \item<4-> Neue Elemente werden von Unten an als neues Kind hinzugefügt. \onslide<5->{Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist.}
+        \item<4-> Neue Elemente werden Unten als neues Kind hinzugefügt. \onslide<5->{Wird die Eigenschaft verletzt, werden solange kleinere Kinder nach oben getauscht bis die Eigenschaft wiederhergestellt ist.}
         \item<6-> Beim Entfernen eines Elements wird das Blatt vor der aktuellen Einfügeposition als neue Wurzel getauscht.
         \item<7-> Beispiel: Einfügen der Elemente \(4,2,1,3\).
     \end{itemize}
@@ -859,7 +859,20 @@ static int partition(int[] arr, int l, int r) {
     \end{definition}
     \begin{itemize}
         \widei
-        \item<4-> Beispiel: Eine bereits alphabetisch nach Nachnamen sortierte Liste an Personen wird nun nach Alter sortiert. \onslide<5->{Bei einem stabilen Sortierverfahren bleibt die alphabetische Sortierung bei Personen des selben Alters erhalten.}
+        \item<4-> Beispiel: Eine alphabetisch nach Namen sortierte Liste an Personen wird nach dem Alter sortiert.\par\onslide<5->{Stabil: die alphabetische Sortierung bleibt bei selbem Alter erhalten.}\medskip
+        \begin{center}
+            \begin{tabular}{cc}
+                32 & Apfeltine \\
+                24 & {\sbfamily H}ans \\
+                27 & Hansine \\
+                24 & {\sbfamily I}nga
+            \end{tabular}\quad\(\Longrightarrow\)\quad\begin{tabular}{cc}
+                24 & {\sbfamily H}ans \\
+                24 & {\sbfamily I}nga \\
+                27 & Hansine \\
+                32 & Apfeltine
+            \end{tabular}
+        \end{center}
         \item<6-> Stabile Sortierverfahren (nach Implementation der Vorlesung): \onslide<7->{\linksort{Insertionsort}, \linksort{Quicksort} und \linksort{Mergesort}.}
     \end{itemize}
 \end{frame}
