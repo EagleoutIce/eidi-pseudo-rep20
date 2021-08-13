@@ -152,7 +152,7 @@
 }
 \let\mtx@split@tar\mtx@split@gol
 }
-\tikzset{MTX@BLK/.style={rectangle,minimum size=\mtx@k,inner sep=\z@,outer sep=\z@,fill=#1,draw=@primary,line width=.66\p@}}
+\tikzset{MTX@BLK/.style={rectangle,minimum size=\mtx@k,inner sep=\z@,outer sep=\z@,fill=#1,draw=@primary!90!white,line width=.66\p@}}
 \def\Matrix#1#2#3#4#5#6#7#8#9{%
 \def\triga{#4}\def\trigb{#5}\def\trigc{#6}\def\trigd{#7}\def\trige{#8}\def\trigf{#9}
 \scope[scale=1.4,every node/.append style={transform shape}]
@@ -167,10 +167,10 @@
             % overdraw me baby
             \node[MTX@BLK=white,text=lightgray] (\x-\y) at (\x*\mtx@k, -\y*\mtx@k) {\footnotesize\expandafter\mtx@split@tar\mtx@tmp\@nil};
             \only<\tar>{
-                \node[MTX@BLK=@alternative!80!white,text=white] (\x-\y) at (\x*\mtx@k, -\y*\mtx@k) {\footnotesize\expandafter\mtx@split@gol\mtx@tmp\@nil};
+                \node[MTX@BLK=@alternative!30!white,text=gray] (\x-\y) at (\x*\mtx@k, -\y*\mtx@k) {\footnotesize\expandafter\mtx@split@gol\mtx@tmp\@nil};
             }
             \only<\gol>{
-                \node[MTX@BLK=@secondary!70!white] (\x-\y) at (\x*\mtx@k, -\y*\mtx@k) {};
+                \node[MTX@BLK=@secondary!40!white] (\x-\y) at (\x*\mtx@k, -\y*\mtx@k) {};
             }
             \only<\ded>{
                 \node[MTX@BLK=gray!20!white] (\x-\y) at (\x*\mtx@k, -\y*\mtx@k) {\T{\color{gray!80!white}\textbullet}};
@@ -179,7 +179,7 @@
     }
 }
 \endscope
-\draw[rounded corners=\p@,@primary,line width=1.65\p@] (.5*\mtx@k, -.5*\mtx@k) rectangle ++(#2*\mtx@k, -#3*\mtx@k);
+\draw[rounded corners=\p@,@primary!90!white,line width=1.65\p@] (.5*\mtx@k, -.5*\mtx@k) rectangle ++(#2*\mtx@k, -#3*\mtx@k);
 \endscope}
 
 %% Heap and Stack
