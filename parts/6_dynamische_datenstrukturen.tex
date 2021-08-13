@@ -1115,21 +1115,20 @@ public class Element {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Eine Liste umdrehen]
-        \pause{}\pause{}%
 \begin{plainjava}
-Element reverse(Element head) {
-    Element reversedHead = null;
-    Element current = head;
-    while (current != null) {
-        Element next = current.next;
-        current.next = reversedHead;
-        reversedHead = current;
-        current = next;
-    }
-    return reversedHead;
-}
+!*\onslide<3->*!Element reverse(Element head) {
+!*\onslide<4->*!    Element reversedHead = null;
+!*\onslide<4->*!    Element current = head;
+!*\onslide<5->*!    while (current != null) {
+!*\onslide<6->*!        Element next = current.next;
+!*\onslide<7->*!        current.next = reversedHead;
+!*\onslide<8->*!        reversedHead = current;
+!*\onslide<8->*!        current = next;
+!*\onslide<5->*!    }
+!*\onslide<9->*!    return reversedHead;
+!*\onslide<3->*!}
 \end{plainjava}
-    \pause Doch was passiert hier?\pause{} Betrachten wir dies im Detail\ldots
+    \onslide<10->{Doch was passiert hier? Betrachten wir dies im Detail\ldots}
     \end{solve}
 \end{frame}
 
