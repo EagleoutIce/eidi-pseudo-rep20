@@ -1451,23 +1451,23 @@ public class Stack {
 \pause\footnotesize\RestyleAlgo{tworuled}\SetAlgoVlined%
 \begin{algorithm}[H]
 \PreCode\StartCode
-\(queue \leftarrow \T{Queue.create()}\)\;
-\(queue.\T{enqueue}(s)\)\Comment*[r]{Startknoten hinzufügen}
-\(visited \leftarrow \{s\}\)\Comment*[r]{Menge markiert bereits beachtete}
-\While(\Comment*[f]{Es gibt noch besuchbare Punkte}){\(queue.\T{size}() > 0\)}{
-    \(current \leftarrow queue.\T{dequeue}()\)\Comment*[r]{Betrachte nächsten Knoten}
-    \lIf(\Comment*[f]{Ist er das Ziel?}){\(current = g\)}{\KwRet\say{Ja}}
-    \Comment{Durchsuche Adjazenzmatrix nach allen erreichbaren Knoten}
+\onslide<4->{\(queue \leftarrow \T{Queue.create()}\)\;}
+\onslide<4->{\(queue.\T{enqueue}(s)\)\Comment*[r]{Startknoten hinzufügen}}
+\onslide<5->{\(visited \leftarrow \{s\}\)\Comment*[r]{Menge markiert bereits beachtete}}
+\onslide<6->{\While(\Comment*[f]{Es gibt noch besuchbare Punkte}){\(queue.\T{size}() > 0\)}{
+    \onslide<7->{\(current \leftarrow queue.\T{dequeue}()\)\Comment*[r]{Betrachte nächsten Knoten}}
+    \onslide<8->{\lIf(\Comment*[f]{Ist er das Ziel?}){\(current = g\)}{\KwRet\say{Ja}}}
+    \onslide<9->{\Comment{Durchsuche Adjazenzmatrix nach allen erreichbaren Knoten}
     \For{i = 0 \KwTo n - 1}{
-        \If(\Comment*[f]{Es gibt eine Kante von \(current\) nach \(i\)}){\(a_{current, i} > 0\)} {
-            \If(\Comment*[f]{Noch nicht besucht}){\(i \not\in visited\)}{
-                \(queue.\T{enqueue}(i)\)\;
-                \(visited \leftarrow visited \cup \{i\}\)\Comment*[r]{Füge zu besuchten hinzu.}
-            }
-        }
-    }
-}
-\KwRet\say{Nein}\;
+        \onslide<10->{\If(\Comment*[f]{Es gibt eine Kante von \(current\) nach \(i\)}){\(a_{current, i} > 0\)} {
+            \onslide<11->{\If(\Comment*[f]{Noch nicht besucht}){\(i \not\in visited\)}{
+                \onslide<12->{\(queue.\T{enqueue}(i)\)\;
+                \(visited \leftarrow visited \cup \{i\}\)\Comment*[r]{Füge zu besuchten hinzu.}}
+            }}
+        }}
+    }}
+}}
+\onslide<13->{\KwRet\say{Nein}\;}
 \end{algorithm}
     \end{solve}
 \end{frame}
@@ -1522,9 +1522,8 @@ Schreiben Sie eine Java-Methode \bjava{boolean bfs(int[][] a, int s, int g)}. Si
     \begin{solve}<2->[Breitensuche - Java]
 \lstfs{9}\begin{plainjava}[morekeywords={[4]{enqueue,dequeue,contains,add,size}}]
 !*\onslide<3->*!boolean bfs(int[][] a, int s, int g) {
-!*\onslide<4->*!    Queue queue = new Queue();
-!*\onslide<4->*!    queue.enqueue(s);
-!*\onslide<5->*!    Set visited = new Set();
+!*\onslide<4->*!    Queue queue = new Queue(); queue.enqueue(s);
+!*\onslide<5->*!    Set visited = new Set();   visited.add(s);
 !*\onslide<6->*!    while(queue.size() > 0) {
 !*\onslide<7->*!        int cur = queue.dequeue();
 !*\onslide<8->*!        if(cur == g) return true;
