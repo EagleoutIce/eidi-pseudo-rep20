@@ -1395,9 +1395,9 @@ public class Node {
     \begin{plainjava}[morekeywords={[3]{Stack}}]
 public class Stack {
     public Stack() {/* ... */}
-    public boolean isEmpty();
-    public void push(Node n);
-    public Node pop();
+    public boolean isEmpty() {}
+    public void push(Node n) {}
+    public Node pop() {}
 }
 \end{plainjava}
 \end{column}
@@ -1407,19 +1407,19 @@ public class Stack {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Traversierung eines Baumes, 2 - Java]
-\pause{}\begin{plainjava}[morekeywords={[3]{Stack}}]
-void preorderIt(Node n) {
-    Stack s = new Stack();
-    s.push(n);
-    while(!s.isEmpty()) {
-        Node current = s.pop();
-        if(current == null)
-            continue;
-        System.out.println(current.value);
-        s.push(current.right);
-        s.push(current.left); // erst links
-    }
-}
+\begin{plainjava}[morekeywords={[3]{Stack}}]
+!*\onslide<3->*!void preorderIt(Node n) {
+!*\onslide<4->*!    Stack s = new Stack();
+!*\onslide<5->*!    s.push(n);
+!*\onslide<6->*!    while(!s.isEmpty()) {
+!*\onslide<7->*!        Node current = s.pop();
+!*\onslide<8->*!        if(current == null)
+!*\onslide<8->*!            continue;
+!*\onslide<9->*!        System.out.println(current.value);
+!*\onslide<10->*!        s.push(current.right);
+!*\onslide<11->*!        s.push(current.left); // erst links
+!*\onslide<6->*!    }
+!*\onslide<3->*!}
 \end{plainjava}
     \end{solve}
 \end{frame}
