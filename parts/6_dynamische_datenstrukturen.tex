@@ -987,6 +987,26 @@ class Node {
 \end{multicols}
 \end{frame}
 
+\begin{frame}[c]{Ein Beispiel für die Tiefensuche}
+\vspace*{1.5em}\par\centering
+\onslide<3->{\begin{tikzpicture}
+\Matrix{%
+{X,X,X,X,X,X,X,X,X,X},
+{X,1-3|handout:0/4|handout:1/5-|handout:2-,4|handout:1/5|handout:0/6-|handout:2-,5|handout:0/6|handout:0/7-|handout:2-,6|handout:0/7|handout:0/8-|handout:2-,7|handout:0/8|handout:0/9-|handout:2-,8|handout:0/9|handout:0/10-|handout:2-,9|handout:0/10|handout:0/11-|handout:2-,10|handout:0/11|handout:2/12-|handout:3-,X},
+{X,4-24|handout:1-4/25|handout:0/26-|handout:5-,4-25|handout:1-4/26|handout:0/27-|handout:5-,5-26|handout:2-4/27|handout:0/28-|handout:5-,6-11|handout:2/12|handout:0/13-|handout:3-,X,X,X,X,X},
+{X,21-23|handout:0/24|handout:0/25-|handout:5-,20-28|handout:4/29|handout:5/30-|handout:6-,12-27|handout:3-4/28|handout:0/29-|handout:5-,12|handout:0/13|handout:0/14-|handout:3-,X,X,X,X,X},
+{X,21|handout:0/22|handout:0/23-|handout:5-,20|handout:4/21|handout:0/22-|handout:5-,13-19|handout:3/20|handout:4/21-|handout:5-,13|handout:0/14|handout:3/15-|handout:4-,13-15|handout:3/16|handout:0/17-|handout:4-,16|handout:0/17|handout:0/18-|handout:4-,17|handout:0/18|handout:0/19-|handout:4-,18|handout:0/19|handout:0/20-|handout:4-,X},
+{X,21-22|handout:0/23|handout:0/24-|handout:5-,X,X,14|handout:3/15|handout:0/16-|handout:4-,X,X,X,X,X},
+{X,X,X,X,X,X,X,X,X,X}%
+}{10}{7}% TRIGGER:
+{4}{11}{14}{20}{29}{-1}
+\end{tikzpicture}}\qquad%
+\savebox0{\scalebox{.5}{\begin{tikzpicture}
+    \onslide<2->{\draw[thick,@primary,rounded corners=2.5pt,path picture={\node at(path picture bounding box.center) {\href{https://media.githubusercontent.com/media/EagleoutIce/Episode-Traversierung/gh-pages/noanim_traversal.pdf}{\includegraphics[width=8.5cm,height=4.788cm,keepaspectratio]{logoTraversal-\jobname.png}}};}] (0,0) rectangle (8.5cm,4.788cm);
+    \node[below=1cm,yshift=4.5mm,scale=1.5] at (current bounding box.south) {\qrcode[link]{https://github.com/EagleoutIce/Episode-Traversierung/tree/main}};}
+\end{tikzpicture}}}\raisebox{.2\ht0}{\usebox0}%
+\end{frame}
+
 \begin{frame}{Graphen durchsuchen: Breitensuche}
     \begin{itemize}[<+(1)->]
         \widei
