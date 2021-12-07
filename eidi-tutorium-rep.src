@@ -43,7 +43,7 @@
 \begin{frame}{}
     \usebeamercolor{title}%
     \vskip1em
-    {\hfill\usebeamerfont{title}\MakeUppercase{Disclaimer}\hfill\llap{\qrcode[height=1cm]{https://github.com/EagleoutIce/eidi-pseudo-rep20}}\rlap{\thinspace\thinspace\href{https://github.com/EagleoutIce/eidi-pseudo-rep20}{\color{gray}\Large\faGithub}}\par}
+    {\hfill\usebeamerfont{title}\MakeUppercase{Disclaimer}\hfill\llap{\fancyqr[height=1cm]{https://github.com/EagleoutIce/eidi-pseudo-rep20}}\rlap{\thinspace\thinspace\href{https://github.com/EagleoutIce/eidi-pseudo-rep20}{\color{gray}\Large\faGithub}}\par}
     \vfill
     \begin{center}
     \begin{minipage}{\linewidth}\footnotesize

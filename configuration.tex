@@ -3,7 +3,8 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[defaultfam,light,tabular,lining]{montserrat}
-\RequirePackage{sfmath,tikz,qrcode} % we need it anyways - will load xcolor
+\RequirePackage{sfmath,tikz,qrcode,tikz-qr}
+% we need it anyways - will load xcolor
 
 \usetikzlibrary{calc, arrows.meta, decorations, decorations.pathreplacing, graphs}
 \RequirePackage[english,main=ngerman]{babel}
@@ -23,6 +24,9 @@
 \colorlet{@alternative}{btcd@color@alternative}
 \colorlet{@black}{btcd@color@black}
 \colorlet{@white}{btcd@color@white}
+
+\colorlet{qr@fancy@gradient@tl}{@primary!96!@white!85!teal}
+\colorlet{qr@fancy@gradient@br}{purple!54!@secondary}
 
 \makeatletter
 \lstcolorlet{keywordA}{@primary}
