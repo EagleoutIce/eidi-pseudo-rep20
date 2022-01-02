@@ -70,6 +70,15 @@ Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit
 \input{parts/6_dynamische_datenstrukturen}
 \input{parts/7_java_advanced}
 
+\immediate\write18{wget https://media.githubusercontent.com/media/EagleoutIce/christmas-eidi-recap/gh-pages/preview-01.png -O logoChristmas-\jobname.png}
+\begin{frame}[c]{Weiteres --- Die Weihnachtswiederholung}
+\centering\vspace*{2em}\par\begin{tikzpicture}
+    \onslide<2->{\draw[thick,@primary,rounded corners=2.5pt,path picture={\node at(path picture bounding box.center) {\href{https://media.githubusercontent.com/media/EagleoutIce/christmas-eidi-recap/gh-pages/noanim-christmas.pdf}{\includegraphics[width=8.5cm,height=4.788cm,keepaspectratio]{logoChristmas-\jobname.png}}};}] (0,0) rectangle (8.5cm,4.788cm);}
+    \onslide<3->{\node[below=2mm] at (current bounding box.south) {Eine \say{Weihnachtswiederholung} per Klick\ldots};}
+    \onslide<3->{\node[right=1cm,yshift=4.5mm,scale=1.125] at (current bounding box.east) {\fancyqr[link]{https://github.com/EagleoutIce/christmas-eidi-recap/tree/main}};}
+\end{tikzpicture}
+\end{frame}
+
 \begin{frame}\relax
     \pdfbookmark[0]{Ein Wort zum Abschluss}{wortzumabschluss}%
     \usebeamercolor{title}%
