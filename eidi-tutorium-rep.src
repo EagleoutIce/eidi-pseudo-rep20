@@ -3,13 +3,13 @@
 \title[EidI-Rep]{EidI-Kompakt}
 \subtitle{\profileshorttitle}
 \author{Florian Sihler}
-\date{2.08.2021}
+\date{2.01.2022}
 \institute{Verteilte Systeme --- Universität Ulm}
 \newsavebox\OutroPingu \savebox\OutroPingu{\begin{tikzpicture}\pingu[right wing wave, eyes shiny, pride flag right, head band, right item angle=18, halo, halo raise=1.25mm, belly=\Large\faHeart,small,glow]\end{tikzpicture}}
 \outro{Ulm, den \today\begin{tikzpicture}[remember picture,overlay]
     \node[above left=.25cm,scale=.75] at (current page.south east) {\usebox\OutroPingu};
 \end{tikzpicture}}
-\SetEmblem[University Ulm]{Praktische Informatik}{\faCode}
+\SetEmblem[Ulm University]{Praktische Informatik}{\faCode}
 
 \titleimage{%
     \begin{tikzpicture}[every node/.style={transform shape},t/.style={}]
@@ -47,9 +47,9 @@
     \vfill
     \begin{center}
     \begin{minipage}{\linewidth}\footnotesize
-Der folgende Dokumentsatz erhebt keinen Anspruch auf vollständige Richtigkeit.
+Der folgende Foliensatz erhebt keinen Anspruch auf vollständige Richtigkeit.
 Er wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist als unverbindliche Hilfe im Kontext seiner zusammenfassenden Natur zu verstehen.
-Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesung dort durchbrochen wurde, wo eine andere Gruppierung passender erschien. Ebenso wird ein Verständnis der Themen vorrausgesetzt. So versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück~--- sofern vonnöten. \begin{center}
+Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesung dort durchbrochen wurde, wo eine andere Gruppierung passender erschien. Ebenso wird ein Verständnis der Themen vorausgesetzt. So versuche ich es zwar zu vermeiden, Vorgriffe zu tätigen, scheue aber dennoch nicht vor ihnen zurück~--- sofern vonnöten. \begin{center}
     Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
 \end{center}
 Alle Grafiken wurden von mir, Florian Sihler, mithilfe von \LaTeX\ und Ti\textit{k}Z erstellt. Ebenso wie das hier gezeigte \href{https://github.com/EagleoutIce/beamer-themes}{Beamer-Layout}. Für das Syntax-Highlighting wird das Paket \href{https://github.com/EagleoutIce/sopra-collection}{sopra-listings} verwendet. Weitere Links finden sich am Ende des Dokuments.\hfill {\tiny\href{mailto:florian.sihler@uni-ulm.de}{florian.sihler@uni-ulm.de}}\relax
