@@ -641,8 +641,8 @@ class Node {
     \pause{}
     \begin{center}
         \scalebox{0.625}{\begin{forest}
-            for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
-            [*[+[A][B]][-[C][D]]]
+            for tree={inner sep=4pt,ball,font=\Large\sffamily,outer sep=1pt,minimum width=1.15cm,edge=-Kite}
+            [$*$[$+$[A][B]][$-$[C][D]]]
         \end{forest}}
     \end{center}
     \begin{itemize}[<+(1)->]
@@ -1120,7 +1120,7 @@ public class LinkedList {
 !*\onslide<8->*!    return strList;
 !*\onslide<3->*!}
 \end{plainjava}
-        \onslide<9->{Ist kein Komma am Ende erwünscht, so genügt ein Check der Form \bjava{if(current.next != null)} für das Anfügen des Kommas.}
+        \onslide<9->{Ist kein Komma am Ende erwünscht, so genügt ein Test der Form \bjava{if(current.next != null)} für das Anfügen des Kommas.}
     \end{solve}
 \end{frame}
 

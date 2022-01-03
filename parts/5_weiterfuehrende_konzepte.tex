@@ -84,7 +84,7 @@
         \vspace*{1em}
 \begin{center}
     \begin{minipage}[c]{.35\linewidth}
-        \centering\onslide<7->{\scalebox{0.65}{\begin{forest}
+        \centering\onslide<7->{\scalebox{.65}{\begin{forest}
             for tree={inner sep=4pt,ball,outer sep=1pt}
             [,name=m1[[[][[][,phantom]]][[][[][]]]][,name=m2[][,name=m3[,name=m4,iball,inner sep=4.35pt,double[,phantom][]][[]]]]]
             \onslide<+->{
@@ -94,7 +94,7 @@
             }
         \end{forest}}}
     \end{minipage}\qquad\begin{minipage}[c]{.35\linewidth}
-        \onslide<8->{\scalebox{0.65}{\begin{tikzpicture}
+        \onslide<8->{\scalebox{.65}{\begin{tikzpicture}
 \foreach[remember=\i as \li(initially 0)] \i in {1,...,9}{
     \ifnum\i=6
         \node[inner sep=4.35pt,iball,double,outer sep=2pt] (\i) at(\i,0) {};
@@ -219,19 +219,19 @@
 \begin{minipage}{.9\linewidth}
 \begin{multicols}{2}
     \begin{enumerate}
-        \item<8-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<8-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{4,2,1,3}{0}
             \draw[Kite-Kite] (1.north) to[bend left] (3.north);
         \end{tikzpicture}
-        \item<9-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<9-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{1,2,4,3}{1}
             \draw[Kite-Kite] (2) to[loop above] (2);
         \end{tikzpicture}
-        \item<10-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<10-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{1,2,4,3}{2}
             \draw[Kite-Kite] (3.north) to[bend left] (4.north);
         \end{tikzpicture}
-        \item<11-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<11-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{1,2,3,4}{4}
         \end{tikzpicture}
     \end{enumerate}
@@ -299,26 +299,26 @@
     \end{itemize}
     \vfill
     \begin{center}\pause
-\begin{minipage}{0.9\linewidth}
+\begin{minipage}{.9\linewidth}
 \begin{multicols}{2}
     \begin{enumerate}[<+(1)->]
-        \item<8-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<8-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{4,2,1,3}{1}
             \draw[-Kite] (1) to (2);
             \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (2.north);
         \end{tikzpicture}
-        \item<9-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<9-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{2,4,1,3}{2}
             \draw[-Kite] (1) to (2);
             \draw[-Kite] (2) to (3);
             \draw[Kite-Kite] ([xshift=-15pt]1.north) to[bend left] (3.north);
         \end{tikzpicture}
-        \item<10-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<10-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{1,2,4,3}{3}
             \draw[-Kite] (3) to (4);
             \draw[Kite-Kite] ([xshift=-15pt]3.north) to[bend left] (4.north);
         \end{tikzpicture}
-        \item<11-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item<11-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \List{1,2,3,4}{4}
         \end{tikzpicture}
     \end{enumerate}
@@ -396,17 +396,17 @@
 \begin{minipage}{.9\linewidth}
     \begin{multicols}{2}
         \begin{enumerate}[<+(1)->]
-            \item<7-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \item<7-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
                 \List{4,2,1,3}{5}
                 \draw[Kite-Kite] (1.north) to[bend left] (2.north);
                 \draw[Kite-Kite] (2.north) to[bend left] (3.north);
                 \draw[Kite-Kite] (3.north) to[bend left] (4.north);
             \end{tikzpicture}
-            \item<8-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \item<8-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
                 \List{2,1,3,4}{4}
                 \draw[Kite-Kite] (1.north) to[bend left] (2.north);
             \end{tikzpicture}
-            \item<9-> \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+            \item<9-> \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
                 \List{1,2,3,4}{0}
             \end{tikzpicture}
             \item<1->[]
@@ -480,7 +480,7 @@ public static void bubbleSort(int[] arr) {
         \onslide<4->{Visualisieren Sie die einzelnen Durchläufe des Shaker-Sort, indem Sie für jeden auf- und für jeden absteigenden Durchlauf nacheinander alle getätigten Vertauschungen und den (aus Sicht des Algorithmus) noch unsortierten Teil des Tupels angeben.\medskip\par
         Eine beispielhafte erste Ausgabe für das Tupel \((5, 2, 3, 7, 8, 9, 3)\):}
         \onslide<5->{\begin{center}
-            \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-0.6ex]
+            \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
                 \XList{2, 3, 5, 7, 8, 3, 9}
                 \draw[thick] ([yshift=1mm]1.north west) -- ([yshift=1mm]6.north east);
                 \draw[Kite-Kite] (1.south) to[bend right] (2.south);
@@ -496,10 +496,10 @@ public static void bubbleSort(int[] arr) {
     \begin{enumerate}[<+(1)->]
         \widei
         \setcounter{enumi}{-1}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{13, -15, 9, 8, 23, 8, 0}
         \end{tikzpicture}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 9, 8, 13, 8, 0, 23}
             \draw[thick] ([yshift=1mm]1.north west) -- ([yshift=1mm]6.north east);
             \draw[Kite-Kite] (1.south) to[bend right] (2.south);
@@ -508,7 +508,7 @@ public static void bubbleSort(int[] arr) {
             \draw[Kite-Kite] (5.south) to[bend right] (6.south);
             \draw[Kite-Kite] (6.south) to[bend right] (7.south);
         \end{tikzpicture} (up)
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 9, 8, 13, 8, 23}
             \draw[thick] ([yshift=1mm]2.north west) -- ([yshift=1mm]6.north east);
             \draw[Kite-Kite] (6.south) to[bend left] (5.south);
@@ -516,13 +516,13 @@ public static void bubbleSort(int[] arr) {
             \draw[Kite-Kite] (4.south) to[bend left] (3.south);
             \draw[Kite-Kite] (3.south) to[bend left] (2.south);
         \end{tikzpicture} (down)
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 8, 9, 8, 13, 23}
             \draw[thick] ([yshift=1mm]2.north west) -- ([yshift=1mm]5.north east);
             \draw[Kite-Kite] (3.south) to[bend right] (4.south);
             \draw[Kite-Kite] (5.south) to[bend right] (6.south);
         \end{tikzpicture} (up)
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 8, 8, 9, 13, 23}
             \draw[thick] ([yshift=1mm]3.north west) -- ([yshift=1mm]5.north east);
             \draw[Kite-Kite] (5.south) to[bend left] (4.south);
@@ -537,16 +537,16 @@ public static void bubbleSort(int[] arr) {
     \begin{enumerate}[<+(1)->]
         \widei
         \setcounter{enumi}{3}
-        \item \begin{tikzpicture}[gray, scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[gray, scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 8, 8, 9, 13, 23}
             \draw[thick] ([yshift=1mm]3.north west) -- ([yshift=1mm]5.north east);
             \draw[Kite-Kite] (5.south) to[bend left] (4.south);
         \end{tikzpicture} \textcolor{gray}{(down)}
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 8, 8, 9, 13, 23}
             \draw[thick] ([yshift=1mm]3.north west) -- ([yshift=1mm]4.north east);
         \end{tikzpicture} (up)
-        \item \begin{tikzpicture}[scale=0.65,every node/.style={transform shape},baseline=-0.6ex]
+        \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 8, 8, 9, 13, 23}
             \draw[thick] ([yshift=1mm]4.north west) -- ([yshift=1mm]4.north east);
         \end{tikzpicture} (down)
@@ -561,9 +561,9 @@ public static void bubbleSort(int[] arr) {
 \savebox{#3}{\begin{tikzpicture}
     \foreach[count=\i,remember=\i as \li (initially 0)] \n in {#1}{
         \ifnum\i=#2
-            \node[inner sep=4pt,iball,outer sep=0pt,scale=0.8] (\i) at(0.7*\i,0) {\n};
+            \node[inner sep=4pt,iball,outer sep=0pt,scale=.8] (\i) at(.7*\i,0) {\n};
         \else
-            \node[inner sep=4pt,ball,outer sep=0pt,scale=0.8] (\i) at(0.7*\i,0) {\n};
+            \node[inner sep=4pt,ball,outer sep=0pt,scale=.8] (\i) at(.7*\i,0) {\n};
         \fi
         \ifnum\i>1 \draw(\li) -- (\i); \fi
     }
@@ -590,7 +590,7 @@ public static void bubbleSort(int[] arr) {
     \end{itemize}
     \vfill
     \begin{center}\onslide<7->{
-        \scalebox{0.58}{\begin{forest}
+        \scalebox{.58}{\begin{forest}
             for tree={}
             [\usebox{\dotA},[{\usebox{\dotB}}[{\usebox{\dotD}}][{\usebox{\dotE}}]][{\usebox{\dotC}}[{\usebox{\dotF}}][{\usebox{\dotG}}]]]
             \node at(0,1) {Split};
@@ -602,7 +602,7 @@ public static void bubbleSort(int[] arr) {
         \TikzList{2}{5}{\dotE}%
         \TikzList{1}{5}{\dotF}%
         \TikzList{3}{5}{\dotG}%
-        \scalebox{0.58}{\begin{forest}
+        \scalebox{.58}{\begin{forest}
             for tree={grow=north}
             [\usebox{\dotA},[{\usebox{\dotC}}[{\usebox{\dotG}}][{\usebox{\dotF}}]][{\usebox{\dotB}}[{\usebox{\dotE}}][{\usebox{\dotD}}]]]
             \node at(0,3.75) {Merge};
@@ -695,7 +695,7 @@ public static void bubbleSort(int[] arr) {
     \end{itemize}
     \vfill
     \begin{center}\onslide<8->{
-        \scalebox{0.58}{\begin{forest}
+        \scalebox{.58}{\begin{forest}
             for tree={}
             [{\usebox{\dotA}},[{\usebox{\dotB}}[{\usebox{\dotF}}][,phantom]][{{\usebox{\dotD}}}[,phantom][,phantom]]]
             \node at(0,1) {Split};
@@ -707,7 +707,7 @@ public static void bubbleSort(int[] arr) {
         \TikzList{2}{5}{\dotE}
         \TikzList{1}{5}{\dotF}
         \TikzList{3}{5}{\dotG}
-        \scalebox{0.58}{\begin{forest}
+        \scalebox{.58}{\begin{forest}
             for tree={grow=north}
             [{\usebox{\dotA}},[{{\usebox{\dotD}}}[,phantom][,phantom]][{\usebox{\dotB}}[,phantom][{\usebox{\dotF}}]]]
             \node at(0,3.75) {Merge};
@@ -773,16 +773,16 @@ static int partition(int[] arr, int l, int r) {
     \end{itemize}
     \vfill
     \begin{center}\onslide<7->{%
-        \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1,iball[3[4][,phantom]][2]]
-        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [2,iball[3][4]]
-        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [3,iball[4][,phantom]]
-        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,iball]
         \end{forest}}}}
@@ -801,21 +801,21 @@ static int partition(int[] arr, int l, int r) {
     \end{itemize}
     \vfill
     \begin{center}\onslide<8->{%
-        \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4[,fill=white][,phantom]]
-        \end{forest}}} \(\overset{1}{\to}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\overset{1}{\to}\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [4,name=4[1,name=1][,fill=white]]
             \draw[Kite-Kite] (4) to[bend right] (1);
-        \end{forest}}} \(\overset{2}{\to}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\overset{2}{\to}\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[4[,fill=white][,phantom]][2]]
-        \end{forest}}} \(\overset{3}{\to}\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\overset{3}{\to}\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[4,name=4[3,name=3][,phantom]][2]]
             \draw[Kite-Kite] (4) to[bend right] (3);
-        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{0.625}{\begin{forest}
+        \end{forest}}} \(\to\) \parbox{5.65em}{\centering\scalebox{.625}{\begin{forest}
             for tree={inner sep=4pt,ball,font=\sffamily,outer sep=1pt}
             [1[3[4][,phantom]][2]]
         \end{forest}}}}
@@ -925,11 +925,11 @@ static int partition(int[] arr, int l, int r) {
         \pause{}Hier sind Split- und Mergephase wieder aufgespalten:\pause{}
 \begin{center}
     \tikzset{block/.append style={sharp corners,rounded rectangle}}%
-    \scalebox{0.75}{
+    \scalebox{.75}{
     \begin{forest}
         for tree={inner sep=4pt,block,outer sep=1pt,execute at begin node={\strut}}
         [{\(5,7,2,5,3,-19,6\)}[{\(5,7,2,5\)}[{\(5,7\)}[5][7]][{\(2,5\)}[2][5]]][{\(3,-19,6\)}[{\(3,-19\)}[3][-19]][6]]]
-    \end{forest}}\qquad~~\qquad\pause{}\scalebox{0.75}{
+    \end{forest}}\qquad~~\qquad\pause{}\scalebox{.75}{
         \begin{forest}
             for tree={inner sep=4pt,block,outer sep=1pt,execute at begin node={\strut},grow=north}
             [{\(-19,2,3,5,5,6,7\)},iblock[{\(-19,3,6\)}[6][{\(-19, 3\)}[-19][3]]][{\(2,5,5,7\)}[{\(2,5\)}[5][2]][{\(5,7\)}[7][5]]]]
@@ -967,19 +967,19 @@ static int partition(int[] arr, int l, int r) {
             \end{tikzpicture}\onslide<5->{\quad Tausch ans Ende:\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{6, -5, -4, 2, 3}{5}
             \end{tikzpicture}\medskip\par
-            \onslide<6->{\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \onslide<6->{\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{6, -5, -4, 2, 3}{5}
                 \node[below] at(1.south) {l};
                 \node[below] at(4.south) {r};
                 \draw[Kite-Kite] (1.north) to[bend left=10] (4.north);
-            \end{tikzpicture}:\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \end{tikzpicture}:\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{2, -5, -4, 6, 3}{5}
                 \node[below] at(4.south) {l, r};
             \end{tikzpicture}}}\medskip\par
             \only<8->{\color{black}}\onslide<7->{Tausche \(l\) und Pivot:\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{2, -5, -4, 3, 6}{4}
             \end{tikzpicture}}
-            \item<9-> \only<13->{\color{gray}}Links: \begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-0.6ex]
+            \item<9-> \only<13->{\color{gray}}Links: \begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{2, -5, -4}{1}
                 \begin{scope}[xshift=3*3.5em,densely dashed,gray]
                     \QsList{3, 6}{0}
@@ -1014,7 +1014,7 @@ static int partition(int[] arr, int l, int r) {
         \begin{enumerate}
             \setcounter{enumi}{2}
             \widei
-            \item<3-> \only<7->{\color{gray}}Links: \begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \item<3-> \only<7->{\color{gray}}Links: \begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{-4, -5}{1}
                 \begin{scope}[xshift=2*3.5em,densely dashed,gray]
                     \QsList{2}{0}
@@ -1022,7 +1022,7 @@ static int partition(int[] arr, int l, int r) {
                 \begin{scope}[xshift=3*3.5em,densely dashed,gray]
                     \QsList{3, 6}{0}
                 \end{scope}
-            \end{tikzpicture}\onslide<4->{\quad Tausch ans Ende:\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \end{tikzpicture}\onslide<4->{\quad Tausch ans Ende:\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{-5, -4}{2}
                 \begin{scope}[xshift=2*3.5em,densely dashed,gray]
                     \QsList{2}{0}
@@ -1030,7 +1030,7 @@ static int partition(int[] arr, int l, int r) {
                 \begin{scope}[xshift=3*3.5em,densely dashed,gray]
                     \QsList{3, 6}{0}
                 \end{scope}
-            \end{tikzpicture}}\medskip\par\onslide<5->{\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \end{tikzpicture}}\medskip\par\onslide<5->{\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{-5, -4}{2}
                 \node[below] at(1.south) {r};
                 \node[below] at(2.south) {l};
@@ -1041,7 +1041,7 @@ static int partition(int[] arr, int l, int r) {
                     \QsList{3, 6}{0}
                 \end{scope}
             \end{tikzpicture}}\medskip\par
-            \only<7->{\color{black}}\onslide<6->{Tausche \(l\) und Pivot:\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \only<7->{\color{black}}\onslide<6->{Tausche \(l\) und Pivot:\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{-5, -4}{2}
                 \begin{scope}[xshift=2*3.5em,densely dashed,gray]
                     \QsList{2}{0}
@@ -1050,19 +1050,19 @@ static int partition(int[] arr, int l, int r) {
                     \QsList{3, 6}{0}
                 \end{scope}
             \end{tikzpicture}}
-            \item<8-> Rechts in\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \item<8-> Rechts in\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{-4, -5, 2}{3}
                 \begin{scope}[xshift=3*3.5em,densely dashed,gray]
                     \QsList{3, 6}{0}
                 \end{scope}
             \end{tikzpicture}\quad ist leer. \onslide<9->{Vertauschungen ändern nichts.}
-            \item<10-> Rechts in\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \item<10-> Rechts in\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{2, -5, -4, 3, 6}{4}
-            \end{tikzpicture}\quad besteht mit \begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+            \end{tikzpicture}\quad besteht mit \begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
                 \QsList{6}{0}
             \end{tikzpicture} nur aus einem Element. \onslide<11->{Vertauschungen ändern nichts}.
         \end{enumerate}
-        \onslide<12->{Finales Ergebnis:\quad\begin{tikzpicture}[scale=0.6,every node/.style={transform shape},baseline=-0.6ex]
+        \onslide<12->{Finales Ergebnis:\quad\begin{tikzpicture}[scale=.6,every node/.style={transform shape},baseline=-.6ex]
             \QsList{-5, -4, 2, 3, 6}{0}
         \end{tikzpicture}}
     \end{solve}
