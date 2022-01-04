@@ -60,6 +60,15 @@
 \fi
 
 \subsection{Klassen}
+\newsavebox\customumlbox
+\savebox\customumlbox{\tikz{\umlclass[x=0,y=0]{Point2D}{
+    - x : \bjava{double} \\
+    - y : \bjava{double} \\
+}{
+    + distance(\solGet{keywordC}{Point2D}): \bjava{double}\\
+    + shift(\bjava{double},\bjava{double}): \bjava{void}\\
+    + copy(\solGet{keywordC}{Point2D}): \bjava{void}
+};}}
 \begin{frame}{Vom Klassenkonzept zum Javacode}
     \begin{minipage}{.725\linewidth}
         \begin{itemize}[<+(1)->]
@@ -75,17 +84,10 @@
                 \item Den Punkt auf einen anderen Punkt setzen.
             \end{itemize}
         \end{itemize}
-    \end{minipage}\hfill\begin{minipage}{.215\linewidth}
-        \centering\resizebox{\linewidth}{!}{\begin{tikzpicture}
-                \umlclass[x=0,y=0]{Point2D}{
-                    - x : \bjava{double} \\
-                    - y : \bjava{double} \\
-                }{
-                    + distance(\solGet{keywordC}{Point2D}) : \bjava{double} \\
-                    + shift(\bjava{double},\bjava{double}) : \bjava{void} \\
-                    + copy(\solGet{keywordC}{Point2D}) : \bjava{void}
-                }
-            \end{tikzpicture}}%
+    \end{minipage}\hfill\begin{minipage}{.245\linewidth}
+        \begin{tikzpicture}[overlay,remember picture]
+            \node[above left=.45cm,scale=.72] at (current page.south east) {\usebox\customumlbox};
+        \end{tikzpicture}%
     \end{minipage}%
 \end{frame}
 
