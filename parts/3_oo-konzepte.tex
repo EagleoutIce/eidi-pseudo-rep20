@@ -186,14 +186,14 @@ public class Point2D {
 \end{frame}
 \fi
 
-\begin{frame}[fragile]{Statische Methoden/Attribute}
+\begin{frame}[fragile]{Statische Methoden und Attribute}
 \begin{itemize}[<+(1)->]
-    \item<1-> Eine ausführlichere Erklärung hier: \attachPdfTextDesc{data/static.pdf}{static.pdf}{PDF-Dokument welches den Umgang mit statischen Funktionen und Methoden (in Java) genauer erklärt.}.
-    \item Alle Methoden die wir so definieren, sind an ein Objekt gebunden.
-    \item Manche Methoden sind aber nur logisch an eine Klasse gebunden\pause{} und nicht an die Ausprägungen eines Objekts.
-    \item So die Mathe-Funktionen wie \bjava{Math.random()}, \bjava{Math.floor(double)}.
-    \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch \bjava{Point2D::distance(Point2D, Point2D)} für zwei Punkte statisch machen.
-    \item Auch Variablen, die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.\pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte: \bjava{static final int INSTANCES;}
+    \itemsep10pt
+    \item Eine ausführlichere Erklärung hier: \only<2->{\attachPdfTextDesc{data/static.pdf}{static.pdf}{PDF-Dokument welches den Umgang mit statischen Funktionen und Methoden (in Java) genauer erklärt.}}.
+    \item Nichtstatische Methoden, sind an ein Objekt gebunden.
+    \item Manche Methoden sind aber semantisch nur an eine Klasse gebunden\pause{} und nicht an die Instanzen (\bjava{Math.floor(double)},~\ldots).
+    \item Diese Methoden deklarieren wir mit \bjava{static},\pause{} sie sind nun auch ohne ein Objekt aufrufbar.\pause{} So kann man zum Beispiel auch ein statisches \bjava{Point2D::distance(Point2D, Point2D)} für zwei Punkte bauen.
+    \item Auch Variablen, die für alle Objekte einer Klasse identisch sind,\pause{} können wir mit \bjava{static} deklarieren.% \pause{} So zum Beispiel die Gesamtzahl der erstellten \solGet{keywordC}{Car}-Objekte: \bjava{static final int INSTANCES;}
 \end{itemize}
 \end{frame}
 
