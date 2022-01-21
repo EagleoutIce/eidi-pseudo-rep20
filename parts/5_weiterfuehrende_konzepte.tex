@@ -748,8 +748,9 @@ static int partition(int[] arr, int l, int r) {
     int end = r;
     swap(arr, l, end); // Einfach: Pivotelement ans Ende tauschen
     int pivot = arr[end];
-    l -= 1;
+    l -= 1; // durch do wird l++ einmal ausgeführt: wir setzen l zurück
 
+    // ebenso, wird so zugesichert, dass r eins links von l ist.
     while (l < r) {
         do { l++; } while (arr[l] < pivot);
         do { r--; } while (arr[r] >= pivot && l < r);
