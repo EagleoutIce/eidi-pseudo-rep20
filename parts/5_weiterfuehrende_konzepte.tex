@@ -742,23 +742,23 @@ public static void bubbleSort(int[] arr) {
 
 \begin{frame}[fragile,c]{Quicksort implementieren -- Lösung}
     \addtocounter{solve}{-1}%
-    \begin{solve}<2->[Quicksort implementieren\hfill(Fortsetzung)]
+    \begin{solve}<1->[Quicksort implementieren\hfill(Fortsetzung)]
 \lstfs{10}\begin{plainjava}
-static int partition(int[] arr, int l, int r) {
-    int end = r;
-    swap(arr, l, end); // Einfach: Pivotelement ans Ende tauschen
-    int pivot = arr[end];
-    l -= 1; // durch do wird l++ einmal ausgeführt: wir setzen l zurück
+!*\onslide<2->*!static int partition(int[] arr, int l, int r) {
+!*\onslide<3->*!    int end = r;
+!*\onslide<4->*!    swap(arr, l, end); // Einfach: Pivotelement ans Ende tauschen
+!*\onslide<5->*!    int pivot = arr[end];
+!*\onslide<6->*!    l -= 1; // durch do wird l++ einmal ausgeführt: wir setzen l zurück
+!*\onslide<6->*!    // ebenso, wird so zugesichert, dass r eins links von l ist.
 
-    // ebenso, wird so zugesichert, dass r eins links von l ist.
-    while (l < r) {
-        do { l++; } while (arr[l] < pivot);
-        do { r--; } while (arr[r] >= pivot && l < r);
-        if (l < r) swap(arr, l, r);
-    }
-    swap(arr, l, end); // Tausche Pivot zu Marker
-    return l;
-}
+!*\onslide<7->*!    while (l < r) {
+!*\onslide<8->*!        do { l++; } while (arr[l] < pivot);
+!*\onslide<9->*!        do { r--; } while (arr[r] >= pivot && l < r);
+!*\onslide<10->*!        if (l < r) swap(arr, l, r);
+!*\onslide<7->*!    }
+!*\onslide<11->*!    swap(arr, l, end); // Tausche Pivot zu Marker
+!*\onslide<12->*!    return l;
+!*\onslide<2->*!}
     \end{plainjava}
     \end{solve}
 \end{frame}
