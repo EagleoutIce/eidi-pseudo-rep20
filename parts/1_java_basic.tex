@@ -86,8 +86,7 @@
         \end{center}
         \item So kann Java einen \bjava{char} implizit in einen \bjava{int} umwandeln\pause{} (da der Wertebereich größer ist).\pause{} Umgekehrt allerdings nicht.
         \item \imp{Floats und Doubles unterliegen einem Rundungsproblem.}
-        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Ausdruck:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.\par
-        \pause{}Beispiel: \bjava{(byte)42}
+        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Ausdruck:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.\hfill \pause{}Beispiel: \bjava{(byte)42}
     \end{itemize}
 \end{frame}
 
@@ -203,7 +202,7 @@ System.out.println(x); // :yields: 9
         \widei
         \item Java erlaubt es, mit Klassen komplexe Datentypen zu konstruieren.
         \item Wichtig ist \bjava{String}, der von Java eine Sonderbehandlung erfährt.
-        \item Bei der Deklaration eines komplexen Datentyps:\pause{}
+        \item Bei der Deklaration und Initialisierung eines komplexen Datentyps:\pause{}
 \begin{plainjava}
 Random rnd = new Random();
 \end{plainjava}
@@ -318,7 +317,7 @@ private static String generateWelcomeMessage(String name, int age,
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \colorlet{folderbg}{@secondary}\Task{Sichtbarkeiten in Java}
     \begin{exercise}<2->[Sichtbarkeiten \Time{6}]
-        Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Nehmen Sie an, dass die Dateien und Importe korrekt sind.\medskip\par
+        Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Nehmen Sie an, dass die Dateien und Importe korrekt sind. \bjava{B extends A} beschreibt, dass \bjava{B} von \bjava{A} erbt.\medskip\par
 \begin{uncoverenv}<4->
 \begin{minipage}{.7\linewidth}
 \lstfs{8}%
@@ -404,6 +403,7 @@ public void main(String[] hihi) {
     System.out.printLn("Huhu " + (byte) X)
 }
         \end{plainvoid}
+    Die korrigierte Version soll die Ausgabe \say{\bjava{Huhu 12}} erzeugen.
     \end{exercise}
 \end{frame}
 
@@ -416,7 +416,7 @@ public static void main(String[] hihi) {
 }
         \end{plainjava}
     \begin{enumerate}[<+(1)->]
-        \item Die \bjava{main}-Methode muss \bjava{static} sein!
+        \item Die \bjava{main}-Methode muss \bjava{static} sein!~~(Diskutierbar.)
         \item Zugriffsmodifikatoren wie \bjava{private} dürfen nicht in einer Funktion auftreten.
         \item Die Funktion \bjava{printLn} heißt \bjava{println}.
         \item In der Ausgabezeile fehlt ein Semikolon!
