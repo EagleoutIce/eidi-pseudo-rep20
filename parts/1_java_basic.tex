@@ -67,8 +67,8 @@
         \widei
         \item Java ist eine \emph{streng typisierte} Sprache.\pause{} Jede Variable kann nur Daten eines (bestimmten) Typs speichern.
         \item Wir unterscheiden zwischen \emph{primitiven} und \emph{komplexen} Datentypen. \begin{description}[iiPrimitive:]
-            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean}\par Hinweis: \emph{\hyperlink{mrk:call-by-val}{call-by-value}}
-            \item[Komplexe] \bjava{String}, \bjava{Random},~\ldots\par Hinweis: \emph{\hyperlink{mrk:call-by-ref}{call-by-reference}}
+            \item[Primitive] \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long}, \bjava{float}, \bjava{double}, \bjava{char}, \bjava{boolean}\par Hinweis: Stack, \emph{\hyperlink{mrk:call-by-val}{call-by-value}}
+            \item[Komplexe] \bjava{String}, \bjava{Random},~\ldots\par Hinweis: Heap, \say{\emph{\hyperlink{mrk:call-by-ref}{call-by-reference}}}
         \end{description}
     \end{itemize}
 \end{frame}
@@ -76,7 +76,7 @@
 \begin{frame}{Konvertierung primitiver Datentypen}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Java kann manche Datentypen implizit Umwandeln.\pause{} Es gilt:\pause{}
+        \item Java kann manche Datentypen implizit Konvertieren.\pause{} Es gilt:\pause{}
         \begin{center}
             \bjava{byte} \mprec{} \bjava{short} \mprec{} \bjava{int} \mprec{} \bjava{long} \mprec{} \bjava{float} \mprec{} \bjava{double}
         \end{center}
@@ -86,16 +86,35 @@
         \end{center}
         \item So kann Java einen \bjava{char} implizit in einen \bjava{int} umwandeln\pause{} (da der Wertebereich größer ist).\pause{} Umgekehrt allerdings nicht.
         \item \imp{Floats und Doubles unterliegen einem Rundungsproblem.}
-        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Variable:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.\par
+        \item Unter der Einschränkung des Wertebereichs kann durch \bjava{(:lan:Datentyp:ran:):lan:Ausdruck:ran:} eine explizite Konvertierung auch in umgekehrte Richtung erfolgen.\par
         \pause{}Beispiel: \bjava{(byte)42}
     \end{itemize}
 \end{frame}
 
+\ifull
+\begin{frame}[c,fragile]{Übungsaufgabe}
+    \Task{Implizite Typkonvertierung, I}
+    \updateitemize{a)}%
+    \begin{exercise}<2->[Implizite Typkonvertierung \Time{2}]
+        \onslide<3->{In welche Datentypen kann im allgemeinen Fall \bjava{short} a)~\textit{ohne} expliziten Typecast konvertiert werden?
+        b)~Welche Datentypen sind zusätzlich \textit{mit} explizitem Typecast möglich?}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c,fragile]{Lösung}
+    \begin{solve}<2->[Implizite Typkonvertierung]
+        \begin{itemize}[<+(1)->]
+            \item[a)] Implizit: \bjava{int}, \bjava{long}, \bjava{float} und \bjava{double}.
+            \item[b)] Explizit zusätzlich: \bjava{byte} und \bjava{char}.
+        \end{itemize}
+    \end{solve}
+\end{frame}
+\fi
 
 \begin{frame}[fragile]{Konstanten und Hinweise}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Konstanten werden in Java mit dem Schlüsselbegriff \bjava{final} gekennzeichnet: \begin{plainjava}
+        \item Konstanten werden in Java mit dem Schlüsselbegriff \bjava{final} gekennzeichnet. Sie können nur genau einmal zugewiesen werden: \begin{plainjava}
 final int SUPER_ZAHL = 42;
         \end{plainjava}
         \item Schreiben wir eine Fließkommazahl wie \bjava{3.1415}, so interpretiert sie Java erstmal als \bjava{double}.\pause{} Damit sie als \bjava{float} interpretiert wird, müssen wir ein \bjava{f} anstellen.\pause{} Also: \bjava{3.1415f}.
@@ -136,7 +155,7 @@ System.out.println(-x++ - --m); // :yields: -42
         \begin{plainjava}[columns={[c]fullflexible}]
 System.out.println(x > 41 || m > 1 && 2 != 3); // :yields: true
         \end{plainjava}
-        Da \bjava{||} am schwächsten bindet,\pause{} werden zuerst \bjava{x > 41} (\bjava{41 > 41} \(\to\) \bjava{false}) und \bjava{m > 1:ws:&& 2:ws:!= 3} betrachtet.\pause{} Nun wird also \bjava{m > 1} (\bjava{2 > 1} \(\to\) \bjava{true}) und \bjava{2 != 3} (\bjava{true}) ausgewertet.\pause{} Damit evaluiert das \bjava{true:ws:&& true} zu \bjava{true} und somit auch das \bjava{false:ws:|| true} zu \bjava{true}.
+        Da \bjava{||} am schwächsten bindet,\pause{} werden zuerst \bjava{x > 41} (\bjava{41 > 41} \(\to\) \bjava{false}) und \bjava{m > 1:ws:&& 2:ws:!= 3} betrachtet.\pause{} Nun wird also \bjava{m > 1} (\bjava{2 > 1} \(\to\) \bjava{true}) und \bjava{2 != 3} (\bjava{true}) ausgewertet.\pause{} Damit evaluiert \bjava{true:ws:&& true} zu \bjava{true} und somit auch \bjava{false:ws:|| true} zu \bjava{true}.
     \end{solve}
 \end{frame}
 
@@ -200,7 +219,7 @@ Random rnd = new Random();
     \setbeamertemplate{description item}[default]%
     \begin{itemize}[<+(1)->]
         \widei
-        \item Jede Variable\thinspace /\thinspace jedes Objekt kann in Java mittels \bjava{toString()} in einen \bjava{String} konvertiert werden. \textcolor{gray}{Standard: \T{<Klassenname>@<HashCode>}.}
+        \item Jedes Objekt \bjava{obj} (nicht \bjava{null}) kann in Java mittels \bjava{obj.toString()} in einen \bjava{String} konvertiert werden. \textcolor{gray}{Standard: \T{<Klassenname>@<HashCode>}.}
         \item Wir können auf einem String-Objekt diverse Operationen aufrufen: \begin{description}[{iis1.substring(a, b):}]
             \item[{s1.equals(s2)}:] Prüft, ob die Zeichenketten \textit{gleich} sind.
             \item[{s1.length()}:] Liefert die Länge einer Zeichenkette.
@@ -281,8 +300,8 @@ private static String generateWelcomeMessage(String name, int age,
              \toprule
                             & 1 & 2 & 3 & 4 & 5 \\
             \midrule
-                \T{Pinguin} & \y & \y & \y & \y & \y \\
-                \T{Tiger}   & \y & \n & \y & \y & \y \\
+                \T{Pinguin} & \onslide<10->{\y} & \onslide<10->{\y} & \onslide<10->{\y} & \onslide<10->{\y} & \onslide<10->{\y} \\
+                \T{Tiger}   & \onslide<11->{\y} & \onslide<11->{\n} & \onslide<11->{\y} & \onslide<11->{\y} & \onslide<11->{\y} \\
             \bottomrule
         \end{tabular}
             \end{minipage}\hfill\begin{minipage}{0.45\linewidth}
@@ -290,8 +309,8 @@ private static String generateWelcomeMessage(String name, int age,
                 \toprule
                             & 1 & 2 & 3 & 4 & 5 \\
             \midrule
-                \T{Auto} & \y & \n & \n & \y & \n \\
-                \T{Felspingu} & \y & \n & \y & \y & \n \\
+                \T{Auto} & \onslide<12->{\y} & \onslide<12->{\n} & \onslide<12->{\n} & \onslide<12->{\y} & \onslide<12->{\n} \\
+                \T{Felspingu} & \onslide<13->{\y} & \onslide<13->{\n} & \onslide<13->{\y} & \onslide<13->{\y} & \onslide<13->{\n} \\
             \bottomrule
         \end{tabular}
             \end{minipage}}
@@ -303,7 +322,7 @@ private static String generateWelcomeMessage(String name, int age,
     \colorlet{folderbg}{@secondary}\Task{Sichtbarkeiten in Java}
     \begin{exercise}<2->[Sichtbarkeiten \Time{6}]
         Welche der Aufrufe (1 bis 6) sind gültig oder ungültig und warum? Nehmen Sie an, dass die Dateien und Importe korrekt sind.\medskip\par
-\begin{onlyenv}<4->
+\begin{uncoverenv}<4->
 \begin{minipage}{.7\linewidth}
 \lstfs{8}%
 \begin{plainjava}[morekeywords={[3]{Apple,Banana}},belowskip=4.5pt]
@@ -332,7 +351,7 @@ class Skyrim extends Banana {
 }}
 \end{plainjava}
 \end{minipage}%
-\end{onlyenv}%
+\end{uncoverenv}%
 \hfill\onslide<3->{\parbox{.275\linewidth}{\begin{fancydir}
 [worlds, dir
     [fruits, dir
@@ -422,7 +441,7 @@ class A {
     }
 }
         \end{plainvoid}
-        Dabei soll Ihr korrigiertes Programm beim Start durch \bbash{java} die Ausgabe \bjava{42} erzeugen.
+        \pause{}Dabei soll Ihr korrigiertes Programm beim Start durch \bbash{java} die Ausgabe \bjava{42} (ohne neue Zeile) erzeugen.
     \end{exercise}
 \end{frame}
 
