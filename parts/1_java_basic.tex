@@ -464,12 +464,12 @@ public static void main(String[] args) {
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Methodensignaturen}
     \begin{exercise}<2->[Signaturen \Time{2}]
-        \pause{}Geben Sie die Signaturen folgender Funktionen an.\pause{} Sind die Java-Funktionen ungültig, so geben Sie bitte eine kurze Begründung an:\pause{}
+        \onslide<3->{Geben Sie die Signaturen folgender Funktionen an. Sind die Java-Funktionen ungültig, so geben Sie bitte eine kurze Begründung an:}
         \begin{plainvoid}
-String a(int a1, double a2) { /* ... */ }
-int b(String[] b1, int b2, double[] b3) { /* ... */ }
-double c(String... c1, char c2) { /* ... */ }
-double d(int d1, double... d2) { /* ... */ }
+!*\onslide<4->*!String a(int a1, double a2) { /* ... */ }
+!*\onslide<4->*!int b(String[] b1, int b2, double[] b3) { /* ... */ }
+!*\onslide<4->*!double c(String... c1, char c2) { /* ... */ }
+!*\onslide<4->*!double d(int d1, double... d2) { /* ... */ }
         \end{plainvoid}
     \end{exercise}
 \end{frame}
