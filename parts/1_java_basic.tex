@@ -94,7 +94,6 @@
 \ifull
 \begin{frame}[c,fragile]{Übungsaufgabe}
     \Task{Implizite Typkonvertierung, I}
-    \updateitemize{a)}%
     \begin{exercise}<2->[Implizite Typkonvertierung \Time{2}]
         \onslide<3->{In welche Datentypen kann im allgemeinen Fall \bjava{short} a)~\textit{ohne} expliziten Typecast konvertiert werden?
         b)~Welche Datentypen sind zusätzlich \textit{mit} explizitem Typecast möglich?}
@@ -103,10 +102,8 @@
 
 \begin{frame}[c,fragile]{Lösung}
     \begin{solve}<2->[Implizite Typkonvertierung]
-        \begin{itemize}[<+(1)->]
-            \item[a)] Implizit: \bjava{int}, \bjava{long}, \bjava{float} und \bjava{double}.
-            \item[b)] Explizit zusätzlich: \bjava{byte} und \bjava{char}.
-        \end{itemize}
+        \onslide<3->{a)~Implizit: \bjava{int}, \bjava{long}, \bjava{float} und \bjava{double}.\\}
+        \onslide<4->{b)~Explizit zusätzlich: \bjava{byte} und \bjava{char}.}
     \end{solve}
 \end{frame}
 \fi
