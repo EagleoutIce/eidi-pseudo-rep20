@@ -195,11 +195,46 @@ System.out.println(x); // :yields: 9
     \end{itemize}
 \end{frame}
 
+\begin{frame}[c,fragile]{Standardwerte}
+    \begin{itemize}[<+(1)->]
+        \item Java weist bestimmten Variablen initiale Werte zu!
+        \begin{itemize}
+            \item \textit{Nur: (nicht-finale) Klassen-, Instanzvariablen und Array-Komponenten.}
+            \item \bjava{byte} wird \bjava{(byte)0}, \bjava{short} wird \bjava{(short)0}, \bjava{int} wird \bjava{0} und \bjava{long} wird \bjava{0l}.
+            \item \bjava{float} wird \bjava{0.0f} und \bjava{double} wird \bjava{0.0d}.
+            \item \bjava{char} wird zu \bjava{'\\u0000'} (\say{\T{NUL}})
+            \item Komplexe Datentypen werden \bjava{null}.
+            \item Kurzgesagt: Sie werden \say{Null}.
+        \end{itemize}
+    \end{itemize}
+    \begin{columns}[c,onlytextwidth]
+        \column{.5\linewidth}
+\lstfs{10}\begin{plainjava}
+!*\onslide<9->*!public class Example {
+!*\onslide<9->*!  private char k;
+!*\onslide<9->*!  static Example ex;
+!*\onslide<9->*!  void foo() {
+!*\onslide<9->*!    int i;
+!*\onslide<9->*!    float[] fs = new float[3];
+!*\onslide<9->*!  }
+!*\onslide<9->*!}
+\end{plainjava}
+        \column{.5\linewidth}
+\footnotesize\begin{itemize}
+    \item<10-> \bjava{k = '\\u0000'}.
+    \item<11-> \bjava{ex = null}.
+    \item<12-> \bjava{i} ist nur Deklariert, nicht Initialisiert.
+    \item<13-> \bjava{fs = new float[] \{0.0f, 0.0f, 0.0f\}}.
+\end{itemize}
+    \end{columns}\vspace*{-.65\baselineskip}
+\end{frame}
+
 \subsection{Komplexe Datentypen}
 
 \begin{frame}[fragile]{Komplexe Datentypen}
     \begin{itemize}[<+(1)->]
         \widei
+        \item Arrays sind komplexe Datentypen.
         \item Java erlaubt es, mit Klassen komplexe Datentypen zu konstruieren.
         \item Wichtig ist \bjava{String}, der von Java eine Sonderbehandlung erfährt.
         \item Bei der Deklaration und Initialisierung eines komplexen Datentyps:\pause{}
