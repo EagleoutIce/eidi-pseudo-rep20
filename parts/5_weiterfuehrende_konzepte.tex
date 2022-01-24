@@ -904,20 +904,20 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Sortieralgorithmen abwägen}
     \begin{exercise}<2->[Sortieralgorithmen abwägen \Time{2}]
-        Quicksort hat eine schlechtere \emph{worst-case} Laufzeit als Mergesort, wieso trifft man in der Praxis dennoch häufig Quicksort?
+        \linksort{Quicksort} hat eine schlechtere \emph{worst-case} Laufzeit als \linksort{Mergesort}, worin ist es besser als \linksort{Mergesort}?
     \end{exercise}
 \end{frame}
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Sortieralgorithmen abwägen]
-        \pause{}Mergesort benötigt einen zusätzlichen Speicherplatz von \(\O(n)\), Quicksort ist in-place implementiert und benötigt lediglich \(\O(\log n)\) Speicherplatz zum Verwalten der rekursiven Aufrufe.
+        \pause{}\linksort{Mergesort} benötigt einen zusätzlichen Speicherplatz von \(\O(n)\), \linksort{Quicksort} ist in-place implementiert und benötigt lediglich \(\O(\log n)\) Speicherplatz zum Verwalten der rekursiven Aufrufe. Weiter hängt alles an der Wahl des Pivotelements. Gute Wahlen des Pivotelements (Median der Mediane) erlauben es, die \emph{worst-case} Laufzeit auf \(\O(n \log n)\) zu reduzieren (ebenso, wie sich \linksort{Mergesort} In-Place implementieren lässt).
     \end{solve}
 \end{frame}
 
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Sortieralgorithmen zeichnen (Mergesort)}
     \begin{exercise}<2->[Sortieralgorithmen zeichnen, I \Time{5}]
-        \pause{}Veranschaulichen Sie den Sortierprozess der Zahlenfolge \say{\(5,7,2,5,3,-19,6\)} unter der Verwendung von \emph{Mergesort} grafisch. Geben Sie jeden Schritt an und sortieren Sie aufsteigend.
+        \pause{}Veranschaulichen Sie den Sortierprozess der Zahlenfolge \say{\(5,7,2,5,3,-19,6\)} unter der Verwendung von \linksort{Mergesort} grafisch. Geben Sie jeden Schritt an und sortieren Sie aufsteigend.
     \end{exercise}
 \end{frame}
 
@@ -942,7 +942,7 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Übungsaufgabe}
     \Task{Sortieralgorithmen zeichnen (Quicksort)}
     \begin{exercise}<2->[Sortieralgorithmen zeichnen, II \Time{5}]
-        \onslide<3->{Veranschaulichen Sie den Sortierprozess der Zahlenfolge \(3, -5, -4, 2, 6\) unter der Verwendung von \emph{Quicksort} grafisch. Nutzen Sie das in-place Verfahren durch Vertauschung aus der Vorlesung und sortieren Sie aufsteigend. \onslide<4->{Geben Sie den Zustand der Folge nach jeder Partitionierung aus und markieren Sie die Partitionen.}\medskip\par
+        \onslide<3->{Veranschaulichen Sie den Sortierprozess der Zahlenfolge \(3, -5, -4, 2, 6\) unter der Verwendung von \linksort{Quicksort} grafisch. Nutzen Sie das in-place Verfahren durch Vertauschung aus der Vorlesung und sortieren Sie aufsteigend. \onslide<4->{Geben Sie den Zustand der Folge nach jeder Partitionierung aus und markieren Sie die Partitionen.}\medskip\par
         \onslide<5->{Dabei soll stets das erste Element als Pivot gewählt werden.}}
     \end{exercise}
 \end{frame}
