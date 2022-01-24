@@ -453,7 +453,7 @@ for (int[][] ex : x) {
 !*\onslide<3->*!public static int[] countChars(String text){
 !*\onslide<4->*!    int[] counts = new int[26];
 !*\onslide<5->*!    for(char c : text.toLowerCase().toCharArray()){
-!*\onslide<6->*!        if(c >= 'a' && c <= 'z')
+!*\onslide<6->*!        if('a' <= c && c <= 'z')
 !*\onslide<6->*!            counts[c - 'a'] += 1;
 !*\onslide<5->*!    }
 !*\onslide<7->*!    return counts;
