@@ -115,13 +115,13 @@ do {
     \begin{exercise}<2->[Schleifen umwandeln \Time{5}]
         \onslide<3->{Schreiben Sie die folgende Funktion so um, dass sie einmal a)~nur \bjava{for}- und einmal b)~nur \bjava{do-while}-Schleifen anstelle der \bjava{while}-Schleife benutzt, aber immer noch die selbe Ergebnisse produziert.}
     \begin{plainjava}[aboveskip=0pt]
-static int calc(int k, int[] ms) {
-    int i = 0;
-    while(i >= 0 && i < ms.length && ms[i] < k) {
-        i += ms[i];
-    }
-    return i;
-}
+!*\onslide<4->*!static int calc(int k, int[] ms) {
+!*\onslide<4->*!    int i = 0;
+!*\onslide<4->*!    while(i >= 0 && i < ms.length && ms[i] < k) {
+!*\onslide<4->*!        i += ms[i];
+!*\onslide<4->*!    }
+!*\onslide<4->*!    return i;
+!*\onslide<4->*!}
     \end{plainjava}
     \end{exercise}
     \end{frame}
@@ -467,7 +467,7 @@ for (int[][] ex : x) {
     \Task{Programmieren: Turtlewalk}
     \begin{exercise}<2->[Programmieren: Turtlewalk \Time{6}]
         \pause{}Das Array \bjava{static boolean[][] field} repräsentiere ein rechteckiges Gitter (welches mindestens \(1\) Feld umfasst).\pause{} Für jedes Feld \bjava{field[i][j]} gibt der Wert an, ob es passierbar (\bjava{true}) oder blockiert (\bjava{false}) ist.\pause{} Die Variablen \bjava{static int turtleX, turtleY;}\pause{} repräsentieren eine Schildkröte an Position \bjava{field[turtleY][turtleX]}.\medskip\par
-        \pause{}Schreiben Sie eine Funktion \bjava{moveTurtle(int,int)}, die versucht die Schildkröte relativ um \(x\) und \(y\) zu bewegen.\medskip\par\pause{} Eine Bewegung gelingt nur, wenn das Zielfeld frei ist.\pause{} In diesem Fall gilt es, \bjava{turtleX} und \bjava{turtleY} zu modifizieren und \bjava{true} zurück zu liefern.\pause{} Andernfalls sollen die Koordinaten unverändert bleiben, sowie ein \bjava{false} zurückgegeben werden.
+        \pause{}Schreiben Sie eine Funktion \bjava{moveTurtle(int x,int y)}, die versucht die Schildkröte relativ um \(x\) und \(y\) zu bewegen.\medskip\par\pause{} Eine Bewegung gelingt nur, wenn das Zielfeld frei ist.\pause{} In diesem Fall gilt es, \bjava{turtleX} und \bjava{turtleY} zu modifizieren und \bjava{true} zurück zu liefern.\pause{} Andernfalls sollen die Koordinaten unverändert bleiben, sowie ein \bjava{false} zurückgegeben werden.
     \end{exercise}
 \end{frame}
 
