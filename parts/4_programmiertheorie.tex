@@ -606,45 +606,50 @@ static int methode(int n) {
 \begin{frame}[fragile,c]{Numerisches Palindrom}
     \Task{Numerisches Palindrom}
     \begin{exercise}<2->[Numerisches Palindrom \Time{5}]
-        \pause{}Schreiben Sie eine rekursive Java-Methode \bjava{boolean check(int n)}, die einen positiven Integer \bjava{n} erhält und entscheidet, ob es sich um ein Palindrom handelt.\pause{}
-        Eine positive Zahl ist ein Palindrom, wenn sie von vorne und hinten gelesen den gleichen Wert repräsentiert. So ist \(42324\) ein Palindrom, \(192\) aber nicht. Führende Nullen sind dabei zu ignorieren (\(010\) ist \(10\) und damit kein Palindrom).
-        Sie dürfen Hilfsmethoden und die Funktionen der \bjava{Math}-Klasse verwenden, die Konvertierung der Zahl in einen String oder ein Array ist Ihnen allerdings nicht gestattet.
+        \pause{}Schreiben Sie eine Java-Methode \bjava{boolean check(int n)}, die eine positiven Zahl \bjava{n} erhält und entscheidet, ob diese ein Palindrom ist.\pause{}
+        Eine positive Zahl ist ein Palindrom, wenn sie von vorne und hinten gelesen den gleichen Wert repräsentiert: \(42324\) ist eines, \(192\) aber nicht.
+        Führende Nullen sind zu ignorieren (\(010\) ist kein Palindrom). Verwenden Sie nur Rekursion und keine Iteration.\medskip
+
+        Sie dürfen Hilfsmethoden und die Funktionen der \bjava{Math}-Klasse verwenden, die Konvertierung der Zahl in einen String oder ein Array ist nicht gestattet.\medskip
+
+        \textit{Vereinfachung:} Wenn Sie Probleme mit führenden Nullen in der Rekursion haben, können Sie auch nur Ziffern \(z_i \in \{1, \ldots, 9\}\) unterstützen.
     \end{exercise}\onslide<1->
 \end{frame}
 
 \begin{frame}[fragile,c]{Numerisches Palindrom -- Lösung}
     \begin{solve}<2->[Numerisches Palindrom]
-        \onslide<3->{Wir können die Zahl rekursiv umdrehen und mit der ursprünglichen Zahl vergleichen:}
+        \onslide<3->{Wir können die Zahl rekursiv umdrehen und vergleichen (mit Null):}
 \begin{plainjava}
-!*\onslide<6->*!int reverseNumber(int number, int digit, int current) {
+!*\onslide<6->*!int reverseNum(int number, int current) {
 !*\onslide<7->*!    if (number == 0) return current;
-!*\onslide<8->*!    return reverseNumber(!*\onslide<9->*!number / 10,!*\onslide<10->*! digit + 1,
-!*\onslide<8->*!                !*\onslide<11->*!current * 10 + number % 10!*\onslide<8->*!);
+!*\onslide<8->*!    return reverseNum(!*\onslide<9->*!number / 10, !*\onslide<10->*!current * 10 + number % 10!*\onslide<8->*!);
 !*\onslide<6->*!}
 !*\onslide<4->*!
 !*\onslide<4->*!boolean check(int n) {
-!*\onslide<5->*!    return n == reverseNumber(n, 0, 0);
+!*\onslide<5->*!    return n == reverseNum(n, 0);
 !*\onslide<4->*!}
 \end{plainjava}
+    \onslide<9->{Wir schneiden die letzte Ziffer ab (\bjava{number / 10}), fügen diese \say{von vorne nach hinten} an die neue Zahl an (\bjava{current * 10 + number \% 10}).}
     \end{solve}
 \end{frame}
 
 \begin{frame}[fragile,c]{Numerisches Palindrom -- Lösung}
     \addtocounter{solve}{-1}%
     \begin{solve}<1->[Numerisches Palindrom\hfill{}(Fortsetzung)]
-        \lstfs{10}\onslide<2->{Alternativ, kann man mit \bjava{Math.log10(double)} die Stellenanzahl der Zahl herausfinden und so immer die erste und letzte Zahl abschneiden (analog zu \bjava{String::substring}). Die Variablen sind hier zur Übersicht:}
+        \lstfs{10}\onslide<2->{Man kann auch analog zur \bjava{String::substring} Version vorgehen und mit der Stellenanzahl \bjava{Math.log10(double)} immer die erste und letzte Zahl abschneiden. Die Variablen sind hier zur Übersicht:}
 \begin{plainjava}
 !*\onslide<3->*!static boolean check(int n) {
 !*\onslide<4->*!    if(n <= 9) return true;
 !*\onslide<5->*!    int length = (int) Math.log10(n) + 1; // Anzahl der Ziffern in n
 !*\onslide<6->*!    int largest = (int) Math.pow(10, length - 1); // Höchste Wertigkeit
-!*\onslide<7->*!    int first = n / largest; // Liefert größte Ziffer
-!*\onslide<7->*!    int last = n % 10; // Liefert kleinste Ziffer
+!*\onslide<7->*!    int first = n / largest; // Größte Ziffer
+!*\onslide<7->*!    int last = n % 10; // Kleinste Ziffer
 !*\onslide<8->*!    if(first != last)
 !*\onslide<8->*!        return false;
-!*\onslide<9->*!    return check((n % largest) / 10); // Schneidet größte & kleinste ab
+!*\onslide<9->*!    return check((n % largest) / 10); // Schneide größte & kleinste ab
 !*\onslide<3->*!}
 \end{plainjava}
+    \onslide<10->{Das Problem: Nullen in \(1\underline{00}55001\) gehen hier verloren.}
     \end{solve}
 \end{frame}
 
