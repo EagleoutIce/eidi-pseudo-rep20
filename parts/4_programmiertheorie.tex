@@ -13,15 +13,16 @@
             \item<7->[Abbruchbedingung] Das lösbare Teilproblem. Ende der Rekursion. Hier wird die Methode nicht weiter referenziert.
             \item<8->[Rekursiver Zweig] Enthält die rekursiv auszuführende Prozedur.
         \end{description}
+        \item<9-> Rekursion und Iteration sind \textit{gleichmächtig}. Iteration ist in der Regel \say{performanter}, Rekursion ist oft \say{eleganter} (rekursive Datenstrukturen,~\ldots).
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Arten von Rekursion}
+\begin{frame}[fragile]{Arten von Rekursion: Head und Tail}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Wir unterscheiden zwei Positionen für einen rekursiven Aufruf: \begin{description}
-            \item[Head] Hier erfolgt der rekursive Aufruf zu Beginn der Rekursion (also vor der Datenverarbeitung).
-            \item[Tail] Hier erfolgt der rekursive Aufruf zu Ende der Rekursion.\pause{} Ein solcher Abstieg kann in der Regel einfach in eine Iteration transformiert werden (dies kann z.B. der Compiler automatisch übernehmen).
+        \item Wir unterscheiden (unter anderem) zwei besondere Rekursionen: \begin{description}
+            \item[Head] Der rekursive Aufruf erfolgt zu Beginn: \say{Alles passiert im Aufstieg.}
+            \item[Tail] Der rekursive Aufruf erfolgt zu Ende der Rekursion.\pause{} Ein solcher Abstieg kann einfach in eine Iteration transformiert werden (z.B. durch den Compiler): \say{Alles passiert im Abstieg.}
         \end{description}
     \end{itemize}
 \begin{center}\scriptsize%
@@ -53,31 +54,46 @@
 \end{center}
 \end{frame}
 
-\begin{frame}{Baumartige Rekursion}
+\begin{frame}[fragile]{Arten von Rekursion: Baumartige Rekursion}
     \begin{itemize}[<+(1)->]
         \widei
         \item Eine Methode kann sich auch mehrfach (auch indirekt) selbst referenzieren.
         \item In diesem Fall entsteht kein \say{linearer} Abstieg,\pause{} sondern vielmehr eine baum-/kaskadenartige Verzweigung.
         \item Beliebte Beispiele: die Fibonaccifolge und der Binomialkoeffizient.
     \end{itemize}
-    \onslide<6->{%
+    \begin{uncoverenv}<6->%
 \vfill\null
-\hfill\scalebox{.75}{\begin{forest}
+\begin{minipage}{.65\linewidth}
+\begin{plainjava}
+int fib(int n) {
+    if(n <= 1) return 1;
+    return fib(n - 1) + fib(n - 2);
+}
+\end{plainjava}
+\end{minipage}\hfill\onslide<7->{\raisebox{-.45\height}{\scalebox{.75}{\begin{forest}
 [f(12)
     [f(11) [f(10) [\ldots][\ldots]] [f(9) [\ldots][\ldots]] ]
     [f(10) [\ldots][\ldots]]
 ]
 \end{forest}
-    }}\vfill\null
+    }}}
+\end{uncoverenv}\vfill\null
 \end{frame}
 
 
-\begin{frame}{Verschränkte und geschachtelte Rekursion}
+\begin{frame}[fragile]{Verschränkte und geschachtelte Rekursion}
     \begin{itemize}[<+(1)->]
         \widei
         \item Es gibt weitere Arten der Rekursion: \begin{description}[geschachtelt]
             \widei
-            \item[geschachtelt] Hier ist (mindestens) ein Parameter im rekursiven Aufruf selbst ein rekursiver Aufruf.\pause{} (Beispiele: Modulo, Ackermann)
+            \item[geschachtelt] Hier ist (mindestens) ein Parameter im rekursiven Aufruf selbst ein rekursiver Aufruf.\pause{} Beispielsweise die Ackermannfunktion (nach Péter):
+\begin{plainjava}[language=xJava]
+!*\onslide<5->*!int a(int n, int m) {
+!*\onslide<5->*!    if(n == 0) return m + 1;
+!*\onslide<5->*!    else if (m == 0) return a(n - 1, 1);
+!*\onslide<5->*!    else return a(n - 1, |zws|a(n, m - 1)|zws|);
+!*\onslide<5->*!}
+\end{plainjava}
             \item[verschränkt] Hier rufen sich mehrere Funktionen rekursiv gegenseitig auf.\pause{} Diese Variante lässt sich schwer bis gar nicht (direkt) in eine Schleife übersetzten.
         \end{description}
     \end{itemize}
@@ -96,7 +112,7 @@
         \f(a + b, b - 1, c) & \text{ wenn } b \geq 0, \\
         \f(a - 1, b - 1, |c - 1|) & \text{ sonst.}
     \end{cases}
-\end{equation*}}
+\end{equation*}}%
     \onslide<4->{Approximieren Sie \(\mathbb{N}\) durch den Java Datentyp \bjava{long}. Sie dürfen \emph{keine} bestehenden Java Funktionen (wie beispielsweise \bjava{Math::abs}) benutzen.\medskip\par
     Welchen Wert liefert die Berechnung von \(f(12, 3, -2)\)?}
     \end{exercise}
