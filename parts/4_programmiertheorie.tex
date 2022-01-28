@@ -584,20 +584,65 @@ static int methode(int n) {
 \begin{frame}[fragile,c]{Rekursiver Konverter}
     \Task{Rekursion zur Konvertierung}
     \begin{exercise}<2->[Rekursion zur Konvertierung \Time{4}]
-        \pause{}Schreiben Sie einen rekursiven Java-Algorithmus, der einen positiven Integer in seine Binärdarstellung (als \bjava{String}) verwandelt. Beispiel:\pause{}
+        \pause{}Schreiben Sie eine rekursive Java-Methode \bjava{int2bin(int)}, die einen positiven Integer in dessen Binärdarstellung (als \bjava{String}) verwandelt. Beispiel:\pause{}
 \begin{plainjava}
-|plain|int2bin|plain|(42) // :yields: 101010
+|plain|int2bin|plain|(42) // :yields: "101010"
 \end{plainjava}
-    \pause{}\textit{Hinweis:} um eine Zahl in einen String zu konvertieren, kann Konkatenation,\pause{} sowie \bjava{Integer.toString(int)} verwendet werden.
+    \pause{}\textit{Hinweis:} Um eine Zahl in einen String zu konvertieren, kann Konkatenation oder \bjava{Integer.toString(int)} verwendet werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
 \begin{frame}[fragile,c]{Rekursion zur Konvertierung -- Lösung}
     \begin{solve}<2->[Rekursion zur Konvertierung]
 \begin{plainjava}
-!*\onslide<3->*!public String |plain|int2bin|plain|(int num){
+!*\onslide<3->*!String |plain|int2bin|plain|(int num){
 !*\onslide<4->*!    if(num < 2) return Integer.toString(num);
 !*\onslide<5->*!    return |plain|int2bin|plain|(num / 2) + Integer.toString(num % 2);
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Numerisches Palindrom}
+    \Task{Numerisches Palindrom}
+    \begin{exercise}<2->[Numerisches Palindrom \Time{5}]
+        \pause{}Schreiben Sie eine rekursive Java-Methode \bjava{boolean check(int n)}, die einen positiven Integer \bjava{n} erhält und entscheidet, ob es sich um ein Palindrom handelt.\pause{}
+        Eine positive Zahl ist ein Palindrom, wenn sie von vorne und hinten gelesen den gleichen Wert repräsentiert. So ist \(42324\) ein Palindrom, \(192\) aber nicht. Führende Nullen sind dabei zu ignorieren (\(010\) ist \(10\) und damit kein Palindrom).
+        Sie dürfen Hilfsmethoden und die Funktionen der \bjava{Math}-Klasse verwenden, die Konvertierung der Zahl in einen String oder ein Array ist Ihnen allerdings nicht gestattet.
+    \end{exercise}\onslide<1->
+\end{frame}
+
+\begin{frame}[fragile,c]{Numerisches Palindrom -- Lösung}
+    \begin{solve}<2->[Numerisches Palindrom]
+        \onslide<3->{Wir können die Zahl rekursiv umdrehen und mit der ursprünglichen Zahl vergleichen:}
+\begin{plainjava}
+!*\onslide<6->*!int reverseNumber(int number, int digit, int current) {
+!*\onslide<7->*!    if (number == 0) return current;
+!*\onslide<8->*!    return reverseNumber(!*\onslide<9->*!number / 10,!*\onslide<10->*! digit + 1,
+!*\onslide<8->*!                !*\onslide<11->*!current * 10 + number % 10!*\onslide<8->*!);
+!*\onslide<6->*!}
+!*\onslide<4->*!
+!*\onslide<4->*!boolean check(int n) {
+!*\onslide<5->*!    return n == reverseNumber(n, 0, 0);
+!*\onslide<4->*!}
+\end{plainjava}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[fragile,c]{Numerisches Palindrom -- Lösung}
+    \addtocounter{solve}{-1}%
+    \begin{solve}<1->[Numerisches Palindrom\hfill{}(Fortsetzung)]
+        \lstfs{10}\onslide<2->{Alternativ, kann man mit \bjava{Math.log10(double)} die Stellenanzahl der Zahl herausfinden und so immer die erste und letzte Zahl abschneiden (analog zu \bjava{String::substring}). Die Variablen sind hier zur Übersicht:}
+\begin{plainjava}
+!*\onslide<3->*!static boolean check(int n) {
+!*\onslide<4->*!    if(n <= 9) return true;
+!*\onslide<5->*!    int length = (int) Math.log10(n) + 1; // Anzahl der Ziffern in n
+!*\onslide<6->*!    int largest = (int) Math.pow(10, length - 1); // Höchste Wertigkeit
+!*\onslide<7->*!    int first = n / largest; // Liefert größte Ziffer
+!*\onslide<7->*!    int last = n % 10; // Liefert kleinste Ziffer
+!*\onslide<8->*!    if(first != last)
+!*\onslide<8->*!        return false;
+!*\onslide<9->*!    return check((n % largest) / 10); // Schneidet größte & kleinste ab
 !*\onslide<3->*!}
 \end{plainjava}
     \end{solve}
