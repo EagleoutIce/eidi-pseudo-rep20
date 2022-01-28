@@ -1382,10 +1382,38 @@ while (current != null) {
             \end{forest}}
         \end{center}
         \begin{enumerate}[<+(1)->]
-            \item Breitendurchlauf: \(A,B,E,C,F,G,D,H,I\).
+            \item Breitendurchlauf (Level-Order): \(A,B,E,C,F,G,D,H,I\).
             \item In-Order: \(B,D,C,A,F,E,H,G,I\).
             \item Post-Order: \(D,C,B,F,H,I,G,E,A\).
         \end{enumerate}
+    \end{solve}
+\end{frame}
+
+\begin{frame}[c]{Übungsaufgabe}
+    \Task{Baum durch Traversierung}
+    \begin{exercise}<2->[Baum durch Traversierung \Time{4}]
+        \onslide<3->{Gegeben seien die beiden folgenden Traversierung des selben Binärbaums:}
+        \begin{itemize}
+            \item<4-> Pre-Order: \(9, 7, 14, 12, 0, 11, 8\)
+            \item<4-> In-Order: \(14, 12, 7, 0, 9, 11, 8\)
+        \end{itemize}
+        \onslide<6->{Stellen Sie einen Binärbaum grafisch dar, welcher diese Ausgaben erzeugt. Achten Sie darauf, deutlich zu zeichnen, ob es sich jeweils um linke oder rechte Kindknoten handelt.}
+    \end{exercise}
+\end{frame}
+
+\begin{frame}[c]{Lösung}
+    \begin{solve}<2->[Traversierung eines Baumes]
+        \begin{enumerate}[<+(1)->]
+            \item Pre-Order: \(\only<6->{\underline}{9}, 7, 14, 12, 0, 11, 8\)
+            \item In-Order: \(14, 12, 7, 0, \only<6->{\underline}{9}, 11, 8\)
+        \end{enumerate}
+        \begin{center}
+            \onslide<5->{\scalebox{.5}{\begin{forest}
+                for tree={inner sep=4pt,ball,font=\Large\sffamily,outer sep=1pt,execute at begin node={\strut},minimum width=1.2cm,s sep=1.65em}
+                [9[7[14[,phantom][12]][0[,phantom][,phantom]]][11[,phantom][8]]]
+            \end{forest}}}
+        \end{center}
+        \onslide<6->{Wir sehen, dass \(9\) die Wurzel ist, die Suche in In-Order die liefert Aufteilung auf links und rechts\ldots}
     \end{solve}
 \end{frame}
 
