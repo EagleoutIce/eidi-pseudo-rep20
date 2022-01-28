@@ -100,9 +100,22 @@ int fib(int n) {
 \end{frame}
 
 \ifull
+% \begin{frame}[c]{Übung zu Rekursionstransformationen}
+%     \Task{Head- und Tail-Rekursion}%
+%     \begin{exercise}<2->[Head- und Tail-Rekursion \Time{5}]
+%         \onslide<3->{}Schreiben Sie eine Java-Methode der Gestalt \bjava{int fib(int n)} welche die \(n\)-te Fibonacci-Zahl berechnet (\(f(0) = f(1) = 1\), \(f(n) = f(n - 1) + f(n - 2)\)). Verwenden Sie dabei ausschließlich Tail-Rekursion um das Problem zu lösen. Iterationen oder andere Rekursionsarten sind nicht gestattet. Hilfsmethoden sind erlaubt.
+%     \end{exercise}
+% \end{frame}
+
+% \begin{frame}[c,fragile]{Lösung}
+%     \begin{solve}<2->[Head- und Tail-Rekursion]
+%         Im Allgemeinen ist es nicht leicht, jede Rekursion Tail-Rekursiv zu schreiben.
+%     \end{solve}
+% \end{frame}
+
 \begingroup
 \def\f(#1,#2,#3){f(#1,\;#2,\;#3)}%
-\begin{frame}[c]{etwas Rekursion}
+\begin{frame}[c]{Etwas Rekursion}
     \Task{Formel zu Rekursion}%
     \begin{exercise}<2->[Formel zu Rekursion \Time{4}]
         \onslide<3->{Implementieren Sie eine rekursive Java-Methode, welche die folgende Funktion berechnet (\(a, b, c \in \mathbb{N}\)).
