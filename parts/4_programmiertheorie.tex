@@ -742,40 +742,39 @@ int getDistance(String a, String b){
 
 \begin{frame}[fragile,c]{Übungsaufgabe}
     \Task{Von Pseudocode zu Java}
-    \begin{exercise}<2->[Von Pseudocode zu Java \Time{6}]
-        \pause{}Übersetzen Sie den Pseudocode in eine Java-Methode \say{\bjava{int magic(int)}}. Behalten Sie die Vorgehensweise bei. \(\mathbb{N}\) darf durch einen Integer eingegrenzt, ungültige Eingaben müssen nicht abgefangen werden.\medskip\par\pause Beschreiben Sie auch kurz, was der Algorithmus berechnet:\RestyleAlgo{tworuled}\par\pause
+    \begin{exercise}<2->[Von Pseudocode zu Java \Time{4}]
+        \pause{}Übersetzen Sie den Pseudocode in eine Java-Methode \say{\bjava{magic(int,int)}}. Behalten Sie die Vorgehensweise bei. \(\mathbb{N}\) darf durch einen Integer eingegrenzt, ungültige Eingaben müssen nicht abgefangen werden.\medskip\par\pause Beschreiben Sie auch kurz, was der Algorithmus berechnet:\RestyleAlgo{tworuled}\par\pause
 \SetKwInput{KwIn}{Eingabe}%
 \SetKwFor{While}{Solange}{tue}{}%
 \SetKw{KwRet}{Gebe zurück:}%
+\SetKwIF{If}{ElseIf}{Else}{Wenn}{tue:}{}{sonst:}{}
 \SetAlgoVlined%
 \begin{algorithm}[H]
 \PreCode
-\KwIn{\(n \in \mathbb{N}\) \((n \geq 0)\)}
+\KwIn{\(a, b \in \mathbb{N}\) \((b \geq 0)\)}
 \StartCode
-    \(wert := 0\)\;
-    \While{\(n > 0\)}{
-        \(wert := wert + (n \bmod 10)\)\;
-        \(n := \lfloor n / 10 \rfloor\)\;
-    }
-    \KwRet{\(wert\)}\;
+    \If{b \textbf{ist} 0}{\KwRet1\;}
+
+    \(wert :=\)~\textbf{Rekursion mit neu} \(a\) \textbf{ist alt} \(a\) \textbf{und neu} \(b\) \textbf{is alt} \(b - 1\)\;
+    \KwRet{\(a * wert\)}\;
 \end{algorithm}
     \end{exercise}\onslide<1->
 \end{frame}
 
 \begin{frame}[fragile,c]{Übungsaufgabe -- Lösung}
     \begin{solve}<2->[Von Pseudocode zu Java]
-        \pause{}Der Pseudocode lässt sich glücklicherweise fast direkt übernehmen:
+        \pause{}Der Pseudocode lässt sich glücklicherweise fast direkt übernehmen:\pause{}
 \begin{plainjava}
-int magic(int n) {
-    int wert = 0;
-    while(wert > 0) {
-        wert = wert + (n % 10);
-        n = n / 10; // Ganzzahlige Division
-    }
-    return wert;
-}
+!*\onslide<4->*!int magic(int a, int b) {
+!*\onslide<9->*!    // Abfangen ungültiger Eingaben:
+!*\onslide<9->*!    // if(b < 0) throw IllegalArgumentException();
+!*\onslide<5->*!    if(b == 0) return 1;
+!*\onslide<4->*!
+!*\onslide<6->*!    int wert = magic(a, b - 1);
+!*\onslide<7->*!    return a * wert;
+!*\onslide<4->*!}
 \end{plainjava}
-        \pause{}Die Methode berechnet die Quersumme der Eingabe.
+        \onslide<8->{Die Methode berechnet \(a^b\) der Eingabe~--- \(a\) wird \(b\) mal mit sich selbst multipliziert.}\onslide<1->
     \end{solve}
 \end{frame}
 
