@@ -436,7 +436,7 @@ public static String wohinGehtEs(Richtung ziel){
         \begin{plainvoid}
 class Laenge {
     final double METER KILOMETER = 1_000;
-    static final float meter2kilometer(final int meter){
+    static float meter2kilometer(final int meter){
         return meter/METER KILOMETER;
     }
     static int kilometer2meter(double kilometer){
@@ -452,7 +452,7 @@ class Laenge {
         \pause{}\begin{plainjava}
 class Laenge {
     static final double METER_KILOMETER = 1!*\solGet{numbers}{\_}*!000;
-    static final float meter2kilometer(final int meter){
+    static float meter2kilometer(final int meter){
         return (float) (meter/METER_KILOMETER);
     }
     static int kilometer2meter(double kilometer){
@@ -468,7 +468,7 @@ class Laenge {
     \addtocounter{solve}{-1}
     \begin{solve}<1->[Fehler finden, IV\hfill{}(Fortsetzung)]
     \begin{enumerate}[<+(1)->]
-        \item Die Konstante \bjava{METER KILOMETER} darf kein Leerfeld enthalten
+        \item Die Konstante \bjava{METER KILOMETER} darf kein Leerfeld enthalten.
         \item Die Konstante muss \bjava{static} sein.
         \item In \bjava{meter2kilometer} und \bjava{kilometer2meter} muss eine explizite Konvertierung erfolgen.
     \end{enumerate}
