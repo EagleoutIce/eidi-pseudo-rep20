@@ -1382,9 +1382,9 @@ while (current != null) {
             \end{forest}}
         \end{center}
         \begin{enumerate}[<+(1)->]
-            \item Breitendurchlauf (Level-Order): \(A,B,E,C,F,G,D,H,I\).
-            \item In-Order: \(B,D,C,A,F,E,H,G,I\).
-            \item Post-Order: \(D,C,B,F,H,I,G,E,A\).
+            \item<3-> Breitendurchlauf (Level-Order): \(A,B,E,C,F,G,D,H,I\).
+            \item<4-> In-Order: \(B,D,C,A,F,E,H,G,I\).
+            \item<5-> Post-Order: \(D,C,B,F,H,I,G,E,A\).
         \end{enumerate}
     \end{solve}
 \end{frame}
@@ -1397,15 +1397,15 @@ while (current != null) {
             \item<4-> Pre-Order: \(9, 7, 14, 12, 0, 11, 8\)
             \item<4-> In-Order: \(14, 12, 7, 0, 9, 11, 8\)
         \end{itemize}
-        \onslide<6->{Stellen Sie einen Binärbaum grafisch dar, welcher diese Ausgaben erzeugt. Achten Sie darauf, deutlich zu zeichnen, ob es sich jeweils um linke oder rechte Kindknoten handelt.}
+        \onslide<5->{Stellen Sie einen Binärbaum grafisch dar, welcher diese Ausgaben erzeugt. Achten Sie darauf, deutlich zu zeichnen, ob es sich jeweils um linke oder rechte Kindknoten handelt.}
     \end{exercise}
 \end{frame}
 
 \begin{frame}[c]{Lösung}
     \begin{solve}<2->[Traversierung eines Baumes]
-        \begin{enumerate}[<+(1)->]
-            \item Pre-Order: \(\only<6->{\underline}{9}, 7, 14, 12, 0, 11, 8\)
-            \item In-Order: \(14, 12, 7, 0, \only<6->{\underline}{9}, 11, 8\)
+        \begin{enumerate}
+            \item<3-> Pre-Order: \(\only<6->{\underline}{9}, 7, 14, 12, 0, 11, 8\)
+            \item<4-> In-Order: \(14, 12, 7, 0, \only<6->{\underline}{9}, 11, 8\)
         \end{enumerate}
         \begin{center}
             \onslide<5->{\scalebox{.5}{\begin{forest}
