@@ -835,24 +835,24 @@ public static void bubbleSort(int[] arr) {
 \end{frame}
 
 \begin{frame}[c]{Sortierverfahren: Zusammenfassung}
-    \pause\begin{table}[H]
-        \def\arraystretch{1.35}
-        \begin{tabular}{l*3{l}*2{r}}
-        \toprule
-                      & \multicolumn{3}{c}{Laufzeit}  & \\
-                      \cmidrule{2-4}
-            Verfahren & best & average & worst & Speicher & Ansatz \\
-        \midrule
-            \linksort{Selectionsort} & \(\O(n^2)\)    & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
-            \linksort{Insertionsort} & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
-            \linksort{Bubblesort}    & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
-            % Quick-, merge und Heapsort können auch O(n)
-            \linksort{Mergesort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
-            \linksort{Quicksort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n^2)\)      & \(\O(\log n)\) & rekursiv \\
-            \linksort{Heapsort}      & \(\O(n \log n)\) & \(\O(n\log n)\)  & \(\O(n\log n)\)  & \(\O(1)\) & rekursiv \\
-        \bottomrule
-        \end{tabular}
-    \end{table}
+    \pause\centering
+    \def\arraystretch{1.225}
+    \begin{tabular}{l*3{l}*2{r}}
+    \toprule
+                & \multicolumn{3}{c}{Laufzeit}  & \\
+                \cmidrule{2-4}
+        Verfahren & best & average & worst & Speicher & Ansatz \\
+    \midrule
+        \linksort{Selectionsort} & \(\O(n^2)\)    & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+        \linksort{Insertionsort} & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+        \linksort{Bubblesort}    & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+        % Quick-, merge und Heapsort können auch O(n)
+        \linksort{Mergesort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
+        \linksort{Quicksort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n^2)\)      & \(\O(\log n)\) & rekursiv \\
+        \linksort{Heapsort}      & \(\O(n \log n)\) & \(\O(n\log n)\)  & \(\O(n\log n)\)  & \(\O(1)\) & rekursiv \\
+    \bottomrule
+    \end{tabular}\medskip\par
+    \scriptsize\textit{Dies folgt den Implementationen der Vorlesung. Bereits leichte Modifikationen (wie: prüfe zuerst ob die Liste bereits sortiert ist) können die Daten verändern (beispielsweise einen best-case von \(\O(n)\)).}\vspace*{-3.75mm}
 \end{frame}
 
 \begin{frame}{Eigenschaft: Stabil}
