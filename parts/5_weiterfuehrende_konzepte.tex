@@ -79,7 +79,7 @@
 \begin{frame}{Klassische Suchverfahren}
     \begin{itemize}[<+(1)->]
         \item[]\begin{description}[Linear]
-            \item[Binär] \hypertarget<1>{mrk:binsearch}{}Benötigt eine (z.B. aufsteigend) \emph{sortierte} Folge, die baumartig durchstöbert wird.\smallskip\par\pause{} Sie vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Ist er größer, wird rechts, ist er kleiner, wird links von der Mitte weitergesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren).
+            \item[Binär] \hypertarget<1>{mrk:binsearch}{}Durchsucht eine (z.B. aufsteigend) \emph{sortierte} Folge baumartig.\smallskip\par\pause{} Vergleicht das mittlere Element des aktuellen Suchbereiches mit dem Suchbegriff.\pause{} Ist er größer, wird rechts, ist er kleiner, wird links von der Mitte weiter gesucht.\pause{} Die Komplexität beträgt \(\O(\log n)\) (ohne Sortieren), da jeder Vergleich den restlichen Suchbereich halbiert.
         \end{description}
         \vspace*{1em}
 \begin{center}
@@ -120,22 +120,22 @@
 \begin{frame}[c]{Binäre Suche}
     \Task{Die binäre Suche}
     \begin{exercise}<2->[Binäre Suche \Time{6}]
-        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[], int)}, die ein bereits aufsteigend sortiertes Array mit der binären Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
-        Wird der Schlüssel nicht gefunden, so soll die Methode einen beliebigen negativen Wert zurückliefern.
+        \pause{}Schreiben Sie eine Methode \bjava{int binarySearch(int[] arr, int key)}, die ein bereits aufsteigend sortiertes Array mit der binären Suche nach einem gegebene Schlüssel durchsucht und den Index des Schlüssels zurückliefert.
+        Wird der Schlüssel nicht gefunden, so soll die Methode einen beliebigen negativen Integer zurückliefern.
     \end{exercise}\onslide<1->
 \end{frame}
 
 \begin{frame}[fragile,c]{Binäre Suche -- Lösung}
     \begin{solve}<2->[Binäre Suche]
 \lstfs{10}\begin{plainjava}
-!*\onslide<3->*!int binarySearch(int[] sequence, int key){
+!*\onslide<3->*!int binarySearch(int[] arr, int key){
 !*\onslide<4->*!    int min = 0; // Suche von min
-!*\onslide<4->*!    int max = sequence.length - 1; // Suche bis max
+!*\onslide<4->*!    int max = arr.length - 1; // Suche bis max
 !*\onslide<5->*!    while(min <= max) { // Solange [min, max] nicht ungültig ist.
 !*\onslide<6->*!        int middle = (min + max)/2; // Mitte
-!*\onslide<7->*!        if(sequence[middle] == key) // gefunden
+!*\onslide<7->*!        if(arr[middle] == key) // gefunden
 !*\onslide<7->*!            return middle;
-!*\onslide<8->*!        else if(key < sequence[middle]) // Suche links [min, middle-1]
+!*\onslide<8->*!        else if(key < arr[middle]) // Suche links [min, middle-1]
 !*\onslide<8->*!            max = middle - 1;
 !*\onslide<9->*!        else // Suche rechts [middle+1, max]
 !*\onslide<9->*!            min = middle + 1;
@@ -245,7 +245,7 @@
 \begin{frame}[c]{Selectionsort implementieren}
     \Task{Selectionsort implementieren}
     \begin{exercise}<2->[Selectionsort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[])}, die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
+        \pause{}Gegeben sei eine Methode \bjava{int getMin(int[] arr, int i, int j)}, die korrekt das Minimum im Teilarray \([i, j]\) von \bjava{arr} findet. Weiter gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{int[] selectionSort(int[] arr)}, die das übergebene Array mittels Selectionsort als \emph{neues} aufsteigend sortiertes Array zurückliefert. Das übergebene Array darf nicht verändert werden.
     \end{exercise}\onslide<1->
 \end{frame}
 
