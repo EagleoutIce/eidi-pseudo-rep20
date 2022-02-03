@@ -172,11 +172,11 @@
 
 \begin{frame}{Sortierverfahren formal}
     \begin{itemize}[<+(1)->]
-        \item Beschreibt einen Prozess, bei dem Elemente aufgrund eines Ordnungskriteriums in eine Reihenfolge gebracht werden.
+        \item Ein Prozess, bei dem Elemente auf Basis eines Ordnungskriteriums in eine Reihenfolge gebracht werden.
         \item Daten werden sortiert um beispielsweise Suchen zu vereinfachen.
-        \item Wir unterscheiden zwei konzeptionelle Arten: \begin{description}[Extern]
+        \item Wir unterscheiden zwei Arten: \begin{description}[Extern]
             \item[Intern] Hier liegt der gesamte Datenbestand im Arbeitsspeicher,\pause{} alle Elemente sind zugreifbar (Array,~\ldots)
-            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert.\pause{} Für das Sortieren werden meist nur die obersten Element eines Stapels betrachtet (Dateien,~\ldots).\pause{} Oft erlauben Modifikationen und Hilfsmethoden, dieselben Verfahren wie bei der internen Variante zu verwenden.
+            \item[Extern] Der Datenbestand ist (überwiegend) ausgelagert.\pause{} Für das Sortieren werden meist nur die obersten Element eines Stapels betrachtet (Dateien,~\ldots).\pause{} Oft erlauben Hilfsmethoden die selben Verfahren wie bei der internen Variante.
         \end{description}
     \end{itemize}
 \end{frame}
@@ -549,7 +549,8 @@ public static void bubbleSort(int[] arr) {
         \item \begin{tikzpicture}[scale=.65,every node/.style={transform shape},baseline=-.6ex]
             \XList{-15, 0, 8, 8, 9, 13, 23}
             \draw[thick] ([yshift=1mm]4.north west) -- ([yshift=1mm]4.north east);
-        \end{tikzpicture} (down)
+        \end{tikzpicture} (down)\smallskip\\
+        \textit{Dieser Schritt kann theoretisch weggelassen werden, wenn man die optimierte Version von Shakersort benutzt. Diese bricht ab, sobald in einem Durchlauf nicht mehr getauscht wird.}
     \end{enumerate}
     \end{solve}
 \end{frame}
