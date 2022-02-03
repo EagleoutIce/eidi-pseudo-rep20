@@ -47,7 +47,7 @@
 \begin{frame}[c]{Lineare Suche}
     \Task{Die lineare Suche}
     \begin{exercise}<2->[Lineare Suche \Time{4}]
-        \pause{}Schreiben Sie eine Methode \bjava{int linearSearch(int[], int)}, die ein Array mit der linearen Suche nach einem gegebene Schlüssel durchsucht und den (ersten) Index des Schlüssels zurückliefert.
+        \pause{}Schreiben Sie eine Methode \bjava{int linearSearch(int[] arr, int key)}, die ein Array mit der linearen Suche nach einem gegebene Schlüssel durchsucht und den (ersten) Index des Schlüssels zurückliefert.
         Wird der Schlüssel nicht gefunden, so soll die Methode einen negativen Wert zurückliefern.
     \end{exercise}\onslide<1->
 \end{frame}
@@ -55,9 +55,9 @@
 \begin{frame}[fragile,c]{Lineare Suche -- Lösung}
     \begin{solve}<2->[Lineare Suche]
 \begin{plainjava}
-!*\onslide<3->*!int linearSearch(int[] sequence, int key){
-!*\onslide<4->*!    for(int i = 0; i < sequence.length; i++)
-!*\onslide<5->*!        if(sequence[i] == key)
+!*\onslide<3->*!int linearSearch(int[] arr, int key){
+!*\onslide<4->*!    for(int i = 0; i < arr.length; i++)
+!*\onslide<5->*!        if(arr[i] == key)
 !*\onslide<5->*!            return i;
 !*\onslide<6->*!    return -1; // Magic Number für "not found"
 !*\onslide<3->*!}
