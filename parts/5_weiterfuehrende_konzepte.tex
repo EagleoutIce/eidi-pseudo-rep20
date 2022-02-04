@@ -59,7 +59,7 @@
 !*\onslide<4->*!    for(int i = 0; i < arr.length; i++)
 !*\onslide<5->*!        if(arr[i] == key)
 !*\onslide<5->*!            return i;
-!*\onslide<6->*!    return -1; // Magic Number für "not found"
+!*\onslide<6->*!    return -1; // Magic Number für "nicht gefunden"
 !*\onslide<3->*!}
 \end{plainjava}
     \end{solve}
@@ -70,7 +70,7 @@
 !*\onslide<2->*!int linearSearch(int[] sequence, int key){
 !*\onslide<3->*!    for(int i = 0; i < sequence.length; i++)
 !*\onslide<4->*!        if(sequence[i] == key) return i;
-!*\onslide<5->*!    return -1; // Magic Number für "not found"
+!*\onslide<5->*!    return -1; // Magic Number für "nicht gefunden"
 !*\onslide<2->*!}
 \end{plainjava}
 \end{frame}
@@ -140,7 +140,7 @@
 !*\onslide<9->*!        else // Suche rechts [middle+1, max]
 !*\onslide<9->*!            min = middle + 1;
 !*\onslide<5->*!    }
-!*\onslide<10->*!    return -1; // Magic Number für "not found"
+!*\onslide<10->*!    return -1; // Magic Number für "nicht gefunden"
 !*\onslide<3->*!}
 \end{plainjava}
     \end{solve}
@@ -161,7 +161,7 @@
 !*\onslide<8->*!        else // Suche rechts [middle+1, max]
 !*\onslide<8->*!            min = middle + 1;
 !*\onslide<4->*!    }
-!*\onslide<9->*!    return -1; // Magic Number für "not found"
+!*\onslide<9->*!    return -1; // Magic Number für "nicht gefunden"
 !*\onslide<2->*!}
 \end{plainjava}
 \end{frame}
@@ -437,7 +437,7 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Shakersort implementieren}
     \Task{Shakersort implementieren}
     \begin{exercise}<2->[Shakersort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void shakerSort(int[])}, die das übergebene Array mittels Shakersort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.\medskip\par
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void shakerSort(int[] arr)}, die das übergebene Array mittels Shakersort aufsteigend sortiert. Dabei darf das Array \emph{nur} durch die übergeben \bjava{swap}-Methode verändert werden.\medskip\par
         Ausgehend von Bubblesort, geht Shakersort \textit{abwechselnd} von links nach rechts und von rechts nach links durch das noch zu sortierende Array. In beiden Richtungen werden Vertauschungen nach Bubblesort durchgeführt.
         Jede Aufwärts- und jede Abwärtsbewegung verringert dabei den noch zu sortierenden Bereich um \(1\).
     \end{exercise}\onslide<1->
@@ -550,8 +550,9 @@ public static void bubbleSort(int[] arr) {
             \XList{-15, 0, 8, 8, 9, 13, 23}
             \draw[thick] ([yshift=1mm]4.north west) -- ([yshift=1mm]4.north east);
         \end{tikzpicture} (down)\smallskip\\
-        \textit{Dieser Schritt kann theoretisch weggelassen werden, wenn man die optimierte Version von Shakersort benutzt. Diese bricht ab, sobald in einem Durchlauf nicht mehr getauscht wird.}
+        \pause \textit{Dieser Schritt kann theoretisch weggelassen werden, wenn man die optimierte Version von Shakersort benutzt. Diese bricht ab, sobald in einem Durchlauf nicht mehr getauscht wird.}
     \end{enumerate}
+    \onslide<1->
     \end{solve}
 \end{frame}
 \fi
@@ -720,7 +721,7 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Quicksort implementieren}
     \Task{Quicksort implementieren}
     \begin{exercise}<2->[Quicksort implementieren \Time{6}]
-        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void quickSort(int[])}, die das übergebene Array mittels Quicksort aufsteigend sortiert. Als Pivot-Element soll stets das erste Element gewählt werden.\medskip\par\pause{}\textit{Tipp:} Arbeiten Sie mit einer Hilfsmethode \bjava{void quickSort(int[] arr,} \bjava{int l, int r)}, welche das Quicksort-Verfahren auf den Array-Ausschnitt \([l, r]\) anwendet.
+        \pause{}Gegeben sei eine Methode \bjava{void swap(int[] arr, int i, int j)}, die die Elemente mit Index \(i\) und \(j\) in \bjava{arr} vertauscht.\medskip\par\pause Schreiben Sie eine Methode \bjava{void quickSort(int[] arr)}, die das übergebene Array mittels Quicksort aufsteigend sortiert. Als Pivot-Element soll stets das erste Element gewählt werden.\medskip\par\pause{}\textit{Tipp:} Arbeiten Sie mit einer Hilfsmethode \bjava{void quickSort(int[] arr,} \bjava{int l, int r)}, welche das Quicksort-Verfahren auf den Array-Ausschnitt \([l, r]\) anwendet.
     \end{exercise}\onslide<1->
 \end{frame}
 
