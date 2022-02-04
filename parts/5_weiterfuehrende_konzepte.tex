@@ -616,63 +616,63 @@ public static void bubbleSort(int[] arr) {
 \begin{frame}[c]{Mergesort Pseudocode}
     \Task{Mergesort Pseudocode}
     \begin{exercise}<2->[Mergesort Pseudocode \Time{7}]
-        \pause{}Formulieren Sie Pseudocode, welcher eine gegebene Liste \(l\) mit Elementen \(l_i \in \mathbb{R}\) und Länge \(n\) durch Mergesort aufsteigend sortiert.\pause{}\medskip\par
-        Sie dürfen weitere Routinen formulieren. Es sei eine korrekt implementierte Routine \T{cut(l, i, j)} mit folgendem Vertrag gegeben:\RestyleAlgo{tworuled}
+        \onslide<3->{Formulieren Sie Pseudocode, welcher eine gegebene Liste \(l\) mit Elementen \(l_i \in \mathbb{R}\) und Länge \(n\) durch Mergesort aufsteigend sortiert.\medskip\par
+        Sie dürfen weitere Routinen formulieren. Es sei eine korrekt implementierte Routine \T{cut(l, i, j)} mit folgendem Vertrag gegeben:}\RestyleAlgo{tworuled}\onslide<4->{
 \begin{algorithm}[H]
     \PreCode
         \KwIn{Liste \(l = (l_1, \ldots, l_n)\), \(i, j \in \{1, \ldots, n\}\)}
         \KwOut{Teilliste \((l_i, \ldots, l_j)\), falls \(i \leq j\). Sonst (wenn \(i > j\)) eine leere Liste.}
     \StartCode
 \end{algorithm}
-        \medskip\par
-        Weiter dürfen Sie mit \(x_i\) direkt auf das Listenelement an Stelle \(i\) in \(x\) zugreifen (sofern \(1 \leq i \leq n_x\) mit Länge \(n_x\)). Der Ausdruck \say{\T{x + l\textsubscript{i}}} erzeugt eine \emph{neue} Liste \((x_1, \ldots, x_n, l_i)\). Ebenso \say{\T{x + l}} mit \((x_1, \ldots, x_n, l_1, \ldots, l_n)\).
+        \medskip\par}
+        \onslide<5->{Weiter dürfen Sie mit \(x_i\) direkt auf das Listenelement an Stelle \(i\) in \(x\) zugreifen (sofern \(1 \leq i \leq n_x\) mit Länge \(n_x\)). Der Ausdruck \say{\T{x + l\textsubscript{i}}} erzeugt eine \emph{neue} Liste \((x_1, \ldots, x_n, l_i)\). Ebenso \say{\T{x + l}} mit \((x_1, \ldots, x_n, l_1, \ldots, l_n)\).}
     \end{exercise}\onslide<1->
 \end{frame}
 
 \begin{frame}[c]{Mergesort Pseudocode -- Lösung}
     \begin{solve}<2->[Mergesort Pseudocode]
-        \pause{}\small\begin{algorithm}[H]
+        \onslide<3->{\small\begin{algorithm}[H]
         \PreCode
-            \KwIn{Liste \(l = (l_1, \ldots, l_n)\)}
-            \KwOut{Aufsteigend sortierte Liste \(l\).}
+            \onslide<4->{\KwIn{Liste \(l = (l_1, \ldots, l_n)\)}
+            \KwOut{Aufsteigend sortierte Liste \(l\).}}
         \StartCode
-            \Comment{Ein- oder Nullelementig, bereits sortiert:}
-            \lIf{\(n \leq 1\)}{\KwRet{l}}
+            \onslide<5->{\Comment{Ein- oder Nullelementig, bereits sortiert:}
+            \onslide<6->{\lIf{\(n \leq 1\)}{\KwRet{l}}}
             \(left := \text{\T{cut}}(l, 1, \lfloor\sfrac{n}{2}\rfloor)\)\;
-            \(right := \text{\T{cut}}(l, \lfloor\sfrac{n}{2}\rfloor, n)\)\;
-            \Comment{Rekursion}
+            \(right := \text{\T{cut}}(l, \lfloor\sfrac{n}{2}\rfloor, n)\)\;}
+            \onslide<7->{\Comment{Rekursion}
             \(left := \text{\T{mergesort}}(left)\)\;
-            \(right := \text{\T{mergesort}}(right)\)\;
-            \KwRet \(\text{\T{merge}}(left, right)\)\Comment*[l]{Auf der nächsten Folie}
+            \(right := \text{\T{mergesort}}(right)\)\;}
+            \onslide<8->{\KwRet \(\text{\T{merge}}(left, right)\)\Comment*[l]{Auf der nächsten Folie}}
             \caption{mergesort(t)}
-    \end{algorithm}
+    \end{algorithm}}
     \end{solve}
 \end{frame}
 
 \begin{frame}[c]{Mergesort Pseudocode -- Lösung}
     \addtocounter{solve}{-1}%
     \begin{solve}<2->[Mergesort Pseudocode\hfill(Fortsetzung)]
-        \pause{}\small\begin{algorithm}[H]
+        \onslide<3->{\small\begin{algorithm}[H]
         \PreCode
-            \KwIn{Aufsteigend sortierte Listen \(left\) und \(right\) (Längen \(n_{left}\), \(n_{right}\))}
-            \KwOut{Aufsteigend sortierte Liste aus \(left\) und \(right\)}
+            \onslide<4->{\KwIn{Aufsteigend sortierte Listen \(left\) und \(right\) (Längen \(n_{left}\), \(n_{right}\))}
+            \KwOut{Aufsteigend sortierte Liste aus \(left\) und \(right\)}}
         \StartCode
-            \(res := ()\)\Comment*[l]{Initialisiere leere merge-Liste}
-            \While(\Comment*[h]{Beide Listen enthalten noch Elemente}){%
+            \onslide<5->{\(res := ()\)\Comment*[l]{Initialisiere leere merge-Liste}}
+            \onslide<6->{\While(\Comment*[h]{Beide Listen enthalten noch Elemente}){%
                 $left \neq ()$ \KwAnd $right \neq ()$%
             }{%
-                \eIf{$left_1 \leq right_1$}{
-                    \(res := res + left_1\);
-                    \(left = \text{\T{cut}}(left, 2, n_{left})\)\;
+                \onslide<7->{\eIf{$left_1 \leq right_1$}{
+                    \onslide<8->{\(res := res + left_1\);
+                    \(left = \text{\T{cut}}(left, 2, n_{left})\)\;}
                 }{
-                    \(res := res + right_1\);
-                    \(right = \text{\T{cut}}(right, 2, n_{right})\)\;
-                }
-            }
-            \(res := (res + left) + right\)\Comment*[l]{Es gilt $left = () \lor right = ()$}
-            \KwRet{res}\;
+                    \onslide<9->{\(res := res + right_1\);
+                    \(right = \text{\T{cut}}(right, 2, n_{right})\)\;}
+                }}
+            }}
+            \onslide<10->{\(res := (res + left) + right\)\Comment*[l]{Es gilt $left = () \lor right = ()$}}
+            \onslide<11->{\KwRet{res}\;}
         \caption{merge(left, right)}
-    \end{algorithm}
+    \end{algorithm}}
     \end{solve}
 \end{frame}
 \fi
