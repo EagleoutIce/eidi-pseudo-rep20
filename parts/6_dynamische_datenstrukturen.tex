@@ -160,13 +160,13 @@ class Element {
 
 \begin{frame}[fragile,c]{Lösung}
     \begin{solve}<2->[Einfach verkettete Liste - Einfügen]
-        Die erste Methode behandelt den Sonderfall \say{leere Liste}. Die zweite traversiert die Liste so lange,\pause{} bis wir am \emph{Foot} angekommen sind und ersetzt dann den Verweis des vorletzten Elements:\pause{}
+        Die erste Methode behandelt den Sonderfall \say{leere Liste}. Die Zweite traversiert die Liste so lange,\pause{} bis wir am \emph{Foot} angekommen sind und ersetzt dann den Verweis des vorletzten Elements:\pause{}
 \begin{plainjava}
 public Element appendLast(Element root, int i) {
     if(root == null) {
         return new Element(i, null);
     } else {
-        appendLastIter(root, i);
+        appendLastRec(root, i);
         return root;
     }
 }
@@ -179,11 +179,11 @@ public Element appendLast(Element root, int i) {
     \begin{solve}<2->[Einfach verkettete Liste - Einfügen\hfill{}(Fortsetzung)]
         Wir suchen das Ende der Liste:
 \begin{plainjava}
-public void appendLastIter(Element current, int i){
+public void appendLastRec(Element current, int i){
     if(current.next == null) // found last
         current.next = new Element(i, null);
     else
-        appendLastIter(current.next, i);
+        appendLastRec(current.next, i);
 }
 \end{plainjava}
     \end{solve}
