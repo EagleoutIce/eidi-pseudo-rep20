@@ -188,6 +188,27 @@ int fib(int n) {
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Das Paradigma: Backtracking}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Backtracking ist eine rekursive Lösungsstrategie.
+        \item Das Problem wird von einer Teillösung aus bis zur Gesamtlösung erweitert.\pause{} Eine \say{Sackgasse} veranlasst einen neuen Versuch (trial and error).
+        \item Im Sackgassen-Fall macht man die Entscheidungen solange Rückgängig, bis man eine andere Erweiterung wählen kann und erweitert die Teillösung dann durch diese.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Das Paradigma: Backtracking, Beispiele}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item \emph{Wegfindung im Labyrinth:}\pause{} Gehe vom Startfeld aus solange einen Weg entlang, bis am Ziel angekommen.\pause{} Im Fall einer Sackgasse: springe zur letzten Position zurück, an der es noch einen anderen Weg gab.
+        \item \emph{Lösung eines Sudoku.}\pause{} Füge in erstes freies Feld eine der dort möglichen Zahlen ein.\pause{} Verfahre so, bis alle Felder gefüllt sind oder für ein Feld keine Zahl mehr möglich ist.\pause{} In diesem Fall: springe zum letzten Punkt zurück, an dem noch andere Zahlen möglich sind. Probiere weiter.
+        \item Rucksackproblem, 8-Damen Problem,~\ldots
+    \end{itemize}
+\end{frame}
+
+
 \immediate\write18{wget https://media.githubusercontent.com/media/EagleoutIce/Episode-Recursion/gh-pages/preview-01.png -O logoRecursion-\jobname.png}
 \begin{frame}[c]{Zur Vertiefung}
 \centering\vspace*{2em}\par\begin{tikzpicture}
