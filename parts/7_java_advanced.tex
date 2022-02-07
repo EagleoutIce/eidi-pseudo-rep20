@@ -366,6 +366,43 @@ try {
     \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Checked- \& Unchecked Exceptions}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Alle Exceptions erben in Java von \bjava{Exception}.
+        \item Solche, die von \bjava{RuntimeException} erben sind \textit{unchecked}, die anderen sind \textit{checked}.
+        \item \textit{Checked} Exceptions \textit{müssen} behandelt werden: \begin{itemize}
+            \widei
+            \item Entweder direkt durch ein \bjava{try-catch} (welches die Exception behandelt).
+            \item Oder durch eine Weiterreichung per \bjava{throws} bei der Methoden-Deklaration:
+\begin{plainjava}
+public void foo() throws Exception/*, ExceptionB, ...*/ {
+    throw new Exception();
+}
+\end{plainjava}
+\end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exceptions weiterwerfen}
+    \begin{itemize}[<+(1)->]
+        \widei
+        \item Die anderen Blöcke eines \bjava{try}-\bjava{catch} sind nicht magisch. Auch in ihnen können Exceptions geworfen werden.
+        \item So lassen sich übrigens auch \bjava{try}-\bjava{catch}-Konstrukte verschachteln.
+        \item Rethrows können die Verantwortung auch weiterreichen:
+\begin{plainjava}
+!*\onslide<3->*!public void foo() throws Exception {
+!*\onslide<4->*!    try {
+!*\onslide<4->*!        throw new Exception();
+!*\onslide<4->*!    } catch (Exception ex) {
+!*\onslide<6->*!        // do stuff ..
+!*\onslide<7->*!        throw ex; // oder sowas wie: throw new Exception(ex)
+!*\onslide<4->*!    }
+!*\onslide<3->*!}
+\end{plainjava}
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}[fragile]{Behandeln von Fehlern}
     \begin{itemize}[<+(1)->]
