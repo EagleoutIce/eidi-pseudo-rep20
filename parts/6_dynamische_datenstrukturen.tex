@@ -200,7 +200,7 @@ public void appendLastRec(Element current, int i){
 
 % NOTE: TODO: NOTE: gutes Beispiel: Undo & Redo, Verarbeitungsverlauf.
 % Für doppelt verketteter Baum: GUI/Scene graph parent/child Beziehung
-\begin{frame}[fragile]{Listen -- Doppelt verkettete Liste, III}
+\begin{frame}[fragile]{Listen -- Doppelt verkettete Liste}
     \def\arraystretch{1.35}%
     \begin{itemize}[<+(1)->]
         \widei
@@ -288,7 +288,7 @@ class Element {
 \begin{frame}{Datenstruktur: Queue, II}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{appendFirst(Element)} und \bjava{removeLast(Element)} zulässt.
+        \item Queues lassen sich als eine Liste implementieren,\pause{} die nur Zugriffe wie \bjava{prependFirst(Element)} und \bjava{removeLast(Element)} zulässt.
         \item Auf Queues kennzeichnen wir zwei wichtige Operationen: \begin{description}[dequeue]
             \item[enqueue] Reiht ein Element (hinten) in die Schlange ein.
             \item[dequeue] Nimmt ein Element (vorne) aus der Schlange.
@@ -1143,7 +1143,7 @@ public class LinkedList {
 {\footnotesize
 \begin{plainjava}
 public class Element {
-    public int value;
+    public final int value;
     public Element next;
     public Element(int _v, Element _n) {
         value = _v; next = _n;
