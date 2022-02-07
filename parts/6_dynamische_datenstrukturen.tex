@@ -338,6 +338,7 @@ class Element {
         \item Im Gegensatz zu Knoten in Listen, halten Knoten in Bäumen Referenzen auf mehrere Nachfolger.
         \item Ein Spezialfall sind Binärbäume, die maximal zwei Nachfolger haben.
         \item Knoten erhalten verschiedene Bezeichner: \begin{description}[Innerer]
+            \widei
             \item[Wurzel] Ein Knoten ohne Vorgänger, der den Baum anführt. Ein Baum hat \emph{eine} Wurzel.
             \item[Blatt] Ein Blatt ist ein Knoten ohne Nachfolger.
             \item[Innerer] Ein innerer Knoten ist jeder Knoten, der weder Blatt noch Wurzel ist.\pause{} Ein innerer Knoten hat genau einen Elternknoten.
@@ -347,7 +348,7 @@ class Element {
 
 \begin{frame}{Bäume: Mathematisch}
     \begin{definition}[Baum]
-Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und Kanten \(E = V \times V\).\pause{} Die Anzahl der eingehenden Kanten muss für jeden Knoten maximal \(1\) sein.
+Ein Baum \(B\) ist ein zusammenhängender, azyklischer Graph \(T = (V,E)\) mit einer endlichen Menge an Knoten \(V\) und Kanten \(E \subseteq V \times V\).\pause{} Die Anzahl der eingehenden Kanten muss für jeden Knoten maximal \(1\) sein.
     \end{definition}
     \begin{itemize}[<+(1)->]
         \item Die Kanten können ungerichtet oder gerichtet (\say{gewurzelter Baum}) sein.
