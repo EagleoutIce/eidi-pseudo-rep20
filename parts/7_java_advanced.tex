@@ -164,6 +164,25 @@ herbert instanceof Dozent // :yields: false
     \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Überschreiben}
+    \begin{itemize}[<+(1)->]
+        \item Analog zum \hyperlink{mrk:Signatur}{\emph{Überladen}} (gleicher Name, unterschiedliche Signatur) gibt es das \say{Überschreiben}.
+        \item Eine Methode in einer erbenden Klasse \textit{überschreibt} eine (sichtbare) Methode in der Superklasse mit der gleichen Signatur.
+    \end{itemize}
+\begin{plainjava}[morekeywords={[3]{A,B}}]
+!*\onslide<4->*!public class A {
+!*\onslide<4->*!    public int foo(int i) { return i + 1; }
+!*\onslide<4->*!}
+!*\onslide<5->*!public class B extends A {
+!*\onslide<5->*!    public int foo(int i) { return i * i; }
+!*\onslide<5->*!}
+\end{plainjava}
+\begin{itemize}
+    \item<6-> Hier überschreibt \bjava[morekeywords={[3]{A,B}}]{B::foo(int)} die Methode \bjava[morekeywords={[3]{A,B}}]{A::foo(int)}.
+    \item<7-> \bjava{new B().foo(3)} produziert damit \bjava{9}. In \solGet{keywordC}{B} steht \bjava[morekeywords={[3]{A,B}}]{A::foo(int)} über \bjava{super} zur Verfügung.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Abstrakte Klassen}
     \begin{itemize}[<+(1)->]
         \widei
