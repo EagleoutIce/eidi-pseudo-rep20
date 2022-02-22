@@ -846,14 +846,14 @@ public static void bubbleSort(int[] arr) {
     \midrule
         \linksort{Selectionsort} & \(\O(n^2)\)    & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
         \linksort{Insertionsort} & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
-        \linksort{Bubblesort}    & \(\O(n)\)      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
+        \linksort{Bubblesort}    & \(\O(n^2)\)\textcolor{gray}{, \(\O(n)\)}      & \(\O(n^2)\)      & \(\O(n^2)\)      & \(\O(1)\) & iterativ \\
         % Quick-, merge und Heapsort können auch O(n)
         \linksort{Mergesort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n)\) & rekursiv \\
         \linksort{Quicksort}     & \(\O(n \log n)\) & \(\O(n \log n)\) & \(\O(n^2)\)      & \(\O(\log n)\) & rekursiv \\
         \linksort{Heapsort}      & \(\O(n \log n)\) & \(\O(n\log n)\)  & \(\O(n\log n)\)  & \(\O(1)\) & rekursiv \\
     \bottomrule
     \end{tabular}\medskip\par
-    \scriptsize\textit{Dies folgt den Implementationen der Vorlesung. Bereits leichte Modifikationen (wie: prüfe zuerst ob die Liste bereits sortiert ist) können die Daten verändern (beispielsweise einen best-case von \(\O(n)\)).}\vspace*{-3.75mm}
+    \scriptsize\textit{Dies folgt den Implementationen der Vorlesung. Bereits leichte Modifikationen (wie: prüfe zuerst ob die Liste bereits sortiert ist) können die Daten verändern (beispielsweise einen best-case von \(\O(n)\) im Falle von Bubblesort).}\vspace*{-3.75mm}
 \end{frame}
 
 \begin{frame}{Eigenschaft: Stabil}
