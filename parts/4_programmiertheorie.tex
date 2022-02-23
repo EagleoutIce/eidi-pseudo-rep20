@@ -739,10 +739,11 @@ int getDistance(String a, String b){
         \begin{multicols}{3}
             \begin{enumerate}[<+(1)->]\widei
                 \item \(\O(n \cdot \log(n^2))\)
-                \item \(\O(\frac{n}{12}) + \O(n^3)\)
                 \item \(\O(4^n)-\O(2^n)\)
+                \item \(\O(\frac{n}{12}) + \O(n^3)\)
                 \item \(\O(\frac{n!}{n})\)
                 \item \(\O(14n+12)\)
+                \item<1->[]
             \end{enumerate}
         \end{multicols}
     \end{exercise}\onslide<1->
@@ -751,11 +752,11 @@ int getDistance(String a, String b){
 \begin{frame}[c]{Übungsaufgabe -- Lösung}
     \begin{solve}<2->[Komplexitätsklassen ordnen]
         \pause{}Es ergibt sich: \begin{enumerate}[<+(1)->]
-            \item \(\O(14n+12) = \O(n)\)
-            \item \(\O(n \cdot \log(n^2)) = \O(n \cdot 2 \cdot \log(n)) = \O(n \log n)\)
-            \item \(\O(\frac{n}{12}) + \O(n^3) = \O(n^3)\)
-            \item \(\O(4^n) - \O(2^n) = \O(4^n - 2^n) = \O(4^n)\)
-            \item \(\O(\frac{n!}{n}) = \O((n-1)!) = \O(n!)\)
+            \item[5.] \(\O(14n+12) = \O(n)\)
+            \item[1.] \(\O(n \cdot \log(n^2)) = \O(n \cdot 2 \cdot \log(n)) = \O(n \log n)\)
+            \item[3.] \(\O(\frac{n}{12}) + \O(n^3) = \O(n^3)\)
+            \item[2.] \(\O(4^n) - \O(2^n) = \O(4^n - 2^n) = \O(4^n)\)
+            \item[4.] \(\O(\frac{n!}{n}) = \O((n-1)!) = \O(n!)\)
         \end{enumerate}
         \pause{}Eine derartige Kategorisierung kann auch (noch) genauer präzisiert werden.
     \end{solve}
