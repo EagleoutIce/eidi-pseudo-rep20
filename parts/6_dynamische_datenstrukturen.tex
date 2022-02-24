@@ -276,7 +276,7 @@ class Element {
 \end{frame}
 
 \begin{frame}{Datenstruktur: Queue}
-    \begin{itemize}[<+(1)->]
+    \hypertarget<1>{mrk:Queue}{}\begin{itemize}[<+(1)->]
         \widei
         \item Eine Warteschlange arbeitet nach dem FIFO-Prinzip (First-In, First-Out).
         \item Elemente können nur hinten in der Schlange eingereiht und nur vorne von der Schlange entfernen werden.
@@ -1012,8 +1012,8 @@ class Node {
     \begin{itemize}[<+(1)->]
         \widei
         \item In der Breitensuche besucht man von einem Startknoten aus erst alle benachbarten Knoten.
-        \item In diesem Zuge merkt man sich die Nachbarn dieser Knoten uns besucht anschließend diese.
-        \item Der Vorteil:\pause{} Wenn alle Kanten gleich Gewichtet sind lässt sich so direkt der kürzeste Weg identifizieren.
+        \item In diesem Zuge merkt man sich die Nachbarn dieser Knoten (mit einer \hyperlink{mrk:Queue}{Queue}) und besucht anschließend diese.
+        \item Der Vorteil:\pause{} Wenn alle Kanten gleich gewichtet sind, lässt sich so direkt der kürzeste Weg identifizieren.
     \end{itemize}
     \vfill\pause{}
     \begin{multicols}{5}
