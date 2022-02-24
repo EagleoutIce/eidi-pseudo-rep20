@@ -1276,6 +1276,9 @@ while (current != null) {
             \draw[decorate,decoration={brace}] ([xshift=-4pt,yshift=4pt]c.north west) to[edge node={node[above=5pt] {next}}] ([xshift=3.75pt,yshift=4pt]c.north east);
         \end{tikzpicture}
     \end{enumerate}
+    \onslide<5->{\begin{center}
+        \scriptsize\textit{Wie ein Schiffchen schieben wir also \T{reversedHead}, \T{current} und \T{next} nach rechts durch die Liste, um aus \(\text{\T{current}}\to\text{\T{next}}\) die Kante \(\text{\T{current}}\to\text{\T{reversedHead}}\) zu machen.}\vspace*{-2mm}
+    \end{center}}
     \end{solve}
 \end{frame}
 
