@@ -95,16 +95,16 @@ Ansonsten soll (3) B durchgeführt werden.}}\quad
     \pause\begin{center}
         \begin{tikzpicture}
             \node[block] (A) at(0,0) {Algorithmus};
-            \node (V) at(-5,0) {Vorbedingung};
-            \node (N) at(5,0) {Nachbedingung};
+            \node (V) at(-5,0) {Vorbedingungen};
+            \node (N) at(5,0) {Nachbedingungen};
             \draw[link] (V) edge (A) (A) edge (N);
         \end{tikzpicture}
     \end{center}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Ein Algorithmus benötigt (formal) eine: \begin{itemize}
-            \item Vorbedingung \textcolor{gray}{(wie \say{positive ganze Zahl})}
-            \item Nachbedingung \textcolor{gray}{(wie \say{negative Fließkommazahl})}
+        \item Ein Algorithmus benötigt (formal): \begin{itemize}
+            \item Vorbedingungen \textcolor{gray}{(wie \say{positive ganze Zahl})}
+            \item Nachbedingungen \textcolor{gray}{(wie \say{negative Fließkommazahl})}
         \end{itemize}
         \item Algorithmen fundieren oft auf einem Problem der realen Welt und bedienen sich Mechaniken, wie der Abstraktion, zur Lösung.
         \item (Java-)Programme sind eine Darstellungsform von Algorithmen.\par\pause{}
