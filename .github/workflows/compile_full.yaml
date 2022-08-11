@@ -16,25 +16,33 @@ jobs:
       with:
         lfs: true
         submodules: true
-    - name: Setup Python environment for sltx
-      uses: actions/setup-python@v2
+# https://github.com/actions/cache/issues/342
+    - name: Caching
+      id: cache-documentation
+      uses: actions/cache@v3
       with:
-        python-version: '3.8'
-    - name: Setup and run sltx-install (and pu)
-      run: |
-        sudo apt install poppler-utils
-        pip install six sltx
-        echo "tx-default" | sltx docker
-    - name: Compile the Documents
-      run: |
-        sltx compile --root --profile "tx-default"
+        path: |
+          build
+          sub_*
+        key: ${{ runner.os }}-eidi-pseudo-rep20-${{ github.run_id }}
+        restore-keys: ${{ runner.os }}-eidi-pseudo-rep20-
+    - name: Install PU for previews
+      run: sudo apt install poppler-utils
+    - name: Compile the Documentation, showcase and minimal
+      uses: xu-cheng/latex-action@v2
+      with:
+        root_file: |
+          eidi-tutorium-rep.tex
+          noanim-eidi-tutorium-rep.tex
+          short-eidi-tutorium-rep.tex
+          noanim-short-eidi-tutorium-rep.tex
     - name: Generate previews
       run: |
-        cp noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
-        cp eidi-tutorium-rep.pdf animated-eidi-rep.pdf
-        cp noanim-short-eidi-tutorium-rep.pdf short-slides-eidi-rep.pdf
-        cp short-eidi-tutorium-rep.pdf short-animated-eidi-rep.pdf
-        pdftoppm -png -f 1 -l 1 ./noanim-eidi-tutorium-rep.pdf preview
+        cp build/noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
+        cp build/eidi-tutorium-rep.pdf animated-eidi-rep.pdf
+        cp build/noanim-short-eidi-tutorium-rep.pdf short-slides-eidi-rep.pdf
+        cp build/short-eidi-tutorium-rep.pdf short-animated-eidi-rep.pdf
+        pdftoppm -png -f 1 -l 1 ./build/noanim-eidi-tutorium-rep.pdf preview
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
