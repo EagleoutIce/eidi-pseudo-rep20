@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "[Script] Using docker: $(docker -v)"
+docker run --volume "$(pwd):/root/data" eidi-pseudo-rep-make:latest "$@"

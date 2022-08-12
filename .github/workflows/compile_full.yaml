@@ -28,14 +28,11 @@ jobs:
         restore-keys: ${{ runner.os }}-eidi-pseudo-rep20-
     - name: Install PU for previews
       run: sudo apt install poppler-utils
-    - name: Compile the Documentation, showcase and minimal
-      uses: xu-cheng/latex-action@v2
-      with:
-        root_file: |
-          eidi-tutorium-rep.tex
-          noanim-eidi-tutorium-rep.tex
-          short-eidi-tutorium-rep.tex
-          noanim-short-eidi-tutorium-rep.tex
+    - name: use make docker to do the magic
+      run: make docker
+    - name: 'compiling the pdfs'
+      run: |
+        ./run-docker
     - name: Generate previews
       run: |
         cp build/noanim-eidi-tutorium-rep.pdf slides-eidi-rep.pdf
