@@ -200,7 +200,7 @@ for(int i = 0, k = 1; i < 20; i++, k *= 2) {
 \begin{frame}[fragile]{Iterieren mit foreach}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Mit Java Version 5 gibt es eine weitere Variante der \bjava{for}-Schleife:\pause{}
+        \item Mit Java Version~5 gibt es eine weitere Variante der \bjava{for}-Schleife:\pause{}
 \begin{plainjava}
 for(:lan:Variable-Deklaration:ran: : :lan:Iterierbare Variable:ran:) {
     // Etwas mit der Variable machen
@@ -236,13 +236,13 @@ char[] c = new char[] {'a', 'z', '9'}; // 3 Elemente
 \begin{frame}[fragile]{Arrays, Technischer Hintergrund}
     \begin{itemize}[<+(1)->]
         \widei
-        \item Arrays werden in Java als ein Block gespeichert.\pause{} Das bedeutet, ein Array aus \(12\) \bjava{int}-Elementen nimmt einen Speicherblock von \(12 \cdot 32\,\text{bit}\) ein.
+        \item Arrays werden in Java als ein Block gespeichert.\pause{} Das bedeutet, ein Array aus~\(12\) \bjava{int}-Elementen nimmt einen Speicherblock von \(12 \cdot 32\,\text{bit}\) ein.
         \item Greift man auf einen nicht erlaubten Index zu,\pause{} so wird eine \bjava{ArrayIndexOutOfBoundsException} geworfen.
         \item Da Arrays eine komplexe Datenstruktur sind, wird bei der Erstellung in der Variable selbst nur die Speicheradressen abgelegt.\pause{}
 \begin{plainjava}
 int[] a = {2, 4, 6, 8, 10}, b = a;
 \end{plainjava}
-        \pause{}Hier verweisen beide Variablen auf den selben Datensatz:\pause{}
+        \pause{}Hier verweisen beide Variablen auf denselben Datensatz:\pause{}
 \begin{plainjava}
 a[4] = 42; b[2] = 7;
 for(int i = 0; i < a.length; i++)
